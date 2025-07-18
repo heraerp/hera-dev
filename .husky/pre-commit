@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# HERA Universal - Pre-commit validation
+echo "🔍 Running HERA Universal pre-commit checks..."
+
+# Check for missing createClient imports
+echo "Checking for missing createClient imports..."
+node scripts/check-imports.js
+
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "❌ Pre-commit failed: Missing createClient imports detected"
+  echo "💡 Run 'node scripts/fix-missing-imports.js' to auto-fix"
+  echo ""
+  exit 1
+fi
+
+echo "✅ All import checks passed!"

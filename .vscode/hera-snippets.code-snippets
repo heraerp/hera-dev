@@ -1,0 +1,71 @@
+{
+  "HERA Entity Creation": {
+    "prefix": "hera-create",
+    "body": [
+      "const entityData: EntityData = {",
+      "  name: \"${1:Entity Name}\",",
+      "  organizationId: ${2:organizationId},",
+      "  fields: {",
+      "    ${3:// Add your fields here}",
+      "  }",
+      "}",
+      "",
+      "const result = await UniversalCrudService.createEntity(entityData, '${4:entity_type}')"
+    ],
+    "description": "HERA Universal entity creation pattern"
+  },
+  
+  "HERA Entity Reading": {
+    "prefix": "hera-read", 
+    "body": [
+      "const result = await UniversalCrudService.readEntity(${1:organizationId}, ${2:entityId})"
+    ],
+    "description": "HERA Universal entity reading pattern"
+  },
+  
+  "HERA Entity Listing": {
+    "prefix": "hera-list",
+    "body": [
+      "const result = await UniversalCrudService.listEntities(${1:organizationId}, '${2:entity_type}', {",
+      "  page: ${3:1},",
+      "  pageSize: ${4:25},",
+      "  search: ${5:'query'},",
+      "  filters: {${6:// Add filters}}",
+      "})"
+    ],
+    "description": "HERA Universal entity listing pattern"
+  },
+  
+  "HERA API Route": {
+    "prefix": "hera-api",
+    "body": [
+      "import { NextRequest, NextResponse } from 'next/server'",
+      "import UniversalCrudService from '@/lib/services/universalCrudService'",
+      "",
+      "export async function ${1:POST}(request: NextRequest) {",
+      "  try {",
+      "    const data = await request.json()",
+      "    ",
+      "    const result = await UniversalCrudService.${2:createEntity}(data, '${3:entity_type}')",
+      "    ",
+      "    return NextResponse.json(result)",
+      "  } catch (error) {",
+      "    return NextResponse.json(",
+      "      { error: 'Operation failed' },",
+      "      { status: 500 }",
+      "    )",
+      "  }",
+      "}"
+    ],
+    "description": "HERA Universal API route pattern"
+  },
+  
+  "HERA Imports": {
+    "prefix": "hera-imports",
+    "body": [
+      "import UniversalCrudService from '@/lib/services/universalCrudService'",
+      "import { HeraNamingConventionAI } from '@/lib/naming/heraNamingConvention'"
+    ],
+    "description": "HERA Universal standard imports"
+  }
+}

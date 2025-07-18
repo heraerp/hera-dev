@@ -1,0 +1,105 @@
+{
+  "restaurants": [
+    {
+      "restaurant_id": 1,
+      "name": "Chef Lebanon",
+      "phone": "+91‑9846979500",
+      "rating": 4.1,
+      "delivery": true
+    }
+  ],
+  "addresses": [
+    {
+      "address_id": 1,
+      "restaurant_id": 1,
+      "street": "07/922A Nechikkatil Building, Opp. Ayurvedic Nursing Home, Changuvetty",
+      "city": "Kottakkal",
+      "district": "Malappuram",
+      "state": "Kerala",
+      "country": "India",
+      "postal_code": "676501"
+    }
+  ],
+  "menu_sections": [
+    { "section_id": 1, "restaurant_id": 1, "name": "Pizza And Oven Bread" },
+    { "section_id": 2, "restaurant_id": 1, "name": "Sandwiches" },
+    { "section_id": 3, "restaurant_id": 1, "name": "Burger Platters & Sandwiches" },
+    { "section_id": 4, "restaurant_id": 1, "name": "Mezza & Salad" },
+    { "section_id": 5, "restaurant_id": 1, "name": "Main Course" },
+    { "section_id": 6, "restaurant_id": 1, "name": "Sweet Kunafa" },
+    { "section_id": 7, "restaurant_id": 1, "name": "Fresh Juice" },
+    { "section_id": 8, "restaurant_id": 1, "name": "Arabic Sweets" },
+    { "section_id": 9, "restaurant_id": 1, "name": "Starters" },
+    { "section_id": 10, "restaurant_id": 1, "name": "Grilled" }
+  ],
+  "menu_items": [
+    { "item_id": 101, "section_id": 1, "name": "Cheese", "price": 280, "description": null },
+    { "item_id": 102, "section_id": 1, "name": "Chicken Ranch Pizza", "price": 780, "description": null },
+    { "item_id": 103, "section_id": 1, "name": "Falafel Sandwich", "price": 125, "description": "Crispy falafel, fresh veggies, creamy tahini, wrapped in warm pita" },
+    { "item_id": 104, "section_id": 1, "name": "Mexican Pizza", "price": 780, "description": null },
+    { "item_id": 105, "section_id": 1, "name": "Onion Tomato With Cheese", "price": 250, "description": "Fresh dough, onion, tomato with pepper and fresh Mozzarella" },
+    { "item_id": 106, "section_id": 1, "name": "Onion Tomato With Zaatar", "price": 250, "description": "Fresh dough, onion, tomato with pepper and fresh Lebanese zaatar" },
+    { "item_id": 107, "section_id": 1, "name": "Zaatar With Cheese", "price": 360, "description": null },
+    { "item_id": 108, "section_id": 1, "name": "Zaatar", "price": 330, "description": null },
+    { "item_id": 109, "section_id": 1, "name": "Falafel Pizza [12 Inches]", "price": 500, "description": "Falafel with dough, radish parsley, pickle, tomato sauce and tahina" },
+    { "item_id": 110, "section_id": 1, "name": "Margherita Pizza [12 Inches]", "price": 500, "description": "Special pizza sauce with fresh Mozzarella cheese" },
+    { "item_id": 111, "section_id": 1, "name": "Vegetable Pizza [12 Inches]", "price": 550, "description": "Special pizza sauce with fresh Mozzarella cheese, mixed and fresh vegetable" },
+
+    { "item_id": 201, "section_id": 2, "name": "Shishtaouk Sandwich", "price": 350, "description": "Shish taouk chicken with garlic, lettuce, tomato, French fries and pickle" },
+    { "item_id": 202, "section_id": 2, "name": "Twister Sandwich", "price": 350, "description": "Crispy chicken cocktail sauce tomato lettuce Cheddar cheese" },
+    { "item_id": 203, "section_id": 2, "name": "Chicken Sub Sandwich", "price": 350, "description": "Chicken soya sauce Mozzarella cheese corn mayonnaise" },
+    { "item_id": 204, "section_id": 2, "name": "Francisco Sandwich", "price": 400, "description": "Chicken, Mozzarella cheese, soya sauce, corn and lettuce" },
+
+    { "item_id": 301, "section_id": 3, "name": "Chicken Shawarma Arabic", "price": 285, "description": null },
+    { "item_id": 302, "section_id": 3, "name": "Chicken Shawarma Platter", "price": 440, "description": null },
+    { "item_id": 303, "section_id": 3, "name": "Chicken Shawarma Sandwich", "price": 180, "description": "Chicken shawarma with vegetable and French fries" },
+    { "item_id": 304, "section_id": 3, "name": "Chef Lebanon Burger (Beef)", "price": 600, "description": "Meat with coleslaw, pickle, ketchup & French fries" },
+    { "item_id": 305, "section_id": 3, "name": "Cheese Burger (Beef)", "price": 600, "description": "Meat with special sauce, tomato, onion, lettuce, pickle, cheddar cheese & French fries" },
+    { "item_id": 306, "section_id": 3, "name": "Fried Chicken Burger", "price": 550, "description": "Chicken escalope with sauce, lettuce, tomato & mayonnaise" },
+    { "item_id": 307, "section_id": 3, "name": "Jumbo Shawarma Meal", "price": 400, "description": null },
+
+    { "item_id": 401, "section_id": 4, "name": "Fattoush", "price": 350, "description": "Lebanese chopped mix of rocca, lettuce romaine, radish, tomato, cucumber, purslane with crispy bread" },
+    { "item_id": 402, "section_id": 4, "name": "Tabbouleh", "price": 400, "description": "Finely chopped parsley, tomato, onion, mint, lemon and extra virgin olive oil" },
+    { "item_id": 403, "section_id": 4, "name": "Hummus", "price": 250, "description": "Smooth and savory chickpea dip blended with tahina, lemon juice and extra virgin olive oil" },
+    { "item_id": 404, "section_id": 4, "name": "Mutabal", "price": 250, "description": "Flame‑grilled eggplant dip blended with tahina and extra virgin olive oil with pomegranate" },
+
+    { "item_id": 501, "section_id": 5, "name": "Awsal With Rice", "price": 500, "description": "Grilled lamb piece, rice, small salad, red chutney" },
+    { "item_id": 502, "section_id": 5, "name": "Broasted (4pcs)", "price": 600, "description": "Chicken preparation" },
+    { "item_id": 503, "section_id": 5, "name": "Chicken Kabab With Rice", "price": 400, "description": "Chicken kabab with rice, small salad and red chutney" },
+    { "item_id": 504, "section_id": 5, "name": "Chicken Mandi", "price": 420, "description": "Mandi rice with chicken" },
+    { "item_id": 505, "section_id": 5, "name": "Crispy (4pcs)", "price": 550, "description": "Chicken preparation" },
+    { "item_id": 506, "section_id": 5, "name": "Kabab With Rice", "price": 450, "description": "One piece kabab, red chutney and small salad" },
+    { "item_id": 507, "section_id": 5, "name": "Lamb Biryani", "price": 735, "description": "Freshly mutton cooked with basmati rice and masala sauce" },
+    { "item_id": 508, "section_id": 5, "name": "Shishtawook With Rice", "price": 450, "description": "Rice, chicken and salad" },
+    { "item_id": 509, "section_id": 5, "name": "Chicken Biriyani", "price": 325, "description": "Freshly chicken cooked with basmati rice and masala sauce" },
+
+    { "item_id": 601, "section_id": 6, "name": "Kunafa Cheese", "price": 420, "description": "Crunchy shredded pastry filled with gooey Mozzarella" },
+    { "item_id": 602, "section_id": 6, "name": "Kunafa Kashta", "price": 420, "description": null },
+    { "item_id": 603, "section_id": 6, "name": "Kunafa Nutella", "price": 420, "description": null },
+    { "item_id": 604, "section_id": 6, "name": "Kunafa Mango", "price": 420, "description": null },
+
+    { "item_id": 701, "section_id": 7, "name": "Kiwi Fresh Juice", "price": 210, "description": null },
+    { "item_id": 702, "section_id": 7, "name": "Orange Fresh Juice", "price": 210, "description": null },
+    { "item_id": 703, "section_id": 7, "name": "Carrot Fresh Juice", "price": 210, "description": null },
+    { "item_id": 704, "section_id": 7, "name": "Apple Fresh Juice", "price": 210, "description": null },
+    { "item_id": 705, "section_id": 7, "name": "Mango Fresh Juice", "price": 210, "description": null },
+    { "item_id": 706, "section_id": 7, "name": "Strawberry Fresh Juice", "price": 210, "description": null },
+
+    { "item_id": 801, "section_id": 8, "name": "Mixed Baklawa 100gm", "price": 260, "description": "Mixed baklawa selected as per available stock" },
+    { "item_id": 802, "section_id": 8, "name": "Baklawa 300gm", "price": 800, "description": "Mixed baklawa selected as per availability" },
+
+    { "item_id": 901, "section_id": 9, "name": "Falafel Plate With Veg", "price": 360, "description": "Falafel with mixed vegetables and tahina sauce" },
+    { "item_id": 902, "section_id": 9, "name": "Fateh Eggplant", "price": 360, "description": "Eggplant with crispy bread and fresh yogurt" },
+    { "item_id": 903, "section_id": 9, "name": "Fateh Kabab", "price": 360, "description": "Eggplant, crispy bread, yogurt and kabab" },
+    { "item_id": 904, "section_id": 9, "name": "Fatteh Hummus", "price": 360, "description": "Yogurt, crispy bread hummus with nuts" },
+    { "item_id": 905, "section_id": 9, "name": "Liver Lamb With Veg", "price": 390, "description": null },
+    { "item_id": 906, "section_id": 9, "name": "Vegetable Plate", "price": 180, "description": "Tomato, cucumber, lettuce, mint and olive pickles" },
+
+    { "item_id": 1001, "section_id": 10, "name": "Awsal Meat 2 Pieces", "price": 885, "description": "Grilled lamb tikka served with hummus" },
+    { "item_id": 1002, "section_id": 10, "name": "Chicken Kebab 3 Pieces", "price": 660, "description": "Chicken kebab served with garlic sauce" },
+    { "item_id": 1003, "section_id": 10, "name": "Chicken Wings 8 Pieces", "price": 885, "description": "Crispy and juicy chicken wings marinated in spices and grilled" },
+    { "item_id": 1004, "section_id": 10, "name": "Kofta Meat 3 Pieces", "price": 775, "description": "Grilled ground beef with parsley, onion and green pepper" },
+    { "item_id": 1005, "section_id": 10, "name": "Mix Grilled 4 Piece", "price": 935, "description": null },
+    { "item_id": 1006, "section_id": 10, "name": "Shishtawook Grilled 2 Pieces", "price": 775, "description": null }
+  ]
+}

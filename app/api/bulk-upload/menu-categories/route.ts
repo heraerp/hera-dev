@@ -1,0 +1,69 @@
+/**
+ * Menu Categories Bulk Upload API Route
+ * Uses Universal Bulk Upload System
+ */
+
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { organizationId, menu_categories } = body;
+
+    // Forward to universal bulk upload API
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/universal-bulk-upload`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        organizationId,
+        entityType: 'menu_categories',
+        data: menu_categories
+      })
+    });
+
+    const result = await response.json();
+    
+    if (!response.ok) {
+      return NextResponse.json(result, { status: response.status });
+    }
+
+    return NextResponse.json(result);
+
+  } catch (error) {
+    console.error('❌ Menu categories bulk upload error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error during menu categories bulk upload' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const action = searchParams.get('action');
+
+    if (action === 'template') {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/universal-bulk-upload?action=template&entityType=menu_categories`);
+      const result = await response.json();
+      return NextResponse.json(result);
+    }
+
+    return NextResponse.json({
+      message: 'Menu Categories Bulk Upload API',
+      endpoints: {
+        POST: 'Upload menu categories data',
+        GET: 'Get template information'
+      }
+    });
+
+  } catch (error) {
+    console.error('❌ Error in menu categories bulk upload GET:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}

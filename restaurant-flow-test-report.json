@@ -1,0 +1,178 @@
+{
+  "summary": {
+    "total": 23,
+    "passed": 23,
+    "failed": 0,
+    "warnings": 0,
+    "successRate": "100.0"
+  },
+  "results": [
+    {
+      "testName": "Schema: core_organizations",
+      "status": "PASS",
+      "message": "Table exists and accessible",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:11.647Z"
+    },
+    {
+      "testName": "Schema: core_entities",
+      "status": "PASS",
+      "message": "Table exists and accessible",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:11.685Z"
+    },
+    {
+      "testName": "Schema: core_metadata",
+      "status": "PASS",
+      "message": "Table exists and accessible",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:11.794Z"
+    },
+    {
+      "testName": "Schema: core_clients",
+      "status": "PASS",
+      "message": "Table exists and accessible",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:11.835Z"
+    },
+    {
+      "testName": "Schema: core_users",
+      "status": "PASS",
+      "message": "Table exists and accessible",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:11.925Z"
+    },
+    {
+      "testName": "Schema: user_organizations",
+      "status": "PASS",
+      "message": "Table exists and accessible",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:11.963Z"
+    },
+    {
+      "testName": "Schema: universal_transactions",
+      "status": "PASS",
+      "message": "Universal transactions table exists",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.005Z"
+    },
+    {
+      "testName": "Service Role",
+      "status": "PASS",
+      "message": "Service role has proper permissions",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.086Z"
+    },
+    {
+      "testName": "Setup: Client Creation",
+      "status": "PASS",
+      "message": "Client created: 913dee3d-b8d7-413e-96b2-2dc6fec04fd3",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.177Z"
+    },
+    {
+      "testName": "Setup: Organization Creation",
+      "status": "PASS",
+      "message": "Organization created: aa893559-6a38-459a-88c2-b6dd112d53ac",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.224Z"
+    },
+    {
+      "testName": "Setup: Entity Creation",
+      "status": "PASS",
+      "message": "Core entity created successfully",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.263Z"
+    },
+    {
+      "testName": "Setup: Metadata Creation",
+      "status": "PASS",
+      "message": "Metadata created successfully",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.300Z"
+    },
+    {
+      "testName": "Transaction: Product Creation",
+      "status": "PASS",
+      "message": "Test product created for transaction",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.353Z"
+    },
+    {
+      "testName": "Transaction: Creation",
+      "status": "PASS",
+      "message": "Transaction created: ORD-20250712-001",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.393Z"
+    },
+    {
+      "testName": "Transaction: Line Items",
+      "status": "PASS",
+      "message": "Transaction line items created",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.430Z"
+    },
+    {
+      "testName": "Transaction: Status Update",
+      "status": "PASS",
+      "message": "Transaction status updated",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.463Z"
+    },
+    {
+      "testName": "Isolation: Test Data Creation",
+      "status": "PASS",
+      "message": "Test entity created for isolation testing",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.507Z"
+    },
+    {
+      "testName": "Isolation: Filtered Query",
+      "status": "PASS",
+      "message": "Found 1 entities with organization filter",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.649Z"
+    },
+    {
+      "testName": "Isolation: Data Isolation",
+      "status": "PASS",
+      "message": "Found 1 entities for current org, 0 for other orgs",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.683Z"
+    },
+    {
+      "testName": "Naming: Organization Fields",
+      "status": "PASS",
+      "message": "Organization fields accessible (fallback field names)",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.781Z"
+    },
+    {
+      "testName": "Naming: User Fields",
+      "status": "PASS",
+      "message": "User naming convention fields available",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.825Z"
+    },
+    {
+      "testName": "Naming: Transaction Fields",
+      "status": "PASS",
+      "message": "Transaction fields follow naming convention",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:12.861Z"
+    },
+    {
+      "testName": "Cleanup",
+      "status": "PASS",
+      "message": "Test data cleanup completed",
+      "details": null,
+      "timestamp": "2025-07-12T05:21:13.209Z"
+    }
+  ],
+  "generatedIds": {
+    "clientId": "913dee3d-b8d7-413e-96b2-2dc6fec04fd3",
+    "organizationId": "aa893559-6a38-459a-88c2-b6dd112d53ac",
+    "orderId": "cd59ffcf-1950-4635-af7f-87b4eb86e9ed"
+  },
+  "timestamp": "2025-07-12T05:21:13.210Z"
+}

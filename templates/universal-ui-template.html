@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HERA Universal Template - 5 Core Tables</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        /* ===========================================
+           HERA UNIVERSAL TEMPLATE - 5 CORE TABLES
+           Adaptable for ANY business type
+           =========================================== */
+        
+        :root {
+            /* Universal Color Palette - Easily customizable */
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --success-color: #48bb78;
+            --warning-color: #ed8936;
+            --error-color: #e53e3e;
+            --info-color: #38b2ac;
+            
+            /* Business-specific colors (override these) */
+            --business-primary: var(--primary-color);
+            --business-secondary: var(--secondary-color);
+            --business-accent: var(--success-color);
+            
+            /* Universal spacing and sizing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            
+            --border-radius: 0.5rem;
+            --card-radius: 1rem;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--business-primary) 0%, var(--business-secondary) 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-md);
+        }
+
+        /* ===========================================
+           HEADER COMPONENT - UNIVERSAL
+           =========================================== */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--card-radius);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            box-shadow: var(--shadow-xl);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: var(--space-sm);
+            background: linear-gradient(135deg, var(--business-primary), var(--business-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #718096;
+            margin-bottom: var(--space-md);
+        }
+
+        .header .business-config {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .config-input {
+            padding: var(--space-xs) var(--space-sm);
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+        }
+
+        .config-btn {
+            padding: var(--space-xs) var(--space-sm);
+            background: var(--business-primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .config-btn:hover {
+            background: var(--business-secondary);
+            transform: translateY(-2px);
+        }
+
+        /* ===========================================
+           NAVIGATION TABS - UNIVERSAL
+           =========================================== */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: var(--space-sm) var(--space-md);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .tab-btn.active {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--business-primary);
+            border-color: var(--business-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ===========================================
+           CORE LAYOUT - UNIVERSAL GRID
+           =========================================== */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+
+        /* ===========================================
+           UNIVERSAL CARD COMPONENT
+           =========================================== */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--card-radius);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--business-primary), var(--business-secondary));
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* ===========================================
+           CORE_ENTITIES COMPOSITE CARD
+           =========================================== */
+        .entity-card {
+            background: linear-gradient(135deg, var(--business-primary), var(--business-secondary));
+            color: white;
+            border: none;
+        }
+
+        .entity-card h3 {
+            color: white;
+        }
+
+        .entity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-md);
+        }
+
+        .entity-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .entity-code {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .entity-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+            padding: var(--space-md);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: var(--space-xs);
+        }
+
+        .meta-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* ===========================================
+           CORE_RELATIONSHIPS COMPONENT LIST
+           =========================================== */
+        .relationships-list {
+            display: grid;
+            gap: var(--space-md);
+        }
+
+        .relationship-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .relationship-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .relationship-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xs);
+        }
+
+        .relationship-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .relationship-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .relationship-details {
+            display: flex;
+            gap: var(--space-md);
+            font-size: 0.9rem;
+            opacity: 0.9;
+            align-items: center;
+        }
+
+        .relationship-role {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ===========================================
+           CORE_DYNAMIC_DATA PROPERTIES
+           =========================================== */
+        .dynamic-item {
+            background: #f7fafc;
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--business-primary);
+            margin-bottom: var(--space-md);
+            transition: all 0.3s ease;
+        }
+
+        .dynamic-item:hover {
+            background: #edf2f7;
+            box-shadow: var(--shadow-md);
+            transform: translateX(5px);
+        }
+
+        .dynamic-item h4 {
+            color: #2d3748;
+            font-size: 1.3rem;
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .dynamic-code {
+            background: var(--business-primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .dynamic-properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .property-item {
+            background: white;
+            padding: var(--space-sm);
+            border-radius: var(--border-radius);
+            border: 1px solid #e2e8f0;
+        }
+
+        .property-label {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 4px;
+        }
+
+        .property-value {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        /* ===========================================
+           CORE_METADATA AI INSIGHTS
+           =========================================== */
+        .ai-insights {
+            background: linear-gradient(135deg, var(--business-accent), #38a169);
+            color: white;
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--space-md);
+        }
+
+        .ai-insights h4 {
+            font-size: 1.2rem;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-md);
+        }
+
+        .insight-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .insight-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .insight-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* ===========================================
+           SCHEMA DEMONSTRATION
+           =========================================== */
+        .schema-demo {
+            background: #2d3748;
+            color: white;
+            padding: var(--space-xl);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--space-md);
+            font-family: 'Courier New', monospace;
+        }
+
+        .schema-demo h4 {
+            color: #63b3ed;
+            margin-bottom: var(--space-md);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .schema-query {
+            background: #1a202c;
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--space-md);
+            border-left: 4px solid #63b3ed;
+            overflow-x: auto;
+        }
+
+        /* ===========================================
+           UNIVERSAL FORM COMPONENTS
+           =========================================== */
+        .add-field-demo {
+            background: #fef5e7;
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            border: 2px dashed var(--warning-color);
+            margin-top: var(--space-md);
+        }
+
+        .add-field-demo h5 {
+            color: #c05621;
+            margin-bottom: var(--space-sm);
+            font-size: 1.1rem;
+        }
+
+        .field-input {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .field-input input, .field-input select {
+            padding: var(--space-xs) var(--space-sm);
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .btn {
+            padding: var(--space-sm) var(--space-md);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--business-primary), var(--business-secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* ===========================================
+           REAL-TIME INDICATOR
+           =========================================== */
+        .real-time-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--business-accent);
+            color: white;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(72, 187, 120, 0.3);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* ===========================================
+           RESPONSIVE DESIGN
+           =========================================== */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-container {
+                gap: var(--space-xs);
+            }
+            
+            .tab-btn {
+                padding: var(--space-xs) var(--space-sm);
+                font-size: 0.9rem;
+            }
+            
+            .entity-meta {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+            
+            .field-input {
+                flex-direction: column;
+            }
+            
+            .field-input input, .field-input select {
+                flex: none;
+            }
+        }
+
+        /* ===========================================
+           BUSINESS-SPECIFIC THEME VARIABLES
+           =========================================== */
+        .theme-restaurant {
+            --business-primary: #e53e3e;
+            --business-secondary: #c53030;
+            --business-accent: #fd8a00;
+        }
+
+        .theme-healthcare {
+            --business-primary: #3182ce;
+            --business-secondary: #2b6cb0;
+            --business-accent: #38b2ac;
+        }
+
+        .theme-finance {
+            --business-primary: #805ad5;
+            --business-secondary: #6b46c1;
+            --business-accent: #d69e2e;
+        }
+
+        .theme-education {
+            --business-primary: #38a169;
+            --business-secondary: #2f855a;
+            --business-accent: #3182ce;
+        }
+
+        .theme-manufacturing {
+            --business-primary: #d69e2e;
+            --business-secondary: #b7791f;
+            --business-accent: #e53e3e;
+        }
+
+        .theme-legal {
+            --business-primary: #2d3748;
+            --business-secondary: #1a202c;
+            --business-accent: #3182ce;
+        }
+
+        /* ===========================================
+           CHART PLACEHOLDER
+           =========================================== */
+        .chart-container {
+            background: white;
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .chart-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #718096;
+            border: 2px dashed #cbd5e0;
+        }
+
+        .chart-placeholder div {
+            text-align: center;
+        }
+
+        .chart-placeholder i {
+            font-size: 3rem;
+            margin-bottom: var(--space-sm);
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="real-time-indicator">
+        <i class="fas fa-circle" style="color: #68d391;"></i>
+        Live Data - Real-Time Updates
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-database"></i> <span id="businessName">HERA Universal</span></h1>
+            <p><span id="businessDescription">Universal business management - See how 5 core tables become beautiful, functional interfaces</span></p>
+            
+            <!-- Business Configuration -->
+            <div class="business-config">
+                <input type="text" id="businessNameInput" class="config-input" placeholder="Business Name" value="HERA Universal">
+                <input type="text" id="businessDescInput" class="config-input" placeholder="Business Description" value="Universal business management">
+                <select id="businessTheme" class="config-input">
+                    <option value="theme-default">Default Theme</option>
+                    <option value="theme-restaurant">Restaurant</option>
+                    <option value="theme-healthcare">Healthcare</option>
+                    <option value="theme-finance">Finance</option>
+                    <option value="theme-education">Education</option>
+                    <option value="theme-manufacturing">Manufacturing</option>
+                    <option value="theme-legal">Legal</option>
+                </select>
+                <button class="config-btn" onclick="updateBusiness()">
+                    <i class="fas fa-sync"></i> Update
+                </button>
+            </div>
+        </div>
+
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="showTab('entities')">
+                <i class="fas fa-cube"></i> <span class="tab-text">Entities</span>
+            </button>
+            <button class="tab-btn" onclick="showTab('relationships')">
+                <i class="fas fa-project-diagram"></i> <span class="tab-text">Relationships</span>
+            </button>
+            <button class="tab-btn" onclick="showTab('dynamic-data')">
+                <i class="fas fa-sliders-h"></i> <span class="tab-text">Dynamic Data</span>
+            </button>
+            <button class="tab-btn" onclick="showTab('metadata')">
+                <i class="fas fa-brain"></i> <span class="tab-text">AI Metadata</span>
+            </button>
+            <button class="tab-btn" onclick="showTab('schema')">
+                <i class="fas fa-code"></i> <span class="tab-text">Schema</span>
+            </button>
+        </div>
+
+        <!-- CORE_ENTITIES Tab -->
+        <div id="entities" class="tab-content active">
+            <div class="dashboard-grid">
+                <!-- Primary Entity Card -->
+                <div class="card entity-card">
+                    <div class="entity-header">
+                        <div>
+                            <div class="entity-title" id="entityTitle">Business Item</div>
+                            <div class="entity-code" id="entityCode">ITEM-001</div>
+                        </div>
+                        <div class="card-icon">
+                            <i class="fas fa-star" id="entityIcon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="entity-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Total Value</div>
+                            <div class="meta-value" id="entityValue">$1,250</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Status</div>
+                            <div class="meta-value" id="entityStatus">Active</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Priority</div>
+                            <div class="meta-value" id="entityPriority">High</div>
+                        </div>
+                    </div>
+                    
+                    <div class="relationships-list" id="entityRelationships">
+                        <!-- Relationships will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Quick Stats Card -->
+                <div class="card">
+                    <h3>
+                        <div class="card-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        Quick Stats
+                    </h3>
+                    <div class="insights-grid">
+                        <div class="insight-item" style="background: var(--business-primary); color: white;">
+                            <div class="insight-value" id="stat1Value">92</div>
+                            <div class="insight-label" id="stat1Label">Performance</div>
+                        </div>
+                        <div class="insight-item" style="background: var(--business-accent); color: white;">
+                            <div class="insight-value" id="stat2Value">4.7</div>
+                            <div class="insight-label" id="stat2Label">Rating</div>
+                        </div>
+                        <div class="insight-item" style="background: var(--warning-color); color: white;">
+                            <div class="insight-value" id="stat3Value">65</div>
+                            <div class="insight-label" id="stat3Label">Efficiency</div>
+                        </div>
+                        <div class="insight-item" style="background: var(--info-color); color: white;">
+                            <div class="insight-value" id="stat4Value">78</div>
+                            <div class="insight-label" id="stat4Label">Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Chart -->
+                <div class="card">
+                    <h3>
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        Performance Trends
+                    </h3>
+                    <div class="chart-container">
+                        <div class="chart-placeholder">
+                            <div>
+                                <i class="fas fa-chart-area"></i>
+                                Performance Chart - Real-time data visualization
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CORE_RELATIONSHIPS Tab -->
+        <div id="relationships" class="tab-content">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>
+                        <div class="card-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        Entity Relationships
+                    </h3>
+                    <div id="relationshipsList">
+                        <!-- Relationships will be populated here -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        <div class="card-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        Relationship Map
+                    </h3>
+                    <div class="chart-container">
+                        <div class="chart-placeholder">
+                            <div>
+                                <i class="fas fa-sitemap"></i>
+                                Interactive Relationship Diagram
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CORE_DYNAMIC_DATA Tab -->
+        <div id="dynamic-data" class="tab-content">
+            <div id="dynamicDataList">
+                <!-- Dynamic data items will be populated here -->
+            </div>
+
+            <div class="add-field-demo">
+                <h5><i class="fas fa-plus"></i> Add New Field (Zero Downtime)</h5>
+                <div class="field-input">
+                    <input type="text" placeholder="Field Name" id="fieldName">
+                    <input type="text" placeholder="Field Value" id="fieldValue">
+                    <select id="fieldType">
+                        <option value="text">Text</option>
+                        <option value="number">Number</option>
+                        <option value="boolean">Boolean</option>
+                        <option value="date">Date</option>
+                        <option value="json">JSON</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="addField()">
+                        <i class="fas fa-plus"></i> Add Field
+                    </button>
+                </div>
+                <p style="font-size: 0.9rem; color: #c05621; margin-top: var(--space-sm);">
+                    <i class="fas fa-info-circle"></i> 
+                    This demonstrates HERA's zero-downtime field addition capability
+                </p>
+            </div>
+        </div>
+
+        <!-- CORE_METADATA Tab -->
+        <div id="metadata" class="tab-content">
+            <div class="ai-insights">
+                <h4>
+                    <i class="fas fa-brain"></i>
+                    AI Performance Analysis
+                    <span style="margin-left: auto; font-size: 0.9rem; opacity: 0.9;">Confidence: 89%</span>
+                </h4>
+                <div class="insights-grid" id="aiInsights">
+                    <!-- AI insights will be populated here -->
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>
+                        <div class="card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        AI Recommendations
+                    </h3>
+                    <div id="aiRecommendations">
+                        <!-- AI recommendations will be populated here -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        <div class="card-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        Metadata Analytics
+                    </h3>
+                    <div class="chart-container">
+                        <div class="chart-placeholder">
+                            <div>
+                                <i class="fas fa-chart-pie"></i>
+                                Metadata distribution and insights
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCHEMA Tab -->
+        <div id="schema" class="tab-content">
+            <div class="schema-demo">
+                <h4><i class="fas fa-database"></i> Universal Schema Power</h4>
+                <div class="schema-query">
+                    <strong>Query 1: Entity Analysis</strong><br>
+                    <code>
+SELECT e.entity_name, e.entity_type, o.org_name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dd.field_name, dd.field_value,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;m.metadata_value->>'performance_score' as ai_score<br>
+FROM core_entities e<br>
+JOIN core_organizations o ON e.organization_id = o.id<br>
+LEFT JOIN core_dynamic_data dd ON e.id = dd.entity_id<br>
+LEFT JOIN core_metadata m ON e.id = m.entity_id<br>
+WHERE e.is_active = true;
+                    </code>
+                </div>
+                <div class="schema-query">
+                    <strong>Query 2: Relationship Analysis</strong><br>
+                    <code>
+SELECT parent.entity_name as parent_name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;child.entity_name as child_name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;r.relationship_type,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;r.relationship_data<br>
+FROM core_relationships r<br>
+JOIN core_entities parent ON r.parent_entity_id = parent.id<br>
+JOIN core_entities child ON r.child_entity_id = child.id<br>
+WHERE r.is_active = true;
+                    </code>
+                </div>
+                <div class="schema-query">
+                    <strong>Query 3: Add New Field (Zero Downtime)</strong><br>
+                    <code>
+INSERT INTO core_dynamic_data (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;entity_id, field_name, field_value, field_type<br>
+) VALUES (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'entity-123', 'custom_field', 'value', 'text'<br>
+);<br>
+-- Field is immediately available in all queries!
+                    </code>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <div class="card-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    Schema Flexibility Demo
+                </h3>
+                <p style="margin-bottom: var(--space-md);">
+                    This UI is automatically generated from the 5 universal tables. 
+                    The same schema structure powers all the views you see!
+                </p>
+                <div style="background: #f7fafc; padding: var(--space-md); border-radius: var(--border-radius); margin-bottom: var(--space-md);">
+                    <strong>5 Universal Tables:</strong><br>
+                    • core_organizations (Multi-tenant isolation)<br>
+                    • core_entities (All business objects)<br>
+                    • core_dynamic_data (Flexible properties)<br>
+                    • core_relationships (Entity connections)<br>
+                    • core_metadata (AI insights & analytics)<br>
+                </div>
+                <div style="background: #e6fffa; padding: var(--space-md); border-radius: var(--border-radius); border-left: 4px solid var(--business-accent);">
+                    <strong>Universal Power:</strong> This same pattern works for any business - 
+                    restaurants, healthcare, finance, education, manufacturing, legal services, etc.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===========================================
+        // HERA UNIVERSAL TEMPLATE JAVASCRIPT
+        // Business-agnostic functionality
+        // ===========================================
+
+        // Business configuration templates
+        const businessTemplates = {
+            'theme-default': {
+                name: 'HERA Universal',
+                description: 'Universal business management - See how 5 core tables become beautiful, functional interfaces',
+                entityTitle: 'Business Item',
+                entityCode: 'ITEM-001',
+                entityIcon: 'fas fa-star',
+                tabTexts: ['Entities', 'Relationships', 'Dynamic Data', 'AI Metadata', 'Schema']
+            },
+            'theme-restaurant': {
+                name: 'HERA Restaurant',
+                description: 'Restaurant management - Menu, orders, and kitchen operations',
+                entityTitle: 'Burger Combo',
+                entityCode: 'COMBO-001',
+                entityIcon: 'fas fa-utensils',
+                tabTexts: ['Menu Items', 'Recipes', 'Properties', 'AI Insights', 'Schema']
+            },
+            'theme-healthcare': {
+                name: 'HERA Healthcare',
+                description: 'Healthcare management - Patients, treatments, and medical records',
+                entityTitle: 'Treatment Plan',
+                entityCode: 'TREAT-001',
+                entityIcon: 'fas fa-heartbeat',
+                tabTexts: ['Patients', 'Treatments', 'Records', 'AI Insights', 'Schema']
+            },
+            'theme-finance': {
+                name: 'HERA Finance',
+                description: 'Financial management - Accounts, transactions, and portfolio',
+                entityTitle: 'Investment Portfolio',
+                entityCode: 'PORT-001',
+                entityIcon: 'fas fa-chart-line',
+                tabTexts: ['Accounts', 'Transactions', 'Properties', 'AI Insights', 'Schema']
+            },
+            'theme-education': {
+                name: 'HERA Education',
+                description: 'Education management - Students, courses, and curriculum',
+                entityTitle: 'Course Package',
+                entityCode: 'COURSE-001',
+                entityIcon: 'fas fa-graduation-cap',
+                tabTexts: ['Students', 'Courses', 'Progress', 'AI Insights', 'Schema']
+            },
+            'theme-manufacturing': {
+                name: 'HERA Manufacturing',
+                description: 'Manufacturing management - Products, assembly, and quality',
+                entityTitle: 'Product Assembly',
+                entityCode: 'PROD-001',
+                entityIcon: 'fas fa-industry',
+                tabTexts: ['Products', 'Assembly', 'Specifications', 'AI Insights', 'Schema']
+            },
+            'theme-legal': {
+                name: 'HERA Legal',
+                description: 'Legal management - Cases, documents, and client services',
+                entityTitle: 'Case Bundle',
+                entityCode: 'CASE-001',
+                entityIcon: 'fas fa-balance-scale',
+                tabTexts: ['Cases', 'Documents', 'Details', 'AI Insights', 'Schema']
+            }
+        };
+
+        // Sample data templates
+        const sampleData = {
+            'theme-default': {
+                relationships: [
+                    { name: 'Component A', role: 'primary', value: '$500', details: 'Active • High Priority' },
+                    { name: 'Component B', role: 'secondary', value: '$300', details: 'Active • Medium Priority' },
+                    { name: 'Component C', role: 'optional', value: '$150', details: 'Active • Low Priority' }
+                ],
+                dynamicData: [
+                    { name: 'Business Item', code: 'ITEM-001', properties: { Price: '$1,250', Status: 'Active', Priority: 'High', Category: 'Primary' } },
+                    { name: 'Secondary Item', code: 'ITEM-002', properties: { Price: '$850', Status: 'Active', Priority: 'Medium', Category: 'Secondary' } }
+                ]
+            },
+            'theme-restaurant': {
+                relationships: [
+                    { name: 'Classic Burger', role: 'main', value: '$12.99', details: 'Customizable • 520 cal' },
+                    { name: 'French Fries', role: 'side', value: '$4.99', details: 'Regular Size • 365 cal' },
+                    { name: 'Soft Drink', role: 'beverage', value: '$2.99', details: 'Refillable • 140 cal' }
+                ],
+                dynamicData: [
+                    { name: 'Burger Combo', code: 'COMBO-001', properties: { Price: '$16.99', Calories: '1,025', 'Prep Time': '8 minutes', 'Spice Level': 'Mild' } },
+                    { name: 'Pizza Special', code: 'PIZZA-001', properties: { Price: '$18.99', Calories: '850', 'Prep Time': '15 minutes', 'Spice Level': 'Medium' } }
+                ]
+            },
+            'theme-healthcare': {
+                relationships: [
+                    { name: 'Initial Consultation', role: 'primary', value: '$150', details: 'Required • 45 min' },
+                    { name: 'Lab Tests', role: 'diagnostic', value: '$80', details: 'Optional • 30 min' },
+                    { name: 'Follow-up', role: 'secondary', value: '$100', details: 'Recommended • 30 min' }
+                ],
+                dynamicData: [
+                    { name: 'Treatment Plan A', code: 'TREAT-001', properties: { Duration: '6 weeks', Cost: '$1,200', Effectiveness: '92%', 'Side Effects': 'Minimal' } },
+                    { name: 'Treatment Plan B', code: 'TREAT-002', properties: { Duration: '4 weeks', Cost: '$800', Effectiveness: '88%', 'Side Effects': 'None' } }
+                ]
+            }
+        };
+
+        // Tab switching functionality
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Update business configuration
+        function updateBusiness() {
+            const businessName = document.getElementById('businessNameInput').value;
+            const businessDesc = document.getElementById('businessDescInput').value;
+            const businessTheme = document.getElementById('businessTheme').value;
+            
+            // Update theme class
+            document.body.className = businessTheme;
+            
+            // Update header
+            document.getElementById('businessName').textContent = businessName;
+            document.getElementById('businessDescription').textContent = businessDesc;
+            
+            // Update template if using predefined theme
+            if (businessTemplates[businessTheme]) {
+                const template = businessTemplates[businessTheme];
+                document.getElementById('businessName').textContent = template.name;
+                document.getElementById('businessDescription').textContent = template.description;
+                document.getElementById('entityTitle').textContent = template.entityTitle;
+                document.getElementById('entityCode').textContent = template.entityCode;
+                document.getElementById('entityIcon').className = template.entityIcon;
+                
+                // Update tab labels
+                const tabTexts = document.querySelectorAll('.tab-text');
+                tabTexts.forEach((text, index) => {
+                    if (template.tabTexts[index]) {
+                        text.textContent = template.tabTexts[index];
+                    }
+                });
+                
+                // Update sample data
+                updateSampleData(businessTheme);
+            }
+        }
+
+        // Update sample data based on theme
+        function updateSampleData(theme) {
+            const data = sampleData[theme] || sampleData['theme-default'];
+            
+            // Update relationships
+            const relationshipsList = document.getElementById('entityRelationships');
+            relationshipsList.innerHTML = '';
+            data.relationships.forEach(rel => {
+                const item = document.createElement('div');
+                item.className = 'relationship-item';
+                item.innerHTML = `
+                    <div class="relationship-header">
+                        <div class="relationship-name">${rel.name}</div>
+                        <div class="relationship-value">${rel.value}</div>
+                    </div>
+                    <div class="relationship-details">
+                        <div class="relationship-role">${rel.role}</div>
+                        <div>${rel.details}</div>
+                    </div>
+                `;
+                relationshipsList.appendChild(item);
+            });
+            
+            // Update dynamic data
+            const dynamicDataList = document.getElementById('dynamicDataList');
+            dynamicDataList.innerHTML = '';
+            data.dynamicData.forEach(item => {
+                const dynamicItem = document.createElement('div');
+                dynamicItem.className = 'dynamic-item';
+                
+                const propertiesHtml = Object.entries(item.properties).map(([key, value]) => `
+                    <div class="property-item">
+                        <div class="property-label">${key}</div>
+                        <div class="property-value">${value}</div>
+                    </div>
+                `).join('');
+                
+                dynamicItem.innerHTML = `
+                    <h4>
+                        ${item.name}
+                        <span class="dynamic-code">${item.code}</span>
+                    </h4>
+                    <div class="dynamic-properties">
+                        ${propertiesHtml}
+                    </div>
+                `;
+                dynamicDataList.appendChild(dynamicItem);
+            });
+            
+            // Update relationships tab
+            const relationshipsTabList = document.getElementById('relationshipsList');
+            relationshipsTabList.innerHTML = '';
+            data.relationships.forEach(rel => {
+                const item = document.createElement('div');
+                item.className = 'relationship-item';
+                item.style.background = '#f7fafc';
+                item.style.border = '1px solid #e2e8f0';
+                item.style.color = '#2d3748';
+                item.innerHTML = `
+                    <div class="relationship-header">
+                        <div class="relationship-name">${rel.name}</div>
+                        <div class="relationship-value">${rel.value}</div>
+                    </div>
+                    <div class="relationship-details">
+                        <div class="relationship-role">${rel.role}</div>
+                        <div>${rel.details}</div>
+                    </div>
+                `;
+                relationshipsTabList.appendChild(item);
+            });
+        }
+
+        // Add field functionality
+        function addField() {
+            const fieldName = document.getElementById('fieldName').value;
+            const fieldValue = document.getElementById('fieldValue').value;
+            const fieldType = document.getElementById('fieldType').value;
+            
+            if (fieldName && fieldValue) {
+                alert(`Field "${fieldName}" with value "${fieldValue}" (type: ${fieldType}) would be added to core_dynamic_data instantly! This field would immediately appear in all relevant queries and UI components.`);
+                
+                // Clear inputs
+                document.getElementById('fieldName').value = '';
+                document.getElementById('fieldValue').value = '';
+                document.getElementById('fieldType').value = 'text';
+                
+                // Simulate real-time update
+                setTimeout(() => {
+                    alert('Field added successfully! The UI has been updated in real-time to reflect the new field.');
+                }, 1000);
+            } else {
+                alert('Please fill in both field name and value.');
+            }
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default theme
+            updateBusiness();
+            
+            // Add hover effects
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Populate AI insights
+            const aiInsights = document.getElementById('aiInsights');
+            const insights = [
+                { value: '92%', label: 'Performance Score' },
+                { value: '4.7', label: 'Quality Rating' },
+                { value: '85%', label: 'Efficiency' },
+                { value: '91%', label: 'Satisfaction' }
+            ];
+            
+            insights.forEach(insight => {
+                const item = document.createElement('div');
+                item.className = 'insight-item';
+                item.innerHTML = `
+                    <div class="insight-value">${insight.value}</div>
+                    <div class="insight-label">${insight.label}</div>
+                `;
+                aiInsights.appendChild(item);
+            });
+            
+            // Populate AI recommendations
+            const aiRecommendations = document.getElementById('aiRecommendations');
+            const recommendations = [
+                { type: 'success', text: 'Performance is exceeding expectations. Consider scaling operations.' },
+                { type: 'warning', text: 'Monitor resource allocation for optimal efficiency.' },
+                { type: 'info', text: 'Review quarterly metrics and adjust strategies accordingly.' }
+            ];
+            
+            recommendations.forEach(rec => {
+                const item = document.createElement('div');
+                item.style.cssText = `
+                    background: ${rec.type === 'success' ? '#f0fff4' : rec.type === 'warning' ? '#fef5e7' : '#e6fffa'};
+                    padding: var(--space-md);
+                    border-radius: var(--border-radius);
+                    border-left: 4px solid ${rec.type === 'success' ? '#48bb78' : rec.type === 'warning' ? '#ed8936' : '#38b2ac'};
+                    margin-bottom: var(--space-sm);
+                `;
+                item.innerHTML = `<strong>${rec.type === 'success' ? 'Success' : rec.type === 'warning' ? 'Attention' : 'Info'}:</strong> ${rec.text}`;
+                aiRecommendations.appendChild(item);
+            });
+
+            console.log('HERA Universal Template loaded successfully!');
+            console.log('5 Core Tables: organizations, entities, dynamic_data, relationships, metadata');
+            console.log('UI components: Auto-generated from universal schema');
+        });
+
+        // Simulate real-time updates
+        setInterval(() => {
+            const stats = ['stat1Value', 'stat2Value', 'stat3Value', 'stat4Value'];
+            const randomStat = stats[Math.floor(Math.random() * stats.length)];
+            const currentValue = parseInt(document.getElementById(randomStat).textContent);
+            const newValue = Math.max(1, currentValue + Math.floor(Math.random() * 10) - 5);
+            
+            document.getElementById(randomStat).textContent = newValue;
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+
+> dev
+> next dev
+
+   ▲ Next.js 15.3.5
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.212.223:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+> [PWA] PWA support is disabled
+> [PWA] PWA support is disabled
+ ✓ Ready in 2.5s
+ ✓ Compiled /middleware in 220ms (183 modules)
+ ○ Compiling /restaurant/menu-management ...
+ ✓ Compiled /restaurant/menu-management in 5.5s (2002 modules)
+(node:75224) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ GET /restaurant/menu-management 200 in 6090ms
+ ✓ Compiled in 931ms (979 modules)
+ ✓ Compiled in 1085ms (979 modules)
+ ✓ Compiled in 657ms (979 modules)
+ ✓ Compiled in 1201ms (979 modules)
+ ✓ Compiled in 760ms (979 modules)
+ ✓ Compiled in 577ms (1148 modules)
+ ✓ Compiled in 958ms (979 modules)
+ ✓ Compiled in 778ms (979 modules)
+ ✓ Compiled in 497ms (979 modules)
+ ✓ Compiled in 687ms (979 modules)
+ ✓ Compiled in 552ms (979 modules)
+ ✓ Compiled in 532ms (979 modules)
+ ✓ Compiled in 774ms (979 modules)
+ ✓ Compiled in 832ms (979 modules)
+ ✓ Compiled in 832ms (979 modules)
+ ✓ Compiled in 836ms (979 modules)
+ ✓ Compiled in 804ms (980 modules)
+ ✓ Compiled in 653ms (980 modules)
+ ✓ Compiled in 667ms (980 modules)
+ ✓ Compiled in 1036ms (986 modules)
+ ✓ Compiled in 713ms (986 modules)
+ ✓ Compiled in 777ms (986 modules)
+ ✓ Compiled in 872ms (986 modules)
+ ✓ Compiled in 685ms (986 modules)
+ ✓ Compiled in 1033ms (986 modules)
+ ✓ Compiled in 563ms (986 modules)
+ ✓ Compiled in 505ms (986 modules)
+ ✓ Compiled in 842ms (986 modules)
+ ✓ Compiled in 471ms (986 modules)
+ ✓ Compiled in 440ms (986 modules)
+ ✓ Compiled in 742ms (987 modules)
+ ✓ Compiled in 1714ms (1017 modules)
+ ✓ Compiled in 1135ms (1017 modules)
+ ✓ Compiled in 727ms (1017 modules)
+ ✓ Compiled in 1201ms (1017 modules)
+ ✓ Compiled in 649ms (1186 modules)
+ ✓ Compiled in 790ms (1017 modules)
+ ✓ Compiled in 661ms (1017 modules)
+ ✓ Compiled in 604ms (1017 modules)
+ ✓ Compiled in 666ms (1017 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled in 1064ms (1017 modules)
+ ✓ Compiled in 734ms (1017 modules)
+ ✓ Compiled in 566ms (1017 modules)
+ ✓ Compiled in 637ms (1017 modules)
+ ✓ Compiled in 589ms (1017 modules)
+ ✓ Compiled in 630ms (1017 modules)
+ ✓ Compiled in 647ms (1017 modules)
+ ✓ Compiled in 678ms (1017 modules)
+ ✓ Compiled in 651ms (1017 modules)
+ ✓ Compiled in 482ms (1017 modules)
+ ✓ Compiled in 471ms (1017 modules)
+ ✓ Compiled in 456ms (1017 modules)
+ ✓ Compiled in 413ms (1017 modules)
+ ✓ Compiled in 384ms (1017 modules)
+ ✓ Compiled in 468ms (1017 modules)
+ ✓ Compiled in 440ms (1017 modules)
+ ✓ Compiled in 393ms (1017 modules)
+ ✓ Compiled in 438ms (1017 modules)
+ ✓ Compiled in 447ms (1017 modules)
+ ✓ Compiled in 352ms (1017 modules)
+ ✓ Compiled in 418ms (1017 modules)
+ ✓ Compiled in 469ms (1017 modules)
+ ✓ Compiled in 386ms (1017 modules)
+ ✓ Compiled in 362ms (1017 modules)
+ ✓ Compiled in 408ms (1017 modules)
+ ✓ Compiled in 366ms (1017 modules)
+ ✓ Compiled in 435ms (1017 modules)
+ ✓ Compiled in 442ms (1017 modules)
+ ✓ Compiled in 445ms (1017 modules)
+ ✓ Compiled in 512ms (1017 modules)
+ ✓ Compiled in 1985ms (1017 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/3.pack.gz_' -> '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/3.pack.gz'
+ ✓ Compiled in 681ms (1017 modules)
+ ✓ Compiled in 729ms (1017 modules)
+ ✓ Compiled in 971ms (1017 modules)
+ ✓ Compiled in 556ms (1017 modules)
+ ✓ Compiled in 972ms (1017 modules)
+ ✓ Compiled in 768ms (1017 modules)
+ ✓ Compiled in 802ms (1017 modules)
+ ✓ Compiled in 557ms (1017 modules)
+ ✓ Compiled in 1152ms (1186 modules)
+ ✓ Compiled in 981ms (1017 modules)
+ ✓ Compiled in 519ms (1017 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1763ms (1346 modules)
+ GET /restaurant/pos 404 in 2ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1027ms (2123 modules)
+ GET /restaurant/pos 404 in 2ms
+ ✓ Compiled in 1046ms (1264 modules)
+ ✓ Compiled in 1194ms (1264 modules)
+ ✓ Compiled in 545ms (1264 modules)
+ ✓ Compiled in 744ms (1264 modules)
+ ✓ Compiled in 534ms (1264 modules)
+ ✓ Compiled in 602ms (1264 modules)
+ ✓ Compiled in 987ms (1264 modules)
+ ✓ Compiled in 530ms (1264 modules)
+ ✓ Compiled in 468ms (1264 modules)
+ ✓ Compiled in 573ms (1264 modules)
+ ✓ Compiled in 830ms (1264 modules)
+ ✓ Compiled in 559ms (1264 modules)
+ ✓ Compiled in 396ms (1264 modules)
+ ✓ Compiled in 522ms (1264 modules)
+ ✓ Compiled in 698ms (1264 modules)
+ ✓ Compiled in 586ms (1264 modules)
+ ✓ Compiled in 675ms (1264 modules)
+ ✓ Compiled in 587ms (1264 modules)
+ ✓ Compiled in 1491ms (1264 modules)
+ ✓ Compiled in 1778ms (1264 modules)
+ ✓ Compiled in 602ms (1264 modules)
+ ✓ Compiled in 1138ms (1264 modules)
+ ✓ Compiled in 4.4s (1529 modules)
+ ✓ Compiled in 2.2s (1264 modules)
+ ✓ Compiled in 1403ms (1264 modules)
+ ✓ Compiled in 569ms (1264 modules)
+ ✓ Compiled in 1319ms (1264 modules)
+ ✓ Compiled in 702ms (1264 modules)
+ ✓ Compiled in 1185ms (1264 modules)
+ ✓ Compiled in 741ms (1264 modules)
+ ✓ Compiled in 610ms (1264 modules)
+ ✓ Compiled in 695ms (1264 modules)
+ ✓ Compiled in 620ms (1264 modules)
+ ✓ Compiled in 639ms (1264 modules)
+ ✓ Compiled in 2.3s (1264 modules)
+ ✓ Compiled in 2.9s (1265 modules)
+ ✓ Compiled in 759ms (1265 modules)
+ ✓ Compiled in 718ms (1265 modules)
+ ✓ Compiled in 2.5s (1265 modules)
+ ✓ Compiled in 713ms (1265 modules)
+ ✓ Compiled in 583ms (1265 modules)
+ ✓ Compiled in 1576ms (1265 modules)
+ ✓ Compiled in 2.8s (1265 modules)
+ ✓ Compiled in 1035ms (1265 modules)
+ ✓ Compiled in 656ms (1265 modules)
+ ✓ Compiled in 938ms (1265 modules)
+ ✓ Compiled in 617ms (1265 modules)
+ ✓ Compiled in 893ms (1265 modules)
+ ✓ Compiled in 928ms (1265 modules)
+ ✓ Compiled in 821ms (1265 modules)
+ ✓ Compiled in 1066ms (1265 modules)
+ ✓ Compiled in 813ms (1265 modules)
+ ✓ Compiled in 716ms (1265 modules)
+ ✓ Compiled in 679ms (1265 modules)
+ ✓ Compiled in 671ms (1265 modules)
+ ✓ Compiled in 533ms (1265 modules)
+ ✓ Compiled in 504ms (1265 modules)
+ ✓ Compiled in 725ms (1265 modules)
+ ✓ Compiled in 793ms (1265 modules)
+ ✓ Compiled in 1040ms (1265 modules)
+ ✓ Compiled in 593ms (1265 modules)
+ ✓ Compiled in 718ms (1265 modules)
+ ✓ Compiled in 620ms (1265 modules)
+ ✓ Compiled in 669ms (1265 modules)
+ ✓ Compiled in 4.5s (1265 modules)
+ ✓ Compiled in 948ms (1265 modules)
+ ✓ Compiled in 3s (1265 modules)
+ ✓ Compiled in 5.1s (1265 modules)
+ ✓ Compiled in 791ms (1265 modules)
+ ✓ Compiled in 905ms (1265 modules)
+ ✓ Compiled in 1083ms (1265 modules)
+ ✓ Compiled in 1016ms (1265 modules)
+ ✓ Compiled in 561ms (1265 modules)
+ ✓ Compiled in 1561ms (1265 modules)
+ ✓ Compiled in 749ms (1265 modules)
+ ○ Compiling /restaurant/menu-management ...
+ ✓ Compiled /restaurant/menu-management in 1862ms (2401 modules)
+ GET /restaurant/menu-management 200 in 2768ms
+ ○ Compiling /restaurant/pos ...
+ ✓ Compiled /restaurant/pos in 1018ms (2468 modules)
+ GET /restaurant/pos 200 in 1391ms
+ GET /restaurant/menu-management 200 in 299ms
+ ✓ Compiled in 1687ms (1298 modules)
+ GET /restaurant/menu-management 200 in 64ms
+ ✓ Compiled in 1628ms (1298 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 591ms (2472 modules)
+ GET /restaurant/menu-management 404 in 890ms
+ GET /restaurant/menu-management 200 in 94ms
+ GET /restaurant/menu-management 200 in 653ms
+ ✓ Compiled in 1352ms (1301 modules)
+ ✓ Compiled in 767ms (1301 modules)
+ GET /restaurant/menu-management 200 in 64ms
+ GET /restaurant/menu-management 200 in 22ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/3.pack.gz_' -> '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/3.pack.gz'
+ ✓ Compiled in 2.9s (2482 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 537ms (2472 modules)
+ GET /restaurant/menu-management 404 in 779ms
+ GET /restaurant/menu-management 200 in 429ms
+ ✓ Compiled in 1491ms (2488 modules)
+ GET /restaurant/menu-management 200 in 823ms
+ ✓ Compiled in 1314ms (2488 modules)
+ GET /restaurant/menu-management 200 in 184ms
+ ✓ Compiled in 1106ms (2488 modules)
+ GET /restaurant/menu-management 200 in 214ms
+ ✓ Compiled in 1237ms (2488 modules)
+ GET /restaurant/menu-management 200 in 157ms
+ ✓ Compiled in 2.3s (2492 modules)
+ GET /restaurant/menu-management 200 in 123ms
+ ✓ Compiled in 1291ms (2492 modules)
+ GET /restaurant/menu-management 200 in 98ms
+ ✓ Compiled in 1003ms (2488 modules)
+ GET /restaurant/menu-management 200 in 397ms
+ ✓ Compiled in 1057ms (2488 modules)
+ GET /restaurant/menu-management 200 in 145ms
+ ✓ Compiled in 1228ms (2488 modules)
+ GET /restaurant/menu-management 200 in 270ms
+ ✓ Compiled in 1646ms (2488 modules)
+ GET /restaurant/menu-management 200 in 179ms
+ ✓ Compiled in 4.4s (1301 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 9.9s (2478 modules)
+ GET /restaurant/menu-management 404 in 10306ms
+ GET /restaurant/menu-management 200 in 2271ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/1.pack.gz_' -> '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/1.pack.gz'
+ ✓ Compiled in 1737ms (1304 modules)
+ ✓ Compiled in 711ms (1304 modules)
+ ✓ Compiled in 637ms (1304 modules)
+ ✓ Compiled in 1450ms (1304 modules)
+ ✓ Compiled in 1080ms (1304 modules)
+ ✓ Compiled in 1410ms (1301 modules)
+ ✓ Compiled in 1791ms (1301 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2.1s (2478 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/4aedfd2132ce973e.webpack.hot-update.json 404 in 3563ms
+ GET /restaurant/menu-management 200 in 5947ms
+ GET /restaurant/menu-management 200 in 2734ms
+ GET /_next/static/chunks/app/restaurant/menu-management/page.js 404 in 109ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 2.4s (1204 modules)
+ GET /favicon.ico 200 in 2689ms
+ ✓ Compiled in 8.7s (1304 modules)
+ ✓ Compiled in 950ms (1304 modules)
+ ✓ Compiled in 767ms (1304 modules)
+ ✓ Compiled in 701ms (1304 modules)
+ GET /favicon.ico 404 in 29ms
+ GET /favicon.ico 404 in 11ms
+ GET /favicon.ico 404 in 7ms
+ ✓ Compiled in 4.9s (1304 modules)
+ GET /restaurant/menu-management 404 in 656ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /restaurant/menu-management 404 in 971ms
+ GET /_next/static/webpack/a095a48665a3bed5.webpack.hot-update.json 404 in 1332ms
+ ✓ Compiled in 5.6s (2494 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /restaurant/menu-management 404 in 5275ms
+ GET /_next/static/webpack/a095a48665a3bed5.webpack.hot-update.json 404 in 3582ms
+ ✓ Compiled in 856ms (1304 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/36ac2ffd9813ad64.webpack.hot-update.json 404 in 88ms
+ GET /restaurant/menu-management 200 in 235ms
+ GET /restaurant/menu-management 200 in 888ms
+ GET /_next/static/chunks/app/restaurant/menu-management/page.js 404 in 112ms
+ ✓ Compiled in 706ms (1304 modules)
+ ✓ Compiled in 1338ms (1301 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1705ms (2478 modules)
+ ✓ Compiled in 1344ms (2478 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/04d6e825acc31dbb.webpack.hot-update.json 404 in 3599ms
+ GET /restaurant/menu-management 404 in 3427ms
+ GET /restaurant/menu-management 404 in 1304ms
+ ✓ Compiled in 2.2s (1304 modules)
+ ✓ Compiled in 6.2s (2488 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./components/restaurant/organization-guard.tsx:11:73)
+    at (ssr)/./components/restaurant/organization-guard.tsx (.next/server/app/restaurant/menu-management/page.js:379:1)
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./app/restaurant/menu-management/page.tsx:10:99)
+    at (ssr)/./app/restaurant/menu-management/page.tsx (.next/server/app/restaurant/menu-management/page.js:258:1)
+    at Object.__webpack_require__ [as require] (.next/server/webpack-runtime.js:33:42)
+    at JSON.parse (<anonymous>) {
+  digest: '108452016'
+}
+ GET /restaurant/menu-management 500 in 887ms
+ ✓ Compiled in 1480ms (2488 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./components/restaurant/organization-guard.tsx:11:73)
+    at (ssr)/./components/restaurant/organization-guard.tsx (.next/server/app/restaurant/menu-management/page.js:379:1)
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./app/restaurant/menu-management/page.tsx:10:99)
+    at (ssr)/./app/restaurant/menu-management/page.tsx (.next/server/app/restaurant/menu-management/page.js:258:1)
+    at Object.__webpack_require__ [as require] (.next/server/webpack-runtime.js:33:42)
+    at JSON.parse (<anonymous>) {
+  digest: '108452016'
+}
+ GET /restaurant/menu-management 200 in 457ms
+ GET /restaurant/menu-management 500 in 461ms
+ ✓ Compiled in 1120ms (1301 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1113ms (2492 modules)
+ GET /restaurant/menu-management 404 in 1132ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /restaurant/menu-management 404 in 1312ms
+ GET /_next/static/webpack/6903510f8e0d8ae3.webpack.hot-update.json 404 in 1350ms
+ GET /restaurant/menu-management 200 in 54ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./components/restaurant/organization-guard.tsx:11:73)
+    at (ssr)/./components/restaurant/organization-guard.tsx (.next/server/app/restaurant/menu-management/page.js:379:1)
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./app/restaurant/menu-management/page.tsx:10:99)
+    at (ssr)/./app/restaurant/menu-management/page.tsx (.next/server/app/restaurant/menu-management/page.js:258:1)
+    at Object.__webpack_require__ [as require] (.next/server/webpack-runtime.js:33:42)
+    at JSON.parse (<anonymous>) {
+  digest: '108452016'
+}
+ GET /restaurant/menu-management 500 in 257ms
+[ResponseAborted: ]
+[ResponseAborted: ]
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./components/restaurant/organization-guard.tsx:11:73)
+    at (ssr)/./components/restaurant/organization-guard.tsx (.next/server/app/restaurant/menu-management/page.js:379:1)
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./app/restaurant/menu-management/page.tsx:10:99)
+    at (ssr)/./app/restaurant/menu-management/page.tsx (.next/server/app/restaurant/menu-management/page.js:258:1)
+    at Object.__webpack_require__ [as require] (.next/server/webpack-runtime.js:33:42)
+    at JSON.parse (<anonymous>) {
+  digest: '108452016'
+}
+ GET /restaurant/menu-management 500 in 252ms
+ ✓ Compiled in 659ms (1304 modules)
+ GET /restaurant/menu-management 404 in 723ms
+ GET /restaurant/menu-management 404 in 696ms
+ GET /restaurant/menu-management 404 in 636ms
+ ✓ Compiled in 680ms (1304 modules)
+ GET /_next/static/webpack/977ca9b75865b2b3.webpack.hot-update.json 404 in 238ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /restaurant/menu-management 404 in 288ms
+ ✓ Compiled in 637ms (1304 modules)
+ GET /_next/static/webpack/1b86432788506439.webpack.hot-update.json 404 in 220ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /restaurant/menu-management 404 in 224ms
+ ✓ Compiled in 665ms (1304 modules)
+ GET /_next/static/webpack/f25cd27b5fad7fc8.webpack.hot-update.json 404 in 319ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /restaurant/menu-management 404 in 230ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/0.pack.gz'
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2.6s (2478 modules)
+ GET /_next/static/webpack/dd37f9f0948f9f0f.webpack.hot-update.json 404 in 1473ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./components/restaurant/organization-guard.tsx:11:73)
+    at (ssr)/./components/restaurant/organization-guard.tsx (.next/server/app/restaurant/menu-management/page.js:379:1)
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./app/restaurant/menu-management/page.tsx:10:99)
+    at (ssr)/./app/restaurant/menu-management/page.tsx (.next/server/app/restaurant/menu-management/page.js:258:1)
+    at Object.__webpack_require__ [as require] (.next/server/webpack-runtime.js:33:42)
+    at JSON.parse (<anonymous>) {
+  digest: '108452016'
+}
+ GET /restaurant/menu-management 500 in 353ms
+ ✓ Compiled in 1930ms (2492 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./components/restaurant/organization-guard.tsx:11:73)
+    at (ssr)/./components/restaurant/organization-guard.tsx (.next/server/app/restaurant/menu-management/page.js:379:1)
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./app/restaurant/menu-management/page.tsx:10:99)
+    at (ssr)/./app/restaurant/menu-management/page.tsx (.next/server/app/restaurant/menu-management/page.js:258:1)
+    at Object.__webpack_require__ [as require] (.next/server/webpack-runtime.js:33:42)
+    at JSON.parse (<anonymous>) {
+  digest: '108452016'
+}
+ GET /restaurant/menu-management 200 in 844ms
+ GET /restaurant/menu-management 500 in 945ms
+ ✓ Compiled in 1144ms (1304 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/0347df975e372daf.webpack.hot-update.json 404 in 185ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./components/restaurant/organization-guard.tsx:11:73)
+    at (ssr)/./components/restaurant/organization-guard.tsx (.next/server/app/restaurant/menu-management/page.js:379:1)
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(ssr)/./app/restaurant/menu-management/page.tsx:10:99)
+    at (ssr)/./app/restaurant/menu-management/page.tsx (.next/server/app/restaurant/menu-management/page.js:258:1)
+    at Object.__webpack_require__ [as require] (.next/server/webpack-runtime.js:33:42)
+    at JSON.parse (<anonymous>) {
+  digest: '108452016'
+}
+ GET /restaurant/menu-management 200 in 688ms
+ GET /restaurant/menu-management 500 in 601ms
+ ✓ Compiled in 673ms (1304 modules)
+ GET /_next/static/webpack/e6831a17627a9b18.webpack.hot-update.json 404 in 262ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /restaurant/menu-management 404 in 201ms
+ GET /restaurant/menu-management 404 in 232ms
+ GET /restaurant/menu-management 404 in 235ms
+ ✓ Compiled in 813ms (1304 modules)
+ ✓ Compiled in 656ms (1304 modules)
+ ✓ Compiled in 649ms (1304 modules)
+ ✓ Compiled in 612ms (1304 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled in 3.2s (2488 modules)
+ ✓ Compiled in 1729ms (2488 modules)
+ ✓ Compiled in 1074ms (2488 modules)
+ ✓ Compiled in 1030ms (2488 modules)
+ ✓ Compiled in 1449ms (1301 modules)
+ ✓ Compiled in 817ms (1301 modules)
+ ✓ Compiled in 637ms (1301 modules)
+ ✓ Compiled in 996ms (1301 modules)
+ ✓ Compiled in 734ms (1301 modules)
+ ✓ Compiled in 768ms (1301 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled in 1135ms (1301 modules)
+ ✓ Compiled in 1183ms (1301 modules)
+ ✓ Compiled in 921ms (1301 modules)
+ ✓ Compiled in 5s (1301 modules)
+ ✓ Compiled in 679ms (1301 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/4.pack.gz_' -> '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/4.pack.gz'
+ ✓ Compiled in 1992ms (2488 modules)
+ ✓ Compiled in 659ms (1301 modules)
+ ✓ Compiled in 538ms (1301 modules)
+ ✓ Compiled in 463ms (1301 modules)
+ ✓ Compiled in 4.2s (2488 modules)
+ ✓ Compiled in 1113ms (2488 modules)
+ ✓ Compiled in 1017ms (2488 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/2.pack.gz_' -> '/Users/san/Documents/hera-erp/frontend/.next/cache/webpack/client-development/2.pack.gz'

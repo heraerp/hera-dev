@@ -1,0 +1,832 @@
+/* ===================================================
+   HERA ERP - Clean globals.css
+   Tailwind v3 compatible, no parsing errors
+   =================================================== */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* HERA Universal Modern Theme - Light Mode */
+    --background: 0 0% 100%;
+    --foreground: 218 11% 10%;
+    --card: 0 0% 97%;
+    --card-foreground: 218 11% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 218 11% 10%;
+    --primary: 18 100% 49%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 46%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 218 11% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 18 100% 49%;
+    --radius: 0.5rem;
+    
+    /* HERA Enhanced Colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 9%;
+    --info: 221 83% 53%;
+    --info-foreground: 0 0% 98%;
+    
+    /* HERA Universal Surface Hierarchy */
+    --surface: 0 0% 97%;
+    --surface-elevated: 0 0% 100%;
+    --surface-muted: 220 14% 96%;
+    
+    /* HERA Text Hierarchy */
+    --text-primary: 218 11% 10%;
+    --text-secondary: 220 9% 46%;
+    --text-muted: 215 16% 47%;
+    
+    /* HERA Orange Brand */
+    --orange-primary: 18 100% 49%;
+    --orange-secondary: 24 95% 53%;
+    --orange-shadow: 18 100% 49%;
+    
+    /* Mobile-First Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Mobile-First Typography */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+  }
+
+  .dark {
+    /* HERA Universal Modern Theme - Dark Mode */
+    --background: 222 84% 5%;
+    --foreground: 210 40% 94%;
+    --card: 222 84% 7%;
+    --card-foreground: 210 40% 94%;
+    --popover: 222 84% 5%;
+    --popover-foreground: 210 40% 94%;
+    --primary: 18 100% 49%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 94%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 94%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 94%;
+    --border: 217 33% 24%;
+    --input: 217 33% 24%;
+    --ring: 18 100% 49%;
+    
+    /* HERA Enhanced Colors - Dark Mode */
+    --success: 142 76% 36%;
+    --success-foreground: 222 84% 5%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 84% 5%;
+    --info: 221 83% 53%;
+    --info-foreground: 222 84% 5%;
+    
+    /* HERA Universal Surface Hierarchy - Dark Mode */
+    --surface: 222 84% 7%;
+    --surface-elevated: 217 33% 12%;
+    --surface-muted: 217 33% 17%;
+    
+    /* HERA Text Hierarchy - Dark Mode */
+    --text-primary: 210 40% 94%;
+    --text-secondary: 217 19% 67%;
+    --text-muted: 215 20% 51%;
+    
+    /* HERA Orange Brand - Dark Mode */
+    --orange-primary: 18 100% 49%;
+    --orange-secondary: 24 95% 53%;
+    --orange-shadow: 18 100% 49%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Mobile-First Base Styles */
+  h1, h2, h3, h4, h5, h6 {
+    color: hsl(var(--text-primary));
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  
+  p {
+    color: hsl(var(--text-secondary));
+    line-height: 1.6;
+  }
+  
+  small {
+    color: hsl(var(--text-muted));
+    font-size: var(--text-sm);
+  }
+  
+  /* Theme-aware form elements */
+  input, textarea, select {
+    background-color: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--text-primary));
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: hsl(var(--orange-primary));
+    box-shadow: 0 0 0 2px hsl(var(--orange-primary) / 0.2);
+  }
+  
+  input::placeholder, textarea::placeholder {
+    color: hsl(var(--text-muted));
+  }
+  
+  /* Theme-aware buttons */
+  button {
+    transition: all 0.2s ease;
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* HERA Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Selection Styles */
+::selection {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+::-moz-selection {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Modal specific scrollbar styles */
+.modal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--border)) hsl(var(--muted));
+}
+
+.modal-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+  border: 1px solid hsl(var(--muted));
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+.modal-scrollbar::-webkit-scrollbar-corner {
+  background: hsl(var(--muted));
+}
+
+/* Ensure smooth scrolling behavior */
+.modal-content {
+  scroll-behavior: smooth;
+}
+
+/* Fix for focus ring inside scrollable content */
+.modal-scrollbar *:focus {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Enhanced Glass Effects - Improved Accessibility */
+.glass-effect {
+  -webkit-backdrop-filter: blur(16px) saturate(180%) contrast(110%);
+  backdrop-filter: blur(16px) saturate(180%) contrast(110%);
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.glass-effect-dark {
+  -webkit-backdrop-filter: blur(16px) saturate(180%) contrast(110%);
+  backdrop-filter: blur(16px) saturate(180%) contrast(110%);
+  background-color: rgba(17, 25, 40, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Glass variants for different contexts */
+.glass-subtle {
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  backdrop-filter: blur(8px) saturate(150%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.glass-moderate {
+  -webkit-backdrop-filter: blur(16px) saturate(180%) contrast(110%);
+  backdrop-filter: blur(16px) saturate(180%) contrast(110%);
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.glass-prominent {
+  -webkit-backdrop-filter: blur(24px) saturate(200%) contrast(120%);
+  backdrop-filter: blur(24px) saturate(200%) contrast(120%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode glass variants */
+.dark .glass-subtle {
+  background-color: rgba(17, 25, 40, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dark .glass-moderate {
+  background-color: rgba(17, 25, 40, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass-prominent {
+  background-color: rgba(17, 25, 40, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Animation Utilities */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.animate-pulse-subtle {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .glass-effect {
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+  }
+}
+
+/* Enhanced Accessibility & Focus Management */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  z-index: 1000;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Enhanced Focus Ring */
+.focus-ring:focus-visible {
+  outline: 3px solid hsl(var(--primary));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px hsl(var(--primary) / 0.1);
+  border-radius: 8px;
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: 214.3 31.8% 60%;
+    --muted-foreground: 215.4 16.3% 30%;
+  }
+  
+  .dark {
+    --border: 217.2 32.6% 50%;
+    --muted-foreground: 215 20.2% 80%;
+  }
+  
+  .glass-effect,
+  .glass-moderate,
+  .glass-subtle,
+  .glass-prominent {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+  }
+  
+  .dark .glass-effect,
+  .dark .glass-moderate,
+  .dark .glass-subtle,
+  .dark .glass-prominent {
+    background-color: rgba(17, 25, 40, 0.95);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Enhanced Button States */
+.btn-enhanced {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-enhanced:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px hsl(var(--primary) / 0.25);
+}
+
+.btn-enhanced:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px hsl(var(--primary) / 0.2);
+}
+
+.btn-enhanced:focus-visible {
+  outline: 3px solid hsl(var(--primary));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px hsl(var(--primary) / 0.1);
+}
+
+/* Message Bubble Enhancements */
+.message-bubble-user {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 50%, hsl(217 91% 65%) 100%);
+  color: hsl(var(--primary-foreground));
+  border-radius: 18px 18px 4px 18px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 12px hsl(var(--primary) / 0.2);
+}
+
+.message-bubble-ai {
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: 18px 18px 18px 4px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 8px hsl(var(--foreground) / 0.05);
+}
+
+/* Status Indicators */
+.status-online {
+  background: hsl(var(--success));
+  box-shadow: 0 0 0 3px hsl(var(--success) / 0.2);
+  animation: pulse-success 2s infinite;
+}
+
+.status-processing {
+  background: hsl(var(--warning));
+  box-shadow: 0 0 0 3px hsl(var(--warning) / 0.2);
+  animation: pulse-warning 1.5s infinite;
+}
+
+@keyframes pulse-success {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes pulse-warning {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* HERA Universal Mobile-First Components */
+@layer components {
+  /* Mobile-First Card System */
+  .hera-card {
+    @apply bg-card text-card-foreground border border-border rounded-lg shadow-sm;
+    background-color: hsl(var(--surface));
+    border-color: hsl(var(--border));
+    transition: all 0.2s ease;
+  }
+  
+  .hera-card-elevated {
+    @apply hera-card shadow-md;
+    background-color: hsl(var(--surface-elevated));
+    box-shadow: 0 4px 6px -1px hsl(var(--foreground) / 0.1), 0 2px 4px -1px hsl(var(--foreground) / 0.06);
+  }
+  
+  .hera-card-interactive {
+    @apply hera-card cursor-pointer hover:shadow-md;
+  }
+  
+  .hera-card-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -8px hsl(var(--foreground) / 0.2);
+  }
+  
+  /* Mobile-First Button System */
+  .hera-btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    border-radius: var(--radius);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  
+  .hera-btn-primary {
+    @apply hera-btn bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary/50;
+    background-color: hsl(var(--orange-primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 2px 4px hsl(var(--orange-primary) / 0.2);
+  }
+  
+  .hera-btn-primary:hover {
+    background-color: hsl(var(--orange-primary) / 0.9);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px hsl(var(--orange-primary) / 0.3);
+  }
+  
+  .hera-btn-secondary {
+    @apply hera-btn bg-secondary text-secondary-foreground hover:bg-secondary/80 focus:ring-secondary/50;
+    background-color: hsl(var(--surface));
+    color: hsl(var(--text-primary));
+    border: 1px solid hsl(var(--border));
+  }
+  
+  .hera-btn-ghost {
+    @apply hera-btn hover:bg-accent hover:text-accent-foreground focus:ring-accent/50;
+    background-color: transparent;
+    color: hsl(var(--text-primary));
+  }
+  
+  .hera-btn-ghost:hover {
+    background-color: hsl(var(--surface));
+  }
+  
+  /* Mobile-First Input System */
+  .hera-input {
+    @apply w-full px-3 py-2 text-sm bg-background border border-input rounded-md placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent;
+    background-color: hsl(var(--surface));
+    border-color: hsl(var(--border));
+    color: hsl(var(--text-primary));
+  }
+  
+  .hera-input:focus {
+    border-color: hsl(var(--orange-primary));
+    box-shadow: 0 0 0 2px hsl(var(--orange-primary) / 0.2);
+  }
+  
+  .hera-input::placeholder {
+    color: hsl(var(--text-muted));
+  }
+  
+  /* Mobile-First Badge System */
+  .hera-badge {
+    @apply inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full border;
+    background-color: hsl(var(--surface));
+    color: hsl(var(--text-primary));
+    border-color: hsl(var(--border));
+  }
+  
+  .hera-badge-success {
+    @apply hera-badge;
+    background-color: hsl(var(--success) / 0.1);
+    color: hsl(var(--success));
+    border-color: hsl(var(--success) / 0.2);
+  }
+  
+  .hera-badge-warning {
+    @apply hera-badge;
+    background-color: hsl(var(--warning) / 0.1);
+    color: hsl(var(--warning));
+    border-color: hsl(var(--warning) / 0.2);
+  }
+  
+  .hera-badge-error {
+    @apply hera-badge;
+    background-color: hsl(var(--destructive) / 0.1);
+    color: hsl(var(--destructive));
+    border-color: hsl(var(--destructive) / 0.2);
+  }
+  
+  /* Mobile-First Typography */
+  .hera-heading-1 {
+    @apply text-3xl font-bold tracking-tight;
+    color: hsl(var(--text-primary));
+    font-size: var(--text-3xl);
+    line-height: 1.1;
+  }
+  
+  .hera-heading-2 {
+    @apply text-2xl font-semibold tracking-tight;
+    color: hsl(var(--text-primary));
+    font-size: var(--text-2xl);
+    line-height: 1.2;
+  }
+  
+  .hera-heading-3 {
+    @apply text-xl font-semibold tracking-tight;
+    color: hsl(var(--text-primary));
+    font-size: var(--text-xl);
+    line-height: 1.3;
+  }
+  
+  .hera-body {
+    @apply text-base;
+    color: hsl(var(--text-secondary));
+    font-size: var(--text-base);
+    line-height: 1.6;
+  }
+  
+  .hera-caption {
+    @apply text-sm;
+    color: hsl(var(--text-muted));
+    font-size: var(--text-sm);
+    line-height: 1.4;
+  }
+  
+  /* Mobile-First Layout */
+  .hera-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .hera-section {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
+  
+  .hera-grid {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  .hera-flex {
+    @apply flex items-center gap-3;
+  }
+  
+  /* Mobile-First Spacing */
+  .hera-space-xs { margin: var(--spacing-xs); }
+  .hera-space-sm { margin: var(--spacing-sm); }
+  .hera-space-md { margin: var(--spacing-md); }
+  .hera-space-lg { margin: var(--spacing-lg); }
+  .hera-space-xl { margin: var(--spacing-xl); }
+  .hera-space-2xl { margin: var(--spacing-2xl); }
+  
+  /* Mobile-First Status Indicators */
+  .hera-status-online {
+    @apply inline-flex items-center gap-2 px-3 py-1 text-sm font-medium rounded-full;
+    background-color: hsl(var(--success) / 0.1);
+    color: hsl(var(--success));
+    border: 1px solid hsl(var(--success) / 0.2);
+  }
+  
+  .hera-status-offline {
+    @apply inline-flex items-center gap-2 px-3 py-1 text-sm font-medium rounded-full;
+    background-color: hsl(var(--destructive) / 0.1);
+    color: hsl(var(--destructive));
+    border: 1px solid hsl(var(--destructive) / 0.2);
+  }
+  
+  .hera-status-processing {
+    @apply inline-flex items-center gap-2 px-3 py-1 text-sm font-medium rounded-full;
+    background-color: hsl(var(--warning) / 0.1);
+    color: hsl(var(--warning));
+    border: 1px solid hsl(var(--warning) / 0.2);
+  }
+}
+
+/* Mobile-First Responsive Design */
+@layer utilities {
+  /* Touch-friendly tap targets */
+  .hera-tap-target {
+    min-height: 44px;
+    min-width: 44px;
+    @apply flex items-center justify-center;
+  }
+  
+  /* Mobile-first show/hide utilities */
+  .mobile-only {
+    @apply block sm:hidden;
+  }
+  
+  .desktop-only {
+    @apply hidden sm:block;
+  }
+  
+  .tablet-up {
+    @apply hidden md:block;
+  }
+  
+  /* Mobile-first text utilities */
+  .text-mobile-sm {
+    font-size: var(--text-sm);
+  }
+  
+  .text-mobile-base {
+    font-size: var(--text-base);
+  }
+  
+  .text-mobile-lg {
+    font-size: var(--text-lg);
+  }
+  
+  /* Mobile-first spacing utilities */
+  .space-mobile-xs {
+    margin: var(--spacing-xs);
+  }
+  
+  .space-mobile-sm {
+    margin: var(--spacing-sm);
+  }
+  
+  .space-mobile-md {
+    margin: var(--spacing-md);
+  }
+  
+  /* Theme-aware utilities */
+  .theme-surface {
+    background-color: hsl(var(--surface));
+  }
+  
+  .theme-surface-elevated {
+    background-color: hsl(var(--surface-elevated));
+  }
+  
+  .theme-text-primary {
+    color: hsl(var(--text-primary));
+  }
+  
+  .theme-text-secondary {
+    color: hsl(var(--text-secondary));
+  }
+  
+  .theme-text-muted {
+    color: hsl(var(--text-muted));
+  }
+  
+  .theme-border {
+    border-color: hsl(var(--border));
+  }
+  
+  .theme-orange {
+    color: hsl(var(--orange-primary));
+  }
+  
+  .theme-orange-bg {
+    background-color: hsl(var(--orange-primary));
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .btn-enhanced:hover,
+  .hera-btn-primary:hover,
+  .hera-card-interactive:hover {
+    transform: none;
+  }
+  
+  .status-online,
+  .status-processing {
+    animation: none;
+  }
+}
+
+/* Mobile-First Media Queries */
+@media (max-width: 640px) {
+  .hera-container {
+    @apply px-3;
+  }
+  
+  .hera-heading-1 {
+    font-size: var(--text-2xl);
+  }
+  
+  .hera-heading-2 {
+    font-size: var(--text-xl);
+  }
+  
+  .hera-heading-3 {
+    font-size: var(--text-lg);
+  }
+  
+  .hera-section {
+    @apply py-6;
+  }
+  
+  .hera-grid {
+    @apply gap-3;
+  }
+}
+
+/* Enhanced Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}

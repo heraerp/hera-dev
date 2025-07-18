@@ -1,0 +1,482 @@
+/**
+ * HERA Design System - Typography Foundation
+ * Golden Ratio Typography Scale with Mathematical Precision
+ */
+
+/* ================================================================================================
+   TYPOGRAPHY SCALE - GOLDEN RATIO BASED
+   ================================================================================================ */
+
+:root {
+  /* === GOLDEN RATIO CONSTANTS === */
+  --ratio-golden: 1.618;
+  --ratio-minor-second: 1.067;
+  --ratio-major-second: 1.125;
+  --ratio-minor-third: 1.2;
+  --ratio-major-third: 1.25;
+  --ratio-perfect-fourth: 1.333;
+  
+  /* === FONT FAMILIES === */
+  --font-sans: 'Inter', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', 'Courier New', monospace;
+  --font-display: 'Inter Display', var(--font-sans);
+  
+  /* === BASE TYPOGRAPHY === */
+  --text-base: 1rem;        /* 16px */
+  --text-base-line: 1.5;    /* Golden ratio line height */
+  
+  /* === FIBONACCI-INSPIRED SCALE === */
+  --text-xs: 0.75rem;       /* 12px */
+  --text-sm: 0.875rem;      /* 14px */
+  --text-base: 1rem;        /* 16px */
+  --text-lg: 1.125rem;      /* 18px */
+  --text-xl: 1.25rem;       /* 20px */
+  --text-2xl: 1.5rem;       /* 24px */
+  --text-3xl: 1.875rem;     /* 30px */
+  --text-4xl: 2.25rem;      /* 36px */
+  --text-5xl: 3rem;         /* 48px */
+  --text-6xl: 3.75rem;      /* 60px */
+  --text-7xl: 4.5rem;       /* 72px */
+  --text-8xl: 6rem;         /* 96px */
+  --text-9xl: 8rem;         /* 128px */
+  
+  /* === GOLDEN RATIO SCALE (Alternative) === */
+  --text-golden-xs: 0.618rem;      /* ~10px */
+  --text-golden-sm: 0.786rem;      /* ~12.6px */
+  --text-golden-base: 1rem;        /* 16px */
+  --text-golden-md: 1.272rem;      /* ~20.4px */
+  --text-golden-lg: 1.618rem;      /* ~25.9px */
+  --text-golden-xl: 2.058rem;      /* ~32.9px */
+  --text-golden-2xl: 2.618rem;     /* ~41.9px */
+  --text-golden-3xl: 3.236rem;     /* ~51.8px */
+  --text-golden-4xl: 4.236rem;     /* ~67.8px */
+  
+  /* === LINE HEIGHTS === */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;       /* Golden ratio based */
+  --leading-relaxed: 1.625;    /* 1 + golden ratio */
+  --leading-loose: 2;
+  
+  /* === LETTER SPACING === */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+  
+  /* === FONT WEIGHTS === */
+  --font-thin: 100;
+  --font-extralight: 200;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
+}
+
+/* ================================================================================================
+   BASE TYPOGRAPHY STYLES
+   ================================================================================================ */
+
+html {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
+}
+
+/* ================================================================================================
+   HEADING HIERARCHY - GOLDEN RATIO SCALE
+   ================================================================================================ */
+
+h1, .heading-1, .heading-golden-4xl {
+  font-family: var(--font-display);
+  font-size: var(--text-golden-4xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: hsl(var(--foreground));
+  margin-bottom: calc(var(--text-golden-4xl) / var(--ratio-golden));
+}
+
+h2, .heading-2, .heading-golden-3xl {
+  font-family: var(--font-display);
+  font-size: var(--text-golden-3xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: hsl(var(--foreground));
+  margin-bottom: calc(var(--text-golden-3xl) / var(--ratio-golden));
+}
+
+h3, .heading-3, .heading-golden-2xl {
+  font-family: var(--font-display);
+  font-size: var(--text-golden-2xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-normal);
+  color: hsl(var(--foreground));
+  margin-bottom: calc(var(--text-golden-2xl) / var(--ratio-golden));
+}
+
+h4, .heading-4, .heading-golden-xl {
+  font-family: var(--font-sans);
+  font-size: var(--text-golden-xl);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-normal);
+  color: hsl(var(--foreground));
+  margin-bottom: calc(var(--text-golden-xl) / var(--ratio-golden));
+}
+
+h5, .heading-5, .heading-golden-lg {
+  font-family: var(--font-sans);
+  font-size: var(--text-golden-lg);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+  color: hsl(var(--foreground));
+  margin-bottom: calc(var(--text-golden-lg) / var(--ratio-golden));
+}
+
+h6, .heading-6, .heading-golden-md {
+  font-family: var(--font-sans);
+  font-size: var(--text-golden-md);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-wide);
+  color: hsl(var(--foreground));
+  margin-bottom: calc(var(--text-golden-md) / var(--ratio-golden));
+}
+
+/* ================================================================================================
+   BODY TEXT STYLES
+   ================================================================================================ */
+
+p, .text-body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: hsl(var(--foreground));
+  margin-bottom: calc(var(--text-base) * var(--leading-relaxed));
+}
+
+.text-lead {
+  font-size: var(--text-golden-md);
+  line-height: var(--leading-relaxed);
+  font-weight: var(--font-normal);
+  color: hsl(var(--foreground));
+}
+
+.text-large {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+}
+
+.text-small {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+
+/* ================================================================================================
+   UTILITY TYPOGRAPHY CLASSES
+   ================================================================================================ */
+
+/* Font Family */
+.font-sans { font-family: var(--font-sans); }
+.font-serif { font-family: var(--font-serif); }
+.font-mono { font-family: var(--font-mono); }
+.font-display { font-family: var(--font-display); }
+
+/* Font Sizes - Standard Scale */
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+.text-4xl { font-size: var(--text-4xl); }
+.text-5xl { font-size: var(--text-5xl); }
+.text-6xl { font-size: var(--text-6xl); }
+.text-7xl { font-size: var(--text-7xl); }
+.text-8xl { font-size: var(--text-8xl); }
+.text-9xl { font-size: var(--text-9xl); }
+
+/* Font Sizes - Golden Ratio Scale */
+.text-golden-xs { font-size: var(--text-golden-xs); }
+.text-golden-sm { font-size: var(--text-golden-sm); }
+.text-golden-base { font-size: var(--text-golden-base); }
+.text-golden-md { font-size: var(--text-golden-md); }
+.text-golden-lg { font-size: var(--text-golden-lg); }
+.text-golden-xl { font-size: var(--text-golden-xl); }
+.text-golden-2xl { font-size: var(--text-golden-2xl); }
+.text-golden-3xl { font-size: var(--text-golden-3xl); }
+.text-golden-4xl { font-size: var(--text-golden-4xl); }
+
+/* Font Weights */
+.font-thin { font-weight: var(--font-thin); }
+.font-extralight { font-weight: var(--font-extralight); }
+.font-light { font-weight: var(--font-light); }
+.font-normal { font-weight: var(--font-normal); }
+.font-medium { font-weight: var(--font-medium); }
+.font-semibold { font-weight: var(--font-semibold); }
+.font-bold { font-weight: var(--font-bold); }
+.font-extrabold { font-weight: var(--font-extrabold); }
+.font-black { font-weight: var(--font-black); }
+
+/* Line Heights */
+.leading-none { line-height: var(--leading-none); }
+.leading-tight { line-height: var(--leading-tight); }
+.leading-snug { line-height: var(--leading-snug); }
+.leading-normal { line-height: var(--leading-normal); }
+.leading-relaxed { line-height: var(--leading-relaxed); }
+.leading-loose { line-height: var(--leading-loose); }
+
+/* Letter Spacing */
+.tracking-tighter { letter-spacing: var(--tracking-tighter); }
+.tracking-tight { letter-spacing: var(--tracking-tight); }
+.tracking-normal { letter-spacing: var(--tracking-normal); }
+.tracking-wide { letter-spacing: var(--tracking-wide); }
+.tracking-wider { letter-spacing: var(--tracking-wider); }
+.tracking-widest { letter-spacing: var(--tracking-widest); }
+
+/* Text Alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* Text Transform */
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+
+/* Text Decoration */
+.underline { text-decoration: underline; }
+.line-through { text-decoration: line-through; }
+.no-underline { text-decoration: none; }
+
+/* ================================================================================================
+   SPECIAL TYPOGRAPHY EFFECTS
+   ================================================================================================ */
+
+/* Gradient Text */
+.text-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--info)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: var(--font-bold);
+}
+
+.text-gradient-success {
+  background: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success-hover)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Text Shadow Effects */
+.text-shadow-sm {
+  text-shadow: 0 1px 2px hsl(var(--foreground) / 0.1);
+}
+
+.text-shadow {
+  text-shadow: 0 1px 3px hsl(var(--foreground) / 0.1);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 6px hsl(var(--foreground) / 0.1);
+}
+
+/* Animated Text */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted-foreground)) 0%,
+    hsl(var(--foreground)) 50%,
+    hsl(var(--muted-foreground)) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ================================================================================================
+   RESPONSIVE TYPOGRAPHY
+   ================================================================================================ */
+
+/* Mobile First Approach */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px; /* Reduce base font size on mobile */
+  }
+  
+  h1, .heading-1, .heading-golden-4xl {
+    font-size: var(--text-golden-3xl);
+  }
+  
+  h2, .heading-2, .heading-golden-3xl {
+    font-size: var(--text-golden-2xl);
+  }
+  
+  h3, .heading-3, .heading-golden-2xl {
+    font-size: var(--text-golden-xl);
+  }
+}
+
+/* Tablet */
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1441px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* ================================================================================================
+   ACCESSIBILITY IMPROVEMENTS
+   ================================================================================================ */
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .text-muted {
+    color: hsl(var(--foreground));
+  }
+  
+  .text-gradient,
+  .text-gradient-success {
+    -webkit-text-fill-color: unset;
+    color: hsl(var(--foreground));
+    background: none;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .text-shimmer {
+    animation: none;
+    -webkit-text-fill-color: unset;
+    color: hsl(var(--foreground));
+    background: none;
+  }
+}
+
+/* Focus styles for interactive text elements */
+.text-interactive {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.text-interactive:hover {
+  color: hsl(var(--primary));
+}
+
+.text-interactive:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ================================================================================================
+   PROSE STYLES FOR RICH CONTENT
+   ================================================================================================ */
+
+.prose {
+  max-width: 65ch; /* Optimal reading width */
+  line-height: var(--leading-relaxed);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-top: calc(var(--text-base) * 2);
+  margin-bottom: var(--text-base);
+}
+
+.prose p {
+  margin-bottom: var(--text-base);
+}
+
+.prose ul,
+.prose ol {
+  margin-bottom: var(--text-base);
+  padding-left: calc(var(--text-base) * 1.5);
+}
+
+.prose li {
+  margin-bottom: calc(var(--text-base) / 2);
+}
+
+.prose blockquote {
+  border-left: 4px solid hsl(var(--border));
+  padding-left: var(--text-base);
+  margin: var(--text-base) 0;
+  font-style: italic;
+  color: hsl(var(--muted-foreground));
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: hsl(var(--muted));
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+.prose pre {
+  font-family: var(--font-mono);
+  background-color: hsl(var(--muted));
+  padding: var(--text-base);
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: var(--text-base) 0;
+}

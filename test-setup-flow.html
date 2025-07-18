@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Restaurant Setup Flow</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        button { padding: 10px 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Restaurant Setup Service Role</h1>
+    <div id="status"></div>
+    
+    <button onclick="testServiceRole()">Test Service Role</button>
+    <button onclick="testFullSetup()">Test Full Setup</button>
+    <button onclick="fillFormAndSubmit()">Auto-Fill & Submit Form</button>
+    
+    <script>
+        function setStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            status.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+        
+        async function testServiceRole() {
+            setStatus('🔧 Testing service role...', 'info');
+            
+            try {
+                // Import and test the service
+                const module = await import('/lib/services/universalRestaurantSetupService.ts');
+                const result = await module.default.testServiceRole();
+                
+                if (result.success) {
+                    setStatus(`✅ Service role test passed: ${result.message}`, 'success');
+                } else {
+                    setStatus(`❌ Service role test failed: ${result.message}`, 'error');
+                }
+            } catch (error) {
+                setStatus(`❌ Service role test error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testFullSetup() {
+            setStatus('🚀 Testing full setup process...', 'info');
+            
+            const testData = {
+                clientName: 'Test Restaurant Group',
+                clientType: 'restaurant_group',
+                businessName: 'Test Tea Garden',
+                businessType: 'tea_house',
+                cuisineType: 'Tea & Light Meals',
+                establishedYear: '2025',
+                locationName: 'Main Branch',
+                address: '123 Test Street',
+                city: 'Test City',
+                state: 'Test State',
+                postalCode: '12345',
+                country: 'United States',
+                currency: 'USD',
+                primaryPhone: '+1-555-123-4567',
+                businessEmail: 'test@example.com',
+                website: 'https://test.com',
+                openingTime: '08:00',
+                closingTime: '20:00',
+                seatingCapacity: '20',
+                managerName: 'Test Manager',
+                managerEmail: 'manager@test.com',
+                managerPhone: '+1-555-765-4321'
+            };
+            
+            try {
+                // Get user (this may fail in test context)
+                let userId = 'test-user-id';
+                try {
+                    const { createClient } = await import('/lib/supabase/client');
+                    const supabase = createClient();
+                    const { data: { user } } = await supabase.auth.getUser();
+                    if (user) userId = user.id;
+                } catch (authError) {
+                    setStatus('⚠️ Using test user ID (auth not available)', 'info');
+                }
+                
+                // Test the setup service
+                const module = await import('/lib/services/universalRestaurantSetupService.ts');
+                const result = await module.default.setupRestaurant(testData, userId);
+                
+                if (result.success) {
+                    setStatus(`✅ Setup test passed! Created entities: ${JSON.stringify(result.data)}`, 'success');
+                } else {
+                    setStatus(`❌ Setup test failed: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                setStatus(`❌ Setup test error: ${error.message}`, 'error');
+            }
+        }
+        
+        function fillFormAndSubmit() {
+            setStatus('📝 Auto-filling form and navigating to setup page...', 'info');
+            
+            // Open the setup page
+            const setupWindow = window.open('/setup/restaurant', '_blank');
+            
+            setTimeout(() => {
+                try {
+                    const setupDoc = setupWindow.document;
+                    
+                    // Fill form fields
+                    const fillField = (id, value) => {
+                        const field = setupDoc.getElementById(id);
+                        if (field) {
+                            field.value = value;
+                            field.dispatchEvent(new Event('input', { bubbles: true }));
+                        }
+                    };
+                    
+                    fillField('clientName', 'Test Restaurant Group');
+                    fillField('businessName', 'Test Tea Garden');
+                    fillField('cuisineType', 'Tea & Light Meals');
+                    fillField('businessEmail', 'test@example.com');
+                    fillField('primaryPhone', '+1-555-123-4567');
+                    fillField('establishedYear', '2025');
+                    
+                    setStatus('✅ Form filled! Click Continue to proceed through the setup.', 'success');
+                } catch (error) {
+                    setStatus('❌ Could not auto-fill (cross-origin restrictions). Manually fill the form.', 'error');
+                }
+            }, 2000);
+        }
+        
+        // Test service role on page load
+        window.addEventListener('load', () => {
+            setTimeout(testServiceRole, 1000);
+        });
+    </script>
+</body>
+</html>

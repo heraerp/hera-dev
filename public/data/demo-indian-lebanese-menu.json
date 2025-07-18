@@ -1,0 +1,488 @@
+{
+  "restaurantInfo": {
+    "name": "Spice Garden - Indian Lebanese Fusion",
+    "description": "Authentic Indian and Lebanese cuisine with modern fusion creations",
+    "cuisineTypes": ["indian", "lebanese", "fusion"],
+    "establishedYear": 2019,
+    "chefSpecialty": "Traditional recipes with contemporary presentation",
+    "location": "Downtown Food District",
+    "capacity": 120,
+    "serviceStyle": "Fine Casual Dining"
+  },
+  "menuSections": [
+    {
+      "sectionName": "MEZZE & APPETIZERS",
+      "description": "Traditional Middle Eastern small plates and Indian starters",
+      "items": [
+        {
+          "name": "Classic Hummus Trio",
+          "description": "Traditional, roasted red pepper, and spicy harissa hummus served with warm pita and vegetables",
+          "price": 14.99,
+          "allergens": ["sesame", "gluten"],
+          "dietary": ["vegetarian", "vegan"],
+          "ingredients": ["chickpeas", "tahini", "olive oil", "lemon", "garlic", "harissa", "red peppers"],
+          "spiceLevel": 2,
+          "preparationTime": 5,
+          "portionSize": "Serves 2-3"
+        },
+        {
+          "name": "Tandoori Chicken Wings",
+          "description": "Marinated chicken wings in yogurt and spices, grilled in tandoor oven",
+          "price": 16.99,
+          "allergens": ["dairy"],
+          "dietary": ["gluten-free"],
+          "ingredients": ["chicken wings", "yogurt", "garam masala", "turmeric", "ginger", "garlic"],
+          "spiceLevel": 3,
+          "preparationTime": 15,
+          "portionSize": "8 pieces"
+        },
+        {
+          "name": "Baba Ganoush with Naan Chips",
+          "description": "Smoky eggplant dip with crispy spiced naan chips and pomegranate seeds",
+          "price": 13.99,
+          "allergens": ["gluten", "sesame"],
+          "dietary": ["vegetarian"],
+          "ingredients": ["eggplant", "tahini", "garlic", "lemon juice", "pomegranate", "naan bread"],
+          "spiceLevel": 1,
+          "preparationTime": 8,
+          "portionSize": "Individual"
+        },
+        {
+          "name": "Samosa Chaat",
+          "description": "Crispy samosas topped with chickpeas, chutneys, yogurt, and pomegranate",
+          "price": 12.99,
+          "allergens": ["gluten", "dairy"],
+          "dietary": ["vegetarian"],
+          "ingredients": ["samosas", "chickpeas", "tamarind chutney", "mint chutney", "yogurt", "onions"],
+          "spiceLevel": 2,
+          "preparationTime": 10,
+          "portionSize": "4 pieces"
+        },
+        {
+          "name": "Lebanese Fattoush Salad",
+          "description": "Mixed greens with tomatoes, cucumbers, radishes, sumac, and crispy pita",
+          "price": 11.99,
+          "allergens": ["gluten"],
+          "dietary": ["vegetarian", "vegan"],
+          "ingredients": ["mixed greens", "tomatoes", "cucumbers", "radishes", "sumac", "pita chips", "olive oil"],
+          "spiceLevel": 0,
+          "preparationTime": 7,
+          "portionSize": "Large"
+        }
+      ]
+    },
+    {
+      "sectionName": "CURRIES & MAIN COURSES",
+      "description": "Authentic curries and hearty main dishes from both traditions",
+      "items": [
+        {
+          "name": "Lamb Rogan Josh",
+          "description": "Tender lamb slow-cooked in aromatic Kashmiri spices with yogurt and tomatoes",
+          "price": 26.99,
+          "allergens": ["dairy"],
+          "dietary": ["gluten-free"],
+          "ingredients": ["lamb shoulder", "yogurt", "tomatoes", "onions", "kashmiri chili", "garam masala", "ginger"],
+          "spiceLevel": 3,
+          "preparationTime": 25,
+          "portionSize": "Generous serving"
+        },
+        {
+          "name": "Chicken Shawarma Curry",
+          "description": "Fusion dish combining shawarma spices with creamy curry sauce",
+          "price": 23.99,
+          "allergens": ["dairy"],
+          "dietary": ["gluten-free"],
+          "ingredients": ["chicken thighs", "shawarma spice blend", "cream", "tomatoes", "onions", "garlic"],
+          "spiceLevel": 2,
+          "preparationTime": 20,
+          "portionSize": "Large"
+        },
+        {
+          "name": "Paneer Makhani",
+          "description": "Cottage cheese in rich tomato and butter sauce with cream and fenugreek",
+          "price": 21.99,
+          "allergens": ["dairy"],
+          "dietary": ["vegetarian", "gluten-free"],
+          "ingredients": ["paneer", "tomatoes", "butter", "cream", "fenugreek", "garam masala"],
+          "spiceLevel": 1,
+          "preparationTime": 15,
+          "portionSize": "Medium"
+        },
+        {
+          "name": "Mansaf-Style Lamb",
+          "description": "Traditional Jordanian-style lamb with yogurt sauce and almonds",
+          "price": 28.99,
+          "allergens": ["dairy", "nuts"],
+          "dietary": ["gluten-free"],
+          "ingredients": ["lamb leg", "jameed", "yogurt", "almonds", "rice", "pine nuts"],
+          "spiceLevel": 1,
+          "preparationTime": 30,
+          "portionSize": "Large"
+        },
+        {
+          "name": "Vegetable Biryani",
+          "description": "Fragrant basmati rice with mixed vegetables, saffron, and aromatic spices",
+          "price": 19.99,
+          "allergens": ["nuts"],
+          "dietary": ["vegetarian", "gluten-free"],
+          "ingredients": ["basmati rice", "mixed vegetables", "saffron", "cashews", "raisins", "biryani spices"],
+          "spiceLevel": 2,
+          "preparationTime": 18,
+          "portionSize": "Large"
+        },
+        {
+          "name": "Fish Tikka Masala",
+          "description": "Grilled fish in creamy tomato sauce with bell peppers and onions",
+          "price": 25.99,
+          "allergens": ["dairy", "fish"],
+          "dietary": ["gluten-free"],
+          "ingredients": ["white fish", "tomato sauce", "cream", "bell peppers", "onions", "tikka spices"],
+          "spiceLevel": 2,
+          "preparationTime": 22,
+          "portionSize": "Medium"
+        }
+      ]
+    },
+    {
+      "sectionName": "GRILLED SPECIALTIES",
+      "description": "Tandoori and charcoal-grilled dishes with Middle Eastern influences",
+      "items": [
+        {
+          "name": "Mixed Grill Platter",
+          "description": "Combination of lamb kofta, chicken tikka, and seekh kebab with grilled vegetables",
+          "price": 32.99,
+          "allergens": ["dairy"],
+          "dietary": ["gluten-free"],
+          "ingredients": ["lamb", "chicken", "ground beef", "yogurt marinade", "mixed vegetables"],
+          "spiceLevel": 3,
+          "preparationTime": 25,
+          "portionSize": "Sharing platter"
+        },
+        {
+          "name": "Tandoori Salmon",
+          "description": "Fresh salmon marinated in yogurt and spices, cooked in tandoor oven",
+          "price": 27.99,
+          "allergens": ["dairy", "fish"],
+          "dietary": ["gluten-free"],
+          "ingredients": ["salmon fillet", "yogurt", "tandoori masala", "ginger", "garlic", "lemon"],
+          "spiceLevel": 2,
+          "preparationTime": 20,
+          "portionSize": "8 oz fillet"
+        },
+        {
+          "name": "Shish Tawook",
+          "description": "Marinated chicken skewers with Lebanese spices and garlic sauce",
+          "price": 22.99,
+          "allergens": ["dairy"],
+          "dietary": ["gluten-free"],
+          "ingredients": ["chicken breast", "yogurt", "lemon", "garlic", "lebanese spices"],
+          "spiceLevel": 1,
+          "preparationTime": 18,
+          "portionSize": "3 skewers"
+        },
+        {
+          "name": "Lamb Adana Kebab",
+          "description": "Spiced ground lamb kebab with sumac onions and tahini sauce",
+          "price": 24.99,
+          "allergens": ["sesame"],
+          "dietary": ["gluten-free"],
+          "ingredients": ["ground lamb", "red pepper flakes", "sumac", "onions", "tahini"],
+          "spiceLevel": 4,
+          "preparationTime": 15,
+          "portionSize": "2 skewers"
+        }
+      ]
+    },
+    {
+      "sectionName": "FUSION CREATIONS",
+      "description": "Chef's innovative combinations of Indian and Lebanese flavors",
+      "items": [
+        {
+          "name": "Butter Chicken Shawarma Wrap",
+          "description": "Tender butter chicken in Lebanese flatbread with pickles and tahini",
+          "price": 18.99,
+          "allergens": ["gluten", "dairy", "sesame"],
+          "dietary": [],
+          "ingredients": ["chicken", "butter sauce", "flatbread", "pickles", "tahini", "lettuce"],
+          "spiceLevel": 2,
+          "preparationTime": 12,
+          "portionSize": "Large wrap"
+        },
+        {
+          "name": "Falafel Curry Bowl",
+          "description": "Homemade falafel in spiced chickpea curry with basmati rice",
+          "price": 17.99,
+          "allergens": ["sesame"],
+          "dietary": ["vegetarian", "vegan"],
+          "ingredients": ["falafel", "chickpea curry", "basmati rice", "tahini", "herbs"],
+          "spiceLevel": 2,
+          "preparationTime": 15,
+          "portionSize": "Bowl"
+        },
+        {
+          "name": "Tandoori Lamb Fattoush",
+          "description": "Grilled lamb over traditional fattoush with yogurt mint dressing",
+          "price": 24.99,
+          "allergens": ["gluten", "dairy"],
+          "dietary": [],
+          "ingredients": ["lamb", "mixed greens", "tomatoes", "pita", "yogurt", "mint"],
+          "spiceLevel": 2,
+          "preparationTime": 18,
+          "portionSize": "Large salad"
+        },
+        {
+          "name": "Masala Stuffed Kibbeh",
+          "description": "Traditional kibbeh stuffed with spiced lentils and served with curry sauce",
+          "price": 21.99,
+          "allergens": ["gluten"],
+          "dietary": [],
+          "ingredients": ["bulgur", "lamb", "lentils", "masala spices", "curry sauce"],
+          "spiceLevel": 3,
+          "preparationTime": 20,
+          "portionSize": "4 pieces"
+        }
+      ]
+    },
+    {
+      "sectionName": "BREADS & SIDES",
+      "description": "Freshly baked breads and traditional accompaniments",
+      "items": [
+        {
+          "name": "Garlic Naan",
+          "description": "Fresh baked naan bread with garlic and herbs",
+          "price": 5.99,
+          "allergens": ["gluten", "dairy"],
+          "dietary": ["vegetarian"],
+          "ingredients": ["flour", "yogurt", "garlic", "herbs", "butter"],
+          "spiceLevel": 0,
+          "preparationTime": 8,
+          "portionSize": "2 pieces"
+        },
+        {
+          "name": "Pita Bread Basket",
+          "description": "Warm pita bread with olive oil and za'atar",
+          "price": 4.99,
+          "allergens": ["gluten", "sesame"],
+          "dietary": ["vegetarian", "vegan"],
+          "ingredients": ["pita bread", "olive oil", "za'atar"],
+          "spiceLevel": 0,
+          "preparationTime": 5,
+          "portionSize": "4 pieces"
+        },
+        {
+          "name": "Saffron Basmati Rice",
+          "description": "Aromatic basmati rice with saffron and whole spices",
+          "price": 6.99,
+          "allergens": [],
+          "dietary": ["vegetarian", "vegan", "gluten-free"],
+          "ingredients": ["basmati rice", "saffron", "cardamom", "cinnamon"],
+          "spiceLevel": 0,
+          "preparationTime": 12,
+          "portionSize": "Individual"
+        },
+        {
+          "name": "Dal Tadka",
+          "description": "Yellow lentils tempered with cumin and mustard seeds",
+          "price": 8.99,
+          "allergens": [],
+          "dietary": ["vegetarian", "vegan", "gluten-free"],
+          "ingredients": ["yellow lentils", "cumin", "mustard seeds", "turmeric", "onions"],
+          "spiceLevel": 1,
+          "preparationTime": 10,
+          "portionSize": "Bowl"
+        },
+        {
+          "name": "Tabouleh Salad",
+          "description": "Fresh parsley salad with tomatoes, mint, and bulgur",
+          "price": 9.99,
+          "allergens": ["gluten"],
+          "dietary": ["vegetarian", "vegan"],
+          "ingredients": ["parsley", "tomatoes", "mint", "bulgur", "lemon", "olive oil"],
+          "spiceLevel": 0,
+          "preparationTime": 5,
+          "portionSize": "Side portion"
+        }
+      ]
+    },
+    {
+      "sectionName": "BEVERAGES",
+      "description": "Traditional drinks and modern refreshments",
+      "items": [
+        {
+          "name": "Masala Chai",
+          "description": "Traditional spiced tea with milk and aromatic spices",
+          "price": 4.99,
+          "allergens": ["dairy"],
+          "dietary": ["vegetarian"],
+          "ingredients": ["black tea", "milk", "cardamom", "cinnamon", "ginger", "cloves"],
+          "spiceLevel": 1,
+          "preparationTime": 5,
+          "portionSize": "Large cup"
+        },
+        {
+          "name": "Fresh Mint Lemonade",
+          "description": "Refreshing lemonade with fresh mint and a touch of rosewater",
+          "price": 5.99,
+          "allergens": [],
+          "dietary": ["vegetarian", "vegan"],
+          "ingredients": ["lemons", "fresh mint", "rosewater", "sugar"],
+          "spiceLevel": 0,
+          "preparationTime": 3,
+          "portionSize": "Large glass"
+        },
+        {
+          "name": "Mango Lassi",
+          "description": "Creamy yogurt drink with fresh mango and cardamom",
+          "price": 6.99,
+          "allergens": ["dairy"],
+          "dietary": ["vegetarian"],
+          "ingredients": ["yogurt", "fresh mango", "cardamom", "sugar"],
+          "spiceLevel": 0,
+          "preparationTime": 5,
+          "portionSize": "Large glass"
+        },
+        {
+          "name": "Turkish Coffee",
+          "description": "Traditional Turkish coffee served with lokum (Turkish delight)",
+          "price": 7.99,
+          "allergens": [],
+          "dietary": ["vegetarian"],
+          "ingredients": ["finely ground coffee", "sugar", "cardamom"],
+          "spiceLevel": 0,
+          "preparationTime": 8,
+          "portionSize": "Small cup with sweets"
+        },
+        {
+          "name": "Jallab",
+          "description": "Traditional Levantine drink with date syrup, rosewater, and pine nuts",
+          "price": 6.99,
+          "allergens": ["nuts"],
+          "dietary": ["vegetarian", "vegan"],
+          "ingredients": ["date syrup", "rosewater", "pine nuts", "ice"],
+          "spiceLevel": 0,
+          "preparationTime": 3,
+          "portionSize": "Large glass"
+        }
+      ]
+    },
+    {
+      "sectionName": "DESSERTS",
+      "description": "Traditional sweets and modern interpretations",
+      "items": [
+        {
+          "name": "Baklava Selection",
+          "description": "Assorted baklava with pistachios, walnuts, and honey syrup",
+          "price": 12.99,
+          "allergens": ["gluten", "nuts", "dairy"],
+          "dietary": ["vegetarian"],
+          "ingredients": ["phyllo pastry", "pistachios", "walnuts", "honey", "butter"],
+          "spiceLevel": 0,
+          "preparationTime": 5,
+          "portionSize": "4 pieces"
+        },
+        {
+          "name": "Kulfi with Pistachios",
+          "description": "Traditional Indian ice cream with cardamom and chopped pistachios",
+          "price": 8.99,
+          "allergens": ["dairy", "nuts"],
+          "dietary": ["vegetarian"],
+          "ingredients": ["milk", "cardamom", "pistachios", "sugar", "rose essence"],
+          "spiceLevel": 0,
+          "preparationTime": 3,
+          "portionSize": "Individual"
+        },
+        {
+          "name": "Muhallabia",
+          "description": "Creamy milk pudding with rosewater and pistachios",
+          "price": 7.99,
+          "allergens": ["dairy", "nuts"],
+          "dietary": ["vegetarian"],
+          "ingredients": ["milk", "sugar", "cornstarch", "rosewater", "pistachios"],
+          "spiceLevel": 0,
+          "preparationTime": 5,
+          "portionSize": "Individual"
+        },
+        {
+          "name": "Gulab Jamun",
+          "description": "Soft milk dumplings in cardamom-rose syrup",
+          "price": 9.99,
+          "allergens": ["dairy", "gluten"],
+          "dietary": ["vegetarian"],
+          "ingredients": ["milk powder", "flour", "cardamom", "rose syrup", "sugar"],
+          "spiceLevel": 0,
+          "preparationTime": 8,
+          "portionSize": "4 pieces"
+        },
+        {
+          "name": "Fusion Knafeh Cheesecake",
+          "description": "Modern interpretation combining knafeh with New York cheesecake",
+          "price": 11.99,
+          "allergens": ["dairy", "gluten", "eggs"],
+          "dietary": ["vegetarian"],
+          "ingredients": ["cream cheese", "shredded phyllo", "orange blossom", "ricotta", "honey"],
+          "spiceLevel": 0,
+          "preparationTime": 5,
+          "portionSize": "Slice"
+        }
+      ]
+    },
+    {
+      "sectionName": "CHEF'S SPECIALS",
+      "description": "Seasonal and signature dishes that showcase our culinary expertise",
+      "items": [
+        {
+          "name": "Lamb Ouzi",
+          "description": "Slow-roasted lamb shoulder with fragrant rice, almonds, and Middle Eastern spices - serves 2-3 people",
+          "price": 89.99,
+          "allergens": ["nuts"],
+          "dietary": ["gluten-free"],
+          "ingredients": ["lamb shoulder", "basmati rice", "almonds", "raisins", "baharat spice", "saffron"],
+          "spiceLevel": 2,
+          "preparationTime": 45,
+          "portionSize": "Family style"
+        },
+        {
+          "name": "Tandoori Whole Fish",
+          "description": "Whole red snapper marinated 24 hours in yogurt and spices, cooked in tandoor - market price",
+          "price": 0,
+          "marketPrice": true,
+          "allergens": ["dairy", "fish"],
+          "dietary": ["gluten-free"],
+          "ingredients": ["whole red snapper", "yogurt marinade", "tandoori spices", "mint chutney"],
+          "spiceLevel": 3,
+          "preparationTime": 35,
+          "portionSize": "Whole fish"
+        },
+        {
+          "name": "Royal Feast Platter",
+          "description": "Ultimate sharing experience with lamb biryani, chicken curry, kebabs, and assorted sides - serves 4-6 people",
+          "price": 149.99,
+          "allergens": ["dairy", "nuts"],
+          "dietary": [],
+          "ingredients": ["lamb biryani", "chicken curry", "mixed kebabs", "naan", "raita", "chutneys"],
+          "spiceLevel": 2,
+          "preparationTime": 40,
+          "portionSize": "Family feast"
+        }
+      ]
+    }
+  ],
+  "additionalInfo": {
+    "dietaryLegend": {
+      "vegetarian": "Contains no meat or fish",
+      "vegan": "Contains no animal products",
+      "gluten-free": "Made without gluten-containing ingredients",
+      "halal": "Prepared according to Islamic dietary laws"
+    },
+    "spiceLevelGuide": {
+      "0": "No spice",
+      "1": "Mild",
+      "2": "Medium",
+      "3": "Hot",
+      "4": "Very Hot",
+      "5": "Extremely Hot"
+    },
+    "allergenInfo": "Please inform us of any allergies. While we take precautions, our kitchen handles all allergens.",
+    "specialRequests": "We accommodate dietary restrictions and special requests with advance notice."
+  }
+}

@@ -1,0 +1,278 @@
+/**
+ * HERA Design System - Color Foundation
+ * Revolutionary Color Intelligence with Adaptive Capabilities
+ */
+
+/* ================================================================================================
+   BASE COLOR VARIABLES - WCAG AAA COMPLIANT
+   ================================================================================================ */
+
+:root {
+  /* === PRIMARY PALETTE === */
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --primary-hover: 221.2 83.2% 48%;
+  --primary-active: 221.2 83.2% 43%;
+  
+  /* === BACKGROUND SYSTEM === */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --surface: 0 0% 100%;
+  --surface-foreground: 222.2 84% 4.9%;
+  
+  /* === SEMANTIC COLORS - ENHANCED CONTRAST === */
+  --success: 142 76% 38%;
+  --success-foreground: 210 40% 98%;
+  --success-hover: 142 76% 33%;
+  --success-surface: 142 76% 95%;
+  
+  --warning: 38 95% 45%;
+  --warning-foreground: 222.2 84% 4.9%;
+  --warning-hover: 38 95% 40%;
+  --warning-surface: 38 95% 95%;
+  
+  --error: 0 84.2% 55%;
+  --error-foreground: 210 40% 98%;
+  --error-hover: 0 84.2% 50%;
+  --error-surface: 0 84.2% 95%;
+  
+  --info: 217 91% 55%;
+  --info-foreground: 210 40% 98%;
+  --info-hover: 217 91% 50%;
+  --info-surface: 217 91% 95%;
+  
+  /* === NEUTRAL PALETTE === */
+  --secondary: 210 40% 94%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --secondary-hover: 210 40% 89%;
+  
+  --muted: 210 40% 94%;
+  --muted-foreground: 215.4 16.3% 42%;
+  --muted-hover: 210 40% 89%;
+  
+  --accent: 210 40% 94%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --accent-hover: 210 40% 89%;
+  
+  /* === BORDER & INPUT SYSTEM === */
+  --border: 214.3 31.8% 75%;
+  --border-hover: 214.3 31.8% 65%;
+  --border-focus: var(--primary);
+  
+  --input: 214.3 31.8% 75%;
+  --input-hover: 214.3 31.8% 65%;
+  --input-focus: var(--primary);
+  
+  --ring: var(--primary);
+  
+  /* === SHADOW SYSTEM === */
+  --shadow-sm: 0 1px 2px 0 hsl(var(--foreground) / 0.05);
+  --shadow: 0 1px 3px 0 hsl(var(--foreground) / 0.1), 0 1px 2px 0 hsl(var(--foreground) / 0.06);
+  --shadow-md: 0 4px 6px -1px hsl(var(--foreground) / 0.1), 0 2px 4px -1px hsl(var(--foreground) / 0.06);
+  --shadow-lg: 0 10px 15px -3px hsl(var(--foreground) / 0.1), 0 4px 6px -2px hsl(var(--foreground) / 0.05);
+  --shadow-xl: 0 20px 25px -5px hsl(var(--foreground) / 0.1), 0 10px 10px -5px hsl(var(--foreground) / 0.04);
+}
+
+/* ================================================================================================
+   DARK THEME - ENHANCED FOR ACCESSIBILITY
+   ================================================================================================ */
+
+.dark {
+  /* === PRIMARY PALETTE === */
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 84% 4.9%;
+  --primary-hover: 217.2 91.2% 65%;
+  --primary-active: 217.2 91.2% 70%;
+  
+  /* === BACKGROUND SYSTEM === */
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --surface: 222.2 84% 4.9%;
+  --surface-foreground: 210 40% 98%;
+  
+  /* === SEMANTIC COLORS === */
+  --success: 142 76% 45%;
+  --success-foreground: 222.2 84% 4.9%;
+  --success-hover: 142 76% 50%;
+  --success-surface: 142 76% 8%;
+  
+  --warning: 38 95% 55%;
+  --warning-foreground: 222.2 84% 4.9%;
+  --warning-hover: 38 95% 60%;
+  --warning-surface: 38 95% 8%;
+  
+  --error: 0 62.8% 45%;
+  --error-foreground: 210 40% 98%;
+  --error-hover: 0 62.8% 50%;
+  --error-surface: 0 62.8% 8%;
+  
+  --info: 217 91% 65%;
+  --info-foreground: 222.2 84% 4.9%;
+  --info-hover: 217 91% 70%;
+  --info-surface: 217 91% 8%;
+  
+  /* === NEUTRAL PALETTE === */
+  --secondary: 217.2 32.6% 20%;
+  --secondary-foreground: 210 40% 98%;
+  --secondary-hover: 217.2 32.6% 25%;
+  
+  --muted: 217.2 32.6% 20%;
+  --muted-foreground: 215 20.2% 70%;
+  --muted-hover: 217.2 32.6% 25%;
+  
+  --accent: 217.2 32.6% 20%;
+  --accent-foreground: 210 40% 98%;
+  --accent-hover: 217.2 32.6% 25%;
+  
+  /* === BORDER & INPUT SYSTEM === */
+  --border: 217.2 32.6% 35%;
+  --border-hover: 217.2 32.6% 45%;
+  --border-focus: var(--primary);
+  
+  --input: 217.2 32.6% 35%;
+  --input-hover: 217.2 32.6% 45%;
+  --input-focus: var(--primary);
+  
+  /* === SHADOW SYSTEM === */
+  --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.15);
+  --shadow: 0 1px 3px 0 hsl(0 0% 0% / 0.2), 0 1px 2px 0 hsl(0 0% 0% / 0.12);
+  --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.2), 0 2px 4px -1px hsl(0 0% 0% / 0.12);
+  --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.2), 0 4px 6px -2px hsl(0 0% 0% / 0.1);
+  --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.25), 0 10px 10px -5px hsl(0 0% 0% / 0.1);
+}
+
+/* ================================================================================================
+   CONTEXTUAL COLOR THEMES
+   ================================================================================================ */
+
+/* Financial Context */
+.theme-financial {
+  --primary: 142 71% 45%;        /* Success green for financial growth */
+  --accent: 38 92% 50%;          /* Warning orange for attention */
+  --surface-tint: 142 71% 98%;   /* Subtle green surface */
+}
+
+/* Operational Context */
+.theme-operational {
+  --primary: 217 91% 60%;        /* Operational blue */
+  --accent: 280 100% 70%;        /* Purple for processes */
+  --surface-tint: 217 91% 98%;   /* Subtle blue surface */
+}
+
+/* Strategic Context */
+.theme-strategic {
+  --primary: 280 100% 70%;       /* Strategic purple */
+  --accent: 338 100% 70%;        /* Pink for innovation */
+  --surface-tint: 280 100% 98%;  /* Subtle purple surface */
+}
+
+/* ================================================================================================
+   HIGH CONTRAST MODE SUPPORT
+   ================================================================================================ */
+
+@media (prefers-contrast: high) {
+  :root {
+    --border: 214.3 31.8% 60%;
+    --muted-foreground: 215.4 16.3% 30%;
+    --secondary: 210 40% 85%;
+    --accent: 210 40% 85%;
+  }
+  
+  .dark {
+    --border: 217.2 32.6% 50%;
+    --muted-foreground: 215 20.2% 80%;
+    --secondary: 217.2 32.6% 30%;
+    --accent: 217.2 32.6% 30%;
+  }
+}
+
+/* ================================================================================================
+   UTILITY CLASSES
+   ================================================================================================ */
+
+/* Background utilities */
+.bg-background { background-color: hsl(var(--background)); }
+.bg-surface { background-color: hsl(var(--surface)); }
+.bg-primary { background-color: hsl(var(--primary)); }
+.bg-secondary { background-color: hsl(var(--secondary)); }
+.bg-success { background-color: hsl(var(--success)); }
+.bg-warning { background-color: hsl(var(--warning)); }
+.bg-error { background-color: hsl(var(--error)); }
+.bg-info { background-color: hsl(var(--info)); }
+
+/* Text color utilities */
+.text-foreground { color: hsl(var(--foreground)); }
+.text-primary { color: hsl(var(--primary)); }
+.text-success { color: hsl(var(--success)); }
+.text-warning { color: hsl(var(--warning)); }
+.text-error { color: hsl(var(--error)); }
+.text-info { color: hsl(var(--info)); }
+.text-muted { color: hsl(var(--muted-foreground)); }
+
+/* Border utilities */
+.border-border { border-color: hsl(var(--border)); }
+.border-primary { border-color: hsl(var(--primary)); }
+.border-success { border-color: hsl(var(--success)); }
+.border-warning { border-color: hsl(var(--warning)); }
+.border-error { border-color: hsl(var(--error)); }
+
+/* Gradient utilities */
+.gradient-primary {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-hover)) 100%);
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, hsl(var(--success)) 0%, hsl(var(--success-hover)) 100%);
+}
+
+.gradient-rainbow {
+  background: linear-gradient(135deg, 
+    hsl(var(--primary)) 0%, 
+    hsl(var(--info)) 25%, 
+    hsl(var(--success)) 50%, 
+    hsl(var(--warning)) 75%, 
+    hsl(var(--error)) 100%
+  );
+}
+
+/* Surface with transparency */
+.surface-glass { background-color: hsl(var(--surface) / 0.85); }
+.surface-subtle { background-color: hsl(var(--surface) / 0.5); }
+
+/* Color states */
+.color-hover:hover { color: hsl(var(--primary-hover)); }
+.bg-hover:hover { background-color: hsl(var(--primary-hover)); }
+
+/* Adaptive text contrast */
+.text-adaptive {
+  color: hsl(var(--foreground));
+}
+
+.text-adaptive-muted {
+  color: hsl(var(--muted-foreground));
+}
+
+/* State-based colors */
+.state-success {
+  background-color: hsl(var(--success-surface));
+  color: hsl(var(--success));
+  border-color: hsl(var(--success) / 0.3);
+}
+
+.state-warning {
+  background-color: hsl(var(--warning-surface));
+  color: hsl(var(--warning));
+  border-color: hsl(var(--warning) / 0.3);
+}
+
+.state-error {
+  background-color: hsl(var(--error-surface));
+  color: hsl(var(--error));
+  border-color: hsl(var(--error) / 0.3);
+}
+
+.state-info {
+  background-color: hsl(var(--info-surface));
+  color: hsl(var(--info));
+  border-color: hsl(var(--info) / 0.3);
+}

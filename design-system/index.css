@@ -1,0 +1,359 @@
+/**
+ * HERA Design System - Complete Import
+ * World-Class Enterprise Design Template
+ * 
+ * Usage: @import './design-system/index.css';
+ */
+
+/* ================================================================================================
+   FOUNDATION LAYER - LOAD FIRST
+   ================================================================================================ */
+
+/* Core foundation styles */
+@import './foundation/colors.css';
+@import './foundation/typography.css';
+
+/* Foundation utilities */
+@import './utilities/accessibility.css';
+@import './utilities/glass-effects.css';
+
+/* ================================================================================================
+   COMPONENT LAYER
+   ================================================================================================ */
+
+/* Core components */
+@import './components/buttons.css';
+
+/* ================================================================================================
+   INTEGRATION STYLES
+   ================================================================================================ */
+
+/* Ensure proper CSS cascade and integration */
+:root {
+  /* Design system metadata */
+  --design-system: 'HERA';
+  --design-version: '1.0.0';
+  --design-status: 'production-ready';
+  
+  /* Performance optimizations */
+  color-scheme: light dark;
+  
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+}
+
+/* Base application styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100%;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================================================================================================
+   QUICK START UTILITIES
+   ================================================================================================ */
+
+/* Layout helpers */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+/* Golden ratio grid */
+.grid-golden {
+  display: grid;
+  gap: calc(1rem * 1.618);
+}
+
+.grid-golden-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-golden-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-golden-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Flexbox utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+
+/* Spacing utilities based on golden ratio */
+.space-golden > * + * {
+  margin-top: calc(1rem * 1.618);
+}
+
+.space-golden-sm > * + * {
+  margin-top: calc(0.5rem * 1.618);
+}
+
+.space-golden-lg > * + * {
+  margin-top: calc(2rem * 1.618);
+}
+
+/* ================================================================================================
+   COMPONENT TEMPLATES
+   ================================================================================================ */
+
+/* Dashboard layout template */
+.layout-dashboard {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar main";
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  grid-area: header;
+}
+
+.dashboard-sidebar {
+  grid-area: sidebar;
+}
+
+.dashboard-main {
+  grid-area: main;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Conversational layout template */
+.layout-conversational {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.conversation-header {
+  flex-shrink: 0;
+  padding: 1rem 2rem;
+}
+
+.conversation-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 2rem;
+}
+
+.conversation-input {
+  flex-shrink: 0;
+  padding: 1rem 2rem;
+}
+
+/* Card grid template */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: calc(1rem * 1.618);
+  padding: 2rem;
+}
+
+/* ================================================================================================
+   RESPONSIVE DESIGN TOKENS
+   ================================================================================================ */
+
+/* Breakpoints based on golden ratio */
+:root {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1640px;  /* 640 * 1.618^2 */
+  --breakpoint-xl: 2630px;  /* 640 * 1.618^3 */
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .layout-dashboard {
+    grid-template-areas:
+      "header"
+      "main";
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-sidebar {
+    display: none;
+  }
+  
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .conversation-header,
+  .conversation-body,
+  .conversation-input {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .layout-dashboard {
+    grid-template-columns: 280px 1fr;
+  }
+  
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* ================================================================================================
+   ANIMATION SYSTEM INTEGRATION
+   ================================================================================================ */
+
+/* Smooth transitions for all interactive elements */
+.interactive {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Page transition animations */
+.page-enter {
+  animation: pageEnter 0.3s ease-out;
+}
+
+.page-exit {
+  animation: pageExit 0.3s ease-in;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* ================================================================================================
+   THEME INTEGRATION
+   ================================================================================================ */
+
+/* Auto dark mode based on system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+  }
+}
+
+/* Manual theme switching support */
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-theme="auto"] {
+  color-scheme: light dark;
+}
+
+/* ================================================================================================
+   PRINT STYLES
+   ================================================================================================ */
+
+@media print {
+  /* Optimize for printing */
+  .glass-subtle,
+  .glass-moderate,
+  .glass-prominent {
+    background: white !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+  
+  .btn {
+    border: 1px solid #000 !important;
+    background: white !important;
+    color: black !important;
+  }
+  
+  /* Hide interactive elements */
+  .btn-fab,
+  .glass-nav,
+  .dashboard-sidebar {
+    display: none !important;
+  }
+}
+
+/* ================================================================================================
+   DEVELOPMENT HELPERS
+   ================================================================================================ */
+
+/* Development mode indicators (remove in production) */
+[data-development="true"] {
+  position: relative;
+}
+
+[data-development="true"]::before {
+  content: '🎨 HERA Design System Active';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  z-index: 9999;
+  border-radius: 0 0.25rem 0 0;
+}
+
+/* Design system class validator */
+.hera-component:not([class*="glass-"]):not([class*="btn-"]):not([class*="text-"]) {
+  outline: 2px dashed orange;
+}
+
+.hera-component::after {
+  content: '⚠️ Apply HERA classes';
+  position: absolute;
+  background: orange;
+  color: white;
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+}

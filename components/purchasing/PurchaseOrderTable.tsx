@@ -7,10 +7,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Eye, Edit, Trash2, MoreHorizontal, CheckCircle, XCircle } from 'lucide-react';
+import { Eye, Edit, Trash2, MoreHorizontal, CheckCircle, XCircle, Package, Truck } from 'lucide-react';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Button } from '@/components/ui/button';
 import { PurchaseOrderEditForm } from './PurchaseOrderEditForm';
+import { GoodsReceiptForm } from './GoodsReceiptForm';
 
 interface PurchaseOrder {
   id: string;
@@ -38,6 +39,7 @@ export function PurchaseOrderTable({ orders, organizationId, onRefresh }: Purcha
   const [selectedOrder, setSelectedOrder] = useState<string | null>(null);
   const [showViewModal, setShowViewModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showGoodsReceiptModal, setShowGoodsReceiptModal] = useState(false);
   const [viewingOrder, setViewingOrder] = useState<PurchaseOrder | null>(null);
 
   const formatDate = (dateString: string) => {
@@ -105,6 +107,20 @@ export function PurchaseOrderTable({ orders, organizationId, onRefresh }: Purcha
     setShowEditModal(false);
     setViewingOrder(null);
     onRefresh();
+  };
+
+  const handleGoodsReceipt = (order: PurchaseOrder) => {
+    setViewingOrder(order);
+    setShowGoodsReceiptModal(true);
+  };
+
+  const handleGoodsReceiptSuccess = (grNumber?: string) => {
+    setShowGoodsReceiptModal(false);
+    setViewingOrder(null);
+    onRefresh();
+    if (grNumber) {
+      console.log(`✅ Goods Receipt Created: ${grNumber}`);
+    }
   };
 
   const handleDelete = async (orderId: string) => {
@@ -218,6 +234,18 @@ export function PurchaseOrderTable({ orders, organizationId, onRefresh }: Purcha
                       </>
                     )}
                     
+                    {order.status === 'approved' && (
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleGoodsReceipt(order)}
+                        title="Process goods receipt"
+                        className="bg-orange-50 hover:bg-orange-100 text-orange-600 border-orange-200"
+                      >
+                        <Package className="w-4 h-4" />
+                      </Button>
+                    )}
+                    
                     <Button 
                       variant="ghost" 
                       size="sm"
@@ -326,6 +354,17 @@ export function PurchaseOrderTable({ orders, organizationId, onRefresh }: Purcha
           organizationId={organizationId}
           onClose={() => setShowEditModal(false)}
           onSuccess={handleEditSuccess}
+        />
+      )}
+
+      {/* Goods Receipt Modal */}
+      {showGoodsReceiptModal && viewingOrder && (
+        <GoodsReceiptForm
+          organizationId={organizationId}
+          poId={viewingOrder.id}
+          poNumber={viewingOrder.poNumber}
+          onClose={() => setShowGoodsReceiptModal(false)}
+          onSuccess={handleGoodsReceiptSuccess}
         />
       )}
     </div>

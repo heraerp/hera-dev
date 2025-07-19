@@ -208,7 +208,7 @@ export async function POST(request: NextRequest) {
     console.log('Calculated total amount:', totalAmount);
 
     // Simple approval logic - avoid complex queries for now
-    const autoApproveThreshold = 75; // Simple hardcoded threshold
+    const autoApproveThreshold = 100; // As per Mario's Restaurant approval matrix
 
     // Generate simple PO number
     const timestamp = Date.now();
@@ -224,9 +224,11 @@ export async function POST(request: NextRequest) {
       transaction_date: new Date().toISOString().split('T')[0],
       total_amount: totalAmount,
       currency: 'USD',
-      transaction_status: totalAmount < 75 ? 'auto_approved' : 'pending_approval',
+      transaction_status: 'active',
+      workflow_status: totalAmount <= autoApproveThreshold ? 'auto_approved' : 'pending_approval',
       procurement_metadata: {
         supplier_id: body.supplierId,
+        supplier_name: body.supplierName,
         items: body.items || [],
         delivery_date: body.requestedDeliveryDate,
         notes: body.notes,

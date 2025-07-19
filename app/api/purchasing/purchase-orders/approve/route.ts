@@ -1,10 +1,14 @@
 /**
- * HERA Universal - Purchase Order Approval Actions API
+ * HERA Universal - PO Approval Workflow API
  * 
- * Next.js 15 App Router API Route Handler
- * Handles approve/reject actions for purchase orders
+ * Mario's Restaurant PO Approval & Goods Receipt System
+ * Handles 3-tier approval matrix and workflow management
  * 
- * Route: PUT /api/purchasing/purchase-orders/approve
+ * Approval Matrix:
+ * - $0-$100: Auto-approved
+ * - $101-$500: Chef Mario approval
+ * - $501-$2000: Sofia Martinez (Manager) approval  
+ * - $2001+: Antonio Rossi (Owner) approval
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -19,215 +23,319 @@ const getAdminClient = () => {
   );
 };
 
+// Approval Matrix Configuration for Mario's Restaurant
+const APPROVAL_MATRIX = {
+  auto_approval_threshold: 100,
+  tier_1_threshold: 500,    // Chef Mario
+  tier_2_threshold: 2000,   // Sofia Martinez (Manager)
+  tier_3_threshold: Infinity, // Antonio Rossi (Owner)
+  
+  approvers: {
+    tier_1: {
+      name: 'Chef Mario',
+      role: 'Kitchen Manager',
+      user_id: '00000001-0000-0000-0000-000000000002'
+    },
+    tier_2: {
+      name: 'Sofia Martinez', 
+      role: 'Restaurant Manager',
+      user_id: '00000001-0000-0000-0000-000000000003'
+    },
+    tier_3: {
+      name: 'Antonio Rossi',
+      role: 'Owner',
+      user_id: '00000001-0000-0000-0000-000000000004'
+    }
+  }
+};
+
 interface ApprovalRequest {
   poId: string;
-  action: 'approve' | 'reject';
-  userId: string;
-  userRole?: string;
-  comments?: string;
   organizationId: string;
+  action: 'approve' | 'reject' | 'request_modification';
+  approverId: string;
+  approverName: string;
+  notes?: string;
+  modificationRequests?: string;
 }
 
-export async function PUT(request: NextRequest) {
+// Determine required approval level based on amount
+function getRequiredApprovalLevel(amount: number): string {
+  if (amount <= APPROVAL_MATRIX.auto_approval_threshold) {
+    return 'auto_approved';
+  } else if (amount <= APPROVAL_MATRIX.tier_1_threshold) {
+    return 'tier_1';
+  } else if (amount <= APPROVAL_MATRIX.tier_2_threshold) {
+    return 'tier_2';
+  } else {
+    return 'tier_3';
+  }
+}
+
+// Get next approver based on current level
+function getNextApprover(amount: number, currentLevel?: string) {
+  const requiredLevel = getRequiredApprovalLevel(amount);
+  
+  if (requiredLevel === 'auto_approved') {
+    return null;
+  }
+  
+  return APPROVAL_MATRIX.approvers[requiredLevel as keyof typeof APPROVAL_MATRIX.approvers];
+}
+
+// POST /api/purchasing/purchase-orders/approve
+export async function POST(request: NextRequest) {
   try {
-    const supabase = getAdminClient(); // Use admin client for demo
+    const supabase = getAdminClient();
     const body: ApprovalRequest = await request.json();
 
+    console.log('Processing PO approval:', JSON.stringify(body, null, 2));
+
     // Validate request
-    if (!body.poId || !body.action || !body.userId || !body.organizationId) {
+    if (!body.poId || !body.organizationId || !body.action || !body.approverId) {
       return NextResponse.json(
-        { error: 'Missing required fields: poId, action, userId, organizationId' },
+        { error: 'Missing required fields: poId, organizationId, action, approverId' },
         { status: 400 }
       );
     }
 
-    if (!['approve', 'reject'].includes(body.action)) {
-      return NextResponse.json(
-        { error: 'Invalid action. Must be approve or reject' },
-        { status: 400 }
-      );
-    }
-
-    // Get the purchase order
-    const { data: currentPO, error: fetchError } = await supabase
+    // Get PO from universal_transactions
+    const { data: po, error: poError } = await supabase
       .from('universal_transactions')
       .select('*')
       .eq('id', body.poId)
-      .eq('transaction_type', 'purchase_order')
       .eq('organization_id', body.organizationId)
+      .eq('transaction_type', 'purchase_order')
       .single();
 
-    if (fetchError || !currentPO) {
+    if (poError || !po) {
+      console.error('PO not found:', poError);
       return NextResponse.json(
         { error: 'Purchase order not found' },
         { status: 404 }
       );
     }
 
-    // Check if PO is in a state that allows approval
-    if (currentPO.workflow_status !== 'pending_approval') {
-      return NextResponse.json(
-        { error: `Cannot ${body.action} purchase order with status: ${currentPO.workflow_status}` },
-        { status: 400 }
-      );
-    }
+    const amount = po.total_amount;
+    const requiredLevel = getRequiredApprovalLevel(amount);
+    const nextApprover = getNextApprover(amount);
 
-    const metadata = currentPO.procurement_metadata as any || {};
-    
-    // Get approval workflow configuration
-    const { data: workflowConfig } = await supabase
-      .from('core_entities')
-      .select(`
-        *,
-        core_dynamic_data!inner(field_name, field_value)
-      `)
-      .eq('organization_id', body.organizationId)
-      .eq('entity_type', 'purchase_workflow_deployment')
-      .single();
+    // Process approval action
+    let updateData: any = {
+      updated_at: new Date().toISOString()
+    };
 
-    if (!workflowConfig) {
-      return NextResponse.json(
-        { error: 'No approval workflow configured' },
-        { status: 404 }
-      );
-    }
+    let approvalMetadata = po.procurement_metadata || {};
 
-    // Extract approval configuration
-    const dynamicData = workflowConfig.core_dynamic_data as any[];
-    const approvalConfig = dynamicData.reduce((acc, field) => {
-      acc[field.field_name] = field.field_value;
-      return acc;
-    }, {} as Record<string, any>);
-
-    // Verify user has permission to approve this tier
-    const requiredTier = metadata.approval_tier || 1;
-    let hasPermission = false;
-
-    // Check by specific user assignment
-    if ((requiredTier === 1 && approvalConfig.tier_1_approver_user_id === body.userId) ||
-        (requiredTier === 2 && approvalConfig.tier_2_approver_user_id === body.userId) ||
-        (requiredTier === 3 && approvalConfig.tier_3_approver_user_id === body.userId)) {
-      hasPermission = true;
-    }
-
-    // Check by role (fallback)
-    if (!hasPermission && body.userRole) {
-      if ((requiredTier === 1 && body.userRole === 'manager' && !approvalConfig.tier_1_approver_user_id) ||
-          (requiredTier === 2 && body.userRole === 'director' && !approvalConfig.tier_2_approver_user_id) ||
-          (requiredTier === 3 && body.userRole === 'owner' && !approvalConfig.tier_3_approver_user_id)) {
-        hasPermission = true;
-      }
-    }
-
-    if (!hasPermission) {
-      return NextResponse.json(
-        { error: 'User does not have permission to approve this purchase order' },
-        { status: 403 }
-      );
-    }
-
-    const approvalTimestamp = new Date().toISOString();
-    
-    // Update the purchase order based on action
-    let newStatus: string;
-    let newMetadata: any;
-    
     if (body.action === 'approve') {
-      newStatus = 'approved';
-      newMetadata = {
-        ...metadata,
-        approved_by: body.userId,
-        approval_date: approvalTimestamp,
-        approval_comments: body.comments
+      if (requiredLevel === 'auto_approved' || requiredLevel === 'tier_1') {
+        // Final approval
+        updateData.workflow_status = 'approved';
+        updateData.transaction_status = 'approved';
+        approvalMetadata = {
+          ...approvalMetadata,
+          approval_status: 'approved',
+          approval_level: requiredLevel,
+          approved_by: body.approverId,
+          approved_by_name: body.approverName,
+          approval_date: new Date().toISOString(),
+          approval_notes: body.notes,
+          final_approval: true
+        };
+      } else {
+        // Intermediate approval - move to next level
+        const currentLevel = requiredLevel === 'tier_2' ? 'tier_1' : 'tier_2';
+        updateData.workflow_status = 'pending_approval';
+        approvalMetadata = {
+          ...approvalMetadata,
+          approval_status: 'pending_approval',
+          approval_level: requiredLevel,
+          current_approver: nextApprover?.user_id,
+          current_approver_name: nextApprover?.name,
+          [`${currentLevel}_approved_by`]: body.approverId,
+          [`${currentLevel}_approved_by_name`]: body.approverName,
+          [`${currentLevel}_approval_date`]: new Date().toISOString(),
+          [`${currentLevel}_approval_notes`]: body.notes
+        };
+      }
+    } else if (body.action === 'reject') {
+      updateData.workflow_status = 'rejected';
+      updateData.transaction_status = 'rejected';
+      approvalMetadata = {
+        ...approvalMetadata,
+        approval_status: 'rejected',
+        rejected_by: body.approverId,
+        rejected_by_name: body.approverName,
+        rejection_date: new Date().toISOString(),
+        rejection_reason: body.notes,
+        final_approval: true
       };
-    } else {
-      newStatus = 'rejected';
-      newMetadata = {
-        ...metadata,
-        rejected_by: body.userId,
-        rejection_date: approvalTimestamp,
-        rejection_comments: body.comments
+    } else if (body.action === 'request_modification') {
+      updateData.workflow_status = 'modification_requested';
+      updateData.transaction_status = 'modification_requested';
+      approvalMetadata = {
+        ...approvalMetadata,
+        approval_status: 'modification_requested',
+        modification_requested_by: body.approverId,
+        modification_requested_by_name: body.approverName,
+        modification_request_date: new Date().toISOString(),
+        modification_requests: body.modificationRequests,
+        modification_notes: body.notes
       };
     }
 
-    // Update the transaction
+    updateData.procurement_metadata = approvalMetadata;
+
+    // Update PO with approval data
     const { data: updatedPO, error: updateError } = await supabase
       .from('universal_transactions')
-      .update({
-        workflow_status: newStatus,
-        transaction_status: newStatus,
-        procurement_metadata: newMetadata,
-        updated_at: approvalTimestamp
-      })
+      .update(updateData)
       .eq('id', body.poId)
+      .eq('organization_id', body.organizationId)
       .select()
       .single();
 
     if (updateError) {
-      console.error('Error updating purchase order:', updateError);
+      console.error('Error updating PO approval:', updateError);
       return NextResponse.json(
-        { error: 'Failed to update purchase order' },
+        { error: 'Failed to update purchase order approval' },
         { status: 500 }
       );
     }
 
-    // Log the approval/rejection action
-    await supabase
-      .from('core_relationships')
-      .insert({
-        organization_id: body.organizationId,
-        relationship_type: 'approval_action',
-        parent_entity_id: body.poId,
-        child_entity_id: body.poId,
-        relationship_data: {
-          action: body.action,
-          performed_by: body.userId,
-          timestamp: approvalTimestamp,
-          comments: body.comments,
-          approval_tier: requiredTier,
-          po_number: currentPO.transaction_number,
-          total_amount: currentPO.total_amount
-        }
-      });
-
-    // If approved, trigger downstream processes
-    if (body.action === 'approve') {
-      // This could trigger inventory updates, supplier notifications, etc.
-      console.log('🎉 Purchase Order Approved:', {
-        poNumber: currentPO.transaction_number,
-        amount: currentPO.total_amount,
-        approvedBy: body.userId
-      });
-      
-      // In a real system, you might:
-      // - Send email to supplier
-      // - Update expected inventory levels
-      // - Create accounting entries
-      // - Update budgets
-    } else {
-      console.log('❌ Purchase Order Rejected:', {
-        poNumber: currentPO.transaction_number,
-        amount: currentPO.total_amount,
-        rejectedBy: body.userId,
-        reason: body.comments
-      });
-    }
+    console.log(`✅ PO ${po.transaction_number} ${body.action} by ${body.approverName}`);
 
     return NextResponse.json({
       success: true,
       data: {
-        id: updatedPO.id,
-        poNumber: updatedPO.transaction_number,
-        status: newStatus,
-        totalAmount: updatedPO.total_amount,
-        actionPerformedBy: body.userId,
-        timestamp: approvalTimestamp
+        poId: body.poId,
+        poNumber: po.transaction_number,
+        action: body.action,
+        status: updateData.workflow_status,
+        approver: body.approverName,
+        nextApprover: nextApprover?.name,
+        amount: amount,
+        approvalLevel: requiredLevel
       },
-      message: `Purchase order ${body.action}d successfully`
+      message: `Purchase order ${body.action} successfully`
+    }, { status: 200 });
+
+  } catch (error) {
+    console.error('PO approval error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
+// GET /api/purchasing/purchase-orders/approve - Get pending approvals
+export async function GET(request: NextRequest) {
+  try {
+    const supabase = getAdminClient();
+    const { searchParams } = new URL(request.url);
+    const organizationId = searchParams.get('organizationId');
+    const approverId = searchParams.get('approverId');
+    const status = searchParams.get('status') || 'pending_approval';
+
+    if (!organizationId) {
+      return NextResponse.json(
+        { error: 'organizationId is required' },
+        { status: 400 }
+      );
+    }
+
+    // Get pending POs
+    let query = supabase
+      .from('universal_transactions')
+      .select('*')
+      .eq('organization_id', organizationId)
+      .eq('transaction_type', 'purchase_order')
+      .order('transaction_date', { ascending: false });
+
+    if (status !== 'all') {
+      query = query.eq('workflow_status', status);
+    }
+
+    const { data: pendingPOs, error } = await query;
+
+    if (error) {
+      console.error('Error fetching pending POs:', error);
+      return NextResponse.json(
+        { error: 'Failed to fetch pending purchase orders' },
+        { status: 500 }
+      );
+    }
+
+    // Enrich with approval workflow data
+    const enrichedPOs = (pendingPOs || []).map(po => {
+      const metadata = po.procurement_metadata || {};
+      const amount = po.total_amount;
+      const requiredLevel = getRequiredApprovalLevel(amount);
+      const nextApprover = getNextApprover(amount);
+
+      return {
+        id: po.id,
+        poNumber: po.transaction_number,
+        date: po.transaction_date,
+        amount: amount,
+        currency: po.currency,
+        status: po.workflow_status || po.transaction_status,
+        approvalLevel: requiredLevel,
+        currentApprover: metadata.current_approver_name || nextApprover?.name,
+        approvalStatus: metadata.approval_status,
+        supplierInfo: {
+          supplierId: metadata.supplier_id,
+          supplierName: metadata.supplier_name || po.procurement_metadata?.supplier_name || 'Unknown Supplier'
+        },
+        items: metadata.items || [],
+        approvalHistory: {
+          tier1: {
+            approvedBy: metadata.tier_1_approved_by_name,
+            approvalDate: metadata.tier_1_approval_date,
+            notes: metadata.tier_1_approval_notes
+          },
+          tier2: {
+            approvedBy: metadata.tier_2_approved_by_name,
+            approvalDate: metadata.tier_2_approval_date,
+            notes: metadata.tier_2_approval_notes
+          }
+        },
+        rejectionInfo: metadata.approval_status === 'rejected' ? {
+          rejectedBy: metadata.rejected_by_name,
+          rejectionDate: metadata.rejection_date,
+          reason: metadata.rejection_reason
+        } : null,
+        modificationInfo: metadata.approval_status === 'modification_requested' ? {
+          requestedBy: metadata.modification_requested_by_name,
+          requestDate: metadata.modification_request_date,
+          requests: metadata.modification_requests,
+          notes: metadata.modification_notes
+        } : null,
+        createdAt: po.created_at,
+        updatedAt: po.updated_at
+      };
+    });
+
+    // Filter by approver if specified
+    const filteredPOs = approverId 
+      ? enrichedPOs.filter(po => po.currentApprover === approverId)
+      : enrichedPOs;
+
+    return NextResponse.json({
+      data: filteredPOs,
+      summary: {
+        total: filteredPOs.length,
+        pendingApproval: filteredPOs.filter(po => po.status === 'pending_approval').length,
+        approved: filteredPOs.filter(po => po.status === 'approved').length,
+        rejected: filteredPOs.filter(po => po.status === 'rejected').length,
+        modificationRequested: filteredPOs.filter(po => po.status === 'modification_requested').length,
+        totalValue: filteredPOs.reduce((sum, po) => sum + po.amount, 0)
+      }
     });
 
   } catch (error) {
-    console.error('Approval action error:', error);
+    console.error('Get pending approvals error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

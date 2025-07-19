@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import { Plus, Filter, Download, Search, Package, AlertTriangle, TrendingUp, TrendingDown } from 'lucide-react';
 import { InventoryItemsGrid } from './InventoryItemsGrid';
 import { InventoryAlertsPanel } from './InventoryAlertsPanel';
+import { InventoryItemForm } from './InventoryItemForm';
 import { MetricsCard } from '@/components/ui/MetricsCard';
 import { Button } from '@/components/ui/button';
 import { SearchInput } from '@/components/ui/SearchInput';
@@ -59,6 +60,7 @@ export function InventoryDashboard({ organizationId }: InventoryDashboardProps) 
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [showAddForm, setShowAddForm] = useState(false);
 
   // Fetch inventory data
   const fetchInventoryData = async () => {
@@ -117,6 +119,16 @@ export function InventoryDashboard({ organizationId }: InventoryDashboardProps) 
 
   // Priority alerts
   const priorityAlerts = alerts.filter(alert => alert.urgency === 'high').slice(0, 3);
+
+  // Handle item creation
+  const handleItemCreated = (itemName?: string) => {
+    setShowAddForm(false);
+    fetchInventoryData(); // Refresh the list
+    
+    if (itemName) {
+      console.log(`✅ Inventory Item Created: ${itemName}`);
+    }
+  };
 
   if (loading) {
     return (
@@ -233,7 +245,7 @@ export function InventoryDashboard({ organizationId }: InventoryDashboardProps) 
               Export
             </Button>
             
-            <Button>
+            <Button onClick={() => setShowAddForm(true)} className="bg-orange-600 hover:bg-orange-700">
               <Plus className="w-4 h-4 mr-2" />
               Add Item
             </Button>
@@ -255,6 +267,15 @@ export function InventoryDashboard({ organizationId }: InventoryDashboardProps) 
           <InventoryAlertsPanel alerts={alerts} />
         </div>
       </div>
+
+      {/* Add Item Form Modal */}
+      {showAddForm && (
+        <InventoryItemForm
+          organizationId={organizationId}
+          onClose={() => setShowAddForm(false)}
+          onSuccess={handleItemCreated}
+        />
+      )}
     </div>
   );
 }

@@ -451,7 +451,7 @@ export default function BrandedPOSPage() {
             <p className="mb-4" style={{ color: isDark ? modernColors.textSecondary : '#64748b' }}>
               Please complete your restaurant setup to access the POS system.
             </p>
-            <BrandedButton variant="primary">
+            <BrandedButton variant="primary" className="bg-orange-600 hover:bg-orange-700">
               Complete Setup
             </BrandedButton>
           </div>
@@ -471,7 +471,7 @@ export default function BrandedPOSPage() {
             exit={{ opacity: 0, y: -50 }}
             className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50"
           >
-            <div className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
+            <div className="bg-orange-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
               <CheckCircle className="w-5 h-5" />
               {orderSuccess}
             </div>
@@ -524,10 +524,10 @@ export default function BrandedPOSPage() {
                     boxShadow: isDark ? `0 1px 3px ${modernColors.shadow}` : '0 1px 3px rgba(0, 0, 0, 0.1)'
                   }}
                   onFocus={(e) => {
-                    e.target.style.borderColor = modernColors.orange;
+                    e.target.style.borderColor = '#ea580c'; // orange-600
                     e.target.style.boxShadow = isDark 
-                      ? `0 0 0 3px ${modernColors.orange}20, 0 2px 8px ${modernColors.shadow}`
-                      : `0 0 0 3px ${modernColors.orange}20, 0 2px 8px rgba(0, 0, 0, 0.1)`;
+                      ? `0 0 0 3px rgba(234, 88, 12, 0.2), 0 2px 8px ${modernColors.shadow}`
+                      : `0 0 0 3px rgba(234, 88, 12, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1)`;
                   }}
                   onBlur={(e) => {
                     e.target.style.borderColor = isDark ? modernColors.border : '#e5e7eb';
@@ -568,7 +568,7 @@ export default function BrandedPOSPage() {
                       setOrderMode('waiter');
                     }}
                     icon={<User className="w-4 h-4" />}
-                    className="px-4 py-2"
+                    className={`px-4 py-2 ${orderMode === 'waiter' ? 'bg-orange-600 hover:bg-orange-700' : ''}`}
                   >
                     Waiter
                   </BrandedButton>
@@ -579,7 +579,7 @@ export default function BrandedPOSPage() {
                       setOrderMode('customer');
                     }}
                     icon={<Users className="w-4 h-4" />}
-                    className="px-4 py-2"
+                    className={`px-4 py-2 ${orderMode === 'customer' ? 'bg-orange-600 hover:bg-orange-700' : ''}`}
                   >
                     Customer
                   </BrandedButton>

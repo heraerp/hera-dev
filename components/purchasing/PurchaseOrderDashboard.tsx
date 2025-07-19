@@ -95,9 +95,14 @@ export function PurchaseOrderDashboard({ organizationId }: PurchaseOrderDashboar
     return matchesSearch && matchesStatus;
   });
 
-  const handleOrderCreated = () => {
+  const handleOrderCreated = (poNumber?: string) => {
     setShowForm(false);
     fetchPurchaseOrders(); // Refresh the list
+    
+    // Optional: Show a toast notification with the PO number
+    if (poNumber) {
+      console.log(`✅ Purchase Order Created: ${poNumber}`);
+    }
   };
 
   if (loading) {

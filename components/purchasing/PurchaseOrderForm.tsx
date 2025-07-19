@@ -7,13 +7,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, Plus, Trash2 } from 'lucide-react';
+import { X, Plus, Trash2, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface PurchaseOrderFormProps {
   organizationId: string;
   onClose: () => void;
-  onSuccess: () => void;
+  onSuccess: (poNumber?: string) => void;
 }
 
 interface Supplier {
@@ -31,6 +31,7 @@ interface OrderItem {
 export function PurchaseOrderForm({ organizationId, onClose, onSuccess }: PurchaseOrderFormProps) {
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState<{show: boolean, poNumber: string} | null>(null);
   const [formData, setFormData] = useState({
     supplierId: '',
     notes: '',
@@ -108,7 +109,16 @@ export function PurchaseOrderForm({ organizationId, onClose, onSuccess }: Purcha
       });
 
       if (response.ok) {
-        onSuccess();
+        const result = await response.json();
+        const poNumber = result.data?.poNumber || 'Unknown';
+        
+        // Show success message
+        setSuccess({ show: true, poNumber });
+        
+        // Auto-close after 3 seconds and call onSuccess
+        setTimeout(() => {
+          onSuccess(poNumber);
+        }, 3000);
       } else {
         console.error('Failed to create purchase order');
       }
@@ -118,6 +128,47 @@ export function PurchaseOrderForm({ organizationId, onClose, onSuccess }: Purcha
       setLoading(false);
     }
   };
+
+  // Show success message if order was created
+  if (success?.show) {
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-8 text-center">
+          <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-green-100 dark:bg-green-900/30 rounded-full">
+            <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+          </div>
+          
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+            Purchase Order Created!
+          </h3>
+          
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
+            Your purchase order has been successfully created.
+          </p>
+          
+          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg p-4 mb-6">
+            <p className="text-sm text-green-700 dark:text-green-300 font-medium">
+              Order Number
+            </p>
+            <p className="text-lg font-bold text-green-800 dark:text-green-200">
+              {success.poNumber}
+            </p>
+          </div>
+          
+          <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+            Closing automatically in 3 seconds...
+          </div>
+          
+          <Button 
+            onClick={() => onSuccess(success.poNumber)} 
+            className="w-full"
+          >
+            Close
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">

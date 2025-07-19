@@ -62,8 +62,8 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     const supplierId = searchParams.get('supplierId');
     const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '10');
-    const offset = (page - 1) * limit;
+    const limit = parseInt(searchParams.get('limit') || '0'); // 0 means no limit
+    const offset = limit > 0 ? (page - 1) * limit : 0;
 
     if (!organizationId) {
       return NextResponse.json(
@@ -82,8 +82,12 @@ export async function GET(request: NextRequest) {
       `, { count: 'exact' })
       .eq('organization_id', organizationId)
       .eq('transaction_type', 'purchase_order')
-      .order('transaction_date', { ascending: false })
-      .range(offset, offset + limit - 1);
+      .order('transaction_date', { ascending: false });
+
+    // Only apply pagination if limit is specified and > 0
+    if (limit > 0) {
+      query = query.range(offset, offset + limit - 1);
+    }
 
     // Apply filters
     if (status) {

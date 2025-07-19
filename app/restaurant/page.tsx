@@ -41,6 +41,15 @@ const RestaurantMainPage = () => {
       status: "NEW"
     },
     {
+      icon: Utensils,
+      emoji: "🍝",
+      title: "Menu Management",
+      description: "Complete menu system with categories, items, combo meals, pricing analytics, and Italian-style composite dishes",
+      link: "/restaurant/menu",
+      demo: true,
+      status: "NEW"
+    },
+    {
       icon: Coffee,
       emoji: "☕",
       title: "Product Catalog",

@@ -11,15 +11,26 @@ import { ExpirationPlugin } from 'workbox-expiration';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { Queue } from 'workbox-background-sync';
 
-// Service Worker version for cache busting
-const SW_VERSION = '1.0.0';
+// Service Worker version for cache busting - update this for new deployments
+const SW_VERSION = `${process.env.npm_package_version || '1.0.0'}-${Date.now()}`;
 const CACHE_PREFIX = 'hera-erp';
+const BUILD_TIMESTAMP = Date.now();
 
-// Initialize Workbox
+// Initialize Workbox - force immediate activation
 self.skipWaiting();
+
+// Handle messages from clients
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
+    console.log('🚀 HERA: Skipping waiting, activating new SW');
     self.skipWaiting();
+  }
+  
+  if (event.data && event.data.type === 'GET_VERSION') {
+    event.ports[0].postMessage({ 
+      version: SW_VERSION,
+      buildTimestamp: BUILD_TIMESTAMP
+    });
   }
 });
 
@@ -428,7 +439,25 @@ async function checkForUpdates() {
 // Install and Activate Events
 self.addEventListener('install', (event) => {
   console.log('📦 HERA: Service Worker installing, version:', SW_VERSION);
+  // Force immediate activation
   self.skipWaiting();
+  
+  event.waitUntil(
+    Promise.resolve().then(() => {
+      console.log('✅ HERA: Installation complete');
+      
+      // Notify clients about new version
+      return self.clients.matchAll().then(clients => {
+        clients.forEach(client => {
+          client.postMessage({
+            type: 'SW_INSTALLED',
+            version: SW_VERSION,
+            timestamp: Date.now()
+          });
+        });
+      });
+    })
+  );
 });
 
 self.addEventListener('activate', (event) => {
@@ -436,13 +465,16 @@ self.addEventListener('activate', (event) => {
   
   event.waitUntil(
     Promise.all([
-      // Clean up old caches
+      // Clean up old caches aggressively
       caches.keys().then(cacheNames => {
+        const currentCachePattern = new RegExp(`${CACHE_PREFIX}.*${SW_VERSION.split('-')[0]}`);
+        
         return Promise.all(
           cacheNames
             .filter(cacheName => {
+              // Delete all HERA caches that don't match current version pattern
               return cacheName.startsWith(CACHE_PREFIX) && 
-                     !cacheName.includes(SW_VERSION);
+                     !currentCachePattern.test(cacheName);
             })
             .map(cacheName => {
               console.log('🗑️ HERA: Deleting old cache:', cacheName);
@@ -450,9 +482,22 @@ self.addEventListener('activate', (event) => {
             })
         );
       }),
-      // Take control of all clients
+      // Take control of all clients immediately
       self.clients.claim()
-    ])
+    ]).then(() => {
+      console.log('✅ HERA: Activation complete, clients claimed');
+      
+      // Notify all clients about activation
+      return self.clients.matchAll().then(clients => {
+        clients.forEach(client => {
+          client.postMessage({
+            type: 'SW_ACTIVATED',
+            version: SW_VERSION,
+            timestamp: Date.now()
+          });
+        });
+      });
+    })
   );
 });
 

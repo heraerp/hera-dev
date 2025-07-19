@@ -2,30 +2,122 @@ const withPWA = require('next-pwa')({
   dest: 'public',
   register: true,
   skipWaiting: true,
-  disable: true, // TEMPORARILY DISABLED FOR VERCEL TESTING
+  disable: false, // Enable PWA for proper versioning
+  reloadOnOnline: true,
+  // Force service worker update on new deployments
+  mode: 'production',
+  scope: '/',
+  sw: 'sw.js',
+  publicExcludes: ['!robots.txt', '!sitemap.xml'],
+  buildExcludes: [/middleware-manifest\.json$/, /build-manifest\.json$/],
+  // Aggressive update strategy for new deployments
   runtimeCaching: [
     {
-      urlPattern: /^(?!.*\/setup).*$/,
-      handler: 'NetworkFirst',
+      urlPattern: /^https:\/\/fonts\.(?:gstatic)\.com\/.*/i,
+      handler: 'CacheFirst',
       options: {
-        cacheName: 'offlineCache',
+        cacheName: 'google-fonts-webfonts',
         expiration: {
-          maxEntries: 200,
-          maxAgeSeconds: 24 * 60 * 60
+          maxEntries: 4,
+          maxAgeSeconds: 365 * 24 * 60 * 60 // 1 year
         }
       }
     },
     {
-      urlPattern: /\/setup/,
-      handler: 'NetworkOnly'
+      urlPattern: /^https:\/\/fonts\.(?:googleapis)\.com\/.*/i,
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'google-fonts-stylesheets',
+        expiration: {
+          maxEntries: 4,
+          maxAgeSeconds: 7 * 24 * 60 * 60 // 1 week
+        }
+      }
+    },
+    {
+      urlPattern: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'static-font-assets',
+        expiration: {
+          maxEntries: 4,
+          maxAgeSeconds: 7 * 24 * 60 * 60 // 1 week
+        }
+      }
+    },
+    {
+      urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'static-image-assets',
+        expiration: {
+          maxEntries: 64,
+          maxAgeSeconds: 24 * 60 * 60 // 1 day
+        }
+      }
+    },
+    {
+      urlPattern: /\/_next\/static.+\.js$/i,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'next-static-js',
+        expiration: {
+          maxEntries: 64,
+          maxAgeSeconds: 24 * 60 * 60 // 1 day
+        }
+      }
+    },
+    {
+      urlPattern: /\/_next\/static.+\.css$/i,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'next-static-css',
+        expiration: {
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60 // 1 day
+        }
+      }
+    },
+    {
+      urlPattern: /\/_next\/image\?url=.+$/i,
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'next-image',
+        expiration: {
+          maxEntries: 64,
+          maxAgeSeconds: 24 * 60 * 60 // 1 day
+        }
+      }
+    },
+    {
+      urlPattern: /\/api\/.*$/i,
+      handler: 'NetworkFirst',
+      method: 'GET',
+      options: {
+        cacheName: 'apis',
+        expiration: {
+          maxEntries: 16,
+          maxAgeSeconds: 24 * 60 * 60 // 1 day
+        },
+        networkTimeoutSeconds: 10
+      }
+    },
+    {
+      urlPattern: /.*/i,
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'others',
+        expiration: {
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60 // 1 day
+        },
+        networkTimeoutSeconds: 10
+      }
     }
   ],
-  buildExcludes: [/middleware-manifest\.json$/],
-  publicExcludes: ['!noprecache/**/*'],
   fallbacks: {
     image: '/static/images/fallback.png',
-    document: '/offline',
-    font: 'https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2',
+    document: '/offline'
   },
   cacheStartUrl: true,
   dynamicStartUrl: false,

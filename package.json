@@ -1,4 +1,6 @@
 {
+  "name": "hera-universal",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -50,7 +52,12 @@
     "hera:help": "node scripts/hera-dev-helper.js",
     "hera:watch": "node scripts/watch-architecture.js",
     "hera:fix": "node scripts/quick-fix.js",
-    "hera:check": "node scripts/validate-architecture.js"
+    "hera:check": "node scripts/validate-architecture.js",
+    "sw:unregister": "node scripts/sw-utils.js unregister",
+    "sw:status": "node scripts/sw-utils.js status",
+    "sw:clear": "node scripts/sw-utils.js clear",
+    "sw:version": "node scripts/sw-utils.js version",
+    "sw:help": "node scripts/sw-utils.js help"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

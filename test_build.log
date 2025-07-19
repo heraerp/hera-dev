@@ -1,0 +1,203 @@
+
+> build
+> next build
+
+ ⚠ Warning: Found multiple lockfiles. Selecting /Users/san/pnpm-lock.yaml.
+   Consider removing the lockfiles at:
+   * /Users/san/Documents/hera-erp/hera-dev/package-lock.json
+
+   ▲ Next.js 15.4.1
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+> [PWA] PWA support is disabled
+> [PWA] PWA support is disabled
+ ✓ Compiled successfully in 37.0s
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+(node:89884) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:89885) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:89886) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:89889) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:89888) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:89890) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:89887) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+   Generating static pages (0/139) ...
+(node:89907) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:89906) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:89908) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:89910) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:89911) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+   Generating static pages (34/139) 
+(node:89909) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+   Generating static pages (69/139) 
+   Generating static pages (104/139) 
+ ✓ Generating static pages (139/139)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                         Size  First Load JS
+┌ ○ /                                            9.04 kB         150 kB
+├ ○ /_not-found                                    998 B         101 kB
+├ ○ /accounting/digital-accountant               10.1 kB         170 kB
+├ ○ /ai-assistant                                22.4 kB         219 kB
+├ ○ /ai-coa                                      8.96 kB         168 kB
+├ ○ /analytics/dashboard                         7.68 kB         166 kB
+├ ƒ /api/ai-coa                                    233 B         100 kB
+├ ƒ /api/bulk-upload/customers                     233 B         100 kB
+├ ƒ /api/bulk-upload/ingredients                   233 B         100 kB
+├ ƒ /api/bulk-upload/inventory                     233 B         100 kB
+├ ƒ /api/bulk-upload/menu-categories               233 B         100 kB
+├ ƒ /api/bulk-upload/menu-items                    233 B         100 kB
+├ ƒ /api/bulk-upload/orders                        233 B         100 kB
+├ ƒ /api/bulk-upload/payments                      233 B         100 kB
+├ ƒ /api/bulk-upload/products                      233 B         100 kB
+├ ƒ /api/bulk-upload/recipes                       233 B         100 kB
+├ ƒ /api/bulk-upload/staff                         233 B         100 kB
+├ ƒ /api/bulk-upload/suppliers                     233 B         100 kB
+├ ƒ /api/ingredients                               233 B         100 kB
+├ ƒ /api/inventory/items                           233 B         100 kB
+├ ƒ /api/inventory/items/[id]                      233 B         100 kB
+├ ƒ /api/inventory/items/adjust                    233 B         100 kB
+├ ƒ /api/inventory/items/alerts                    233 B         100 kB
+├ ƒ /api/inventory/items/usage                     233 B         100 kB
+├ ƒ /api/menu/analytics                            233 B         100 kB
+├ ƒ /api/menu/categories                           233 B         100 kB
+├ ƒ /api/menu/combos/calculate                     233 B         100 kB
+├ ƒ /api/menu/items                                233 B         100 kB
+├ ƒ /api/purchasing/purchase-orders                233 B         100 kB
+├ ƒ /api/purchasing/purchase-orders/[id]           233 B         100 kB
+├ ƒ /api/purchasing/purchase-orders/approve        233 B         100 kB
+├ ƒ /api/purchasing/purchase-orders/pending        233 B         100 kB
+├ ƒ /api/purchasing/purchase-orders/simple-test    233 B         100 kB
+├ ƒ /api/purchasing/suppliers                      233 B         100 kB
+├ ƒ /api/purchasing/suppliers/[id]                 233 B         100 kB
+├ ƒ /api/recipes                                   233 B         100 kB
+├ ƒ /api/staff                                     233 B         100 kB
+├ ƒ /api/universal-bulk-upload                     233 B         100 kB
+├ ○ /auth-demo                                   4.97 kB         108 kB
+├ ƒ /auth/confirm                                  233 B         100 kB
+├ ƒ /auth/error                                    233 B         100 kB
+├ ○ /auth/forgot-password                        3.68 kB         115 kB
+├ ○ /auth/login                                  3.62 kB         199 kB
+├ ○ /auth/sign-up                                4.44 kB         157 kB
+├ ○ /auth/sign-up-success                          233 B         100 kB
+├ ○ /auth/update-password                        3.55 kB         111 kB
+├ ○ /branding/logo-showcase                      6.25 kB         161 kB
+├ ○ /branding/logo-showcase-2                    6.11 kB         167 kB
+├ ○ /clients                                     17.7 kB         263 kB
+├ ○ /coa-templates                               11.5 kB         126 kB
+├ ○ /crm                                            3 kB         163 kB
+├ ○ /crm/analytics                               1.39 kB         155 kB
+├ ○ /customer/order                              7.04 kB         208 kB
+├ ○ /dashboard                                   7.58 kB         186 kB
+├ ○ /demo/universal-schema-restaurant            10.1 kB         124 kB
+├ ○ /deployment-test                               233 B         100 kB
+├ ○ /deployment-test-2                             233 B         100 kB
+├ ○ /economist-article                           7.26 kB         167 kB
+├ ○ /finance/chart-of-accounts                   7.86 kB         186 kB
+├ ○ /finance/journal-entries                     16.2 kB         194 kB
+├ ○ /forgot-password                             7.86 kB         171 kB
+├ ○ /hera-development                            10.7 kB         195 kB
+├ ○ /inventory/items                             4.94 kB         122 kB
+├ ○ /landing                                     20.2 kB         180 kB
+├ ○ /migration                                    6.8 kB         118 kB
+├ ○ /migration/ai-menu                           19.5 kB         200 kB
+├ ○ /migration/legacy-mapping                    11.2 kB         168 kB
+├ ○ /offline                                     5.36 kB         161 kB
+├ ○ /onboarding                                  3.08 kB         162 kB
+├ ○ /opengraph-image.png                             0 B            0 B
+├ ○ /organizations                               6.84 kB         239 kB
+├ ○ /pos/integration-demo                         7.6 kB         200 kB
+├ ○ /procurement                                 4.78 kB         164 kB
+├ ○ /procurement/my-requests                     3.52 kB         167 kB
+├ ○ /procurement/request                         4.42 kB         167 kB
+├ ○ /procurement/suppliers                       7.67 kB         167 kB
+├ ○ /purchasing/purchase-orders                  6.46 kB         123 kB
+├ ○ /restaurant                                  8.72 kB         164 kB
+├ ○ /restaurant/ai-dashboard                     17.9 kB         228 kB
+├ ○ /restaurant/analytics                        15.7 kB         268 kB
+├ ○ /restaurant/combo-calculation-demo           10.1 kB         250 kB
+├ ○ /restaurant/customers                        18.1 kB         288 kB
+├ ○ /restaurant/dashboard                        15.4 kB         247 kB
+├ ○ /restaurant/dashboard-new                    11.3 kB         247 kB
+├ ○ /restaurant/debug                            5.07 kB         202 kB
+├ ○ /restaurant/delivery                          4.7 kB         164 kB
+├ ○ /restaurant/feedback                         5.19 kB         165 kB
+├ ○ /restaurant/financials                         19 kB         251 kB
+├ ○ /restaurant/inventory                        11.5 kB         428 kB
+├ ○ /restaurant/inventory-management             10.6 kB         356 kB
+├ ○ /restaurant/inventory-universal              7.88 kB         209 kB
+├ ○ /restaurant/kitchen                          4.77 kB         245 kB
+├ ○ /restaurant/kitchen-copy                     6.36 kB         197 kB
+├ ○ /restaurant/login                            5.55 kB         207 kB
+├ ○ /restaurant/manage                           10.1 kB         235 kB
+├ ○ /restaurant/manager                          7.39 kB         209 kB
+├ ○ /restaurant/marketing                        7.09 kB         166 kB
+├ ○ /restaurant/menu                             11.6 kB         128 kB
+├ ○ /restaurant/menu-management                  24.5 kB         448 kB
+├ ○ /restaurant/order                            22.9 kB         183 kB
+├ ○ /restaurant/orders                           10.1 kB         431 kB
+├ ○ /restaurant/orders-crud                      8.48 kB         276 kB
+├ ○ /restaurant/overview                         5.13 kB         215 kB
+├ ○ /restaurant/payments                         17.6 kB         438 kB
+├ ○ /restaurant/pos                              13.1 kB         243 kB
+├ ○ /restaurant/products                         16.7 kB         263 kB
+├ ○ /restaurant/products-enhanced                9.18 kB         274 kB
+├ ○ /restaurant/profile                          10.3 kB         249 kB
+├ ○ /restaurant/recipe-management                18.3 kB         426 kB
+├ ○ /restaurant/register                         10.7 kB         236 kB
+├ ○ /restaurant/reports-universal                9.83 kB         246 kB
+├ ○ /restaurant/sales                            4.42 kB         164 kB
+├ ○ /restaurant/select                           7.18 kB         208 kB
+├ ○ /restaurant/setup-wizard                     14.1 kB         243 kB
+├ ○ /restaurant/shopping                         4.53 kB         164 kB
+├ ○ /restaurant/signin                           8.34 kB         208 kB
+├ ○ /restaurant/signup                           10.7 kB         236 kB
+├ ○ /restaurant/staff                              12 kB         425 kB
+├ ○ /restaurant/staff-universal                  12.3 kB         212 kB
+├ ○ /restaurant/stock                            4.62 kB         164 kB
+├ ○ /restaurant/waiter                           8.31 kB         209 kB
+├ ○ /restaurant/waiter-new                       5.28 kB         243 kB
+├ ○ /settings                                     9.5 kB         236 kB
+├ ○ /setup                                       18.7 kB         206 kB
+├ ○ /setup/client                                7.73 kB         239 kB
+├ ○ /setup/database                              5.72 kB         202 kB
+├ ○ /setup/organization                          8.78 kB         244 kB
+├ ○ /setup/restaurant                            14.4 kB         245 kB
+├ ○ /setup/test-db                                  4 kB         201 kB
+├ ○ /setup/test-syntax                             357 B         100 kB
+├ ○ /test-auth                                    5.1 kB         205 kB
+├ ○ /test-journal-viewer                         5.06 kB         158 kB
+├ ○ /test-trial-balance                            10 kB         163 kB
+├ ○ /test-validation                             2.67 kB         103 kB
+├ ○ /test/client                                 5.03 kB         154 kB
+├ ○ /test/entity-validation                      4.99 kB         142 kB
+├ ○ /transactions                                27.8 kB         266 kB
+├ ○ /twitter-image.png                               0 B            0 B
+└ ○ /universal-form-builder                      1.75 kB         110 kB
++ First Load JS shared by all                    99.9 kB
+  ├ chunks/4bd1b696-cc729d47eba2cee4.js          54.1 kB
+  ├ chunks/5964-3c2839afceb0c93b.js              43.7 kB
+  └ other shared chunks (total)                  2.06 kB
+
+
+ƒ Middleware                                     67.4 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

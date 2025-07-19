@@ -6,6 +6,7 @@ import { FeedbackProvider } from "@/components/ui/enhanced-feedback";
 import { Providers } from './providers';
 import ErrorBoundaryProvider from '@/components/error-boundaries/ErrorBoundaryProvider';
 import { UniversalThemeWrapper } from '@/components/theme/UniversalThemeWrapper';
+import { UpdateNotificationComponent } from '@/components/ui/update-notification';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -58,6 +59,7 @@ export default function RootLayout({
               <FeedbackProvider>
                 <div id="app-root" className="relative">
                   {children}
+                  <UpdateNotificationComponent position="top" />
                 </div>
               </FeedbackProvider>
             </UniversalThemeWrapper>

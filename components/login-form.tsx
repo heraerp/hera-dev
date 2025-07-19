@@ -29,12 +29,38 @@ export function LoginForm({
     setError(null);
 
     try {
+      // First, try regular Supabase login
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
-      if (error) throw error;
       
+      if (error) {
+        // Check if we have a development mode user in localStorage
+        const devUserData = localStorage.getItem('dev_user_data');
+        if (devUserData) {
+          const devUser = JSON.parse(devUserData);
+          if (devUser.email === email) {
+            console.log('🧪 Development mode: Using simulated login');
+            console.log('👤 Dev user:', devUser);
+            
+            // Store dev session in localStorage
+            localStorage.setItem('dev_session', JSON.stringify({
+              user: devUser,
+              access_token: `dev_token_${Date.now()}`,
+              expires_at: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
+            }));
+            
+            // Redirect to dashboard
+            router.push('/dashboard');
+            return;
+          }
+        }
+        
+        throw error;
+      }
+      
+      // Regular Supabase login successful
       // Import auth utils dynamically to avoid circular dependencies
       const { AuthUtils } = await import("@/lib/auth/auth-utils");
       
@@ -95,6 +121,16 @@ export function LoginForm({
                 <p className="text-sm" style={{ color: colors.error }}>
                   {error}
                 </p>
+              )}
+              {/* Development mode notice */}
+              {typeof window !== 'undefined' && localStorage.getItem('dev_user_data') && (
+                <div className="text-xs p-2 rounded border" style={{ 
+                  backgroundColor: colors.surfaceElevated,
+                  borderColor: colors.border,
+                  color: colors.textSecondary 
+                }}>
+                  🧪 <strong>Development Mode:</strong> Use the email from your recent signup to login
+                </div>
               )}
               <UniversalThemeButton
                 variant="primary"

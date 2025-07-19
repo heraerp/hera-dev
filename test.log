@@ -1,0 +1,513 @@
+
+> dev
+> next dev
+
+ ⚠ Warning: Found multiple lockfiles. Selecting /Users/san/pnpm-lock.yaml.
+   Consider removing the lockfiles at:
+   * /Users/san/Documents/hera-erp/hera-dev/package-lock.json
+
+   ▲ Next.js 15.4.1
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.101:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+> [PWA] PWA support is disabled
+> [PWA] PWA support is disabled
+ ✓ Ready in 3s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 990ms (183 modules)
+ ○ Compiling /api/purchasing/purchase-orders ...
+ ✓ Compiled /api/purchasing/purchase-orders in 1780ms (284 modules)
+(node:62291) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Creating purchase order with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "supplierId": "test-supplier-001",
+  "items": [
+    {
+      "itemName": "Test Ingredient",
+      "quantity": 2,
+      "unitPrice": 25
+    }
+  ],
+  "notes": "Test purchase order",
+  "requestedDeliveryDate": "2024-01-25"
+}
+Calculated total amount: 50
+Generated PO number: PO-20250718-808604
+About to insert transaction: {
+  "organization_id": "123e4567-e89b-12d3-a456-426614174000",
+  "transaction_type": "purchase_order",
+  "transaction_number": "PO-20250718-808604",
+  "transaction_date": "2025-07-18",
+  "total_amount": 50,
+  "currency": "USD",
+  "transaction_status": "auto_approved"
+}
+Transaction created successfully: {
+  id: '7e5f6b7c-eac2-4d7d-b44f-040b5f51157e',
+  organization_id: '123e4567-e89b-12d3-a456-426614174000',
+  transaction_type: 'purchase_order',
+  transaction_number: 'PO-20250718-808604',
+  transaction_date: '2025-07-18',
+  total_amount: 50,
+  currency: 'USD',
+  created_at: '2025-07-18T21:56:48.682738',
+  updated_at: '2025-07-18T21:56:48.682738',
+  procurement_metadata: {},
+  transaction_status: 'auto_approved',
+  is_financial: false,
+  transaction_subtype: null,
+  workflow_status: 'active',
+  requires_approval: false,
+  mapped_accounts: {},
+  transaction_data: {},
+  created_by: null,
+  posting_status: 'draft',
+  posted_at: null,
+  released_to_accounting: false,
+  released_at: null,
+  released_by: null,
+  posting_period: null,
+  journal_entry_id: null
+}
+✅ PO created: PO-20250718-808604, Status: auto_approved, Total: $50
+ POST /api/purchasing/purchase-orders 201 in 2141ms
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (108kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ○ Compiling /purchasing/purchase-orders ...
+ ✓ Compiled /purchasing/purchase-orders in 5.6s (1499 modules)
+ ✓ Compiled in 919ms (688 modules)
+ GET /purchasing/purchase-orders 200 in 463ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 104ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 62ms
+ ✓ Compiled /api/purchasing/suppliers in 377ms (1501 modules)
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 665ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 137ms
+Creating purchase order with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "supplierId": "0dedd7ff-b0c5-4047-9126-3595e2e36287",
+  "items": [
+    {
+      "itemName": "new",
+      "quantity": 1,
+      "unitPrice": 10,
+      "unit": "unit",
+      "totalPrice": 10
+    }
+  ],
+  "notes": "additional items",
+  "requestedDeliveryDate": "2025-07-19",
+  "priority": "normal"
+}
+Calculated total amount: 10
+Generated PO number: PO-20250718-875979
+About to insert transaction: {
+  "organization_id": "123e4567-e89b-12d3-a456-426614174000",
+  "transaction_type": "purchase_order",
+  "transaction_number": "PO-20250718-875979",
+  "transaction_date": "2025-07-18",
+  "total_amount": 10,
+  "currency": "USD",
+  "transaction_status": "auto_approved"
+}
+Transaction created successfully: {
+  id: '61e069d1-0ba0-42e8-9cbe-3227ee8d34dc',
+  organization_id: '123e4567-e89b-12d3-a456-426614174000',
+  transaction_type: 'purchase_order',
+  transaction_number: 'PO-20250718-875979',
+  transaction_date: '2025-07-18',
+  total_amount: 10,
+  currency: 'USD',
+  created_at: '2025-07-18T21:57:56.007928',
+  updated_at: '2025-07-18T21:57:56.007928',
+  procurement_metadata: {},
+  transaction_status: 'auto_approved',
+  is_financial: false,
+  transaction_subtype: null,
+  workflow_status: 'active',
+  requires_approval: false,
+  mapped_accounts: {},
+  transaction_data: {},
+  created_by: null,
+  posting_status: 'draft',
+  posted_at: null,
+  released_to_accounting: false,
+  released_at: null,
+  released_by: null,
+  posting_period: null,
+  journal_entry_id: null
+}
+✅ PO created: PO-20250718-875979, Status: auto_approved, Total: $10
+ POST /api/purchasing/purchase-orders 201 in 89ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 53ms
+ ✓ Compiled in 1135ms (1499 modules)
+ GET /purchasing/purchase-orders 200 in 191ms
+ ✓ Compiled in 574ms (688 modules)
+ GET /purchasing/purchase-orders 200 in 21ms
+ ✓ Compiled in 869ms (1479 modules)
+ GET /purchasing/purchase-orders 200 in 162ms
+ ✓ Compiled in 543ms (1479 modules)
+ GET /purchasing/purchase-orders 200 in 202ms
+ ✓ Compiled in 1274ms (1485 modules)
+ GET /purchasing/purchase-orders 200 in 110ms
+ ✓ Compiled /api/purchasing/suppliers in 358ms (828 modules)
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 748ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 124ms
+ ✓ Compiled in 534ms (691 modules)
+ GET /purchasing/purchase-orders 200 in 82ms
+ ✓ Compiled in 1302ms (1519 modules)
+ GET /purchasing/purchase-orders 200 in 117ms
+ ✓ Compiled in 662ms (1519 modules)
+ GET /purchasing/purchase-orders 200 in 139ms
+ ✓ Compiled in 558ms (1519 modules)
+ GET /purchasing/purchase-orders 200 in 85ms
+ ✓ Compiled in 569ms (1519 modules)
+ GET /purchasing/purchase-orders 200 in 108ms
+ ✓ Compiled in 760ms (1519 modules)
+ GET /purchasing/purchase-orders 200 in 131ms
+ ✓ Compiled in 578ms (1519 modules)
+ GET /purchasing/purchase-orders 200 in 86ms
+ ✓ Compiled in 548ms (1519 modules)
+ GET /purchasing/purchase-orders 200 in 117ms
+ ✓ Compiled in 907ms (1519 modules)
+ GET /purchasing/purchase-orders 200 in 104ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 269ms
+ ✓ Compiled in 699ms (1519 modules)
+ GET /purchasing/purchase-orders 200 in 156ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 268ms
+ ○ Compiling /api/purchasing/purchase-orders ...
+ ✓ Compiled /api/purchasing/purchase-orders in 542ms (814 modules)
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 722ms
+ GET /purchasing/purchase-orders 200 in 116ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 91ms
+ ✓ Compiled in 840ms (1505 modules)
+ GET /purchasing/purchase-orders 200 in 73ms
+ ✓ Compiled in 716ms (1505 modules)
+ GET /purchasing/purchase-orders 200 in 268ms
+ ✓ Compiled /api/purchasing/suppliers in 323ms (830 modules)
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 547ms
+ ✓ Compiled in 609ms (1521 modules)
+ GET /purchasing/purchase-orders 200 in 68ms
+Creating purchase order with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "supplierId": "test-supplier-001",
+  "items": [
+    {
+      "itemName": "Chicken Breast",
+      "quantity": 5,
+      "unitPrice": 12.5,
+      "unit": "lbs",
+      "totalPrice": 62.5
+    },
+    {
+      "itemName": "Tomatoes",
+      "quantity": 3,
+      "unitPrice": 4,
+      "unit": "lbs",
+      "totalPrice": 12
+    }
+  ],
+  "notes": "Fresh ingredients for dinner special",
+  "requestedDeliveryDate": "2025-07-20"
+}
+Calculated total amount: 74.5
+Generated PO number: PO-20250718-228514
+About to insert transaction: {
+  "organization_id": "123e4567-e89b-12d3-a456-426614174000",
+  "transaction_type": "purchase_order",
+  "transaction_number": "PO-20250718-228514",
+  "transaction_date": "2025-07-18",
+  "total_amount": 74.5,
+  "currency": "USD",
+  "transaction_status": "auto_approved",
+  "procurement_metadata": {
+    "supplier_id": "test-supplier-001",
+    "items": [
+      {
+        "itemName": "Chicken Breast",
+        "quantity": 5,
+        "unitPrice": 12.5,
+        "unit": "lbs",
+        "totalPrice": 62.5
+      },
+      {
+        "itemName": "Tomatoes",
+        "quantity": 3,
+        "unitPrice": 4,
+        "unit": "lbs",
+        "totalPrice": 12
+      }
+    ],
+    "delivery_date": "2025-07-20",
+    "notes": "Fresh ingredients for dinner special",
+    "created_via": "ui_form"
+  }
+}
+Transaction created successfully: {
+  id: 'b3ede919-229a-466d-83cb-366cb4158655',
+  organization_id: '123e4567-e89b-12d3-a456-426614174000',
+  transaction_type: 'purchase_order',
+  transaction_number: 'PO-20250718-228514',
+  transaction_date: '2025-07-18',
+  total_amount: 74.5,
+  currency: 'USD',
+  created_at: '2025-07-18T22:03:48.565737',
+  updated_at: '2025-07-18T22:03:48.565737',
+  procurement_metadata: {
+    items: [ [Object], [Object] ],
+    notes: 'Fresh ingredients for dinner special',
+    created_via: 'ui_form',
+    supplier_id: 'test-supplier-001',
+    delivery_date: '2025-07-20'
+  },
+  transaction_status: 'auto_approved',
+  is_financial: false,
+  transaction_subtype: null,
+  workflow_status: 'active',
+  requires_approval: false,
+  mapped_accounts: {},
+  transaction_data: {},
+  created_by: null,
+  posting_status: 'draft',
+  posted_at: null,
+  released_to_accounting: false,
+  released_at: null,
+  released_by: null,
+  posting_period: null,
+  journal_entry_id: null
+}
+✅ PO created: PO-20250718-228514, Status: auto_approved, Total: $74.5
+ POST /api/purchasing/purchase-orders 201 in 100ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 147ms
+ ✓ Compiled in 589ms (1505 modules)
+ GET /purchasing/purchase-orders 200 in 273ms
+ ✓ Compiled in 599ms (1505 modules)
+ GET /purchasing/purchase-orders 200 in 74ms
+ ✓ Compiled in 584ms (1505 modules)
+ GET /purchasing/purchase-orders 200 in 110ms
+ GET /purchasing/purchase-orders 200 in 319ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 117ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 101ms
+ ✓ Compiled /api/purchasing/suppliers in 117ms (830 modules)
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 286ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 127ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 181ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 181ms
+Updating purchase order: b4a2fc05-34c1-4c11-a448-fd3216aaebab with data: {
+  supplierId: '337cc17b-2eea-457a-8e4e-b503b08165cc',
+  items: [
+    {
+      itemName: 'Puffs',
+      quantity: 1,
+      unitPrice: 100,
+      unit: 'unit',
+      totalPrice: 100
+    }
+  ],
+  notes: '',
+  requestedDeliveryDate: '',
+  status: 'active'
+}
+✅ PO updated: PO-20250718-600407
+ PUT /api/purchasing/purchase-orders 200 in 97ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 361ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 204ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 132ms
+Updating purchase order: b3ede919-229a-466d-83cb-366cb4158655 with data: {
+  supplierId: 'db57fb6b-5ffb-4750-a283-821328afccb5',
+  items: [
+    {
+      itemName: 'Chicken Breast',
+      quantity: 5,
+      unitPrice: 12.5,
+      unit: 'lbs',
+      totalPrice: 62.5
+    },
+    {
+      itemName: 'Tomatoes',
+      quantity: 3,
+      unitPrice: 4,
+      unit: 'lbs',
+      totalPrice: 12
+    }
+  ],
+  notes: 'Fresh ingredients for dinner special',
+  requestedDeliveryDate: '2025-07-20',
+  status: 'active'
+}
+✅ PO updated: PO-20250718-228514
+ PUT /api/purchasing/purchase-orders 200 in 117ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 94ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 133ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 364ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 148ms
+ ✓ Compiled in 1445ms (1521 modules)
+ GET /purchasing/purchase-orders 200 in 116ms
+ ✓ Compiled in 718ms (1521 modules)
+ GET /purchasing/purchase-orders 200 in 160ms
+ ✓ Compiled in 569ms (1521 modules)
+ GET /purchasing/purchase-orders 200 in 102ms
+ ✓ Compiled in 596ms (1521 modules)
+ GET /purchasing/purchase-orders 200 in 519ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 194ms
+ ✓ Compiled in 615ms (1505 modules)
+ GET /purchasing/purchase-orders 200 in 183ms
+ ✓ Compiled /api/purchasing/suppliers in 152ms (830 modules)
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 382ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 155ms
+ ✓ Compiled in 771ms (1521 modules)
+ GET /purchasing/purchase-orders 200 in 133ms
+Updating purchase order: b3ede919-229a-466d-83cb-366cb4158655 with data: {
+  supplierId: 'db57fb6b-5ffb-4750-a283-821328afccb5',
+  items: [
+    {
+      itemName: 'Chicken Breast',
+      quantity: 5,
+      unitPrice: 12.5,
+      unit: 'lbs',
+      totalPrice: 62.5
+    }
+  ],
+  notes: 'Fresh ingredients for dinner special',
+  requestedDeliveryDate: '2025-07-20'
+}
+✅ PO updated: PO-20250718-228514
+ PUT /api/purchasing/purchase-orders 200 in 236ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 209ms
+ ✓ Compiled in 764ms (1505 modules)
+ GET /purchasing/purchase-orders 200 in 179ms
+ GET /purchasing/purchase-orders 200 in 310ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 212ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 188ms
+ ✓ Compiled /api/purchasing/suppliers in 138ms (830 modules)
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 320ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 128ms
+Updating purchase order: b3ede919-229a-466d-83cb-366cb4158655 with data: {
+  supplierId: 'db57fb6b-5ffb-4750-a283-821328afccb5',
+  items: [
+    {
+      itemName: 'Chicken Breast',
+      quantity: 5,
+      unitPrice: 12.5,
+      unit: 'lbs',
+      totalPrice: 62.5
+    }
+  ],
+  notes: 'Fresh ingredients for dinner special',
+  requestedDeliveryDate: '2025-07-20',
+  status: 'active'
+}
+✅ PO updated: PO-20250718-228514
+ PUT /api/purchasing/purchase-orders 200 in 126ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 110ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 220ms
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 102ms
+Updating purchase order: 1c60c334-01ac-496a-8934-e37b5808080d with data: {
+  supplierId: 'aee9097d-15ca-40a7-b0e6-7e0ae9a35be2',
+  items: [
+    {
+      itemName: 'Chicken',
+      quantity: 1,
+      unitPrice: 755,
+      unit: 'unit',
+      totalPrice: 755
+    }
+  ],
+  notes: '',
+  requestedDeliveryDate: '2025-07-03',
+  status: 'active'
+}
+✅ PO updated: PO-1752870614840
+ PUT /api/purchasing/purchase-orders 200 in 159ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 153ms
+ ○ Compiling /procurement/suppliers ...
+ ✓ Compiled /procurement/suppliers in 1148ms (1490 modules)
+ GET /procurement/suppliers 200 in 1864ms
+ ○ Compiling /restaurant/inventory ...
+ ✓ Compiled /restaurant/inventory in 3s (1963 modules)
+ GET /restaurant/inventory 200 in 3731ms
+ GET /procurement/suppliers 200 in 172ms
+ ○ Compiling /procurement ...
+ ✓ Compiled /procurement in 1868ms (1970 modules)
+ GET /procurement 200 in 2432ms
+ GET /purchasing/purchase-orders 200 in 214ms
+ ✓ Compiled /api/purchasing/purchase-orders in 356ms (1055 modules)
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 754ms
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 109ms
+ ○ Compiling /inventory/items ...
+ ✓ Compiled /inventory/items in 1400ms (1993 modules)
+ GET /inventory/items 200 in 2013ms
+ GET /inventory/items 200 in 84ms
+ ○ Compiling /api/inventory/items ...
+ ✓ Compiled /api/inventory/items in 871ms (2012 modules)
+ GET /api/inventory/items/alerts?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 1231ms
+ GET /api/inventory/items?organizationId=123e4567-e89b-12d3-a456-426614174000&limit=50 200 in 1196ms
+ GET /api/inventory/items/alerts?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 174ms
+ GET /api/inventory/items?organizationId=123e4567-e89b-12d3-a456-426614174000&limit=50 200 in 124ms
+ GET /inventory/items 200 in 1919ms
+ GET /api/inventory/items/alerts?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 816ms
+ GET /api/inventory/items?organizationId=123e4567-e89b-12d3-a456-426614174000&limit=50 200 in 815ms
+ GET /api/inventory/items?organizationId=123e4567-e89b-12d3-a456-426614174000&limit=50 200 in 567ms
+ GET /api/inventory/items/alerts?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 614ms
+ GET /inventory/items 200 in 46ms
+ ✓ Compiled in 3.9s (2176 modules)
+ ✓ Compiled in 1675ms (2176 modules)
+ ✓ Compiled in 4.2s (2176 modules)
+ ✓ Compiled in 3.8s (2176 modules)
+ ✓ Compiled in 2.5s (2176 modules)
+ ✓ Compiled in 2.8s (956 modules)
+ ✓ Compiled in 922ms (956 modules)
+ ✓ Compiled in 966ms (956 modules)
+ ✓ Compiled in 1955ms (956 modules)
+ ✓ Compiled in 951ms (956 modules)
+ ✓ Compiled in 3s (956 modules)
+ ✓ Compiled in 697ms (956 modules)
+ ✓ Compiled in 851ms (956 modules)
+ ✓ Compiled in 7.7s (956 modules)
+ ✓ Compiled in 42.4s (956 modules)
+ ✓ Compiled in 9.4s (956 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: unexpected end of file
+ ✓ Compiled in 3s (956 modules)
+ ✓ Compiled in 9.2s (956 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-erp/hera-dev/.next/cache/webpack/client-development/4.pack.gz_' -> '/Users/san/Documents/hera-erp/hera-dev/.next/cache/webpack/client-development/4.pack.gz'
+ ✓ Compiled in 4.6s (956 modules)
+ ✓ Compiled in 22.7s (956 modules)
+ ✓ Compiled in 8.1s (2176 modules)
+ ✓ Compiled in 5s (956 modules)
+ ✓ Compiled in 9.5s (956 modules)
+ ✓ Compiled in 2.3s (956 modules)
+ ✓ Compiled in 11.5s (956 modules)
+ ✓ Compiled in 15.8s (956 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-erp/hera-dev/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-erp/hera-dev/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled in 42.4s (956 modules)
+ ✓ Compiled in 12s (956 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid code lengths set
+ ✓ Compiled in 6.8s (956 modules)
+ ✓ Compiled in 3.1s (956 modules)
+ ✓ Compiled in 1100ms (956 modules)
+ ✓ Compiled in 4.9s (956 modules)
+ ✓ Compiled in 607ms (956 modules)
+ ⚠ Found a change in next.config.js. Restarting the server to apply the changes...
+   ▲ Next.js 15.4.1
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.101:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+> [PWA] Compile server
+> [PWA] Compile server
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-erp/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-erp/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-erp/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-erp/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+ ✓ Ready in 6.5s
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.

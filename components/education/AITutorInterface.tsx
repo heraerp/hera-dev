@@ -14,8 +14,12 @@ import {
   TrendingUp,
   Award,
   ArrowRight,
-  RefreshCw
+  RefreshCw,
+  Volume2,
+  Mic
 } from 'lucide-react';
+import VoiceControls from './VoiceControls';
+import VoiceTopicSearch from './VoiceTopicSearch';
 
 // Edexcel Business A-Level Syllabus
 const EDEXCEL_SYLLABUS = {
@@ -81,6 +85,10 @@ export default function AITutorInterface({ studentId, organizationId, onTopicSel
   const [isLoading, setIsLoading] = useState(false);
   const [studentPerformance, setStudentPerformance] = useState<any>(null);
   const [activeTheme, setActiveTheme] = useState<string>('');
+  const [showVoiceSearch, setShowVoiceSearch] = useState(false);
+
+  // Get all available topics for voice matching
+  const allTopics = Object.values(EDEXCEL_SYLLABUS).flatMap(theme => theme.topics);
 
   useEffect(() => {
     // Load student performance data on component mount
@@ -146,6 +154,50 @@ export default function AITutorInterface({ studentId, organizationId, onTopicSel
     }
   };
 
+  const handleVoiceTopicSelect = (topic: string) => {
+    setShowVoiceSearch(false);
+    handleTopicSelect(topic);
+  };
+
+  const handleVoiceQuestion = async (question: string) => {
+    setSelectedTopic(`Voice Question: ${question}`);
+    setIsLoading(true);
+    setTutorResponse('');
+    setShowVoiceSearch(false);
+
+    try {
+      const response = await fetch('/api/education/ai/tutor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          studentId,
+          organizationId,
+          topic: question,
+          type: 'explanation',
+          specificQuestions: [question]
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.success) {
+        setTutorResponse(data.data.tutorResponse);
+        setStudentPerformance(data.data.studentPerformance);
+        
+        if (onTopicSelect) {
+          onTopicSelect(question);
+        }
+      } else {
+        setTutorResponse('Sorry, I couldn\'t answer that question right now. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error getting AI tutoring:', error);
+      setTutorResponse('Sorry, there was an error processing your question. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
       <div className="max-w-7xl mx-auto p-6">
@@ -156,11 +208,42 @@ export default function AITutorInterface({ studentId, organizationId, onTopicSel
             <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
               AI Business Tutor
             </h1>
+            <Volume2 className="text-green-400" size={24} />
           </div>
-          <p className="text-blue-200 text-lg">
+          <p className="text-blue-200 text-lg mb-4">
             Master your Edexcel Business A-Level with personalized AI tutoring
           </p>
+          
+          {/* Voice Search Toggle */}
+          <div className="flex items-center justify-center gap-4">
+            <button
+              onClick={() => setShowVoiceSearch(!showVoiceSearch)}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 ${
+                showVoiceSearch
+                  ? 'bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-400 hover:to-pink-500'
+                  : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-400 hover:to-purple-500'
+              }`}
+            >
+              <Mic size={20} />
+              <span>{showVoiceSearch ? 'Hide Voice Search' : 'Ask by Voice'}</span>
+            </button>
+            
+            <div className="text-sm text-gray-400">
+              🎤 Voice-powered learning • 🔊 Read-aloud responses
+            </div>
+          </div>
         </div>
+
+        {/* Voice Search Interface */}
+        {showVoiceSearch && (
+          <div className="mb-8">
+            <VoiceTopicSearch
+              onTopicSelect={handleVoiceTopicSelect}
+              onQuestionSubmit={handleVoiceQuestion}
+              availableTopics={allTopics}
+            />
+          </div>
+        )}
 
         {/* Syllabus Overview */}
         <div className="mb-8">
@@ -209,13 +292,25 @@ export default function AITutorInterface({ studentId, organizationId, onTopicSel
         {/* AI Tutor Response */}
         {(isLoading || tutorResponse) && (
           <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <MessageCircle className="text-green-400" size={24} />
-              <h3 className="text-xl font-bold">
-                {isLoading ? 'AI Tutor is thinking...' : `Learning: ${selectedTopic}`}
-              </h3>
-              {isLoading && (
-                <RefreshCw className="text-blue-400 animate-spin" size={20} />
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <MessageCircle className="text-green-400" size={24} />
+                <h3 className="text-xl font-bold">
+                  {isLoading ? 'AI Tutor is thinking...' : `Learning: ${selectedTopic}`}
+                </h3>
+                {isLoading && (
+                  <RefreshCw className="text-blue-400 animate-spin" size={20} />
+                )}
+              </div>
+              
+              {/* Voice Controls for the response */}
+              {!isLoading && tutorResponse && (
+                <VoiceControls
+                  text={tutorResponse}
+                  showSettings={true}
+                  autoRead={true}
+                  className="relative"
+                />
               )}
             </div>
             
@@ -234,7 +329,7 @@ export default function AITutorInterface({ studentId, organizationId, onTopicSel
             )}
 
             {!isLoading && tutorResponse && (
-              <div className="mt-6 flex gap-4">
+              <div className="mt-6 flex flex-wrap gap-4">
                 <button
                   onClick={() => generatePracticeQuestion(selectedTopic)}
                   className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 rounded-lg font-bold transition-all duration-300 transform hover:scale-105"
@@ -249,6 +344,14 @@ export default function AITutorInterface({ studentId, organizationId, onTopicSel
                 >
                   <BookOpen size={20} />
                   <span>Choose Another Topic</span>
+                </button>
+
+                <button
+                  onClick={() => setShowVoiceSearch(true)}
+                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 rounded-lg font-bold transition-all duration-300"
+                >
+                  <Mic size={20} />
+                  <span>Ask Follow-up</span>
                 </button>
               </div>
             )}
@@ -336,11 +439,21 @@ export default function AITutorInterface({ studentId, organizationId, onTopicSel
           <div className="flex items-start gap-4">
             <Zap className="text-yellow-400 flex-shrink-0 mt-1" size={24} />
             <div>
-              <h4 className="font-bold text-white mb-2">💡 Pro Tip</h4>
-              <p className="text-gray-300 text-sm">
-                Click on any syllabus theme above to see all topics, then select a specific topic for personalized AI tutoring. 
-                The AI will explain concepts using current business examples and provide practice questions tailored to your level!
-              </p>
+              <h4 className="font-bold text-white mb-2">💡 Voice-Powered Learning Tips</h4>
+              <div className="text-gray-300 text-sm space-y-2">
+                <p>
+                  🎤 <strong>Voice Commands:</strong> Click "Ask by Voice" and say "Explain marketing mix" or "What is a limited company?" for instant answers!
+                </p>
+                <p>
+                  🔊 <strong>Listen Mode:</strong> Every AI response can be read aloud - perfect for multitasking or audio learning!
+                </p>
+                <p>
+                  ⚙️ <strong>Voice Settings:</strong> Adjust speed, voice, and auto-read preferences using the settings button next to responses.
+                </p>
+                <p>
+                  📱 <strong>Hands-Free Study:</strong> Use voice input while walking, exercising, or doing other activities!
+                </p>
+              </div>
             </div>
           </div>
         </div>

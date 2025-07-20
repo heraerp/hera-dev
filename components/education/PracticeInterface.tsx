@@ -17,8 +17,11 @@ import {
   Trophy,
   Brain,
   Sparkles,
-  BookOpen
+  BookOpen,
+  Volume2,
+  Mic
 } from 'lucide-react';
+import VoiceControls from './VoiceControls';
 
 interface Question {
   id: string;
@@ -442,6 +445,7 @@ export default function PracticeInterface({ studentId, organizationId, onComplet
               <div className="flex items-center gap-2">
                 <Target className="text-blue-400" size={24} />
                 <span className="font-bold text-lg">{question.marksAvailable} Mark Question</span>
+                <Volume2 className="text-green-400" size={20} title="Voice-enabled practice" />
               </div>
               <div className="px-3 py-1 bg-purple-500/30 rounded-full text-sm">
                 {question.topicArea}
@@ -484,12 +488,22 @@ export default function PracticeInterface({ studentId, organizationId, onComplet
 
           {/* Question */}
           <div className="bg-white/5 rounded-lg p-4 mb-4">
-            <div className="text-xl font-semibold mb-2">
-              {question.questionText}
-            </div>
-            <div className="text-sm text-blue-200">
-              Command word: <span className="font-bold text-yellow-400">{question.commandWords}</span> • 
-              Time allocation: <span className="font-bold text-green-400">{question.timeAllocationMinutes} minutes</span>
+            <div className="flex items-start justify-between mb-3">
+              <div className="flex-1">
+                <div className="text-xl font-semibold mb-2">
+                  {question.questionText}
+                </div>
+                <div className="text-sm text-blue-200">
+                  Command word: <span className="font-bold text-yellow-400">{question.commandWords}</span> • 
+                  Time allocation: <span className="font-bold text-green-400">{question.timeAllocationMinutes} minutes</span>
+                </div>
+              </div>
+              
+              {/* Voice Controls for Question */}
+              <VoiceControls
+                text={`Question: ${question.questionText}. Command word: ${question.commandWords}. Time allocation: ${question.timeAllocationMinutes} minutes.`}
+                className="ml-4"
+              />
             </div>
           </div>
 
@@ -653,13 +667,22 @@ export default function PracticeInterface({ studentId, organizationId, onComplet
                   <Star className="text-blue-400" size={24} />
                   <span className="font-bold text-lg">Model Answer 📚</span>
                 </div>
-                <button
-                  onClick={() => setShowModelAnswer(!showModelAnswer)}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg transition-colors text-blue-200 hover:text-blue-100"
-                >
-                  <Lightbulb size={16} />
-                  <span>{showModelAnswer ? 'Hide' : 'Show'} Model Answer</span>
-                </button>
+                <div className="flex items-center gap-2">
+                  {showModelAnswer && (
+                    <VoiceControls
+                      text={modelAnswer}
+                      showSettings={false}
+                      className="mr-2"
+                    />
+                  )}
+                  <button
+                    onClick={() => setShowModelAnswer(!showModelAnswer)}
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg transition-colors text-blue-200 hover:text-blue-100"
+                  >
+                    <Lightbulb size={16} />
+                    <span>{showModelAnswer ? 'Hide' : 'Show'} Model Answer</span>
+                  </button>
+                </div>
               </div>
               
               {showModelAnswer ? (

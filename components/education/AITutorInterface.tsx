@@ -154,16 +154,20 @@ export default function AITutorInterface({ studentId, organizationId, onTopicSel
     }
   };
 
-  const handleVoiceTopicSelect = (topic: string) => {
-    setShowVoiceSearch(false);
+  const handleVoiceTopicSelect = (topic: string, keepVoiceOpen = false) => {
+    if (!keepVoiceOpen) {
+      setShowVoiceSearch(false);
+    }
     handleTopicSelect(topic);
   };
 
-  const handleVoiceQuestion = async (question: string) => {
+  const handleVoiceQuestion = async (question: string, keepVoiceOpen = false) => {
     setSelectedTopic(`Voice Question: ${question}`);
     setIsLoading(true);
     setTutorResponse('');
-    setShowVoiceSearch(false);
+    if (!keepVoiceOpen) {
+      setShowVoiceSearch(false);
+    }
 
     try {
       const response = await fetch('/api/education/ai/tutor', {
@@ -236,10 +240,25 @@ export default function AITutorInterface({ studentId, organizationId, onTopicSel
 
         {/* Voice Search Interface */}
         {showVoiceSearch && (
-          <div className="mb-8">
+          <div className="mb-8" data-voice-search>
+            <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-md rounded-xl p-4 border border-purple-400/30 mb-4">
+              <div className="flex items-center gap-2 mb-2">
+                <Mic className="text-purple-400" size={20} />
+                <span className="font-bold text-white">Voice Follow-up Questions</span>
+                <button
+                  onClick={() => setShowVoiceSearch(false)}
+                  className="ml-auto px-3 py-1 bg-red-500/20 hover:bg-red-500/30 rounded-lg text-red-200 hover:text-red-100 transition-colors text-sm"
+                >
+                  Hide
+                </button>
+              </div>
+              <p className="text-purple-200 text-sm">
+                Ask follow-up questions about "<strong>{selectedTopic}</strong>" or explore related topics using voice commands.
+              </p>
+            </div>
             <VoiceTopicSearch
-              onTopicSelect={handleVoiceTopicSelect}
-              onQuestionSubmit={handleVoiceQuestion}
+              onTopicSelect={(topic) => handleVoiceTopicSelect(topic, true)}
+              onQuestionSubmit={(question) => handleVoiceQuestion(question, true)}
               availableTopics={allTopics}
             />
           </div>
@@ -347,7 +366,16 @@ export default function AITutorInterface({ studentId, organizationId, onTopicSel
                 </button>
 
                 <button
-                  onClick={() => setShowVoiceSearch(true)}
+                  onClick={() => {
+                    setShowVoiceSearch(true);
+                    // Scroll to voice search for better UX
+                    setTimeout(() => {
+                      const voiceSearchElement = document.querySelector('[data-voice-search]');
+                      if (voiceSearchElement) {
+                        voiceSearchElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }
+                    }, 100);
+                  }}
                   className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 rounded-lg font-bold transition-all duration-300"
                 >
                   <Mic size={20} />

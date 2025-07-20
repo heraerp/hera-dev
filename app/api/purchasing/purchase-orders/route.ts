@@ -98,6 +98,12 @@ export async function GET(request: NextRequest) {
       query = query.contains('procurement_metadata', { supplier_id: supplierId });
     }
 
+    // For receiving, only show approved/auto_approved POs that are not fully received
+    const forReceiving = searchParams.get('forReceiving');
+    if (forReceiving === 'true') {
+      query = query.in('workflow_status', ['approved', 'auto_approved']);
+    }
+
     const { data: transactions, error, count } = await query;
 
     if (error) {

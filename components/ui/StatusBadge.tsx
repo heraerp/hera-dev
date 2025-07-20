@@ -64,6 +64,23 @@ const statusConfig: Record<string, { label: string; classes: string }> = {
   partial: {
     label: 'Partial',
     classes: 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-800'
+  },
+  // Goods receiving specific statuses
+  received: {
+    label: 'Received',
+    classes: 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-800'
+  },
+  inspected: {
+    label: 'Inspected',
+    classes: 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800'
+  },
+  completed: {
+    label: 'Completed',
+    classes: 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-800'
+  },
+  disputed: {
+    label: 'Disputed',
+    classes: 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 border-red-200 dark:border-red-800'
   }
 };
 

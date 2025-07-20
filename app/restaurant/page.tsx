@@ -26,7 +26,8 @@ import {
   Leaf,
   BarChart3,
   Eye,
-  CreditCard
+  CreditCard,
+  Truck
 } from 'lucide-react';
 
 const RestaurantMainPage = () => {
@@ -144,6 +145,15 @@ const RestaurantMainPage = () => {
       description: "Manage delivery orders and track drivers",
       link: "/restaurant/delivery",
       demo: true
+    },
+    {
+      icon: Truck,
+      emoji: "📥",
+      title: "Goods Receiving",
+      description: "AI-powered receiving with supplier analytics and quality tracking",
+      link: "/restaurant/receiving",
+      demo: true,
+      status: "NEW"
     }
   ];
 

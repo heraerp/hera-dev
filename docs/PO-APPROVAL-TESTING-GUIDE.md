@@ -151,9 +151,36 @@ This guide provides step-by-step instructions for manually testing Mario's Resta
 
 ---
 
-### 4. Dashboard and Metrics
+### 4. Security & Organization Isolation
 
-#### Test Case 4.1: Metrics Accuracy
+#### Test Case 4.1: Organization Isolation in Approvals
+1. Create POs in Organization A
+2. Attempt to access approval dashboard for Organization B
+3. **Expected Result**: No POs from Organization A visible in Organization B
+
+#### Test Case 4.2: Supplier Reference Validation
+1. Create supplier in Organization A
+2. Attempt to create PO in Organization B referencing supplier from A
+3. **Expected Result**: Validation error or supplier not found
+
+#### Test Case 4.3: Cross-Organization Approval Attempts
+1. Try to approve POs from different organization
+2. **Expected Result**: Access denied or PO not found
+
+#### Test Case 4.4: Entity Reference Security Test
+1. Test supplier validation:
+   ```sql
+   SELECT validate_organization_isolation(
+     'supplier-uuid'::UUID,
+     'current-org-uuid'::UUID,
+     TRUE  -- Allow client sharing for suppliers
+   );
+   ```
+2. **Expected Result**: TRUE for same org/client, exception for different clients
+
+### 5. Dashboard and Metrics
+
+#### Test Case 5.1: Metrics Accuracy
 1. Check approval dashboard metrics:
    - **Pending Approval**: Count of pending POs
    - **Approved Today**: Today's approvals

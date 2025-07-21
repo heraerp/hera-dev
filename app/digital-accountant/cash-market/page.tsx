@@ -15,16 +15,48 @@ import BulkReceiptProcessor from '@/components/digital-accountant/BulkReceiptPro
 import { LoadingSkeletons } from '@/components/ui/LoadingSkeletons';
 import { AppNavbar } from '@/components/ui/AppNavbar';
 import DynamicSidebar from '@/components/ui/DynamicSidebar';
+import { OrganizationProvider, useOrganization } from '@/contexts/OrganizationContext';
 
-export default function CashMarketPage() {
+function CashMarketContent() {
+  const { user, organization, logout, isAuthenticated, loading } = useOrganization();
+
   const handleLogout = () => {
-    // Handle logout logic here
+    logout();
+    // In production, redirect to login page
     window.location.href = '/auth/login';
   };
 
   const handleReceiptCaptured = (receipt: any) => {
     console.log('Receipt captured:', receipt)
     // In real app, this would send to the processing pipeline
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Authentication Required</h1>
+          <p className="text-gray-600 dark:text-gray-400 mb-4">Please log in to access the cash market system.</p>
+          <button
+            onClick={() => window.location.href = '/auth/login'}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+          >
+            Go to Login
+          </button>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -37,9 +69,9 @@ export default function CashMarketPage() {
         {/* Navigation Bar */}
         <AppNavbar 
           user={{
-            name: "Mario Rossi",
-            email: "mario@mariosrestaurant.com",
-            role: "Restaurant Manager"
+            name: user?.name || 'Unknown User',
+            email: user?.email || 'unknown@example.com',
+            role: user?.role || 'User'
           }}
           onLogout={handleLogout}
         />
@@ -54,7 +86,7 @@ export default function CashMarketPage() {
                     Cash Market Management
                   </h1>
                   <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                    Handle cash purchases from fish markets, meat vendors, produce stands, and other suppliers
+                    {organization?.name} - Handle cash purchases from fish markets, meat vendors, produce stands, and other suppliers
                   </p>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -188,5 +220,13 @@ export default function CashMarketPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function CashMarketPage() {
+  return (
+    <OrganizationProvider>
+      <CashMarketContent />
+    </OrganizationProvider>
   )
 }

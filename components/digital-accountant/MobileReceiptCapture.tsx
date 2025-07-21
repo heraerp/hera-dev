@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState, useRef, useCallback } from 'react'
-import { Camera, Upload, Check, X, RefreshCw, MapPin, Clock } from 'lucide-react'
+import { Camera, Upload, Check, X, RefreshCw, MapPin, Clock, AlertCircle } from 'lucide-react'
+import { useCashMarketAPI } from '@/hooks/useCashMarketAPI'
 
 interface CapturedReceipt {
   id: string
@@ -26,9 +27,13 @@ export default function MobileReceiptCapture({
   const [capturedImage, setCapturedImage] = useState<string | null>(null)
   const [processing, setProcessing] = useState(false)
   const [location, setLocation] = useState<string>('')
+  const [uploadError, setUploadError] = useState<string | null>(null)
+  const [processingResult, setProcessingResult] = useState<any | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  
+  const { receipts, loading, error, clearError } = useCashMarketAPI()
 
   // Get user location for market tracking
   const getCurrentLocation = useCallback(() => {
@@ -103,45 +108,71 @@ export default function MobileReceiptCapture({
     }
   }, [getCurrentLocation])
 
-  // Process captured receipt with AI
+  // Process captured receipt with real AI API
   const processReceipt = useCallback(async () => {
     if (!capturedImage) return
     
     setProcessing(true)
+    setUploadError(null)
+    setProcessingResult(null)
     
-    // Simulate AI processing
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    // Mock AI extraction results
-    const receipt: CapturedReceipt = {
-      id: `receipt-${Date.now()}`,
-      image: capturedImage,
-      timestamp: new Date(),
-      location,
-      vendor: 'Fresh Fish Market',
-      amount: '$45.80',
-      confidence: 0.87
+    try {
+      // Step 1: Upload receipt to our API
+      const receiptResponse = await receipts.create({
+        filename: `receipt_${Date.now()}.jpg`,
+        imageUrl: capturedImage, // In production, upload to cloud storage first
+        uploadedBy: 'Mario Rossi',
+        processingStatus: 'processing',
+        notes: `Captured at ${location} on ${new Date().toLocaleString()}`
+      })
+      
+      if (receiptResponse.success) {
+        // Step 2: Process with AI
+        const processResponse = await receipts.process(receiptResponse.data.id)
+        
+        if (processResponse.success) {
+          setProcessingResult(processResponse.data)
+          
+          // Create mock receipt object for backward compatibility
+          const receipt: CapturedReceipt = {
+            id: receiptResponse.data.id,
+            image: capturedImage,
+            timestamp: new Date(),
+            location,
+            vendor: processResponse.data.aiResults?.vendor || 'Unknown Vendor',
+            amount: processResponse.data.aiResults?.amount ? `$${processResponse.data.aiResults.amount}` : 'Unknown',
+            confidence: processResponse.data.confidence || 0
+          }
+          
+          onReceiptCaptured(receipt)
+        } else {
+          throw new Error('AI processing failed')
+        }
+      } else {
+        throw new Error('Receipt upload failed')
+      }
+    } catch (error) {
+      console.error('Receipt processing error:', error)
+      setUploadError(error instanceof Error ? error.message : 'Processing failed')
+    } finally {
+      setProcessing(false)
     }
-    
-    setProcessing(false)
-    onReceiptCaptured(receipt)
-    
-    // Reset for next capture
-    setCapturedImage(null)
-    setLocation('')
-  }, [capturedImage, location, onReceiptCaptured])
+  }, [capturedImage, location, onReceiptCaptured, receipts])
 
   // Cancel capture
   const cancelCapture = useCallback(() => {
     setCapturedImage(null)
     setLocation('')
+    setUploadError(null)
+    setProcessingResult(null)
+    clearError()
     
     if (isCapturing && videoRef.current) {
       const stream = videoRef.current.srcObject as MediaStream
       stream?.getTracks().forEach(track => track.stop())
       setIsCapturing(false)
     }
-  }, [isCapturing])
+  }, [isCapturing, clearError])
 
   return (
     <div className={`bg-white rounded-lg shadow-lg ${className}`}>
@@ -198,13 +229,59 @@ export default function MobileReceiptCapture({
               </div>
             )}
             
+            {/* Error Display */}
+            {uploadError && (
+              <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start">
+                <AlertCircle className="w-5 h-5 text-red-600 mt-0.5 mr-2 flex-shrink-0" />
+                <div>
+                  <p className="text-red-800 font-medium">Processing Error</p>
+                  <p className="text-red-600 text-sm">{uploadError}</p>
+                </div>
+              </div>
+            )}
+            
+            {/* Processing Result Display */}
+            {processingResult && (
+              <div className="mt-3 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div className="flex items-center mb-2">
+                  <Check className="w-5 h-5 text-green-600 mr-2" />
+                  <span className="font-medium text-green-800">Receipt Processed Successfully!</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div>
+                    <span className="text-gray-600">Vendor:</span>
+                    <span className="ml-2 font-medium">{processingResult.aiResults?.vendor || 'Unknown'}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Amount:</span>
+                    <span className="ml-2 font-medium">${processingResult.aiResults?.amount || '0.00'}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Confidence:</span>
+                    <span className="ml-2 font-medium">{((processingResult.confidence || 0) * 100).toFixed(0)}%</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Status:</span>
+                    <span className="ml-2 font-medium capitalize">{processingResult.processingStatus}</span>
+                  </div>
+                </div>
+                {processingResult.autoCreatedTransaction && (
+                  <div className="mt-2 p-2 bg-blue-50 rounded text-sm">
+                    <span className="text-blue-800 font-medium">✨ Transaction Auto-Created!</span>
+                    <br />
+                    <span className="text-blue-600">#{processingResult.autoCreatedTransaction.number}</span>
+                  </div>
+                )}
+              </div>
+            )}
+            
             <div className="flex gap-3 mt-4">
               <button
                 onClick={processReceipt}
-                disabled={processing}
+                disabled={processing || loading}
                 className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white py-2 px-4 rounded-lg flex items-center justify-center"
               >
-                {processing ? (
+                {processing || loading ? (
                   <>
                     <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
                     Processing...
@@ -219,7 +296,7 @@ export default function MobileReceiptCapture({
               
               <button
                 onClick={cancelCapture}
-                disabled={processing}
+                disabled={processing || loading}
                 className="bg-gray-600 hover:bg-gray-700 disabled:bg-gray-400 text-white py-2 px-4 rounded-lg"
               >
                 Cancel

@@ -1,35 +1,10 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
-import { Store, MapPin, Phone, Star, TrendingUp, AlertCircle, Check, X, Plus, Search, Filter } from 'lucide-react'
+import React, { useState, useMemo, useEffect } from 'react'
+import { Store, MapPin, Phone, Star, TrendingUp, AlertCircle, Check, X, Plus, Search, Filter, Loader2 } from 'lucide-react'
+import { useCashMarketAPI, type CashMarketVendor } from '@/hooks/useCashMarketAPI'
 
-interface MarketVendor {
-  id: string
-  name: string
-  category: string
-  location: string
-  contact?: {
-    phone?: string
-    email?: string
-    address?: string
-  }
-  rating: number
-  totalTransactions: number
-  totalSpent: number
-  averageOrder: number
-  reliability: 'high' | 'medium' | 'low'
-  priceRange: 'budget' | 'moderate' | 'premium'
-  specialties: string[]
-  lastTransaction: Date
-  paymentTerms: string
-  status: 'active' | 'inactive' | 'pending_verification'
-  notes?: string
-  aiValidation?: {
-    confidence: number
-    issues: string[]
-    verified: boolean
-  }
-}
+// Using CashMarketVendor from the API hook
 
 interface MarketVendorManagerProps {
   className?: string
@@ -40,155 +15,94 @@ export default function MarketVendorManager({ className = '' }: MarketVendorMana
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedVendor, setSelectedVendor] = useState<string | null>(null)
   const [showAddVendor, setShowAddVendor] = useState(false)
+  const [vendors, setVendors] = useState<CashMarketVendor[]>([])
+  const [newVendor, setNewVendor] = useState({
+    name: '',
+    category: '',
+    location: '',
+    contact: { phone: '', email: '', address: '' },
+    priceRange: 'moderate' as const,
+    specialties: [] as string[],
+    paymentTerms: 'Cash on delivery',
+    notes: ''
+  })
 
-  // Mock vendor data
-  const mockVendors: MarketVendor[] = [
-    {
-      id: 'vendor-001',
-      name: 'Fresh Fish Market',
-      category: 'Seafood',
-      location: 'Mushroom Kingdom Fish District',
-      contact: {
-        phone: '(555) 123-4567',
-        address: '123 Harbor Street'
-      },
-      rating: 4.8,
-      totalTransactions: 45,
-      totalSpent: 2340.80,
-      averageOrder: 52.02,
-      reliability: 'high',
-      priceRange: 'moderate',
-      specialties: ['Fresh Fish', 'Shellfish', 'Seasonal Catch'],
-      lastTransaction: new Date('2024-01-20'),
-      paymentTerms: 'Cash on delivery',
-      status: 'active',
-      notes: 'Best quality fish in the kingdom. Always fresh catches.',
-      aiValidation: {
-        confidence: 0.96,
-        issues: [],
-        verified: true
-      }
-    },
-    {
-      id: 'vendor-002',
-      name: 'Koopa Meat Co.',
-      category: 'Meat',
-      location: 'Central Meat Market',
-      contact: {
-        phone: '(555) 234-5678',
-        address: '456 Butcher Lane'
-      },
-      rating: 4.5,
-      totalTransactions: 32,
-      totalSpent: 1890.45,
-      averageOrder: 59.08,
-      reliability: 'high',
-      priceRange: 'premium',
-      specialties: ['Prime Beef', 'Organic Poultry', 'Specialty Cuts'],
-      lastTransaction: new Date('2024-01-20'),
-      paymentTerms: 'Cash only',
-      status: 'active',
-      aiValidation: {
-        confidence: 0.91,
-        issues: [],
-        verified: true
-      }
-    },
-    {
-      id: 'vendor-003',
-      name: 'Yoshi Produce Farm',
-      category: 'Produce',
-      location: 'Organic Farmers Market',
-      contact: {
-        phone: '(555) 345-6789',
-        email: 'yoshi@producefarm.com'
-      },
-      rating: 4.9,
-      totalTransactions: 67,
-      totalSpent: 1234.56,
-      averageOrder: 18.43,
-      reliability: 'high',
-      priceRange: 'moderate',
-      specialties: ['Organic Vegetables', 'Fresh Herbs', 'Seasonal Fruits'],
-      lastTransaction: new Date('2024-01-19'),
-      paymentTerms: 'Cash on delivery',
-      status: 'active',
-      notes: 'Excellent organic produce. Always on time.',
-      aiValidation: {
-        confidence: 0.98,
-        issues: [],
-        verified: true
-      }
-    },
-    {
-      id: 'vendor-004',
-      name: 'Bob-omb\'s Feed & Supply',
-      category: 'Specialty',
-      location: 'Industrial District',
-      contact: {
-        phone: '(555) 456-7890'
-      },
-      rating: 3.2,
-      totalTransactions: 3,
-      totalSpent: 547.50,
-      averageOrder: 182.50,
-      reliability: 'medium',
-      priceRange: 'budget',
-      specialties: ['Emergency Supplies', 'Bulk Items'],
-      lastTransaction: new Date('2024-01-17'),
-      paymentTerms: 'Cash only',
-      status: 'pending_verification',
-      notes: 'New vendor - needs verification',
-      aiValidation: {
-        confidence: 0.67,
-        issues: ['Limited transaction history', 'Inconsistent pricing'],
-        verified: false
-      }
-    },
-    {
-      id: 'vendor-005',
-      name: 'Toad\'s Spice Emporium',
-      category: 'Spices',
-      location: 'Spice Market District',
-      contact: {
-        phone: '(555) 567-8901',
-        email: 'toad@spiceemporium.com'
-      },
-      rating: 4.6,
-      totalTransactions: 28,
-      totalSpent: 892.34,
-      averageOrder: 31.87,
-      reliability: 'high',
-      priceRange: 'moderate',
-      specialties: ['Rare Spices', 'Herb Blends', 'International Seasonings'],
-      lastTransaction: new Date('2024-01-18'),
-      paymentTerms: 'Cash on delivery',
-      status: 'active',
-      aiValidation: {
-        confidence: 0.93,
-        issues: [],
-        verified: true
-      }
+  const { vendors: vendorAPI, loading, error, clearError } = useCashMarketAPI()
+
+  // Load vendors on component mount
+  useEffect(() => {
+    loadVendors()
+  }, [])
+
+  const loadVendors = async () => {
+    try {
+      const response = await vendorAPI.list({ category: selectedCategory !== 'all' ? selectedCategory : undefined, search: searchTerm })
+      setVendors(response.data)
+    } catch (err) {
+      console.error('Failed to load vendors:', err)
     }
-  ]
+  }
+
+  // Reload when filters change
+  useEffect(() => {
+    loadVendors()
+  }, [selectedCategory, searchTerm])
+
+  const handleAddVendor = async () => {
+    if (!newVendor.name || !newVendor.category || !newVendor.location) {
+      alert('Please fill in all required fields')
+      return
+    }
+
+    try {
+      await vendorAPI.create({
+        name: newVendor.name,
+        category: newVendor.category,
+        location: newVendor.location,
+        contact: newVendor.contact,
+        priceRange: newVendor.priceRange,
+        specialties: newVendor.specialties,
+        paymentTerms: newVendor.paymentTerms,
+        notes: newVendor.notes
+      })
+      
+      // Reset form and reload vendors
+      setNewVendor({
+        name: '',
+        category: '',
+        location: '',
+        contact: { phone: '', email: '', address: '' },
+        priceRange: 'moderate',
+        specialties: [],
+        paymentTerms: 'Cash on delivery',
+        notes: ''
+      })
+      setShowAddVendor(false)
+      loadVendors()
+    } catch (err) {
+      console.error('Failed to create vendor:', err)
+    }
+  }
+
+  // Mock vendors are removed - using real API data in 'vendors' state
 
   // Filter vendors based on search and category
   const filteredVendors = useMemo(() => {
-    return mockVendors.filter(vendor => {
+    return vendors.filter(vendor => {
       const matchesSearch = vendor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          vendor.specialties.some(s => s.toLowerCase().includes(searchTerm.toLowerCase()))
+                          (vendor.specialties || []).some(s => s.toLowerCase().includes(searchTerm.toLowerCase()))
       const matchesCategory = selectedCategory === 'all' || vendor.category.toLowerCase() === selectedCategory.toLowerCase()
       return matchesSearch && matchesCategory
     })
-  }, [mockVendors, searchTerm, selectedCategory])
+  }, [vendors, searchTerm, selectedCategory])
 
   const categories = useMemo(() => {
-    const cats = ['all', ...new Set(mockVendors.map(v => v.category))]
+    const cats = ['all', ...new Set(vendors.map(v => v.category))]
     return cats
-  }, [mockVendors])
+  }, [vendors])
 
   const selectedVendorData = selectedVendor 
-    ? mockVendors.find(v => v.id === selectedVendor)
+    ? vendors.find(v => v.id === selectedVendor)
     : null
 
   const getReliabilityColor = (reliability: string) => {
@@ -239,6 +153,24 @@ export default function MarketVendorManager({ className = '' }: MarketVendorMana
           </button>
         </div>
 
+        {/* Error Display */}
+        {error && (
+          <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <AlertCircle className="w-5 h-5 text-red-600 mr-2" />
+                <span className="text-red-800">{error}</span>
+              </div>
+              <button
+                onClick={clearError}
+                className="text-red-600 hover:text-red-800"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Search and Filter */}
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="flex-1 relative">
@@ -268,7 +200,16 @@ export default function MarketVendorManager({ className = '' }: MarketVendorMana
           </div>
         </div>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="flex items-center justify-center py-8">
+            <Loader2 className="w-6 h-6 text-blue-600 animate-spin mr-2" />
+            <span className="text-gray-600">Loading vendors...</span>
+          </div>
+        )}
+
         {/* Vendor List and Detail View */}
+        {!loading && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Vendor List */}
           <div>
@@ -361,8 +302,8 @@ export default function MarketVendorManager({ className = '' }: MarketVendorMana
                   <div>
                     <label className="text-sm font-medium text-gray-700">Rating</label>
                     <div className="flex items-center">
-                      {getRatingStars(selectedVendorData.rating)}
-                      <span className="ml-2 text-sm">{selectedVendorData.rating.toFixed(1)}</span>
+                      {getRatingStars(selectedVendorData.rating || 0)}
+                      <span className="ml-2 text-sm">{(selectedVendorData.rating || 0).toFixed(1)}</span>
                     </div>
                   </div>
                 </div>
@@ -394,19 +335,19 @@ export default function MarketVendorManager({ className = '' }: MarketVendorMana
                   <div className="mt-2 grid grid-cols-2 gap-4">
                     <div className="bg-gray-50 p-3 rounded">
                       <p className="text-sm text-gray-600">Total Spent</p>
-                      <p className="font-semibold">${selectedVendorData.totalSpent.toFixed(2)}</p>
+                      <p className="font-semibold">${(selectedVendorData.totalSpent || 0).toFixed(2)}</p>
                     </div>
                     <div className="bg-gray-50 p-3 rounded">
                       <p className="text-sm text-gray-600">Transactions</p>
-                      <p className="font-semibold">{selectedVendorData.totalTransactions}</p>
+                      <p className="font-semibold">{selectedVendorData.totalTransactions || 0}</p>
                     </div>
                     <div className="bg-gray-50 p-3 rounded">
                       <p className="text-sm text-gray-600">Average Order</p>
-                      <p className="font-semibold">${selectedVendorData.averageOrder.toFixed(2)}</p>
+                      <p className="font-semibold">${(selectedVendorData.averageOrder || 0).toFixed(2)}</p>
                     </div>
                     <div className="bg-gray-50 p-3 rounded">
                       <p className="text-sm text-gray-600">Last Order</p>
-                      <p className="font-semibold">{selectedVendorData.lastTransaction.toLocaleDateString()}</p>
+                      <p className="font-semibold">{selectedVendorData.lastTransaction ? new Date(selectedVendorData.lastTransaction).toLocaleDateString() : 'No orders yet'}</p>
                     </div>
                   </div>
                 </div>
@@ -415,7 +356,7 @@ export default function MarketVendorManager({ className = '' }: MarketVendorMana
                 <div>
                   <label className="text-sm font-medium text-gray-700">Specialties</label>
                   <div className="mt-2 flex flex-wrap gap-2">
-                    {selectedVendorData.specialties.map((specialty, index) => (
+                    {(selectedVendorData.specialties || []).map((specialty, index) => (
                       <span
                         key={index}
                         className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
@@ -429,7 +370,7 @@ export default function MarketVendorManager({ className = '' }: MarketVendorMana
                 {/* Payment Terms */}
                 <div>
                   <label className="text-sm font-medium text-gray-700">Payment Terms</label>
-                  <p className="text-gray-900">{selectedVendorData.paymentTerms}</p>
+                  <p className="text-gray-900">{selectedVendorData.paymentTerms || 'Not specified'}</p>
                 </div>
 
                 {/* AI Validation */}
@@ -485,6 +426,111 @@ export default function MarketVendorManager({ className = '' }: MarketVendorMana
             )}
           </div>
         </div>
+        )}
+
+        {/* Add Vendor Modal */}
+        {showAddVendor && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold">Add New Vendor</h3>
+                <button
+                  onClick={() => setShowAddVendor(false)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                  <input
+                    type="text"
+                    value={newVendor.name}
+                    onChange={(e) => setNewVendor(prev => ({ ...prev, name: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Vendor name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
+                  <input
+                    type="text"
+                    value={newVendor.category}
+                    onChange={(e) => setNewVendor(prev => ({ ...prev, category: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="e.g., Seafood, Meat, Produce"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Location *</label>
+                  <input
+                    type="text"
+                    value={newVendor.location}
+                    onChange={(e) => setNewVendor(prev => ({ ...prev, location: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Market location"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                  <input
+                    type="text"
+                    value={newVendor.contact.phone}
+                    onChange={(e) => setNewVendor(prev => ({ ...prev, contact: { ...prev.contact, phone: e.target.value } }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Phone number"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+                  <select
+                    value={newVendor.priceRange}
+                    onChange={(e) => setNewVendor(prev => ({ ...prev, priceRange: e.target.value as 'budget' | 'moderate' | 'premium' }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="budget">Budget</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="premium">Premium</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                  <textarea
+                    value={newVendor.notes}
+                    onChange={(e) => setNewVendor(prev => ({ ...prev, notes: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    rows={3}
+                    placeholder="Additional notes"
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-end gap-3 mt-6">
+                <button
+                  onClick={() => setShowAddVendor(false)}
+                  className="px-4 py-2 text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleAddVendor}
+                  disabled={loading}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg disabled:opacity-50 flex items-center"
+                >
+                  {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                  Add Vendor
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

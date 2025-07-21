@@ -15,7 +15,7 @@ export default function PurchaseOrderApprovalsPage() {
 
   useEffect(() => {
     // In a real app, get this from auth context or session
-    setOrganizationId('00000000-0000-0000-0000-000000000001'); // Demo org ID
+    setOrganizationId('123e4567-e89b-12d3-a456-426614174000'); // Mario's Restaurant ID
   }, []);
 
   if (!organizationId) {

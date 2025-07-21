@@ -232,13 +232,17 @@ export async function POST(request: NextRequest) {
 // GET /api/purchasing/purchase-orders/approve - Get pending approvals
 export async function GET(request: NextRequest) {
   try {
+    console.log('🚀 Approval API called');
     const supabase = getAdminClient();
     const { searchParams } = new URL(request.url);
     const organizationId = searchParams.get('organizationId');
     const approverId = searchParams.get('approverId');
     const status = searchParams.get('status') || 'pending_approval';
+    
+    console.log('📊 API Parameters:', { organizationId, approverId, status });
 
     if (!organizationId) {
+      console.log('❌ Missing organizationId');
       return NextResponse.json(
         { error: 'organizationId is required' },
         { status: 400 }
@@ -260,12 +264,14 @@ export async function GET(request: NextRequest) {
     const { data: pendingPOs, error } = await query;
 
     if (error) {
-      console.error('Error fetching pending POs:', error);
+      console.error('❌ Error fetching pending POs:', error);
       return NextResponse.json(
         { error: 'Failed to fetch pending purchase orders' },
         { status: 500 }
       );
     }
+    
+    console.log(`✅ Found ${pendingPOs?.length || 0} POs for org ${organizationId}`);
 
     // Enrich with approval workflow data
     const enrichedPOs = (pendingPOs || []).map(po => {

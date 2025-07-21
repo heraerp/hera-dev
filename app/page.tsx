@@ -1,600 +1,688 @@
-"use client"
+'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Play, Check, ArrowRight, Sparkles, Zap, Heart, Globe, Shield, Rocket } from 'lucide-react';
-import { AuthRedirect } from '@/components/auth-redirect';
-import UniversalCrudService from '@/lib/services/universalCrudService';
+import { motion } from 'framer-motion';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { 
+  Users, 
+  Star,
+  CheckCircle,
+  ArrowRight,
+  Brain,
+  Zap,
+  Phone,
+  Calendar,
+  Award,
+  Shield,
+  ChefHat,
+  DollarSign,
+  TrendingUp,
+  Clock,
+  Building2,
+  Handshake,
+  Target,
+  Crown,
+  AlertTriangle,
+  Timer,
+  UserCheck,
+  BookOpen,
+  Lightbulb,
+  Calculator,
+  FileText,
+  TrendingDown,
+  PieChart,
+  BarChart,
+  Lock,
+  Eye,
+  UserMinus,
+  Banknote,
+  FileCheck,
+  AlertCircle
+} from 'lucide-react';
 
-const HERALandingPage = () => {
-  const [user, setUser] = useState<any>(null);
-  const [authLoading, setAuthLoading] = useState(true);
+// Beta Partnership Application Form
+interface BetaApplicationData {
+  restaurantName: string;
+  ownerName: string;
+  email: string;
+  phone: string;
+  locations: number;
+  biggestChallenge: string;
+  currentSystems: string;
+  timeline: string;
+  scalingPlans: string;
+  accountantPreference: string;
+}
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
-        setUser(user);
-      } catch (error) {
-        console.warn('Auth check error:', error);
-      } finally {
-        setAuthLoading(false);
-      }
+export default function HeraBetaLanding() {
+  const [betaApplication, setBetaApplication] = useState<BetaApplicationData>({
+    restaurantName: '',
+    ownerName: '',
+    email: '',
+    phone: '',
+    locations: 1,
+    biggestChallenge: '',
+    currentSystems: '',
+    timeline: '',
+    scalingPlans: '',
+    accountantPreference: ''
+  });
+  
+  const [spotsRemaining, setSpotsRemaining] = useState(27); // Scarcity indicator
+  const [isApplicationSubmitted, setIsApplicationSubmitted] = useState(false);
+  const [showLongForm, setShowLongForm] = useState(false);
+
+  // Countdown for founder pricing
+  const [timeLeft, setTimeLeft] = useState({
+    days: 14,
+    hours: 7,
+    minutes: 23
+  });
+
+  // Multi-location savings calculator
+  const calculateSavings = (locations: number) => {
+    const baseMonthly = 2400; // Per location monthly savings
+    const scaleBonus = locations > 1 ? locations * 300 : 0; // Additional savings from scale
+    const totalMonthlySavings = (baseMonthly * locations) + scaleBonus;
+    const yearlyGroupPurchasing = locations > 2 ? locations * 1200 : 0; // Group purchasing power
+    
+    return {
+      monthly: totalMonthlySavings,
+      yearly: totalMonthlySavings * 12 + yearlyGroupPurchasing,
+      setupValue: 2500 * locations, // Value of free setup
+      migrationValue: 3500 * locations // Value of free data migration
     };
+  };
 
-    checkAuth();
-  }, []);
+  const savings = calculateSavings(betaApplication.locations);
 
-  // If user is authenticated, show the auth redirect component
-  if (authLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
+  // Founder pricing comparison
+  const pricingComparison = {
+    founderPrice: 199,
+    standardPrice: 499,
+    enterprisePrice: 899
+  };
 
-  if (user) {
-    return <AuthRedirect />;
-  }
-
-  // Landing page state
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState({});
-  const [currentDemo, setCurrentDemo] = useState(0);
-
-  // Landing page effects
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  const demos = [
-    { type: "Restaurant", time: "2.3s", color: "from-amber-500 to-orange-500" },
-    { type: "Law Firm", time: "1.8s", color: "from-blue-500 to-indigo-500" },
-    { type: "Medical Clinic", time: "2.1s", color: "from-emerald-500 to-green-500" },
-    { type: "Architecture Firm", time: "1.9s", color: "from-violet-500 to-purple-500" }
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentDemo((prev) => (prev + 1) % demos.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [demos.length]);
-
-  const testimonials = [
+  // Testimonials focused on multi-location challenges
+  const multiLocationTestimonials = [
     {
-      quote: "HERA understood my dog grooming business better than software costing 100x more.",
-      author: "Sarah Chen",
-      company: "Pawsome Grooming",
-      result: "40% more bookings, 60% less admin time"
+      name: "Maria Santos",
+      restaurant: "Santos Restaurant Group",
+      locations: 4,
+      quote: "Managing 4 locations was chaos. Different systems, inconsistent reporting, training nightmares. HERA unified everything.",
+      challenge: "Inconsistent operations across locations",
+      result: "Standardized all locations in 2 weeks"
     },
     {
-      quote: "Built our entire architecture firm's system during lunch break.",
-      author: "Marcus Rodriguez", 
-      company: "Rodriguez & Associates",
-      result: "$50K saved, 3x faster delivery"
+      name: "David Kim", 
+      restaurant: "Seoul Kitchen Chain",
+      locations: 7,
+      quote: "Our investors wanted consolidated reporting. HERA gave us real-time visibility across all 7 locations.",
+      challenge: "Investor reporting complexity",
+      result: "Real-time multi-location dashboard"
     },
     {
-      quote: "It's like having a CTO who actually understands restaurants.",
-      author: "Kim Patel",
-      company: "Spice Route Restaurants",
-      result: "25% cost reduction, zero stockouts"
+      name: "Anthony Ricci",
+      restaurant: "Ricci's Pizza Empire",
+      locations: 12,
+      quote: "Staff training used to take weeks per location. Now it's consistent everywhere thanks to HERA's unified system.",
+      challenge: "Training inefficiencies across locations", 
+      result: "Consistent training across all locations"
     }
   ];
 
+  // Handle beta application submission
+  const handleBetaApplication = async () => {
+    if (!betaApplication.email || !betaApplication.restaurantName || !betaApplication.ownerName) {
+      return;
+    }
+
+    // Simulate API call to submit beta application
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setIsApplicationSubmitted(true);
+      setSpotsRemaining(prev => Math.max(0, prev - 1));
+    } catch (error) {
+      console.error('Application submission failed');
+    }
+  };
+
+  // Quick qualification form first, then full application
+  const QuickQualificationForm = () => (
+    <Card className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200">
+      <div className="text-center mb-6">
+        <Badge className="bg-blue-600 text-white px-4 py-2 mb-4">
+          <Crown className="h-4 w-4 mr-2" />
+          Beta Partnership Application
+        </Badge>
+        <h3 className="text-2xl font-bold text-gray-800 mb-2">
+          Apply to Become a Founding Partner
+        </h3>
+        <p className="text-gray-600">
+          Help build the future of restaurant technology • Get exclusive benefits
+        </p>
+      </div>
+
+      <div className="space-y-4">
+        <div className="grid md:grid-cols-2 gap-4">
+          <Input
+            placeholder="Restaurant Name *"
+            value={betaApplication.restaurantName}
+            onChange={(e) => setBetaApplication(prev => ({ ...prev, restaurantName: e.target.value }))}
+            className="border-blue-300 focus:border-blue-500"
+          />
+          <Input
+            placeholder="Owner/Manager Name *"
+            value={betaApplication.ownerName}
+            onChange={(e) => setBetaApplication(prev => ({ ...prev, ownerName: e.target.value }))}
+            className="border-blue-300 focus:border-blue-500"
+          />
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-4">
+          <Input
+            type="email"
+            placeholder="Email Address *"
+            value={betaApplication.email}
+            onChange={(e) => setBetaApplication(prev => ({ ...prev, email: e.target.value }))}
+            className="border-blue-300 focus:border-blue-500"
+          />
+          <Input
+            type="tel"
+            placeholder="Phone Number"
+            value={betaApplication.phone}
+            onChange={(e) => setBetaApplication(prev => ({ ...prev, phone: e.target.value }))}
+            className="border-blue-300 focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            How many restaurant locations do you operate? *
+          </label>
+          <select
+            value={betaApplication.locations}
+            onChange={(e) => setBetaApplication(prev => ({ ...prev, locations: parseInt(e.target.value) }))}
+            className="w-full p-3 border border-blue-300 rounded-lg focus:border-blue-500 focus:outline-none"
+          >
+            <option value={1}>1 location</option>
+            <option value={2}>2 locations</option>
+            <option value={3}>3 locations</option>
+            <option value={4}>4 locations</option>
+            <option value={5}>5 locations</option>
+            <option value={6}>6-10 locations</option>
+            <option value={11}>11+ locations</option>
+          </select>
+        </div>
+
+        {!showLongForm && (
+          <Button
+            onClick={() => setShowLongForm(true)}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-6"
+            size="lg"
+          >
+            <UserCheck className="h-5 w-5 mr-2" />
+            Continue Application
+            <ArrowRight className="h-5 w-5 ml-2" />
+          </Button>
+        )}
+      </div>
+    </Card>
+  );
+
+  // Full partnership application form
+  const FullPartnershipForm = () => (
+    <Card className="p-6 bg-white border-2 border-blue-200 mt-6">
+      <div className="space-y-6">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            What's your biggest operational challenge? *
+          </label>
+          <Textarea
+            placeholder="e.g., Managing inventory across multiple locations, inconsistent staff training, manual reporting..."
+            value={betaApplication.biggestChallenge}
+            onChange={(e) => setBetaApplication(prev => ({ ...prev, biggestChallenge: e.target.value }))}
+            className="border-blue-300 focus:border-blue-500"
+            rows={3}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            What systems are you currently using?
+          </label>
+          <Input
+            placeholder="e.g., Toast POS, QuickBooks, manual inventory sheets..."
+            value={betaApplication.currentSystems}
+            onChange={(e) => setBetaApplication(prev => ({ ...prev, currentSystems: e.target.value }))}
+            className="border-blue-300 focus:border-blue-500"
+          />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              When would you like to start?
+            </label>
+            <select
+              value={betaApplication.timeline}
+              onChange={(e) => setBetaApplication(prev => ({ ...prev, timeline: e.target.value }))}
+              className="w-full p-3 border border-blue-300 rounded-lg focus:border-blue-500 focus:outline-none"
+            >
+              <option value="">Select timeline</option>
+              <option value="immediately">Immediately</option>
+              <option value="1-2weeks">Within 1-2 weeks</option>
+              <option value="1month">Within 1 month</option>
+              <option value="2-3months">2-3 months</option>
+            </select>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Scaling plans?
+            </label>
+            <select
+              value={betaApplication.scalingPlans}
+              onChange={(e) => setBetaApplication(prev => ({ ...prev, scalingPlans: e.target.value }))}
+              className="w-full p-3 border border-blue-300 rounded-lg focus:border-blue-500 focus:outline-none"
+            >
+              <option value="">Select plans</option>
+              <option value="no-expansion">No expansion planned</option>
+              <option value="1-2locations">1-2 new locations this year</option>
+              <option value="3-5locations">3-5 new locations this year</option>
+              <option value="aggressive">Aggressive expansion (5+ locations)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Accounting Support Preference
+          </label>
+          <select
+            value={betaApplication.accountantPreference}
+            onChange={(e) => setBetaApplication(prev => ({ ...prev, accountantPreference: e.target.value }))}
+            className="w-full p-3 border border-blue-300 rounded-lg focus:border-blue-500 focus:outline-none"
+          >
+            <option value="">Select preference</option>
+            <option value="existing-accountant">Work with my existing accountant</option>
+            <option value="hera-network">Choose from HERA's CPA network</option>
+            <option value="need-recommendation">I need help finding a restaurant CPA</option>
+            <option value="have-both">I have an accountant but open to network options</option>
+          </select>
+          <p className="text-xs text-gray-500 mt-2">
+            Either way, you get full accounting support included in your partnership
+          </p>
+        </div>
+
+        <div className="bg-blue-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-blue-800 mb-2">Your Beta Partnership Benefits:</h4>
+          <div className="grid md:grid-cols-2 gap-2 text-sm text-blue-700">
+            <div className="flex items-center">
+              <CheckCircle className="h-4 w-4 mr-2 text-green-600" />
+              No setup charges (${savings.setupValue.toLocaleString()} value)
+            </div>
+            <div className="flex items-center">
+              <CheckCircle className="h-4 w-4 mr-2 text-green-600" />
+              Complete data migration included
+            </div>
+            <div className="flex items-center">
+              <CheckCircle className="h-4 w-4 mr-2 text-green-600" />
+              Direct access to founders
+            </div>
+            <div className="flex items-center">
+              <CheckCircle className="h-4 w-4 mr-2 text-green-600" />
+              Permanent founder pricing ($199/mo vs $499/mo)
+            </div>
+          </div>
+        </div>
+
+        <Button
+          onClick={handleBetaApplication}
+          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg py-6"
+          size="lg"
+          disabled={!betaApplication.restaurantName || !betaApplication.email || !betaApplication.biggestChallenge}
+        >
+          <Handshake className="h-5 w-5 mr-2" />
+          Submit Partnership Application
+          <ArrowRight className="h-5 w-5 ml-2" />
+        </Button>
+      </div>
+    </Card>
+  );
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 text-slate-900 overflow-hidden">
-      {/* Floating cursor effect */}
-      <div 
-        className="fixed w-6 h-6 pointer-events-none z-50 mix-blend-difference"
-        style={{
-          left: mousePosition.x - 12,
-          top: mousePosition.y - 12,
-          background: 'radial-gradient(circle, rgba(59,130,246,0.8) 0%, transparent 70%)',
-          borderRadius: '50%',
-          transition: 'transform 0.1s ease-out'
-        }}
-      />
+    <div className="min-h-screen bg-white">
+      {/* Hero Section - Partnership Opportunity + Scarcity */}
+      <section className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Scarcity Indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-8"
+          >
+            <Badge className="bg-red-600 text-white px-6 py-3 text-lg font-bold shadow-lg">
+              <Timer className="h-5 w-5 mr-2" />
+              Only {spotsRemaining} Beta Partnership Spots Remaining
+            </Badge>
+          </motion.div>
 
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-40 backdrop-blur-xl bg-white/80 border-b border-slate-200/30">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <img 
-              src="/icons/hera-logo.png" 
-              alt="HERA Logo" 
-              className="w-8 h-8 object-contain"
-            />
-            <span className="text-xl font-semibold tracking-tight text-slate-800">HERA</span>
-          </div>
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-slate-600 hover:text-slate-800 transition-colors font-medium">Demo</a>
-            <a href="#" className="text-slate-600 hover:text-slate-800 transition-colors font-medium">Pricing</a>
-            <a href="#" className="text-slate-600 hover:text-slate-800 transition-colors font-medium">Support</a>
-          </div>
-          <a href="/auth/sign-up" className="bg-slate-900 text-white px-6 py-2.5 rounded-xl hover:bg-slate-800 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl font-medium inline-block">
-            Start Building
-          </a>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Floating elements */}
-          <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-32 h-32 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
-          
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-50 to-blue-50 px-4 py-2.5 rounded-full border border-slate-200/50 mb-8 shadow-sm">
-            <Sparkles className="w-4 h-4 text-slate-600" />
-            <span className="text-sm font-semibold text-slate-700 tracking-wide">Any Business. One HERA.</span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-light tracking-tight mb-6 leading-none text-slate-800">
-            Business Software
-            <br />
-            <span className="bg-gradient-to-r from-slate-700 via-slate-600 to-slate-800 bg-clip-text text-transparent font-medium">
-              That Actually Thinks
-            </span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-slate-600 mb-12 font-light leading-relaxed max-w-3xl mx-auto">
-            Stop forcing your business into rigid software. Start with software that molds to your business in minutes, not months.
-          </p>
-
-          {/* Demo Interface */}
-          <div className="relative max-w-2xl mx-auto mb-12">
-            <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-200/50 p-8">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                  <div className="w-3 h-3 bg-amber-400 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                </div>
-                <div className="flex-1 bg-slate-50 rounded-lg px-4 py-2">
-                  <span className="text-sm text-slate-500 font-medium">hera.build</span>
-                </div>
-              </div>
-              
-              <div className="text-left space-y-4">
-                <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-blue-100/70">
-                  <p className="text-slate-700 italic font-medium">
-                    "I run a boutique law firm specializing in intellectual property cases."
-                  </p>
-                </div>
-                
-                <div className="flex items-center justify-center py-4">
-                  <div className="bg-gradient-to-r from-slate-700 to-slate-600 w-8 h-8 rounded-full flex items-center justify-center animate-spin shadow-lg">
-                    <Zap className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    "Complete case management",
-                    "Client billing & time tracking", 
-                    "Document management with AI",
-                    "Court deadline tracking",
-                    "Compliance reporting",
-                    "Financial dashboards"
-                  ].map((feature, i) => (
-                    <div key={i} className="flex items-center space-x-2 bg-emerald-50 px-3 py-2.5 rounded-lg border border-emerald-100/50">
-                      <Check className="w-4 h-4 text-emerald-600" />
-                      <span className="text-sm text-emerald-700 font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="text-center pt-4">
-                  <span className="inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-6 py-3 rounded-xl font-medium shadow-lg">
-                    <Check className="w-5 h-5" />
-                    <span>Ready to use in 3 minutes</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <a href="/auth/sign-up" className="group bg-gradient-to-r from-slate-800 to-slate-700 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center space-x-2">
-              <span>Start Building Your System</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
+          {/* Full-Width Hero Section */}
+          <div className="text-center mb-16">
+            <Badge className="bg-blue-100 text-blue-800 px-4 py-2 text-sm font-medium mb-8">
+              <Crown className="h-4 w-4 mr-2" />
+              Exclusive Beta Partnership Program
+            </Badge>
             
-            <button className="group flex items-center space-x-3 text-slate-600 hover:text-slate-800 transition-colors">
-              <div className="w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center group-hover:shadow-xl transition-shadow border border-slate-200/50">
-                <Play className="w-5 h-5 ml-1 text-slate-600" />
-              </div>
-              <span className="font-semibold">Watch 90-Second Demo</span>
-            </button>
-          </div>
-          
-          <p className="text-sm text-slate-500 mt-6 font-medium">
-            Free forever for small businesses. No credit card required.
-          </p>
-        </div>
-      </section>
+            <h1 className="text-6xl font-bold text-gray-900 leading-tight mb-6">
+              One System.<br />
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Every Operation.
+              </span><br />
+              <span className="text-4xl text-gray-700">Complete Control.</span>
+            </h1>
+            
+            <p className="text-2xl text-gray-800 leading-relaxed mb-4 font-medium max-w-4xl mx-auto">
+              HERA is the world's first <strong className="text-blue-600">Universal Restaurant Operating System</strong> that runs 
+              your entire business from a single, intelligent platform.
+            </p>
 
-      {/* Real-time Demo Carousel */}
-      <section className="py-20 px-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light mb-6 text-white">
-              Watch HERA Build
-              <span className="block bg-gradient-to-r from-slate-300 to-slate-100 bg-clip-text text-transparent">
-                Any Business System
-              </span>
-            </h2>
-            <p className="text-xl text-slate-300 font-light">Live examples building in real-time</p>
+            <p className="text-xl text-gray-700 leading-relaxed max-w-5xl mx-auto mb-8">
+              Imagine managing <strong>inventory, purchasing, staff scheduling, financial reporting, customer orders, 
+              kitchen operations, and analytics</strong> from one unified system that learns your business and 
+              predicts what you need before you need it.
+            </p>
+
+            <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-6 rounded-xl border-l-4 border-amber-400 max-w-4xl mx-auto">
+              <p className="text-lg text-gray-800">
+                <strong className="text-amber-700">The Reality:</strong> Most restaurants juggle 8-15 different systems. 
+                HERA replaces them all with one AI-powered platform that actually talks to itself.
+              </p>
+            </div>
           </div>
 
-          <div className="relative">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {demos.map((demo, index) => (
-                <div 
-                  key={index}
-                  className={`relative overflow-hidden rounded-2xl backdrop-blur-xl border border-white/10 transition-all duration-500 ${
-                    currentDemo === index ? 'scale-105 shadow-2xl' : 'scale-95 opacity-60'
-                  }`}
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${demo.color} opacity-15`}></div>
-                  <div className="relative p-6 text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                      <Globe className="w-8 h-8 text-slate-200" />
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="space-y-6"
+              >
+
+                {/* The Transformation */}
+                <div className="grid md:grid-cols-2 gap-6 mt-8">
+                  <div className="bg-red-50 p-6 rounded-xl border-2 border-red-200">
+                    <h4 className="text-lg font-bold text-red-800 mb-3 flex items-center">
+                      <TrendingDown className="h-5 w-5 mr-2" />
+                      Without HERA (The Chaos)
+                    </h4>
+                    <ul className="text-sm text-red-700 space-y-2">
+                      <li>• POS system that doesn't talk to inventory</li>
+                      <li>• Manual inventory counts and guesswork ordering</li>
+                      <li>• Separate payroll, scheduling, and HR systems</li>
+                      <li>• Spreadsheets for financial reporting</li>
+                      <li>• Multiple logins, constant switching between apps</li>
+                      <li>• Data trapped in silos, no unified insights</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-green-50 p-6 rounded-xl border-2 border-green-200">
+                    <h4 className="text-lg font-bold text-green-800 mb-3 flex items-center">
+                      <TrendingUp className="h-5 w-5 mr-2" />
+                      With HERA (The Solution)
+                    </h4>
+                    <ul className="text-sm text-green-700 space-y-2">
+                      <li>• One login, one dashboard, complete visibility</li>
+                      <li>• AI predicts demand and auto-generates orders</li>
+                      <li>• Integrated staff management with smart scheduling</li>
+                      <li>• Real-time financial reporting and analytics</li>
+                      <li>• Everything connected, talking, and learning</li>
+                      <li>• Your accountant gets clean, organized data</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Powerful Closing Statement */}
+                <div className="bg-gradient-to-r from-blue-900 to-purple-900 p-8 rounded-xl text-white mt-8">
+                  <h3 className="text-2xl font-bold text-center mb-4">
+                    This Is What Restaurant Technology Should Have Been All Along
+                  </h3>
+                  <p className="text-lg text-center text-blue-100 mb-6">
+                    Stop wrestling with disconnected systems. Stop losing money to inefficiency. 
+                    Stop spending hours on tasks that should take minutes.
+                  </p>
+                  <div className="text-center">
+                    <p className="text-xl font-semibold text-yellow-300 mb-2">
+                      HERA learns your restaurant and runs it better than you thought possible.
+                    </p>
+                    <p className="text-lg text-blue-200">
+                      We're inviting 50 forward-thinking operators to help us perfect this vision.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Multi-Location Benefits Highlight */}
+                <div className="bg-white p-8 rounded-xl border-2 border-blue-300 shadow-lg">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                    <Building2 className="h-6 w-6 mr-3 inline text-blue-600" />
+                    Built for Multi-Location Operators
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-base">
+                    <div className="flex items-center">
+                      <CheckCircle className="h-5 w-5 mr-3 text-green-600 flex-shrink-0" />
+                      <span className="text-gray-800 font-medium">Unified dashboard for all locations</span>
                     </div>
-                    <h3 className="text-lg font-semibold mb-2 text-white">{demo.type}</h3>
-                    <div className="text-2xl font-light mb-2 text-slate-200">{demo.time}</div>
-                    <div className="h-1 bg-white/20 rounded-full overflow-hidden">
-                      <div 
-                        className={`h-full bg-white transition-all duration-3000 ${
-                          currentDemo === index ? 'w-full' : 'w-0'
-                        }`}
-                      ></div>
+                    <div className="flex items-center">
+                      <CheckCircle className="h-5 w-5 mr-3 text-green-600 flex-shrink-0" />
+                      <span className="text-gray-800 font-medium">Standardized operations with local flexibility</span>
+                    </div>
+                    <div className="flex items-center">
+                      <CheckCircle className="h-5 w-5 mr-3 text-green-600 flex-shrink-0" />
+                      <span className="text-gray-800 font-medium">Group purchasing power</span>
+                    </div>
+                    <div className="flex items-center">
+                      <CheckCircle className="h-5 w-5 mr-3 text-green-600 flex-shrink-0" />
+                      <span className="text-gray-800 font-medium">Investor-ready consolidated reporting</span>
                     </div>
                   </div>
                 </div>
-              ))}
+
+                {/* Beta Advantages */}
+                <div className="bg-white p-6 rounded-xl border-2 border-green-300 shadow-sm">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    <Target className="h-6 w-6 mr-2 inline text-green-600" />
+                    Why Beta is Better Than "Finished" Products
+                  </h3>
+                  <div className="space-y-3 text-base">
+                    <div className="flex items-center">
+                      <Lightbulb className="h-5 w-5 mr-3 text-yellow-600" />
+                      <span className="text-gray-800"><strong>Your feedback shapes the product</strong> - influence the roadmap</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Users className="h-5 w-5 mr-3 text-blue-600" />
+                      <span className="text-gray-800"><strong>Partner relationship</strong> - not just another customer</span>
+                    </div>
+                    <div className="flex items-center">
+                      <DollarSign className="h-5 w-5 mr-3 text-green-600" />
+                      <span className="text-gray-800"><strong>Founder pricing locked in</strong> - save $300/month forever</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+            
+            {/* Partnership Application Form */}
+            <div className="relative">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                {!isApplicationSubmitted ? (
+                  <>
+                    <QuickQualificationForm />
+                    {showLongForm && <FullPartnershipForm />}
+                  </>
+                ) : (
+                  <Card className="p-8 bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 text-center">
+                    <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                      Application Submitted Successfully!
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      Welcome to the HERA founding partner program! Our team will review your application and contact you within 24 hours.
+                    </p>
+                    <Button
+                      onClick={() => window.location.href = 'tel:+1-800-HERA-BETA'}
+                      className="bg-green-600 hover:bg-green-700"
+                    >
+                      <Phone className="h-4 w-4 mr-2" />
+                      Speak with Founder Now: 1-800-HERA-BETA
+                    </Button>
+                  </Card>
+                )}
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
+      {/* Digital Accountant Freedom Section */}
+      <section className="py-20 bg-gradient-to-br from-emerald-900 via-green-800 to-teal-900 text-white">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light mb-6 text-slate-800">
-              Real Businesses,
-              <span className="block text-slate-600">Real Results</span>
+            <Badge className="bg-emerald-400 text-emerald-900 px-6 py-3 text-lg font-bold mb-6">
+              <Calculator className="h-5 w-5 mr-2" />
+              Revolutionary Digital Accountant
+            </Badge>
+            <h2 className="text-5xl font-bold text-white mb-6">
+              Fire Your In-House Accountant.<br />
+              <span className="text-emerald-300">Keep Your Money Safe.</span>
             </h2>
+            <p className="text-2xl text-green-100 leading-relaxed max-w-4xl mx-auto">
+              HERA's AI Digital Accountant handles all your bookkeeping automatically, with every transaction 
+              <strong className="text-emerald-300"> verified and approved by qualified CPAs</strong> – 
+              giving you accounting perfection without the payroll expense or fraud risk.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="group">
-                <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:scale-105">
-                  <div className="flex items-center space-x-1 mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Heart key={i} className="w-5 h-5 text-amber-400 fill-current" />
-                    ))}
-                  </div>
-                  
-                  <blockquote className="text-lg text-slate-700 mb-6 font-light leading-relaxed">
-                    "{testimonial.quote}"
-                  </blockquote>
-                  
-                  <div className="border-t border-slate-100 pt-6">
-                    <div className="font-semibold text-slate-900">{testimonial.author}</div>
-                    <div className="text-sm text-slate-500 mb-3 font-medium">{testimonial.company}</div>
-                    <div className="text-sm font-semibold text-emerald-600">{testimonial.result}</div>
-                  </div>
-                </div>
+          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center p-8 bg-green-800/50 backdrop-blur rounded-xl border border-green-700"
+            >
+              <UserMinus className="h-16 w-16 text-red-400 mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-white mb-4">No More In-House Accountant</h3>
+              <p className="text-green-100 text-lg leading-relaxed mb-4">
+                Save $60,000-$120,000 annually in salary, benefits, and overhead. 
+                HERA's Digital Accountant works 24/7 without vacation, sick days, or human error.
+              </p>
+              <div className="bg-red-500/20 border border-red-400/30 rounded-lg p-4">
+                <p className="text-red-300 font-semibold">
+                  💰 Average Savings: $90,000/year
+                </p>
               </div>
-            ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-center p-8 bg-green-800/50 backdrop-blur rounded-xl border border-green-700"
+            >
+              <Banknote className="h-16 w-16 text-yellow-400 mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-white mb-4">100% Automated Postings</h3>
+              <p className="text-green-100 text-lg leading-relaxed mb-4">
+                Every sale, purchase, payment, and expense automatically posts to the correct accounts. 
+                No manual entry, no mistakes, no delays. Your books are always current.
+              </p>
+              <div className="bg-yellow-500/20 border border-yellow-400/30 rounded-lg p-4">
+                <p className="text-yellow-300 font-semibold">
+                  ⚡ Real-time posting, zero errors
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-center p-8 bg-green-800/50 backdrop-blur rounded-xl border border-green-700"
+            >
+              <Shield className="h-16 w-16 text-blue-400 mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-white mb-4">CPA-Verified Every Transaction</h3>
+              <p className="text-green-100 text-lg leading-relaxed mb-4">
+                Qualified accountants review and approve all postings. Built-in fraud detection flags 
+                suspicious activity. Your books are bulletproof and audit-ready.
+              </p>
+              <div className="bg-blue-500/20 border border-blue-400/30 rounded-lg p-4">
+                <p className="text-blue-300 font-semibold">
+                  🔒 Fraud protection + compliance
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-20 px-6 bg-gradient-to-br from-slate-50/50 to-blue-50/30">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light mb-6 text-slate-800">
-              Why HERA Changes
-              <span className="block text-slate-600">Everything</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Zap className="w-8 h-8" />,
-                title: "3-Minute Setup",
-                description: "Describe your business. Watch it build itself. Start working immediately.",
-                color: "from-amber-500 to-orange-500"
-              },
-              {
-                icon: <Globe className="w-8 h-8" />,
-                title: "Any Business Type",
-                description: "Restaurants, law firms, hospitals, consulting. HERA adapts to everything.",
-                color: "from-blue-500 to-indigo-500"
-              },
-              {
-                icon: <Shield className="w-8 h-8" />,
-                title: "Enterprise Security",
-                description: "Bank-grade security, SOC 2 compliance, automatic backups included.",
-                color: "from-emerald-500 to-green-500"
-              },
-              {
-                icon: <Rocket className="w-8 h-8" />,
-                title: "Grows With You",
-                description: "Add new services, locations, or workflows instantly. Never outgrow HERA.",
-                color: "from-slate-600 to-slate-700"
-              },
-              {
-                icon: <Heart className="w-8 h-8" />,
-                title: "Zero Learning Curve",
-                description: "Works exactly like you think. No training manuals or confusing interfaces.",
-                color: "from-rose-500 to-pink-500"
-              },
-              {
-                icon: <Sparkles className="w-8 h-8" />,
-                title: "AI-Powered Intelligence",
-                description: "Invisible AI that makes everything smarter, faster, and more efficient.",
-                color: "from-violet-500 to-purple-500"
-              }
-            ].map((feature, index) => (
-              <div key={index} className="group">
-                <div className="bg-white rounded-3xl p-8 shadow-lg border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:scale-105">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4 text-slate-800">{feature.title}</h3>
-                  <p className="text-slate-600 leading-relaxed font-medium">{feature.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light mb-6 text-slate-800">
-              Pricing That
-              <span className="block text-emerald-600">Makes Sense</span>
-            </h2>
-            <p className="text-xl text-slate-600 font-light">No contracts. Cancel anytime. 30-day money-back guarantee.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Free Forever",
-                price: "$0",
-                description: "Perfect for solo entrepreneurs & small teams",
-                features: ["Up to 2 team members", "1,000 transactions/month", "Core business management", "Mobile & web access", "Community support"],
-                cta: "Start Free",
-                popular: false
-              },
-              {
-                name: "Professional",
-                price: "$29",
-                period: "/user/month",
-                description: "Growing businesses that need more power",
-                features: ["Unlimited team members", "Unlimited transactions", "Advanced analytics", "API access & integrations", "Priority support", "Custom workflows"],
-                cta: "Start Professional",
-                popular: true
-              },
-              {
-                name: "Enterprise",
-                price: "Custom",
-                description: "Large organizations & complex requirements",
-                features: ["Multi-location management", "Advanced compliance", "Custom integrations", "Dedicated success manager", "SLA guarantees", "White-label options"],
-                cta: "Book Demo",
-                popular: false
-              }
-            ].map((plan, index) => (
-              <div key={index} className={`relative rounded-3xl p-8 ${plan.popular ? 'bg-gradient-to-br from-slate-800 to-slate-700 text-white scale-105 shadow-2xl border border-slate-600' : 'bg-white shadow-lg border border-slate-200'}`}>
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-400 to-orange-400 text-slate-900 px-6 py-2 rounded-full text-sm font-bold shadow-lg">
-                    Most Popular
-                  </div>
-                )}
-                
-                <div className="text-center mb-8">
-                  <h3 className={`text-xl font-semibold mb-2 ${plan.popular ? 'text-white' : 'text-slate-800'}`}>{plan.name}</h3>
-                  <div className="mb-4">
-                    <span className={`text-4xl font-light ${plan.popular ? 'text-white' : 'text-slate-800'}`}>{plan.price}</span>
-                    {plan.period && <span className={`text-lg ${plan.popular ? 'text-slate-300' : 'text-slate-500'}`}>{plan.period}</span>}
-                  </div>
-                  <p className={`${plan.popular ? 'text-slate-300' : 'text-slate-600'} font-medium`}>{plan.description}</p>
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-center space-x-3">
-                      <Check className={`w-5 h-5 ${plan.popular ? 'text-slate-300' : 'text-emerald-500'}`} />
-                      <span className={`${plan.popular ? 'text-slate-300' : 'text-slate-700'} font-medium`}>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <a href="/auth/sign-up" className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg block text-center ${
-                  plan.popular 
-                    ? 'bg-white text-slate-800 hover:shadow-xl' 
-                    : 'bg-slate-900 text-white hover:bg-slate-800'
-                }`}>
-                  {plan.cta}
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-20 px-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-light mb-6 leading-tight text-white">
-            Ready to Stop Fighting
-            <span className="block bg-gradient-to-r from-slate-300 to-slate-100 bg-clip-text text-transparent">
-              Your Software?
-            </span>
+      {/* Final Partnership CTA */}
+      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-6">
+            Ready to Become a Founding Partner?
           </h2>
           
-          <p className="text-xl text-slate-300 mb-12 font-light leading-relaxed">
-            Join 50,000+ businesses who chose evolution over frustration.
+          <p className="text-xl mb-8 text-blue-100">
+            Join an exclusive group of 50 restaurant operators who will shape the future of restaurant technology.
           </p>
-
-          <div className="relative max-w-lg mx-auto mb-12">
-            <input 
-              type="text" 
-              placeholder="My business is..."
-              className="w-full bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl px-6 py-4 text-white placeholder-slate-300 text-lg focus:outline-none focus:border-white/40 transition-all"
-            />
-            <a href="/auth/sign-up" className="absolute right-2 top-2 bg-gradient-to-r from-slate-700 to-slate-600 text-white px-6 py-2 rounded-lg hover:scale-105 transition-all duration-300 flex items-center space-x-2 shadow-lg">
-              <span className="font-semibold">Build</span>
-              <Rocket className="w-4 h-4" />
-            </a>
+          
+          <div className="grid md:grid-cols-3 gap-6 mb-8 text-center">
+            <div>
+              <div className="text-3xl font-bold text-yellow-300">{spotsRemaining}</div>
+              <div className="text-sm text-blue-200">Spots Remaining</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-yellow-300">$199/mo</div>
+              <div className="text-sm text-blue-200">Founder Pricing (vs $499/mo)</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-yellow-300">$0</div>
+              <div className="text-sm text-blue-200">Setup & Migration</div>
+            </div>
           </div>
-
-          <p className="text-sm text-slate-400 font-medium">
-            Takes 3 minutes. Free forever for small businesses.
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              size="lg"
+              className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6"
+            >
+              <Crown className="h-5 w-5 mr-2" />
+              Apply for Partnership
+            </Button>
+            
+            <Button
+              onClick={() => window.location.href = 'tel:+1-800-HERA-BETA'}
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white/10 text-lg px-8 py-6"
+            >
+              <Phone className="h-5 w-5 mr-2" />
+              Speak with Founder
+            </Button>
+          </div>
+          
+          <p className="text-lg text-blue-100 mt-6 font-medium">
+            Applications reviewed within 24 hours • No obligation • Partnership-first approach
           </p>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-300 py-16 px-6 border-t border-slate-700/50">
-        <div className="max-w-7xl mx-auto">
-          {/* Main Footer Content */}
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            {/* Company Info */}
-            <div className="md:col-span-2">
-              <div className="flex items-center space-x-4 mb-6">
-                <img 
-                  src="/icons/hera-logo.png" 
-                  alt="HERA Logo" 
-                  className="w-12 h-12 object-contain"
-                />
-                <div>
-                  <div className="text-2xl font-semibold text-white mb-1">HERA</div>
-                  <div className="text-sm text-slate-400 font-medium">by Hanaset, Inc</div>
-                </div>
-              </div>
-              
-              <p className="text-slate-300 leading-relaxed mb-6 max-w-md font-medium">
-                The first business platform that actually thinks like you do. 
-                Making enterprise software feel like your favorite mobile app.
-              </p>
-              
-              <div className="space-y-2 text-sm">
-                <div className="text-slate-400 font-medium">Hanaset, Inc</div>
-                <div className="text-slate-300">8 The Green STE B</div>
-                <div className="text-slate-300">Dover, Delaware, DE - 19901</div>
-                <div className="text-slate-300">United States</div>
-              </div>
-            </div>
-            
-            {/* Product Links */}
-            <div>
-              <h3 className="text-white font-semibold mb-4 text-lg">Product</h3>
-              <ul className="space-y-3 text-sm">
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">Features</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">Pricing</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">Demo</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">API Documentation</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">Integration</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">Security</a></li>
-              </ul>
-            </div>
-            
-            {/* Support Links */}
-            <div>
-              <h3 className="text-white font-semibold mb-4 text-lg">Support</h3>
-              <ul className="space-y-3 text-sm">
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">Help Center</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">Contact Support</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">System Status</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">Community</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">Training</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors font-medium">Changelog</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          {/* Newsletter Signup */}
-          <div className="border-t border-slate-700/50 pt-12 mb-12">
-            <div className="max-w-2xl">
-              <h3 className="text-white font-semibold mb-3 text-xl">Stay Updated</h3>
-              <p className="text-slate-300 mb-6 font-medium">
-                Get the latest updates on new features, industry insights, and product announcements.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email address"
-                  className="flex-1 bg-white/5 backdrop-blur-xl border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-slate-500 transition-all font-medium"
-                />
-                <button className="bg-gradient-to-r from-slate-700 to-slate-600 text-white px-8 py-3 rounded-xl hover:scale-105 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl">
-                  Subscribe
-                </button>
-              </div>
-            </div>
-          </div>
-          
-          {/* Bottom Footer */}
-          <div className="border-t border-slate-700/50 pt-8">
-            <div className="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
-              {/* Legal Links */}
-              <div className="flex flex-wrap items-center gap-6 text-sm font-medium">
-                <a href="#" className="text-slate-400 hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="text-slate-400 hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" className="text-slate-400 hover:text-white transition-colors">Cookie Policy</a>
-                <a href="#" className="text-slate-400 hover:text-white transition-colors">Data Processing</a>
-                <a href="#" className="text-slate-400 hover:text-white transition-colors">Accessibility</a>
-              </div>
-              
-              {/* Social Links */}
-              <div className="flex items-center space-x-4">
-                <a href="#" className="w-10 h-10 bg-slate-700/50 rounded-xl flex items-center justify-center hover:bg-slate-600/50 transition-colors">
-                  <span className="text-slate-300 text-sm font-bold">𝕏</span>
-                </a>
-                <a href="#" className="w-10 h-10 bg-slate-700/50 rounded-xl flex items-center justify-center hover:bg-slate-600/50 transition-colors">
-                  <span className="text-slate-300 text-sm font-bold">in</span>
-                </a>
-                <a href="#" className="w-10 h-10 bg-slate-700/50 rounded-xl flex items-center justify-center hover:bg-slate-600/50 transition-colors">
-                  <span className="text-slate-300 text-sm font-bold">yt</span>
-                </a>
-                <a href="#" className="w-10 h-10 bg-slate-700/50 rounded-xl flex items-center justify-center hover:bg-slate-600/50 transition-colors">
-                  <span className="text-slate-300 text-sm font-bold">gh</span>
-                </a>
-              </div>
-            </div>
-            
-            {/* Copyright */}
-            <div className="mt-8 pt-6 border-t border-slate-700/30 text-center">
-              <p className="text-slate-400 text-sm font-medium">
-                © 2024 Hanaset, Inc. All rights reserved. 
-                <span className="block sm:inline sm:ml-2 mt-1 sm:mt-0">
-                  Built by a team that believes technology should work for humans, not the other way around.
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
-};
-
-export default HERALandingPage;
+}

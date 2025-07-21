@@ -83,44 +83,8 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  // If user is authenticated and trying to access root, redirect based on organizations
-  if (user && request.nextUrl.pathname === "/") {
-    try {
-      // Check if user has any organizations
-      const { data: organizations, error } = await supabase
-        .from('user_organizations')
-        .select('organization_id')
-        .eq('user_id', user.id)
-        .eq('is_active', true)
-        .limit(1);
-
-      if (error) {
-        console.warn('Error checking organizations in middleware:', error.message);
-        // Default to setup on error
-        const url = request.nextUrl.clone();
-        url.pathname = "/setup";
-        return NextResponse.redirect(url);
-      }
-
-      if (organizations && organizations.length > 0) {
-        // User has organizations, redirect to restaurant (or could be made smarter)
-        const url = request.nextUrl.clone();
-        url.pathname = "/restaurant";
-        return NextResponse.redirect(url);
-      } else {
-        // New user, redirect to solution selector
-        const url = request.nextUrl.clone();
-        url.pathname = "/setup";
-        return NextResponse.redirect(url);
-      }
-    } catch (error) {
-      console.warn('Error in middleware organization check:', error);
-      // Default to setup on error
-      const url = request.nextUrl.clone();
-      url.pathname = "/setup";
-      return NextResponse.redirect(url);
-    }
-  }
+  // Allow users to stay on home page without redirection
+  // The home page now serves as a landing/practice area and doesn't require organization setup
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   // If you're creating a new response object with NextResponse.next() make sure to:

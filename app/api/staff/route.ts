@@ -1,328 +1,305 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+/**
+ * HERA Universal - Staff API Routes
+ * 
+ * Next.js 15 App Router API Route Handler
+ * Uses HERA's universal architecture with core_dynamic_data
+ */
 
-// Admin client for RLS bypass
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false
-    },
-    global: {
-      headers: {
-        'apikey': process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY!,
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY!}`
-      }
-    }
-  }
-)
+import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 
+// Admin client for demo/testing purposes
+const getAdminClient = () => {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY!
+  );
+};
+
+// GET /api/staff
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url)
-    const organizationId = searchParams.get('organizationId')
-
+    const supabase = getAdminClient();
+    const { searchParams } = new URL(request.url);
+    const organizationId = searchParams.get('organizationId');
+    
     if (!organizationId) {
-      return NextResponse.json({ success: false, error: 'Organization ID is required' }, { status: 400 })
+      return NextResponse.json(
+        { error: 'organizationId is required' },
+        { status: 400 }
+      );
     }
 
-    console.log('🔍 Fetching staff for organization:', organizationId)
-
-    // Get staff entities from core_entities
-    const { data: entities, error: entitiesError } = await supabaseAdmin
+    // CORE PATTERN: Query core_entities first
+    const { data: entities, error } = await supabase
       .from('core_entities')
       .select('*')
       .eq('organization_id', organizationId)
       .eq('entity_type', 'staff')
-      .eq('is_active', true)
+      .order('entity_name', { ascending: true });
 
-    if (entitiesError) {
-      console.error('❌ Error fetching entities:', entitiesError)
-      return NextResponse.json({ success: false, error: entitiesError.message }, { status: 500 })
+    if (error) {
+      console.error('Failed to fetch staff entities:', error);
+      return NextResponse.json(
+        { error: 'Failed to fetch staff entities' },
+        { status: 500 }
+      );
     }
 
-    if (!entities || entities.length === 0) {
-      console.log('✅ No staff found for organization')
-      return NextResponse.json({ success: true, staff: [] })
-    }
-
-    // Get metadata for all staff entities
-    const entityIds = entities.map(e => e.id)
-    const { data: metadata, error: metadataError } = await supabaseAdmin
-      .from('core_metadata')
-      .select('entity_id, metadata_key, metadata_value')
-      .eq('organization_id', organizationId)
-      .in('entity_id', entityIds)
-
-    if (metadataError) {
-      console.error('❌ Error fetching metadata:', metadataError)
-      return NextResponse.json({ success: false, error: metadataError.message }, { status: 500 })
-    }
-
-    // Combine entities with their metadata
-    const staffWithMetadata = entities.map(entity => {
-      const entityMetadata = metadata?.filter(m => m.entity_id === entity.id) || []
-      const metadataObj = {}
+    // CORE PATTERN: Get dynamic data if entities exist
+    let dynamicData: any[] = [];
+    const entityIds = entities?.map(e => e.id) || [];
+    
+    if (entityIds.length > 0) {
+      const { data: dynamicDataResult } = await supabase
+        .from('core_dynamic_data')
+        .select('entity_id, field_name, field_value')
+        .in('entity_id', entityIds);
       
-      entityMetadata.forEach(meta => {
-        try {
-          // Handle JSON string values
-          if (typeof meta.metadata_value === 'string' && 
-              (meta.metadata_value.startsWith('{') || 
-               meta.metadata_value.startsWith('[') || 
-               meta.metadata_value.startsWith('"'))) {
-            metadataObj[meta.metadata_key] = JSON.parse(meta.metadata_value)
-          } else {
-            metadataObj[meta.metadata_key] = meta.metadata_value
-          }
-        } catch {
-          metadataObj[meta.metadata_key] = meta.metadata_value
-        }
-      })
+      dynamicData = dynamicDataResult || [];
+    }
 
-      return {
-        id: entity.id,
-        name: entity.entity_name,
-        employee_id: entity.entity_code,
-        is_active: entity.is_active,
-        created_at: entity.created_at,
-        updated_at: entity.updated_at,
-        ...metadataObj
+    // CORE PATTERN: Group dynamic data by entity_id
+    const dynamicDataMap = dynamicData.reduce((acc, item) => {
+      if (!acc[item.entity_id]) {
+        acc[item.entity_id] = {};
       }
-    })
+      acc[item.entity_id][item.field_name] = item.field_value;
+      return acc;
+    }, {} as Record<string, Record<string, any>>);
 
-    console.log('✅ Retrieved staff:', staffWithMetadata.length)
-    return NextResponse.json({ success: true, staff: staffWithMetadata })
+    // CORE PATTERN: Combine entities with dynamic data
+    const enrichedStaff = (entities || []).map(entity => ({
+      id: entity.id,
+      name: entity.entity_name,
+      employee_id: entity.entity_code,
+      is_active: entity.is_active,
+      createdAt: entity.created_at,
+      updatedAt: entity.updated_at,
+      ...dynamicDataMap[entity.id]
+    }));
+
+    return NextResponse.json({
+      success: true,
+      staff: enrichedStaff
+    });
 
   } catch (error) {
-    console.error('❌ Staff GET error:', error)
-    return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 })
+    console.error('Staff GET error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }
 
+// POST /api/staff
 export async function POST(request: NextRequest) {
   try {
-    const data = await request.json()
-    const { organizationId, ...staffData } = data
+    const supabase = getAdminClient();
+    const body = await request.json();
 
-    if (!organizationId) {
-      return NextResponse.json({ success: false, error: 'Organization ID is required' }, { status: 400 })
+    // Validate request
+    if (!body.organizationId || !body.name) {
+      return NextResponse.json(
+        { error: 'Missing required fields: organizationId, name' },
+        { status: 400 }
+      );
     }
 
-    if (!staffData.name) {
-      return NextResponse.json({ success: false, error: 'Staff name is required' }, { status: 400 })
-    }
+    // CORE PATTERN: Generate entity code and ID
+    const entityCode = `EMP-${Date.now()}-${Math.random().toString(36).substring(2,6).toUpperCase()}`;
+    const entityId = crypto.randomUUID();
 
-    console.log('🚀 Creating staff member:', staffData.name)
-
-    const staffId = crypto.randomUUID()
-    // System user UUID for created_by field
-    const systemUserId = '00000000-0000-0000-0000-000000000001'
-    
-    // Generate unique employee ID with timestamp and random string
-    const timestamp = Date.now()
-    const randomStr = Math.random().toString(36).substring(2, 6).toUpperCase()
-    const employeeId = staffData.employee_id || `EMP-${timestamp}-${randomStr}`
-
-    // Create entity record
-    const { data: entity, error: entityError } = await supabaseAdmin
+    // CORE PATTERN: Create entity record
+    const { data: entity, error: entityError } = await supabase
       .from('core_entities')
       .insert({
-        id: staffId,
-        organization_id: organizationId,
+        id: entityId,
+        organization_id: body.organizationId,
         entity_type: 'staff',
-        entity_name: staffData.name,
-        entity_code: employeeId, // This now uses the unique employee ID
+        entity_name: body.name,
+        entity_code: entityCode,
         is_active: true
       })
       .select()
-      .single()
+      .single();
 
     if (entityError) {
-      console.error('❌ Error creating entity:', entityError)
-      return NextResponse.json({ success: false, error: entityError.message }, { status: 500 })
+      console.error('Failed to create staff entity:', entityError);
+      return NextResponse.json(
+        { error: 'Failed to create staff entity' },
+        { status: 500 }
+      );
     }
 
-    // Create metadata records for all staff fields
-    const metadataRecords = []
-    const staffFields = [
-      'position', 'department', 'email', 'phone', 'hire_date', 'employment_type',
-      'salary', 'hourly_rate', 'address', 'emergency_contact', 'emergency_phone',
-      'date_of_birth', 'shift_schedule', 'access_level', 'notes'
-    ]
+    // CORE PATTERN: Create dynamic data fields
+    const dynamicFields = Object.entries(body)
+      .filter(([key, value]) => !['organizationId', 'name'].includes(key) && value !== undefined && value !== '')
+      .map(([key, value]) => ({
+        entity_id: entityId,
+        field_name: key,
+        field_value: String(value),
+        field_type: typeof value === 'number' ? 'number' : 'text'
+      }));
 
-    staffFields.forEach(field => {
-      if (staffData[field]) {
-        metadataRecords.push({
-          id: crypto.randomUUID(),
-          organization_id: organizationId,
-          entity_type: 'staff',
-          entity_id: staffId,
-          metadata_type: 'staff_details',
-          metadata_category: 'employment',
-          metadata_key: field,
-          metadata_value: JSON.stringify(staffData[field]),
-          created_by: systemUserId
-        })
-      }
-    })
+    if (dynamicFields.length > 0) {
+      const { error: dynamicError } = await supabase
+        .from('core_dynamic_data')
+        .insert(dynamicFields);
 
-    if (metadataRecords.length > 0) {
-      const { error: metadataError } = await supabaseAdmin
-        .from('core_metadata')
-        .insert(metadataRecords)
-
-      if (metadataError) {
-        console.error('❌ Error creating metadata:', metadataError)
-        return NextResponse.json({ success: false, error: metadataError.message }, { status: 500 })
+      if (dynamicError) {
+        console.error('Failed to create dynamic data:', dynamicError);
+        // Don't fail the entire request, just log the error
       }
     }
 
-    console.log('✅ Staff member created successfully')
-    return NextResponse.json({ 
-      success: true, 
-      staffId,
+    return NextResponse.json({
+      success: true,
+      staffId: entityId,
       message: 'Staff member created successfully'
-    })
+    }, { status: 201 });
 
   } catch (error) {
-    console.error('❌ Staff POST error:', error)
-    return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 })
+    console.error('Staff POST error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }
 
-export async function DELETE(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url)
-    const staffId = searchParams.get('id')
-    const organizationId = searchParams.get('organizationId')
-
-    if (!staffId || !organizationId) {
-      return NextResponse.json({ success: false, error: 'Staff ID and Organization ID are required' }, { status: 400 })
-    }
-
-    console.log('🗑️ Deleting staff member:', staffId)
-
-    // First delete metadata
-    const { error: metadataError } = await supabaseAdmin
-      .from('core_metadata')
-      .delete()
-      .eq('entity_id', staffId)
-      .eq('organization_id', organizationId)
-
-    if (metadataError) {
-      console.error('❌ Error deleting metadata:', metadataError)
-      return NextResponse.json({ success: false, error: metadataError.message }, { status: 500 })
-    }
-
-    // Then delete entity
-    const { error: entityError } = await supabaseAdmin
-      .from('core_entities')
-      .delete()
-      .eq('id', staffId)
-      .eq('organization_id', organizationId)
-
-    if (entityError) {
-      console.error('❌ Error deleting entity:', entityError)
-      return NextResponse.json({ success: false, error: entityError.message }, { status: 500 })
-    }
-
-    console.log('✅ Staff member deleted successfully')
-    return NextResponse.json({ success: true, message: 'Staff member deleted successfully' })
-
-  } catch (error) {
-    console.error('❌ Staff DELETE error:', error)
-    return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 })
-  }
-}
-
+// PUT /api/staff
 export async function PUT(request: NextRequest) {
   try {
-    const data = await request.json()
-    const { staffId, organizationId, ...updates } = data
+    const supabase = getAdminClient();
+    const body = await request.json();
+    const { id, organizationId, ...updates } = body;
+    const staffId = id || body.staffId;
 
     if (!staffId || !organizationId) {
-      return NextResponse.json({ success: false, error: 'Staff ID and Organization ID are required' }, { status: 400 })
+      return NextResponse.json(
+        { error: 'Staff ID and Organization ID are required' },
+        { status: 400 }
+      );
     }
-
-    console.log('📝 Updating staff member:', staffId)
 
     // Update entity name if provided
     if (updates.name) {
-      const { error: entityError } = await supabaseAdmin
+      const { error: entityError } = await supabase
         .from('core_entities')
         .update({ entity_name: updates.name })
         .eq('id', staffId)
-        .eq('organization_id', organizationId)
+        .eq('organization_id', organizationId);
 
       if (entityError) {
-        console.error('❌ Error updating entity:', entityError)
-        return NextResponse.json({ success: false, error: entityError.message }, { status: 500 })
+        console.error('Failed to update staff entity:', entityError);
+        return NextResponse.json(
+          { error: 'Failed to update staff entity' },
+          { status: 500 }
+        );
       }
     }
 
-    // Update metadata fields
+    // Update dynamic data fields
     const staffFields = [
       'position', 'department', 'email', 'phone', 'hire_date', 'employment_type',
-      'salary', 'hourly_rate', 'address', 'emergency_contact', 'emergency_phone',
-      'date_of_birth', 'shift_schedule', 'access_level', 'notes'
-    ]
+      'salary', 'hourly_rate', 'emergency_contact', 'emergency_phone', 'notes'
+    ];
 
     for (const field of staffFields) {
-      if (field in updates) {
-        // Check if metadata record exists
-        const { data: existingMetadata } = await supabaseAdmin
-          .from('core_metadata')
+      if (field in updates && updates[field] !== undefined) {
+        // Check if dynamic data record exists
+        const { data: existingData } = await supabase
+          .from('core_dynamic_data')
           .select('id')
-          .eq('organization_id', organizationId)
           .eq('entity_id', staffId)
-          .eq('metadata_key', field)
-          .single()
+          .eq('field_name', field)
+          .single();
 
-        if (existingMetadata) {
-          // Update existing metadata record
-          const { error: metadataError } = await supabaseAdmin
-            .from('core_metadata')
+        if (existingData) {
+          // Update existing record
+          await supabase
+            .from('core_dynamic_data')
             .update({
-              metadata_value: JSON.stringify(updates[field])
+              field_value: String(updates[field]),
+              field_type: typeof updates[field] === 'number' ? 'number' : 'text'
             })
-            .eq('id', existingMetadata.id)
-          
-          if (metadataError) {
-            console.error('❌ Error updating metadata:', metadataError)
-            return NextResponse.json({ success: false, error: metadataError.message }, { status: 500 })
-          }
+            .eq('id', existingData.id);
         } else {
-          // Create new metadata record
-          const { error: metadataError } = await supabaseAdmin
-            .from('core_metadata')
+          // Create new record
+          await supabase
+            .from('core_dynamic_data')
             .insert({
-              id: crypto.randomUUID(),
-              organization_id: organizationId,
-              entity_type: 'staff',
               entity_id: staffId,
-              metadata_type: 'staff_details',
-              metadata_category: 'employment',
-              metadata_key: field,
-              metadata_value: JSON.stringify(updates[field]),
-              created_by: '00000000-0000-0000-0000-000000000001'
-            })
-          
-          if (metadataError) {
-            console.error('❌ Error creating metadata:', metadataError)
-            return NextResponse.json({ success: false, error: metadataError.message }, { status: 500 })
-          }
+              field_name: field,
+              field_value: String(updates[field]),
+              field_type: typeof updates[field] === 'number' ? 'number' : 'text'
+            });
         }
       }
     }
 
-    console.log('✅ Staff member updated successfully')
-    return NextResponse.json({ success: true, message: 'Staff member updated successfully' })
+    return NextResponse.json({
+      success: true,
+      message: 'Staff member updated successfully'
+    });
 
   } catch (error) {
-    console.error('❌ Staff PUT error:', error)
-    return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 })
+    console.error('Staff PUT error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
+// DELETE /api/staff
+export async function DELETE(request: NextRequest) {
+  try {
+    const supabase = getAdminClient();
+    const { searchParams } = new URL(request.url);
+    const staffId = searchParams.get('id');
+    const organizationId = searchParams.get('organizationId');
+
+    if (!staffId || !organizationId) {
+      return NextResponse.json(
+        { error: 'Staff ID and Organization ID are required' },
+        { status: 400 }
+      );
+    }
+
+    // First delete dynamic data
+    await supabase
+      .from('core_dynamic_data')
+      .delete()
+      .eq('entity_id', staffId);
+
+    // Then delete entity
+    const { error: entityError } = await supabase
+      .from('core_entities')
+      .delete()
+      .eq('id', staffId)
+      .eq('organization_id', organizationId);
+
+    if (entityError) {
+      console.error('Failed to delete staff entity:', entityError);
+      return NextResponse.json(
+        { error: 'Failed to delete staff entity' },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: 'Staff member deleted successfully'
+    });
+
+  } catch (error) {
+    console.error('Staff DELETE error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }

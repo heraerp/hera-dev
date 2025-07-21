@@ -1,0 +1,19 @@
+{
+  "pages": {},
+  "components": {
+    "components/digital-accountant/QuickCaptureWidget.tsx": "✅ EXISTS",
+    "components/digital-accountant/EnhancedMobileCapture.tsx": "✅ EXISTS",
+    "components/ui/CaptureFloatingButton.tsx": "✅ EXISTS",
+    "components/digital-accountant/DigitalAccountantMainDashboard.tsx": "✅ EXISTS",
+    "app/digital-accountant/page.tsx": "✅ EXISTS",
+    "app/digital-accountant/onboarding/page.tsx": "✅ EXISTS",
+    "components/digital-accountant/QuickCaptureWidget.tsx_syntax": "✅ VALID",
+    "components/digital-accountant/EnhancedMobileCapture.tsx_syntax": "✅ VALID",
+    "components/ui/CaptureFloatingButton.tsx_syntax": "✅ VALID",
+    "components/digital-accountant/DigitalAccountantMainDashboard.tsx_syntax": "✅ VALID",
+    "app/digital-accountant/page.tsx_syntax": "✅ VALID",
+    "app/digital-accountant/onboarding/page.tsx_syntax": "✅ VALID"
+  },
+  "apis": {},
+  "overall": "GOLD STANDARD"
+}

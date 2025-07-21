@@ -12,6 +12,7 @@ import DigitalAccountantMainDashboard from '@/components/digital-accountant/Digi
 import { LoadingSkeletons } from '@/components/ui/LoadingSkeletons';
 import { AppNavbar } from '@/components/ui/AppNavbar';
 import DynamicSidebar from '@/components/ui/DynamicSidebar';
+import CaptureFloatingButton from '@/components/ui/CaptureFloatingButton';
 
 export default function DigitalAccountantPage() {
   const handleLogout = () => {
@@ -66,6 +67,13 @@ export default function DigitalAccountantPage() {
           </Suspense>
         </div>
       </div>
+
+      {/* Global Floating Action Button for Receipt Capture */}
+      <CaptureFloatingButton 
+        position="bottom-right"
+        showOnMobile={true}
+        showOnDesktop={true}
+      />
     </div>
   );
 }

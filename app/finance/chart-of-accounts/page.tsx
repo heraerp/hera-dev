@@ -30,6 +30,8 @@ import {
   AccountSearchRequest,
   AccountSearchResponse 
 } from "@/lib/types/chart-of-accounts"
+import QuickCOAWidget from "@/components/finance/QuickCOAWidget"
+import COAFloatingButton from "@/components/ui/COAFloatingButton"
 
 // Sample navigation items for demonstration
 const navigationItems = [
@@ -49,13 +51,17 @@ const navigationItems = [
   }
 ]
 
-// Account Type Color Mapping
+// Account Type Color Mapping - Updated for New 7-Category Structure
 const accountTypeColors: Record<AccountType, string> = {
   'ASSET': 'text-blue-600 bg-blue-50 border-blue-200',
   'LIABILITY': 'text-red-600 bg-red-50 border-red-200',
   'EQUITY': 'text-purple-600 bg-purple-50 border-purple-200',
   'REVENUE': 'text-green-600 bg-green-50 border-green-200',
-  'EXPENSE': 'text-orange-600 bg-orange-50 border-orange-200'
+  'COST_OF_SALES': 'text-orange-600 bg-orange-50 border-orange-200',
+  'DIRECT_EXPENSE': 'text-yellow-600 bg-yellow-50 border-yellow-200',
+  'INDIRECT_EXPENSE': 'text-amber-600 bg-amber-50 border-amber-200',
+  'TAX_EXPENSE': 'text-rose-600 bg-rose-50 border-rose-200',
+  'EXTRAORDINARY_EXPENSE': 'text-gray-600 bg-gray-50 border-gray-200'
 }
 
 // Risk Level Color Mapping
@@ -455,6 +461,7 @@ export default function ChartOfAccountsPage() {
   const { setContext } = useTheme()
   const { getAdaptedColor } = useAdaptiveColor()
   const [mounted, setMounted] = React.useState(false)
+  const [showWelcome, setShowWelcome] = React.useState(false)
 
   // State management
   const [accounts, setAccounts] = React.useState<ChartOfAccountsEntry[]>([])
@@ -490,6 +497,20 @@ export default function ChartOfAccountsPage() {
       impact: "MEDIUM"
     }
   ])
+
+  // Check for onboarding completion
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search)
+      if (urlParams.get('onboarded') === 'true') {
+        setShowWelcome(true)
+        // Remove the parameter from URL without page refresh
+        window.history.replaceState({}, document.title, window.location.pathname)
+        // Auto-hide welcome after 5 seconds
+        setTimeout(() => setShowWelcome(false), 5000)
+      }
+    }
+  }, [])
 
   // Handle client-side mounting
   React.useEffect(() => {
@@ -614,6 +635,35 @@ export default function ChartOfAccountsPage() {
 
         {/* Main Content */}
         <main className="flex-1 overflow-hidden">
+          {/* Welcome Banner for New Users */}
+          {showWelcome && (
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-b border-green-200 dark:border-green-800 p-4">
+              <div className="flex items-center justify-between max-w-7xl mx-auto">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-4">
+                    <CheckCircle className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-green-800 dark:text-green-200">
+                      🎉 Welcome to your AI-powered Chart of Accounts!
+                    </h3>
+                    <p className="text-green-700 dark:text-green-300">
+                      You're all set! Your account intelligence is now active and learning from your business patterns.
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setShowWelcome(false)}
+                  className="border-green-300 dark:border-green-700"
+                >
+                  <ArrowDown className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+          )}
+          
           {/* Header */}
           <div className="border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="p-6">
@@ -667,6 +717,48 @@ export default function ChartOfAccountsPage() {
 
           {/* Content */}
           <div className="p-6 space-y-6 overflow-y-auto h-[calc(100vh-180px)]">
+            {/* Hero Section - Primary Entry Point */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Quick COA Widget - Takes 2/3 space */}
+              <div className="lg:col-span-2">
+                <QuickCOAWidget />
+              </div>
+              
+              {/* Welcome Panel - Takes 1/3 space */}
+              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Brain className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                    Welcome to AI COA
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                    First time? Take our quick tour to see the intelligence in action.
+                  </p>
+                  <Button 
+                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white" 
+                    onClick={() => window.location.href = '/finance/chart-of-accounts/onboarding'}
+                  >
+                    <Users className="w-4 h-4 mr-2" />
+                    Start COA Tour
+                  </Button>
+                  
+                  {/* Quick Stats */}
+                  <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-indigo-200 dark:border-indigo-700">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">94%</div>
+                      <div className="text-xs text-indigo-700 dark:text-indigo-300">AI Accuracy</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">2.1h</div>
+                      <div className="text-xs text-purple-700 dark:text-purple-300">Weekly Savings</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Quick Stats */}
             <QuickStats accounts={accounts} />
 
@@ -906,6 +998,13 @@ export default function ChartOfAccountsPage() {
           showKeyboardShortcuts={true}
         />
       </div>
+      
+      {/* Global Floating Action Button */}
+      <COAFloatingButton 
+        position="bottom-right"
+        showOnMobile={true}
+        showOnDesktop={true}
+      />
     </NavigationProvider>
   )
 }

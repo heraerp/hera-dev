@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Skeleton } from "@/components/ui/skeleton"
 import { MetricsCard } from '@/components/ui/MetricsCard'
+import QuickCaptureWidget from './QuickCaptureWidget'
 import { 
   Activity, 
   FileText, 
@@ -28,7 +29,10 @@ import {
   RefreshCw,
   Eye,
   Plus,
-  ArrowRight
+  ArrowRight,
+  Users,
+  Rocket,
+  X
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -66,6 +70,19 @@ export default function DigitalAccountantMainDashboard() {
   const [recentActivity, setRecentActivity] = useState<ActivityItem[]>([])
   const [pendingReview, setPendingReview] = useState<PendingItem[]>([])
   const [isRefreshing, setIsRefreshing] = useState(false)
+  const [showWelcome, setShowWelcome] = useState(false)
+
+  // Check for onboarding completion
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.get('onboarded') === 'true') {
+      setShowWelcome(true)
+      // Remove the parameter from URL without page refresh
+      window.history.replaceState({}, document.title, window.location.pathname)
+      // Auto-hide welcome after 5 seconds
+      setTimeout(() => setShowWelcome(false), 5000)
+    }
+  }, [])
 
   // Mock data - replace with real API calls
   useEffect(() => {
@@ -285,6 +302,79 @@ export default function DigitalAccountantMainDashboard() {
 
   return (
     <div className="space-y-6">
+      {/* Welcome Banner for New Users */}
+      {showWelcome && (
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-800 rounded-xl p-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-4">
+                <CheckCircle className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-green-800 dark:text-green-200">
+                  🎉 Welcome to your Digital Accountant!
+                </h3>
+                <p className="text-green-700 dark:text-green-300">
+                  You're all set! Start capturing receipts using the Quick Capture widget below or the floating button.
+                </p>
+              </div>
+            </div>
+            <Button
+              variant="outline" 
+              size="sm"
+              onClick={() => setShowWelcome(false)}
+              className="border-green-300 dark:border-green-700"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* Hero Section - Primary Entry Point */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Quick Capture Widget - Primary Front Door */}
+        <div className="lg:col-span-2">
+          <QuickCaptureWidget />
+        </div>
+        
+        {/* Onboarding & Welcome */}
+        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6">
+          <div className="text-center">
+            <div className="w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Rocket className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              Welcome to Digital Accountant
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+              First time? Take our quick tour to see the magic in action.
+            </p>
+            <Button 
+              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white" 
+              asChild
+            >
+              <Link href="/digital-accountant/onboarding">
+                <Users className="w-4 h-4 mr-2" />
+                Start Onboarding
+              </Link>
+            </Button>
+            
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-indigo-200 dark:border-indigo-700">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">94%</div>
+                <div className="text-xs text-indigo-700 dark:text-indigo-300">AI Accuracy</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">2.5h</div>
+                <div className="text-xs text-purple-700 dark:text-purple-300">Daily Savings</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* System Status & Refresh */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">

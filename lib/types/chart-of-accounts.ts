@@ -52,7 +52,11 @@ export type AccountType =
   | 'LIABILITY' 
   | 'EQUITY' 
   | 'REVENUE' 
-  | 'EXPENSE'
+  | 'COST_OF_SALES'
+  | 'DIRECT_EXPENSE'
+  | 'INDIRECT_EXPENSE' 
+  | 'TAX_EXPENSE'
+  | 'EXTRAORDINARY_EXPENSE'
 
 export type AccountClassification =
   | 'CURRENT_ASSET'

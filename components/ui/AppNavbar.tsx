@@ -7,7 +7,12 @@
 'use client';
 
 import { useState } from 'react';
-import { Bell, Search, Settings, User, LogOut, ChevronDown, Menu, X } from 'lucide-react';
+import { 
+  Bell, Search, Settings, User, LogOut, ChevronDown, Menu, X,
+  Home, UtensilsCrossed, Calendar, ShoppingBag, Tag, Users,
+  ChefHat, Clock, CreditCard, Phone, MapPin, Gear,
+  MessageSquare, Heart, Package, Wine, Pizza, Star
+} from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { Button } from './button';
 
@@ -42,11 +47,23 @@ export function AppNavbar({ user, onLogout }: AppNavbarProps) {
     setShowUserMenu(false);
   };
 
-  const navItems = [
-    { label: 'Dashboard', href: '/dashboard' },
-    { label: 'Purchasing', href: '/purchasing/purchase-orders' },
-    { label: 'Inventory', href: '/inventory/items' },
-    { label: 'Restaurant', href: '/restaurant' },
+  // Modern Restaurant Navigation Items
+  const restaurantNavItems = [
+    { label: 'Home', href: '/dashboard', icon: Home, description: 'Main dashboard' },
+    { label: 'Menu', href: '/restaurant/menu', icon: UtensilsCrossed, description: 'Food & drinks menu' },
+    { label: 'Reservations', href: '/restaurant/reservations', icon: Calendar, description: 'Table bookings' },
+    { label: 'Orders', href: '/restaurant/orders', icon: ShoppingBag, description: 'Online ordering' },
+    { label: 'Staff', href: '/restaurant/staff', icon: Users, description: 'Team management' },
+    { label: 'Kitchen', href: '/restaurant/kitchen', icon: ChefHat, description: 'Chef specialties' },
+    { label: 'Offers', href: '/restaurant/offers', icon: Tag, description: 'Deals & promotions' },
+    { label: 'Payment', href: '/restaurant/payment', icon: CreditCard, description: 'Billing & payments' },
+  ];
+
+  // Admin/Management Navigation
+  const adminNavItems = [
+    { label: 'Purchasing', href: '/purchasing/purchase-orders', icon: Package, description: 'Purchase orders' },
+    { label: 'Inventory', href: '/inventory/items', icon: Package, description: 'Stock management' },
+    { label: 'Analytics', href: '/analytics', icon: Star, description: 'Business insights' },
   ];
 
   return (
@@ -66,18 +83,53 @@ export function AppNavbar({ user, onLogout }: AppNavbarProps) {
               </div>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:block ml-10">
-              <div className="flex items-baseline space-x-4">
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-                  >
-                    {item.label}
-                  </a>
-                ))}
+            {/* Desktop Navigation - Restaurant Items */}
+            <div className="hidden lg:block ml-10">
+              <div className="flex items-center space-x-1">
+                {restaurantNavItems.slice(0, 6).map((item) => {
+                  const IconComponent = item.icon;
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      title={item.description}
+                      className="flex items-center px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 group"
+                    >
+                      <IconComponent className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-200" />
+                      <span className="hidden xl:inline">{item.label}</span>
+                    </a>
+                  );
+                })}
+                
+                {/* More Menu for Additional Items */}
+                <div className="relative group">
+                  <button className="flex items-center px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200">
+                    <Menu className="w-4 h-4 mr-1" />
+                    <span className="hidden xl:inline">More</span>
+                  </button>
+                  
+                  {/* Dropdown Menu */}
+                  <div className="absolute left-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="py-2">
+                      {[...restaurantNavItems.slice(6), ...adminNavItems].map((item) => {
+                        const IconComponent = item.icon;
+                        return (
+                          <a
+                            key={item.label}
+                            href={item.href}
+                            className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                          >
+                            <IconComponent className="w-4 h-4 mr-3" />
+                            <div>
+                              <div className="font-medium">{item.label}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">{item.description}</div>
+                            </div>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -233,16 +285,47 @@ export function AppNavbar({ user, onLogout }: AppNavbarProps) {
               </div>
             </div>
 
+            {/* Mobile Restaurant Navigation */}
             <div className="space-y-1 px-2">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
-                >
-                  {item.label}
-                </a>
-              ))}
+              <div className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider px-3 py-2">
+                Restaurant
+              </div>
+              {restaurantNavItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                  >
+                    <IconComponent className="w-5 h-5 mr-3" />
+                    <div>
+                      <div>{item.label}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">{item.description}</div>
+                    </div>
+                  </a>
+                );
+              })}
+              
+              <div className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider px-3 py-2 mt-4">
+                Management
+              </div>
+              {adminNavItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                  >
+                    <IconComponent className="w-5 h-5 mr-3" />
+                    <div>
+                      <div>{item.label}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">{item.description}</div>
+                    </div>
+                  </a>
+                );
+              })}
             </div>
 
             <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">

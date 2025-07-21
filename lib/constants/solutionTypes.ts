@@ -180,49 +180,6 @@ export const solutionTypes: SolutionType[] = [
     ]
   },
   {
-    id: 'education',
-    title: 'Education & Training',
-    description: 'Comprehensive education management for schools and training centers',
-    icon: GraduationCap,
-    route: '/solutions/education',
-    color: 'indigo',
-    bgGradient: 'from-indigo-50 to-purple-50',
-    features: [
-      {
-        icon: Users,
-        title: 'Student Management',
-        description: 'Complete student lifecycle tracking'
-      },
-      {
-        icon: BookOpen,
-        title: 'Course Management',
-        description: 'Curriculum planning and scheduling'
-      },
-      {
-        icon: Calculator,
-        title: 'Grade Tracking',
-        description: 'Automated grading and reporting'
-      },
-      {
-        icon: Banknote,
-        title: 'Fee Management',
-        description: 'Tuition billing and payment tracking'
-      }
-    ],
-    benefits: [
-      'Improve student engagement by 50%',
-      'Reduce administrative work by 70%',
-      'Increase fee collection by 95%',
-      'Enhance parent communication by 80%'
-    ],
-    idealFor: [
-      'Private schools',
-      'Training centers',
-      'Tutoring businesses',
-      'Language schools'
-    ]
-  },
-  {
     id: 'realestate',
     title: 'Real Estate & Property',
     description: 'Property management and real estate operations platform',

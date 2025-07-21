@@ -11,6 +11,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
   generateRestaurantCardStyles,
   generateRestaurantButtonStyles,
@@ -96,6 +98,15 @@ interface CartSummaryProps {
   onCheckout: () => void;
   onItemRemove: (itemId: string) => void;
   onItemQuantityChange: (itemId: string, quantity: number) => void;
+  orderMode?: 'waiter' | 'customer';
+  orderDetails?: {
+    customerName?: string;
+    tableNumber?: string;
+    orderType?: 'dine_in' | 'takeout' | 'delivery';
+    waiterName?: string;
+    specialInstructions?: string;
+  };
+  onOrderDetailsChange?: (details: any) => void;
 }
 
 // Branded Card Component
@@ -447,39 +458,141 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
   total,
   onCheckout,
   onItemRemove,
-  onItemQuantityChange
+  onItemQuantityChange,
+  orderMode = 'waiter',
+  orderDetails = {},
+  onOrderDetailsChange
 }) => {
   const { getModernThemeColors } = useTheme();
   const modernColors = getModernThemeColors();
   const isDark = modernColors.background === '#1a1a1a';
 
   return (
-    <BrandedCard variant="elevated" className="sticky top-4">
-      {/* Cart Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <ShoppingCart className="w-5 h-5" style={{ color: modernColors.textSecondary }} />
-          <h3 className={`text-lg font-semibold`}
-             style={{ 
-               fontFamily: RESTAURANT_TYPOGRAPHY.fontFamilies.sans,
-               color: modernColors.text
-             }}>
-            Order Summary
-          </h3>
+    <BrandedCard variant="elevated" className="sticky top-4 max-h-[calc(100vh-120px)] overflow-y-auto">
+      <div className="p-6 space-y-4">
+        {/* Cart Header */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <ShoppingCart className="w-5 h-5" style={{ color: modernColors.textSecondary }} />
+            <h3 className={`text-lg font-semibold`}
+               style={{ 
+                 fontFamily: RESTAURANT_TYPOGRAPHY.fontFamilies.sans,
+                 color: modernColors.text
+               }}>
+              Order Summary
+            </h3>
+          </div>
+          <Badge 
+            style={{
+              backgroundColor: isDark ? 'rgba(255, 71, 1, 0.15)' : 'rgba(255, 71, 1, 0.1)',
+              color: isDark ? '#ff8a65' : '#e65100',
+              borderColor: isDark ? 'rgba(255, 71, 1, 0.25)' : 'rgba(255, 71, 1, 0.2)'
+            }}
+          >
+            {items.length} items
+          </Badge>
         </div>
-        <Badge 
-          style={{
-            backgroundColor: isDark ? 'rgba(255, 71, 1, 0.15)' : 'rgba(255, 71, 1, 0.1)',
-            color: isDark ? '#ff8a65' : '#e65100',
-            borderColor: isDark ? 'rgba(255, 71, 1, 0.25)' : 'rgba(255, 71, 1, 0.2)'
-          }}
-        >
-          {items.length} items
-        </Badge>
-      </div>
+
+      {/* Order Details Section - Always Show */}
+      {items.length > 0 && (
+        <>
+          <Separator style={{ borderColor: modernColors.border }} className="my-2" />
+          <div className="space-y-3">
+            <h4 className="font-medium text-sm" style={{ color: modernColors.text }}>Order Details</h4>
+            
+            {/* Customer Name */}
+            <div>
+              <Label htmlFor="customerName" className="text-xs" style={{ color: modernColors.textSecondary }}>
+                Customer Name *
+              </Label>
+              <Input
+                id="customerName"
+                value={orderDetails.customerName || ''}
+                onChange={(e) => onOrderDetailsChange?.({ ...orderDetails, customerName: e.target.value })}
+                placeholder="Enter customer name"
+                className="mt-1 h-8 text-sm"
+                style={{
+                  backgroundColor: isDark ? modernColors.surface : '#ffffff',
+                  borderColor: modernColors.border,
+                  color: modernColors.text
+                }}
+              />
+            </div>
+
+            {/* Table Number and Order Type Row */}
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label htmlFor="tableNumber" className="text-xs" style={{ color: modernColors.textSecondary }}>
+                  Table Number
+                </Label>
+                <Input
+                  id="tableNumber"
+                  value={orderDetails.tableNumber || ''}
+                  onChange={(e) => onOrderDetailsChange?.({ ...orderDetails, tableNumber: e.target.value })}
+                  placeholder="Table #"
+                  className="mt-1 h-8 text-sm"
+                  style={{
+                    backgroundColor: isDark ? modernColors.surface : '#ffffff',
+                    borderColor: modernColors.border,
+                    color: modernColors.text
+                  }}
+                />
+              </div>
+              
+              {/* Order Type */}
+              <div>
+                <Label className="text-xs" style={{ color: modernColors.textSecondary }}>Order Type</Label>
+                <select
+                  value={orderDetails.orderType || 'dine_in'}
+                  onChange={(e) => onOrderDetailsChange?.({ ...orderDetails, orderType: e.target.value as any })}
+                  className="mt-1 h-8 w-full text-sm rounded-md px-2"
+                  style={{
+                    backgroundColor: isDark ? modernColors.surface : '#ffffff',
+                    borderColor: modernColors.border,
+                    color: modernColors.text,
+                    border: `1px solid ${modernColors.border}`
+                  }}
+                >
+                  <option value="dine_in">Dine In</option>
+                  <option value="takeout">Takeout</option>
+                  <option value="delivery">Delivery</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Waiter Name (only show in waiter mode) */}
+            {orderMode === 'waiter' && (
+              <div>
+                <Label htmlFor="waiterName" className="text-xs" style={{ color: modernColors.textSecondary }}>
+                  Waiter Name
+                </Label>
+                <Input
+                  id="waiterName"
+                  value={orderDetails.waiterName || ''}
+                  onChange={(e) => onOrderDetailsChange?.({ ...orderDetails, waiterName: e.target.value })}
+                  placeholder="Enter waiter name"
+                  className="mt-1 h-8 text-sm"
+                  style={{
+                    backgroundColor: isDark ? modernColors.surface : '#ffffff',
+                    borderColor: modernColors.border,
+                    color: modernColors.text
+                  }}
+                />
+              </div>
+            )}
+          </div>
+        </>
+      )}
 
       {/* Cart Items */}
-      <div className="space-y-3 mb-4 max-h-64 overflow-y-auto">
+      {items.length > 0 && (
+        <>
+          <Separator style={{ borderColor: modernColors.border }} className="my-2" />
+          <h4 className="font-medium text-sm mb-2" style={{ color: modernColors.text }}>Items</h4>
+        </>
+      )}
+      
+      <div className="space-y-2 max-h-32 overflow-y-auto">
         {items.map((item) => (
           <motion.div
             key={item.id}
@@ -522,7 +635,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
 
       {items.length > 0 && (
         <>
-          <Separator style={{ borderColor: modernColors.border }} className="my-4" />
+          <Separator style={{ borderColor: modernColors.border }} className="my-2" />
           
           {/* Totals */}
           <div className="space-y-2 mb-4">
@@ -562,6 +675,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
           <p className="text-sm">Add items to get started</p>
         </div>
       )}
+      </div>
     </BrandedCard>
   );
 };

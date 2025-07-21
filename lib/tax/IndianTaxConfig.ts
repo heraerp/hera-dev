@@ -139,7 +139,6 @@ export const INDIAN_GST_CONFIG: IndianGSTConfig = {
     'annual_turnover_below_20_lakh': false, // Not applicable for most restaurants
     'composition_scheme': false, // Restaurants typically don't qualify
     'export_services': true, // Export services are zero-rated
-    'educational_institution': true, // Educational institutions may be exempt
     'charitable_organization': true // Charitable organizations may be exempt
   }
 };

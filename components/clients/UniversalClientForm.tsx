@@ -63,7 +63,6 @@ const CLIENT_TYPES = [
   { value: 'startup', label: 'Startup' },
   { value: 'nonprofit', label: 'Non-Profit' },
   { value: 'government', label: 'Government' },
-  { value: 'education', label: 'Education' },
   { value: 'healthcare', label: 'Healthcare' },
   { value: 'retail', label: 'Retail' },
   { value: 'manufacturing', label: 'Manufacturing' },

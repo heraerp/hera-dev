@@ -1,31 +1,27 @@
 /**
- * HERA Universal Kitchen Display System
- * Real-time order tracking and preparation management
- * Integrates with POS system for complete order workflow
+ * HERA Universal Kitchen Display System - PO Gold Standard Theme
+ * Real-time order tracking and preparation management with modern sidebar
  */
 
 "use client";
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { UniversalCard, UniversalCardContent, UniversalCardHeader, UniversalCardTitle } from '@/components/theme/UniversalCard';
-import { UniversalThemeButton, ThemeToggleButton } from '@/components/theme/UniversalThemeButton';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
+import { AppLayoutWithSidebar } from '@/components/layouts/AppLayoutWithSidebar';
 import { useRestaurantManagement } from '@/hooks/useRestaurantManagement';
-import { useMobileTheme } from '@/hooks/useMobileTheme';
 import { UniversalTransactionService } from '@/lib/services/universalTransactionService';
-import { RestaurantNavbar } from '@/components/restaurant/RestaurantNavbar';
 import {
   ChefHat,
   Clock,
   CheckCircle,
   AlertTriangle,
   Users,
-  Hash,
   DollarSign,
-  Eye,
   Play,
   Check,
   RotateCcw,
@@ -37,9 +33,13 @@ import {
   MapPin,
   FileText,
   Calendar,
-  ArrowLeft
+  Flame,
+  Eye,
+  Star,
+  TrendingUp,
+  Package,
+  X
 } from 'lucide-react';
-import Link from 'next/link';
 
 // Order interface for kitchen display
 interface KitchenOrder {
@@ -68,7 +68,6 @@ interface KitchenOrder {
 export default function KitchenPage() {
   const { restaurantData, loading: authLoading } = useRestaurantManagement();
   const organizationId = restaurantData?.organizationId;
-  const { colors, isDark } = useMobileTheme();
 
   // State management
   const [orders, setOrders] = useState<KitchenOrder[]>([]);
@@ -271,45 +270,25 @@ export default function KitchenPage() {
            orderDate.toDateString() === today.toDateString();
   }).sort((a, b) => new Date(b.orderTime).getTime() - new Date(a.orderTime).getTime());
 
-  // Get status color with improved contrast
+  // Get status color - PO Gold Standard
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'pending': return {
-        backgroundColor: isDark ? 'rgba(255, 193, 7, 0.2)' : 'rgba(234, 179, 8, 0.12)',
-        color: isDark ? '#FFD54F' : '#92400e',
-        borderColor: isDark ? 'rgba(255, 193, 7, 0.4)' : 'rgba(234, 179, 8, 0.25)'
-      };
-      case 'confirmed': return {
-        backgroundColor: isDark ? 'rgba(66, 165, 245, 0.2)' : 'rgba(59, 130, 246, 0.12)',
-        color: isDark ? '#64B5F6' : '#1e40af',
-        borderColor: isDark ? 'rgba(66, 165, 245, 0.4)' : 'rgba(59, 130, 246, 0.25)'
-      };
-      case 'preparing': return {
-        backgroundColor: isDark ? 'rgba(255, 87, 34, 0.2)' : 'rgba(255, 71, 1, 0.12)',
-        color: isDark ? colors.orange : '#c2410c',
-        borderColor: isDark ? 'rgba(255, 87, 34, 0.4)' : 'rgba(255, 71, 1, 0.25)'
-      };
-      case 'ready': return {
-        backgroundColor: isDark ? 'rgba(102, 187, 106, 0.2)' : 'rgba(34, 197, 94, 0.12)',
-        color: isDark ? colors.success : '#166534',
-        borderColor: isDark ? 'rgba(102, 187, 106, 0.4)' : 'rgba(34, 197, 94, 0.25)'
-      };
-      default: return {
-        backgroundColor: isDark ? 'rgba(189, 189, 189, 0.2)' : 'rgba(156, 163, 175, 0.12)',
-        color: isDark ? colors.textMuted : '#374151',
-        borderColor: isDark ? colors.border : 'rgba(156, 163, 175, 0.25)'
-      };
+      case 'pending': return 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700';
+      case 'confirmed': return 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700';
+      case 'preparing': return 'bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 border-orange-200 dark:border-orange-700';
+      case 'ready': return 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-700';
+      default: return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 border-gray-200 dark:border-gray-600';
     }
   };
 
   // Get priority color
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'urgent': return colors.error;
-      case 'high': return colors.orange;
-      case 'normal': return colors.info;
-      case 'low': return colors.textMuted;
-      default: return colors.textMuted;
+      case 'urgent': return 'bg-red-500';
+      case 'high': return 'bg-orange-500';
+      case 'normal': return 'bg-blue-500';
+      case 'low': return 'bg-gray-400';
+      default: return 'bg-gray-400';
     }
   };
 
@@ -328,185 +307,160 @@ export default function KitchenPage() {
   // Loading state
   if (authLoading || loading) {
     return (
-      <div 
-        className="flex items-center justify-center min-h-screen"
-        style={{ backgroundColor: colors.background }}
-      >
-        <div className="text-center">
-          <Loader2 
-            className="w-12 h-12 animate-spin mx-auto mb-4" 
-            style={{ color: colors.orange }}
-          />
-          <p className="text-xl font-semibold mb-2" style={{ color: colors.textPrimary }}>
-            Loading Kitchen Display...
-          </p>
-          <p style={{ color: colors.textSecondary }}>
-            Preparing order management system
-          </p>
+      <AppLayoutWithSidebar variant="pos">
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            >
+              <ChefHat className="w-16 h-16 mx-auto mb-4 text-orange-600" />
+            </motion.div>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+              Preparing Kitchen Display
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Loading order management system...
+            </p>
+          </div>
         </div>
-      </div>
+      </AppLayoutWithSidebar>
     );
   }
 
   // Error state
   if (!organizationId) {
     return (
-      <Alert className="m-6 border-red-200 bg-red-50">
-        <AlertTriangle className="h-4 w-4 text-red-600" />
-        <AlertDescription className="text-red-800">
-          Restaurant setup required. Please complete restaurant setup first.
-        </AlertDescription>
-      </Alert>
+      <AppLayoutWithSidebar variant="pos">
+        <Alert className="m-6 border-red-200 bg-red-50">
+          <AlertTriangle className="h-4 w-4 text-red-600" />
+          <AlertDescription className="text-red-800">
+            Restaurant setup required. Please complete restaurant setup first.
+          </AlertDescription>
+        </Alert>
+      </AppLayoutWithSidebar>
     );
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: colors.background }}>
-      {/* Restaurant Navbar */}
-      <RestaurantNavbar 
-        currentSection="Kitchen Display System"
-        sectionIcon={<ChefHat className="w-5 h-5" />}
-      />
-
-      {/* Kitchen Status Bar */}
-      <div 
-        className="border-b"
-        style={{ 
-          backgroundColor: isDark ? colors.gray800 : colors.surface,
-          borderColor: isDark ? colors.gray700 : colors.border
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-3">
-            {/* Status Summary */}
-            <div className="flex items-center space-x-2 text-sm overflow-x-auto">
-              <Badge 
-                variant="outline" 
-                className="border flex-shrink-0"
-                style={getStatusColor('pending')}
-              >
-                <Clock className="w-3 h-3 mr-1" />
-                {orders.filter(o => o.status === 'pending').length} Pending
-              </Badge>
-              <Badge 
-                variant="outline" 
-                className="border flex-shrink-0"
-                style={getStatusColor('preparing')}
-              >
-                <Timer className="w-3 h-3 mr-1" />
-                {orders.filter(o => o.status === 'preparing').length} Preparing
-              </Badge>
-              <Badge 
-                variant="outline" 
-                className="border flex-shrink-0"
-                style={getStatusColor('ready')}
-              >
-                <CheckCircle className="w-3 h-3 mr-1" />
-                {orders.filter(o => o.status === 'ready').length} Ready
-              </Badge>
-              <Badge 
-                variant="outline" 
-                className="border flex-shrink-0"
-                style={{
-                  backgroundColor: isDark ? 'rgba(102, 187, 106, 0.2)' : 'rgba(34, 197, 94, 0.12)',
-                  color: isDark ? colors.success : '#166534',
-                  borderColor: isDark ? 'rgba(102, 187, 106, 0.4)' : 'rgba(34, 197, 94, 0.25)'
-                }}
-              >
-                <CheckCircle className="w-3 h-3 mr-1" />
-                {todaysCompletedOrders.length} Today
-              </Badge>
+    <AppLayoutWithSidebar variant="pos">
+      {/* Header */}
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+        <div className="px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <ChefHat className="w-6 h-6 mr-3 text-orange-600" />
+              <div>
+                <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  Kitchen Display System
+                </h1>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Real-time order tracking and preparation
+                </p>
+              </div>
             </div>
-
-            {/* Refresh Button */}
-            <UniversalThemeButton 
-              variant="secondary" 
-              onClick={loadOrders} 
-              disabled={loading}
-              icon={<RotateCcw className="w-4 h-4" />}
-              size="sm"
-            >
-              <span className="hidden sm:inline">Refresh</span>
-            </UniversalThemeButton>
+            
+            <div className="flex items-center gap-4">
+              {/* Live Status */}
+              <Badge className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-0">
+                <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                Live Kitchen
+              </Badge>
+              
+              {/* Refresh Button */}
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={loadOrders}
+                disabled={loading}
+              >
+                <RotateCcw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+                Refresh
+              </Button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        
-        {/* Filter Tabs */}
-        <div 
-          className="flex space-x-1 rounded-lg p-1 mb-6"
-          style={{ 
-            backgroundColor: isDark ? colors.gray700 : colors.surfaceElevated,
-            border: `1px solid ${isDark ? colors.gray600 : 'transparent'}`
-          }}
-        >
-          {[
-            { key: 'all', label: 'All Orders', count: orders.length },
-            { key: 'pending', label: 'Pending', count: orders.filter(o => o.status === 'pending').length },
-            { key: 'preparing', label: 'Preparing', count: orders.filter(o => o.status === 'preparing').length },
-            { key: 'ready', label: 'Ready', count: orders.filter(o => o.status === 'ready').length }
-          ].map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setFilter(tab.key as any)}
-              className="flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-all"
-              style={{
-                backgroundColor: filter === tab.key 
-                  ? (isDark ? colors.gray800 : colors.surface) 
-                  : 'transparent',
-                color: filter === tab.key ? colors.orange : colors.textSecondary,
-                boxShadow: filter === tab.key 
-                  ? (isDark ? `0 2px 4px ${colors.shadow}` : `0 1px 3px ${colors.shadow}`) 
-                  : 'none',
-                border: filter === tab.key 
-                  ? `1px solid ${isDark ? colors.gray500 : colors.border}` 
-                  : '1px solid transparent'
-              }}
-              onMouseEnter={(e) => {
-                if (filter !== tab.key) {
-                  e.currentTarget.style.color = colors.textPrimary;
-                  e.currentTarget.style.backgroundColor = isDark ? colors.gray800 : colors.surface;
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (filter !== tab.key) {
-                  e.currentTarget.style.color = colors.textSecondary;
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                }
-              }}
-            >
-              <span>{tab.label}</span>
-              <Badge 
-                variant="secondary" 
-                className="text-xs border-0"
-                style={{
-                  backgroundColor: filter === tab.key 
-                    ? (isDark ? 'rgba(255, 87, 34, 0.2)' : colors.orangeShadow) 
-                    : (isDark ? colors.gray700 : colors.surface),
-                  color: filter === tab.key ? colors.orange : colors.textMuted,
-                  border: `1px solid ${filter === tab.key 
-                    ? (isDark ? 'rgba(255, 87, 34, 0.3)' : 'transparent') 
-                    : (isDark ? colors.gray600 : 'transparent')}`
-                }}
-              >
-                {tab.count}
-              </Badge>
-            </button>
-          ))}
-        </div>
-
-        {/* Error Display */}
+      {/* Success/Error Messages */}
+      <AnimatePresence>
         {error && (
-          <Alert className="mb-6 border-red-200 bg-red-50">
-            <AlertTriangle className="h-4 w-4 text-red-600" />
-            <AlertDescription className="text-red-800">{error}</AlertDescription>
-          </Alert>
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50"
+          >
+            <div className="bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5" />
+              {error}
+              <button onClick={() => setError(null)} className="ml-2">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
         )}
+      </AnimatePresence>
 
+      {/* Kitchen Status Bar */}
+      <div className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+        <div className="px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            {/* Status Summary */}
+            <div className="flex items-center space-x-3 overflow-x-auto">
+              <Badge className={`${getStatusColor('pending')} border-0 flex-shrink-0`}>
+                <Clock className="w-3 h-3 mr-1" />
+                {orders.filter(o => o.status === 'pending').length} Pending
+              </Badge>
+              <Badge className={`${getStatusColor('preparing')} border-0 flex-shrink-0`}>
+                <Flame className="w-3 h-3 mr-1" />
+                {orders.filter(o => o.status === 'preparing').length} Preparing
+              </Badge>
+              <Badge className={`${getStatusColor('ready')} border-0 flex-shrink-0`}>
+                <CheckCircle className="w-3 h-3 mr-1" />
+                {orders.filter(o => o.status === 'ready').length} Ready
+              </Badge>
+              <Badge className={`${getStatusColor('ready')} border-0 flex-shrink-0`}>
+                <Star className="w-3 h-3 mr-1" />
+                {todaysCompletedOrders.length} Completed Today
+              </Badge>
+            </div>
+
+            {/* Filter Tabs */}
+            <div className="flex rounded-lg p-1 bg-gray-200 dark:bg-gray-700">
+              {[
+                { key: 'all', label: 'All', count: orders.length },
+                { key: 'pending', label: 'Pending', count: orders.filter(o => o.status === 'pending').length },
+                { key: 'preparing', label: 'Preparing', count: orders.filter(o => o.status === 'preparing').length },
+                { key: 'ready', label: 'Ready', count: orders.filter(o => o.status === 'ready').length }
+              ].map((tab) => (
+                <button
+                  key={tab.key}
+                  onClick={() => setFilter(tab.key as any)}
+                  className={`
+                    px-3 py-1 rounded-md text-sm font-medium transition-all
+                    ${filter === tab.key 
+                      ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' 
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
+                    }
+                  `}
+                >
+                  {tab.label} {tab.count > 0 && (
+                    <Badge variant="secondary" className="ml-1 text-xs">
+                      {tab.count}
+                    </Badge>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <main className="px-6 lg:px-8 py-8">
         {/* Orders Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <AnimatePresence>
             {sortedOrders.map((order) => (
               <motion.div
@@ -516,68 +470,65 @@ export default function KitchenPage() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 layout
               >
-                <UniversalCard 
-                  variant="interactive"
-                  className={`cursor-pointer transition-all ${
-                    selectedOrder === order.id ? 'ring-2' : ''
-                  } ${order.priority === 'urgent' ? '' : ''}`}
-                  style={{
-                    ...(selectedOrder === order.id ? { 
-                      borderColor: colors.orange,
-                      boxShadow: `0 0 0 2px ${colors.orange}33`
-                    } : {}),
-                    ...(order.priority === 'urgent' ? { 
-                      backgroundColor: isDark ? 'rgba(239, 83, 80, 0.15)' : 'rgba(239, 68, 68, 0.05)',
-                      borderColor: isDark ? 'rgba(239, 83, 80, 0.4)' : 'rgba(239, 68, 68, 0.2)'
-                    } : {})
-                  }}
+                <Card 
+                  className={`
+                    bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 
+                    hover:shadow-lg transition-all cursor-pointer
+                    ${selectedOrder === order.id ? 'ring-2 ring-blue-500' : ''}
+                    ${order.priority === 'urgent' ? 'border-l-4 border-l-red-500' : ''}
+                    ${order.priority === 'high' ? 'border-l-4 border-l-orange-500' : ''}
+                  `}
                   onClick={() => setSelectedOrder(selectedOrder === order.id ? null : order.id)}
                 >
-                  <UniversalCardHeader className="pb-3">
+                  <div className="p-4 space-y-4">
+                    {/* Order Header */}
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        <div 
-                          className="w-2 h-2 rounded-full" 
-                          style={{ backgroundColor: getPriorityColor(order.priority) }}
-                        />
-                        <h3 className="font-bold text-lg" style={{ color: colors.textPrimary }}>
+                        <div className={`w-2 h-2 rounded-full ${getPriorityColor(order.priority)}`} />
+                        <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">
                           {order.orderNumber}
                         </h3>
                       </div>
-                      <Badge className="border-0" style={getStatusColor(order.status)}>
+                      <Badge className={`${getStatusColor(order.status)} border-0`}>
                         {order.status.replace('_', ' ').toUpperCase()}
                       </Badge>
                     </div>
                     
-                    <div className="flex items-center space-x-4 text-sm">
-                      <div className="flex items-center" style={{ color: colors.textSecondary }}>
-                        <User className="w-4 h-4 mr-1" />
+                    {/* Customer Info */}
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                        <User className="w-4 h-4 mr-2" />
                         {order.customerName}
                       </div>
-                      <div className="flex items-center" style={{ color: colors.textSecondary }}>
-                        <MapPin className="w-4 h-4 mr-1" />
-                        {order.tableNumber}
+                      <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
+                        <div className="flex items-center">
+                          <MapPin className="w-4 h-4 mr-1" />
+                          {order.tableNumber}
+                        </div>
+                        <div className="flex items-center">
+                          <Clock className="w-4 h-4 mr-1" />
+                          {formatOrderTime(order.orderTime)}
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                        <span>Est. {order.estimatedPrepTime}min</span>
+                        <span className="capitalize">{order.orderType.replace('_', ' ')}</span>
                       </div>
                     </div>
-                    
-                    <div className="flex items-center justify-between text-xs" style={{ color: colors.textMuted }}>
-                      <span>{formatOrderTime(order.orderTime)}</span>
-                      <span>Est. {order.estimatedPrepTime}min</span>
-                    </div>
-                  </UniversalCardHeader>
 
-                  <UniversalCardContent className="space-y-3">
+                    <Separator className="border-gray-200 dark:border-gray-700" />
+
                     {/* Order Items */}
                     <div className="space-y-2">
                       {order.items.map((item, index) => (
                         <div key={index} className="flex justify-between items-start text-sm">
                           <div className="flex-1">
-                            <span className="font-medium" style={{ color: colors.textPrimary }}>
+                            <span className="font-medium text-gray-900 dark:text-gray-100">
                               {item.quantity}x {item.name}
                             </span>
                             {item.specialInstructions && (
-                              <p className="text-xs mt-1" style={{ color: colors.orange }}>
-                                Note: {item.specialInstructions}
+                              <p className="text-xs mt-1 text-orange-600 dark:text-orange-400">
+                                ⚠️ {item.specialInstructions}
                               </p>
                             )}
                           </div>
@@ -587,92 +538,86 @@ export default function KitchenPage() {
 
                     {/* Special Instructions */}
                     {order.specialInstructions && (
-                      <div 
-                        className="p-2 border rounded-md"
-                        style={{
-                          backgroundColor: isDark ? 'rgba(255, 193, 7, 0.15)' : 'rgba(234, 179, 8, 0.1)',
-                          borderColor: isDark ? 'rgba(255, 193, 7, 0.3)' : 'rgba(234, 179, 8, 0.25)'
-                        }}
-                      >
+                      <div className="p-3 rounded-lg bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700">
                         <div className="flex items-start space-x-2">
-                          <FileText 
-                            className="w-4 h-4 mt-0.5 flex-shrink-0" 
-                            style={{ color: isDark ? '#FFD54F' : '#92400e' }}
-                          />
-                          <p className="text-xs" style={{ color: isDark ? '#FFD54F' : '#92400e' }}>
+                          <FileText className="w-4 h-4 mt-0.5 text-yellow-600 dark:text-yellow-400" />
+                          <p className="text-sm text-yellow-800 dark:text-yellow-300">
                             {order.specialInstructions}
                           </p>
                         </div>
                       </div>
                     )}
 
-                    <Separator />
+                    <Separator className="border-gray-200 dark:border-gray-700" />
 
                     {/* Action Buttons */}
                     <div className="space-y-2">
                       {order.status === 'pending' && (
-                        <UniversalThemeButton
+                        <Button
                           onClick={(e) => {
                             e.stopPropagation();
                             updateOrderStatus(order.id, 'preparing');
                           }}
                           disabled={updatingOrder === order.id}
-                          variant="primary"
+                          className="w-full bg-blue-600 hover:bg-blue-700"
                           size="sm"
-                          fullWidth
-                          loading={updatingOrder === order.id}
-                          icon={updatingOrder === order.id ? undefined : <Play className="w-4 h-4" />}
                         >
+                          {updatingOrder === order.id ? (
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          ) : (
+                            <Play className="w-4 h-4 mr-2" />
+                          )}
                           {updatingOrder === order.id ? 'Starting...' : 'Start Preparing'}
-                        </UniversalThemeButton>
+                        </Button>
                       )}
 
                       {order.status === 'preparing' && (
-                        <UniversalThemeButton
+                        <Button
                           onClick={(e) => {
                             e.stopPropagation();
                             updateOrderStatus(order.id, 'ready');
                           }}
                           disabled={updatingOrder === order.id}
-                          variant="primary"
+                          className="w-full bg-green-600 hover:bg-green-700"
                           size="sm"
-                          fullWidth
-                          loading={updatingOrder === order.id}
-                          icon={updatingOrder === order.id ? undefined : <Check className="w-4 h-4" />}
-                          style={{
-                            backgroundColor: colors.success,
-                            borderColor: colors.success
-                          }}
                         >
+                          {updatingOrder === order.id ? (
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          ) : (
+                            <Check className="w-4 h-4 mr-2" />
+                          )}
                           {updatingOrder === order.id ? 'Updating...' : 'Mark Ready'}
-                        </UniversalThemeButton>
+                        </Button>
                       )}
 
                       {order.status === 'ready' && (
-                        <UniversalThemeButton
+                        <Button
                           onClick={(e) => {
                             e.stopPropagation();
                             updateOrderStatus(order.id, 'completed');
                           }}
                           disabled={updatingOrder === order.id}
-                          variant="secondary"
+                          variant="outline"
+                          className="w-full"
                           size="sm"
-                          fullWidth
-                          loading={updatingOrder === order.id}
-                          icon={updatingOrder === order.id ? undefined : <CheckCircle className="w-4 h-4" />}
                         >
+                          {updatingOrder === order.id ? (
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          ) : (
+                            <CheckCircle className="w-4 h-4 mr-2" />
+                          )}
                           {updatingOrder === order.id ? 'Completing...' : 'Complete Order'}
-                        </UniversalThemeButton>
+                        </Button>
                       )}
 
                       {/* Order Details */}
-                      <div className="flex items-center justify-between text-xs" style={{ color: colors.textMuted }}>
-                        <span>Total: ${order.totalAmount.toFixed(2)}</span>
+                      <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                        <span>Total: ₹{order.totalAmount.toFixed(2)}</span>
                         {order.waiterName && <span>Waiter: {order.waiterName}</span>}
                       </div>
                     </div>
-                  </UniversalCardContent>
-                </UniversalCard>
+                  </div>
+                </Card>
               </motion.div>
             ))}
           </AnimatePresence>
@@ -680,116 +625,68 @@ export default function KitchenPage() {
 
         {/* Empty State */}
         {sortedOrders.length === 0 && !loading && (
-          <UniversalCard className="text-center py-12">
-            <UniversalCardContent>
-              <ChefHat className="w-16 h-16 mx-auto mb-4" style={{ color: colors.textMuted }} />
-              <p className="text-lg" style={{ color: colors.textSecondary }}>No orders found</p>
-              <p className="text-sm" style={{ color: colors.textMuted }}>
+          <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+            <div className="p-12 text-center">
+              <ChefHat className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                No orders found
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
                 {filter === 'all' ? 'No orders in the system' : `No ${filter} orders`}
               </p>
-              <div className="mt-4">
-                <UniversalThemeButton 
-                  variant="secondary" 
-                  onClick={() => window.open('/restaurant/pos', '_blank')}
-                  icon={<Utensils className="w-4 h-4" />}
-                >
-                  Open POS System
-                </UniversalThemeButton>
-              </div>
-            </UniversalCardContent>
-          </UniversalCard>
+              <Button 
+                variant="outline" 
+                onClick={() => window.open('/restaurant/pos', '_blank')}
+              >
+                <Utensils className="w-4 h-4 mr-2" />
+                Open POS System
+              </Button>
+            </div>
+          </Card>
         )}
 
-        {/* Today's Completed Orders Section */}
+        {/* Today's Summary */}
         {todaysCompletedOrders.length > 0 && (
           <div className="mt-8">
-            <UniversalCard variant="elevated">
-              <UniversalCardHeader>
-                <UniversalCardTitle className="flex items-center">
-                  <CheckCircle className="w-5 h-5 mr-2" style={{ color: colors.success }} />
-                  Today's Completed Orders ({todaysCompletedOrders.length})
-                </UniversalCardTitle>
-              </UniversalCardHeader>
-              <UniversalCardContent>
-                <div className="space-y-3 max-h-96 overflow-y-auto">
-                  {todaysCompletedOrders.map((order) => (
-                    <div 
-                      key={order.id} 
-                      className="flex items-center justify-between p-3 rounded-lg border"
-                      style={{
-                        backgroundColor: isDark ? 'rgba(102, 187, 106, 0.15)' : 'rgba(34, 197, 94, 0.08)',
-                        borderColor: isDark ? 'rgba(102, 187, 106, 0.3)' : 'rgba(34, 197, 94, 0.2)'
-                      }}
-                    >
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: colors.success }} />
-                          <div>
-                            <h4 className="font-medium" style={{ color: colors.success }}>
-                              {order.orderNumber}
-                            </h4>
-                            <p className="text-sm" style={{ color: colors.success }}>
-                              {order.customerName} • {order.tableNumber}
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="mt-2">
-                          <div className="flex flex-wrap gap-1">
-                            {order.items.map((item, index) => (
-                              <span 
-                                key={index} 
-                                className="text-xs px-2 py-1 rounded"
-                                style={{
-                                  backgroundColor: isDark ? 'rgba(102, 187, 106, 0.2)' : 'rgba(34, 197, 94, 0.12)',
-                                  color: colors.success
-                                }}
-                              >
-                                {item.quantity}x {item.name}
-                              </span>
-                            ))}
-                          </div>
-                          
-                          {order.specialInstructions && (
-                            <p className="text-xs mt-1" style={{ color: colors.success }}>
-                              Note: {order.specialInstructions}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      
-                      <div className="text-right">
-                        <p className="text-sm font-medium" style={{ color: colors.success }}>
-                          ${order.totalAmount.toFixed(2)}
-                        </p>
-                        <p className="text-xs" style={{ color: colors.success }}>
-                          {formatOrderTime(order.orderTime)}
-                        </p>
-                        {order.waiterName && (
-                          <p className="text-xs" style={{ color: colors.success }}>
-                            {order.waiterName}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+            <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center">
+                    <TrendingUp className="w-5 h-5 mr-2 text-green-600" />
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                      Today's Performance
+                    </h3>
+                  </div>
+                  <Badge className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-0">
+                    {todaysCompletedOrders.length} Completed
+                  </Badge>
                 </div>
                 
-                {/* Daily Summary */}
-                <div className="mt-4 pt-4 border-t" style={{ borderColor: colors.border }}>
-                  <div className="flex justify-between items-center text-sm">
-                    <span style={{ color: colors.textSecondary }}>Total completed today:</span>
-                    <span className="font-medium" style={{ color: colors.textPrimary }}>
-                      {todaysCompletedOrders.length} orders • $
-                      {todaysCompletedOrders.reduce((sum, order) => sum + order.totalAmount, 0).toFixed(2)}
-                    </span>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="text-center p-4 rounded-lg bg-gray-50 dark:bg-gray-700">
+                    <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                      {todaysCompletedOrders.length}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Orders Completed</div>
+                  </div>
+                  <div className="text-center p-4 rounded-lg bg-gray-50 dark:bg-gray-700">
+                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                      ₹{todaysCompletedOrders.reduce((sum, order) => sum + order.totalAmount, 0).toFixed(0)}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Revenue Generated</div>
+                  </div>
+                  <div className="text-center p-4 rounded-lg bg-gray-50 dark:bg-gray-700">
+                    <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                      {Math.round(todaysCompletedOrders.reduce((sum, order) => sum + (order.actualPrepTime || order.estimatedPrepTime), 0) / todaysCompletedOrders.length) || 0}m
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Avg Prep Time</div>
                   </div>
                 </div>
-              </UniversalCardContent>
-            </UniversalCard>
+              </div>
+            </Card>
           </div>
         )}
-      </div>
-    </div>
+      </main>
+    </AppLayoutWithSidebar>
   );
 }

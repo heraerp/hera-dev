@@ -74,7 +74,7 @@ export default function RestaurantSelector({
     return (
       <div className="max-w-4xl mx-auto p-6">
         <Card className="p-8 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading your restaurants...</p>
         </Card>
       </div>
@@ -85,8 +85,8 @@ export default function RestaurantSelector({
     <div className="max-w-6xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-4">
-          <Building2 className="w-8 h-8 text-white" />
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-2xl mb-4">
+          <Building2 className="w-8 h-8 text-orange-600" />
         </div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           Select Your Restaurant
@@ -112,14 +112,14 @@ export default function RestaurantSelector({
               <Card 
                 className={`p-6 cursor-pointer transition-all duration-300 hover:shadow-xl ${
                   selectedId === restaurant.id 
-                    ? 'ring-2 ring-blue-500 bg-gradient-to-br from-blue-50 to-purple-50' 
+                    ? 'ring-2 ring-orange-500 bg-orange-50 dark:bg-orange-950' 
                     : 'hover:shadow-lg border-gray-200'
                 }`}
                 onClick={() => handleSelect(restaurant)}
               >
                 <div className="flex items-start justify-between mb-4">
-                  <Avatar className="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600">
-                    <AvatarFallback className="text-white font-bold text-lg">
+                  <Avatar className="w-14 h-14 bg-orange-100 dark:bg-orange-800">
+                    <AvatarFallback className="text-orange-600 font-bold text-lg">
                       {getRestaurantInitials(restaurant.name)}
                     </AvatarFallback>
                   </Avatar>
@@ -203,12 +203,12 @@ export default function RestaurantSelector({
             whileTap={{ scale: 0.98 }}
           >
             <Card 
-              className="p-6 cursor-pointer transition-all duration-300 hover:shadow-xl border-2 border-dashed border-gray-300 hover:border-blue-500 bg-gradient-to-br from-gray-50 to-blue-50"
+              className="p-6 cursor-pointer transition-all duration-300 hover:shadow-xl border-2 border-dashed border-gray-300 hover:border-orange-500 bg-gray-50 dark:bg-gray-800"
               onClick={onCreateNew}
             >
               <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Plus className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 bg-orange-100 dark:bg-orange-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Plus className="w-8 h-8 text-orange-600" />
                 </div>
                 
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -236,11 +236,11 @@ export default function RestaurantSelector({
           animate={{ opacity: 1, y: 0 }}
           className="max-w-2xl mx-auto"
         >
-          <Card className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
+          <Card className="p-6 bg-orange-50 dark:bg-orange-950 border-orange-200">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                  <Check className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-orange-100 dark:bg-orange-800 rounded-xl flex items-center justify-center">
+                  <Check className="w-6 h-6 text-orange-600" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">
@@ -270,7 +270,7 @@ export default function RestaurantSelector({
                 </Button>
                 <Button 
                   size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                  className="bg-orange-600 hover:bg-orange-700"
                   onClick={() => {
                     const restaurant = restaurants.find(r => r.id === selectedId)
                     if (restaurant) {

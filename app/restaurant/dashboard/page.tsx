@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Navbar } from '@/components/ui/navbar';
+import TeamsStyleSidebar from '@/components/ui/TeamsStyleSidebar';
 import Link from 'next/link';
 import { useUniversalAnalytics } from '@/hooks/useUniversalAnalytics';
 import { useRestaurantManagement } from '@/hooks/useRestaurantManagement';
@@ -79,6 +80,7 @@ interface AIInsight {
 
 const RestaurantDashboard = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
   
   // HERA Universal Architecture: Get user's organization ID and handle multiple restaurants
   const [user, setUser] = useState<any>(null);
@@ -132,10 +134,10 @@ const RestaurantDashboard = () => {
   // HERA Universal Architecture: Handle organization loading and error states FIRST
   if (restaurantLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 p-6 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6 flex items-center justify-center">
         <Card className="p-8 max-w-md w-full mx-4">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#30D5C8] mx-auto mb-4"></div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">Loading Dashboard</h3>
             <p className="text-gray-600">Fetching your restaurant information...</p>
           </div>
@@ -147,7 +149,7 @@ const RestaurantDashboard = () => {
   // Show restaurant selector if multiple restaurants are available but none selected
   if (!restaurantLoading && hasMultipleRestaurants && !restaurantData && allRestaurants.length > 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 p-6 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6 flex items-center justify-center">
         <Card className="p-8 max-w-lg w-full mx-4">
           <div className="text-center">
             <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -167,7 +169,7 @@ const RestaurantDashboard = () => {
                     window.location.reload();
                   }}
                   variant="outline"
-                  className="w-full p-4 h-auto flex items-center justify-between hover:bg-blue-50"
+                  className="w-full p-4 h-auto flex items-center justify-between hover:bg-[#30D5C8]/5"
                 >
                   <div className="text-left">
                     <div className="font-medium">{restaurant.name}</div>
@@ -197,7 +199,7 @@ const RestaurantDashboard = () => {
   // Show error state only if there's actually an error or no restaurants found
   if (restaurantError || (!restaurantLoading && !restaurantData && allRestaurants.length === 0)) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 p-6 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6 flex items-center justify-center">
         <Card className="p-8 max-w-lg w-full mx-4">
           <div className="text-center">
             <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -296,12 +298,12 @@ const RestaurantDashboard = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 p-6">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
         <div className="container mx-auto max-w-7xl">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center mx-auto animate-pulse">
-                <BarChart3 className="w-8 h-8 text-white" />
+              <div className="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center mx-auto animate-pulse">
+                <BarChart3 className="w-8 h-8 text-[#30D5C8]" />
               </div>
               <div className="text-xl font-semibold text-gray-700">Loading Dashboard...</div>
               <div className="text-gray-500">Fetching real-time data from Universal Analytics</div>
@@ -315,7 +317,7 @@ const RestaurantDashboard = () => {
   // Error state
   if (error && !metrics) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 p-6">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
         <div className="container mx-auto max-w-7xl">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center space-y-4">
@@ -338,12 +340,12 @@ const RestaurantDashboard = () => {
   // Empty state when analytics load successfully but no data exists
   if (!loading && !metrics) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 p-6">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
         <div className="container mx-auto max-w-7xl">
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center">
-                <Leaf className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center">
+                <Leaf className="w-6 h-6 text-[#30D5C8]" />
               </div>
               {restaurantData.businessName} Dashboard
             </h1>
@@ -373,7 +375,7 @@ const RestaurantDashboard = () => {
                   <div className="text-left p-4 bg-blue-50 rounded-lg">
                     <div className="flex items-start gap-3">
                       <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white font-bold">1</span>
+                        <span className="text-[#30D5C8] font-bold">1</span>
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-1">Add Your Products</h4>
@@ -385,7 +387,7 @@ const RestaurantDashboard = () => {
                   <div className="text-left p-4 bg-green-50 rounded-lg">
                     <div className="flex items-start gap-3">
                       <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white font-bold">2</span>
+                        <span className="text-[#30D5C8] font-bold">2</span>
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-1">Create Your First Order</h4>
@@ -472,7 +474,7 @@ const RestaurantDashboard = () => {
       case 'revenue': return <DollarSign className="w-5 h-5 text-green-600" />;
       case 'inventory': return <Package className="w-5 h-5 text-blue-600" />;
       case 'customer': return <Users className="w-5 h-5 text-purple-600" />;
-      case 'operations': return <Activity className="w-5 h-5 text-orange-600" />;
+      case 'operations': return <Activity className="w-5 h-5 text-[#30D5C8]" />;
       case 'success': return <ThumbsUp className="w-5 h-5 text-green-600" />;
       case 'warning': return <AlertTriangle className="w-5 h-5 text-yellow-600" />;
       case 'info': return <Brain className="w-5 h-5 text-blue-600" />;
@@ -485,15 +487,15 @@ const RestaurantDashboard = () => {
   // Show analytics loading overlay only on initial load
   if (loading && !metrics) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Navigation Bar with User Info */}
         <Navbar />
         
         <div className="container mx-auto max-w-7xl p-6">
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center">
-                <Leaf className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center">
+                <Leaf className="w-6 h-6 text-[#30D5C8]" />
               </div>
               {restaurantData.businessName} Dashboard
             </h1>
@@ -502,7 +504,7 @@ const RestaurantDashboard = () => {
           <div className="flex items-center justify-center py-20">
             <Card className="p-8 max-w-md w-full mx-4">
               <div className="text-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto mb-4"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#30D5C8] mx-auto mb-4"></div>
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">Loading Analytics</h3>
                 <p className="text-gray-600">Fetching real-time data from Universal Analytics...</p>
               </div>
@@ -514,34 +516,35 @@ const RestaurantDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
-      {/* Navigation Bar with User Info */}
-      <Navbar />
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
+      {/* Teams Style Sidebar */}
+      <TeamsStyleSidebar
+        isExpanded={sidebarExpanded}
+        onToggle={() => setSidebarExpanded(!sidebarExpanded)}
+      />
       
-      <div className="container mx-auto max-w-7xl p-6">
+      {/* Main Content */}
+      <div className="flex-1 ml-20 sm:ml-16">
+        {/* Navigation Bar with User Info */}
+        <Navbar />
+      
+      <div className="container mx-auto max-w-7xl p-6 sm:p-4">
         
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center space-x-4">
-            <Link href="/restaurant" className="p-2 rounded-xl bg-white/80 hover:bg-white transition-colors">
-              <ArrowLeft className="w-5 h-5 text-gray-600" />
-            </Link>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center">
-                  <Leaf className="w-6 h-6 text-white" />
-                </div>
-                {restaurantData.businessName} Dashboard
-              </h1>
-              <p className="text-gray-600 mt-1">
-                {currentTime.toLocaleDateString('en-US', { 
-                  weekday: 'long', 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })} • {currentTime.toLocaleTimeString()}
-              </p>
-            </div>
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0 mb-8">
+          <div>
+            <h1 className="text-3xl sm:text-2xl font-bold text-gray-900 dark:text-[#30D5C8] flex items-center">
+              <Clock className="mr-3 h-8 w-8 sm:h-6 sm:w-6 text-[#30D5C8]" />
+              {restaurantData.businessName} Dashboard
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">
+              {currentTime.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+              })} • {currentTime.toLocaleTimeString()}
+            </p>
           </div>
 
           <div className="flex items-center space-x-3">
@@ -550,7 +553,7 @@ const RestaurantDashboard = () => {
               <div className="bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/20 shadow-sm">
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                    <Users className="w-4 h-4 text-white" />
+                    <Users className="w-4 h-4 text-[#30D5C8]" />
                   </div>
                   <div className="text-sm">
                     <div className="font-medium text-gray-900">{user.email}</div>
@@ -597,15 +600,18 @@ const RestaurantDashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            <Card className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white border-0">
+            <Card className="bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-emerald-100 text-sm font-medium">Daily Sales</p>
-                    <p className="text-3xl font-bold">${metrics?.dailySales?.toFixed(2) || '0.00'}</p>
-                    <p className="text-emerald-100 text-sm mt-1">Today's sales revenue</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Daily Sales</p>
+                    <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">${metrics?.dailySales?.toFixed(2) || '0.00'}</p>
+                    <p className="text-[#30D5C8] text-sm mt-1">
+                      <TrendingUp className="w-3 h-3 inline mr-1" />
+                      Today's revenue
+                    </p>
                   </div>
-                  <DollarSign className="w-8 h-8 text-emerald-100" />
+                  <DollarSign className="w-8 h-8 text-gray-400 dark:text-gray-500" />
                 </div>
               </CardContent>
             </Card>
@@ -616,18 +622,18 @@ const RestaurantDashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <Card className="bg-white/80 backdrop-blur border-gray-200">
+            <Card className="bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-600 text-sm font-medium">Orders Today</p>
-                    <p className="text-3xl font-bold text-gray-900">{metrics?.dailyOrders || 0}</p>
-                    <p className="text-green-600 text-sm mt-1">
+                    <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Orders Today</p>
+                    <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">{metrics?.dailyOrders || 0}</p>
+                    <p className="text-[#30D5C8] text-sm mt-1">
                       <TrendingUp className="w-3 h-3 inline mr-1" />
                       Active: {metrics?.activeOrders || 0}
                     </p>
                   </div>
-                  <Utensils className="w-8 h-8 text-gray-400" />
+                  <Utensils className="w-8 h-8 text-gray-400 dark:text-gray-500" />
                 </div>
               </CardContent>
             </Card>
@@ -638,18 +644,18 @@ const RestaurantDashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <Card className="bg-white/80 backdrop-blur border-gray-200">
+            <Card className="bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-600 text-sm font-medium">Customer Rating</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Customer Rating</p>
                     <div className="flex items-center gap-2">
-                      <p className="text-3xl font-bold text-gray-900">{metrics?.customerSatisfaction?.toFixed(1) || '0.0'}</p>
+                      <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">{metrics?.customerSatisfaction?.toFixed(1) || '0.0'}</p>
                       <Star className="w-6 h-6 text-yellow-500 fill-current" />
                     </div>
-                    <p className="text-green-600 text-sm mt-1">Excellent rating</p>
+                    <p className="text-[#30D5C8] text-sm mt-1">Excellent rating</p>
                   </div>
-                  <Users className="w-8 h-8 text-gray-400" />
+                  <Users className="w-8 h-8 text-gray-400 dark:text-gray-500" />
                 </div>
               </CardContent>
             </Card>
@@ -660,15 +666,15 @@ const RestaurantDashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <Card className="bg-white/80 backdrop-blur border-gray-200">
+            <Card className="bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-600 text-sm font-medium">Staff Tips</p>
-                    <p className="text-3xl font-bold text-gray-900">${metrics?.averageTips?.toFixed(2) || '0.00'}</p>
-                    <p className="text-blue-600 text-sm mt-1">{metrics?.staffOnShift || 0} staff on shift</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Staff Tips</p>
+                    <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">${metrics?.averageTips?.toFixed(2) || '0.00'}</p>
+                    <p className="text-[#30D5C8] text-sm mt-1">{metrics?.staffOnShift || 0} staff on shift</p>
                   </div>
-                  <ChefHat className="w-8 h-8 text-gray-400" />
+                  <ChefHat className="w-8 h-8 text-gray-400 dark:text-gray-500" />
                 </div>
               </CardContent>
             </Card>
@@ -687,10 +693,10 @@ const RestaurantDashboard = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <Card className="bg-white/80 backdrop-blur border-gray-200">
+              <Card className="bg-white dark:bg-gray-800 shadow-sm">
                 <CardHeader className="flex flex-row items-center justify-between">
-                  <CardTitle className="text-xl font-semibold text-gray-900 flex items-center gap-2">
-                    <Timer className="w-5 h-5 text-orange-500" />
+                  <CardTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+                    <Timer className="w-5 h-5 text-[#30D5C8]" />
                     Active Orders ({metrics?.activeOrders || 0})
                   </CardTitle>
                   <Link href="/restaurant/orders">
@@ -735,10 +741,10 @@ const RestaurantDashboard = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.7 }}
             >
-              <Card className="bg-white/80 backdrop-blur border-gray-200">
+              <Card className="bg-white dark:bg-gray-800 shadow-sm">
                 <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-gray-900 flex items-center gap-2">
-                    <Target className="w-5 h-5 text-blue-500" />
+                  <CardTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+                    <Target className="w-5 h-5 text-[#30D5C8]" />
                     Staff Performance Today
                   </CardTitle>
                 </CardHeader>
@@ -769,7 +775,7 @@ const RestaurantDashboard = () => {
                       className="flex items-center justify-between p-4 bg-gray-50 rounded-xl"
                     >
                       <div className="flex items-center space-x-4">
-                        <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
+                        <div className="w-10 h-10 bg-[#30D5C8]/10 rounded-full flex items-center justify-center text-[#30D5C8] font-semibold">
                           {staff.name.charAt(0)}
                         </div>
                         <div>
@@ -801,10 +807,10 @@ const RestaurantDashboard = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 }}
             >
-              <Card className="bg-gradient-to-br from-purple-50 to-blue-50 border-purple-200">
+              <Card className="bg-white dark:bg-gray-800 shadow-sm">
                 <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-gray-900 flex items-center gap-2">
-                    <Brain className="w-5 h-5 text-purple-600" />
+                  <CardTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+                    <Brain className="w-5 h-5 text-[#30D5C8]" />
                     AI Insights
                   </CardTitle>
                 </CardHeader>
@@ -815,7 +821,7 @@ const RestaurantDashboard = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.7 + index * 0.1 }}
-                      className="p-4 bg-white/60 rounded-xl border border-white/40"
+                      className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow"
                     >
                       <div className="flex items-start gap-3">
                         {getInsightIcon(insight.type)}
@@ -825,7 +831,7 @@ const RestaurantDashboard = () => {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
                               <span className="text-xs text-gray-500">Confidence:</span>
-                              <span className="text-xs font-medium text-purple-600">
+                              <span className="text-xs font-medium text-[#30D5C8]">
                                 {insight.confidence}%
                               </span>
                             </div>
@@ -857,34 +863,34 @@ const RestaurantDashboard = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8 }}
             >
-              <Card className="bg-white/80 backdrop-blur border-gray-200">
+              <Card className="bg-white dark:bg-gray-800 shadow-sm">
                 <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-gray-900 flex items-center gap-2">
-                    <Zap className="w-5 h-5 text-yellow-500" />
+                  <CardTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+                    <Zap className="w-5 h-5 text-[#30D5C8]" />
                     Quick Actions
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="grid grid-cols-2 gap-3">
                   <Link href="/restaurant/orders">
-                    <Button variant="outline" className="w-full h-16 flex flex-col items-center gap-1 hover:bg-blue-50">
+                    <Button variant="outline" className="w-full h-16 flex flex-col items-center gap-1 hover:bg-[#30D5C8]/5">
                       <Utensils className="w-5 h-5" />
                       <span className="text-xs">New Order</span>
                     </Button>
                   </Link>
                   <Link href="/restaurant/inventory">
-                    <Button variant="outline" className="w-full h-16 flex flex-col items-center gap-1 hover:bg-green-50">
+                    <Button variant="outline" className="w-full h-16 flex flex-col items-center gap-1 hover:bg-[#30D5C8]/5">
                       <Package className="w-5 h-5" />
                       <span className="text-xs">Inventory</span>
                     </Button>
                   </Link>
                   <Link href="/restaurant/kitchen">
-                    <Button variant="outline" className="w-full h-16 flex flex-col items-center gap-1 hover:bg-orange-50">
+                    <Button variant="outline" className="w-full h-16 flex flex-col items-center gap-1 hover:bg-[#30D5C8]/5">
                       <ChefHat className="w-5 h-5" />
                       <span className="text-xs">ChefHat</span>
                     </Button>
                   </Link>
                   <Link href="/restaurant/analytics">
-                    <Button variant="outline" className="w-full h-16 flex flex-col items-center gap-1 hover:bg-purple-50">
+                    <Button variant="outline" className="w-full h-16 flex flex-col items-center gap-1 hover:bg-[#30D5C8]/5">
                       <BarChart3 className="w-5 h-5" />
                       <span className="text-xs">Reports</span>
                     </Button>
@@ -899,10 +905,10 @@ const RestaurantDashboard = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.9 }}
             >
-              <Card className="bg-white/80 backdrop-blur border-gray-200">
+              <Card className="bg-white dark:bg-gray-800 shadow-sm">
                 <CardHeader>
-                  <CardTitle className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                    <Activity className="w-5 h-5 text-green-500" />
+                  <CardTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+                    <Activity className="w-5 h-5 text-[#30D5C8]" />
                     System Status
                   </CardTitle>
                 </CardHeader>
@@ -930,6 +936,7 @@ const RestaurantDashboard = () => {
             </motion.div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

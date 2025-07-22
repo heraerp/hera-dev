@@ -39,9 +39,9 @@ export default function RestaurantSelectPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <Card className="p-8 text-center">
-          <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
+          <Loader2 className="w-12 h-12 text-orange-600 animate-spin mx-auto mb-4" />
           <p className="text-gray-600">Loading your restaurants...</p>
         </Card>
       </div>
@@ -50,7 +50,7 @@ export default function RestaurantSelectPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <Card className="p-8 text-center max-w-md">
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <span className="text-red-600 text-2xl">!</span>
@@ -59,7 +59,7 @@ export default function RestaurantSelectPage() {
           <p className="text-gray-600 mb-4">{error}</p>
           <button 
             onClick={handleCreateNew}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
           >
             Set Up Restaurant
           </button>
@@ -69,7 +69,7 @@ export default function RestaurantSelectPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <RestaurantSelector
         restaurants={allRestaurants}
         selectedRestaurant={selectedRestaurant}

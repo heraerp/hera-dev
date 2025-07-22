@@ -3,6 +3,32 @@
 ## 🎯 SYSTEM OVERVIEW
 You are working on HERA, a revolutionary universal business management platform that uses just 5 core tables to handle any business scenario. This is a Next.js + Supabase project with a universal architecture that can adapt to any business type instantly.
 
+## 🏆 HERA GOLD THEME - DESIGN SYSTEM
+
+**HERA Gold Theme** is the unified design system for HERA's restaurant management platform featuring:
+- **Dark Theme**: Gray-800 (#1f2937) backgrounds with sophisticated contrast
+- **Teal Accent**: #30D5C8 primary accent color for highlights and interactive elements
+- **Teams-Style UI**: Microsoft Teams-inspired navbar and sidebar components
+- **Smart Positioning**: Intelligent modal positioning that stays within screen bounds
+- **Mobile-First**: Responsive design optimized for all device sizes
+
+### Quick Theme Reference
+```scss
+$primary-teal: #30D5C8;      // Main accent color
+$background: #1f2937;        // Gray-800 main background
+$surface: #374151;           // Gray-700 card surfaces  
+$text-primary: #ffffff;      // Primary text
+$text-secondary: #d1d5db;    // Gray-300 secondary text
+$hover: #4b5563;             // Gray-600 hover states
+```
+
+### Key Components
+- **Navbar** (`/components/ui/navbar.tsx`): Teams-style nav with dark mode toggle, search, user profile
+- **Sidebar** (`/components/ui/TeamsStyleSidebar.tsx`): Fixed 80px restaurant navigation with smart apps modal
+- **Layout Pattern**: `<Navbar /> + <Sidebar /> + <main className="flex-1 ml-20 sm:ml-16">`
+
+📚 **Full Documentation**: See `/docs/HERA_GOLD_THEME_DOCUMENTATION.md` and `/docs/HERA_GOLD_QUICK_REFERENCE.md`
+
 ## 🏗️ CORE ARCHITECTURE
 
 ### Universal 5-Table System
@@ -63,7 +89,7 @@ entity_type: 'budget_category_template'
 
 ### API Architecture
 ```
-pages/api/
+app/api/
 ├── core/
 │   └── entities.js          # Universal entity operations
 ├── purchasing/
@@ -71,6 +97,16 @@ pages/api/
 │   └── suppliers.js         # Supplier management
 ├── inventory/
 │   └── items.js            # Inventory management
+├── finance/
+│   └── chart-of-accounts/   # AI-Powered Chart of Accounts
+│       ├── route.ts         # CRUD operations
+│       ├── ai-generate/     # AI account generation
+│       ├── bulk-create/     # Batch account creation
+│       └── check-duplicates/ # Advanced duplicate detection
+├── digital-accountant/
+│   ├── enhanced-integration/ # COA integration bridge
+│   ├── documents/           # Document processing
+│   └── three-way-match/     # Transaction matching
 ├── invoicing/
 │   └── invoices.js         # Invoice management
 └── analytics/
@@ -91,6 +127,18 @@ class HERACore {
 
 ## 🎯 WORKING FEATURES
 
+### ✅ AI-Powered Chart of Accounts System
+- **Natural Language Generation**: Users describe business needs, AI creates complete GL account structures
+- **9-Category Framework**: ASSET, LIABILITY, EQUITY, REVENUE, COST_OF_SALES, DIRECT_EXPENSE, INDIRECT_EXPENSE, TAX_EXPENSE, EXTRAORDINARY_EXPENSE
+- **Restaurant Intelligence**: 25+ pre-built restaurant-specific accounts with industry best practices
+- **Multi-Layer Duplicate Prevention**: 7-layer protection system prevents any duplicate accounts
+- **Smart Alternatives**: AI suggests alternative account codes when duplicates detected
+- **Bulk Operations**: Create up to 100 accounts at once with full validation
+- **Priority Classification**: Essential, Recommended, Optional account levels
+- **AI Reasoning**: Each account includes explanation for why it's needed
+- **Similarity Detection**: 70%+ name matching with Levenshtein distance algorithm
+- **Integration Bridge**: Seamlessly connects with Digital Accountant workflows
+
 ### ✅ Purchase Order System
 - Template-based workflows with approval tiers
 - Auto-approval for orders under $75
@@ -109,15 +157,17 @@ class HERACore {
 - **Search and Filtering**: By category, status, name, SKU
 - **Integration Ready**: Designed for PO and recipe integration
 
+### ✅ Digital Accountant Integration
+- **Enhanced COA Integration**: AI accounts automatically integrate with document processing
+- **Transaction Categorization**: Generated accounts used for automatic expense categorization
+- **Three-Way Matching**: Purchase orders, receipts, and invoices automatically matched
+- **Document Processing**: AI processes receipts and invoices using chart of accounts
+- **Journal Entry Generation**: Automatic journal entries based on account structure
+
 ### ✅ Supplier Management
 - Dynamic supplier profiles with custom fields
 - Category-based organization
 - Template-driven supplier types
-
-### ✅ Inventory System
-- Universal item management
-- Dynamic properties (price, stock, reorder points)
-- Template-based categorization
 
 ### ✅ Analytics Dashboard
 - Real-time metrics from universal transactions
@@ -172,7 +222,70 @@ await hera.addEntityData(employee.id, {
 
 ## 🎪 EXAMPLE SCENARIOS
 
-### Scenario 1: Restaurant Purchase Order
+### Scenario 1: AI Chart of Accounts Generation
+```javascript
+// User describes their business needs
+POST /api/finance/chart-of-accounts/ai-generate
+{
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "businessType": "restaurant",
+  "description": "I'm running an Italian restaurant with catering and delivery services",
+  "specificNeeds": ["catering", "delivery"],
+  "complexity": "intermediate"
+}
+
+// AI automatically generates 25+ accounts including:
+// - Cash Operating Account (1001000)
+// - Food Cost (5001000)
+// - Kitchen Staff Wages (6001000)  
+// - Food Sales Revenue (4001000)
+// - Catering Revenue (4003000)
+// - Delivery Service Revenue (4004000)
+// - Delivery Platform Fees (7005000)
+// Each with AI reasoning and priority classification
+```
+
+### Scenario 2: Smart Duplicate Prevention
+```javascript
+// System detects potential duplicates before creation
+POST /api/finance/chart-of-accounts/check-duplicates
+{
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "accountCodes": ["1001000"],
+  "checkSimilar": true,
+  "suggestAlternatives": true
+}
+
+// Returns:
+{
+  "codeResults": [{
+    "accountCode": "1001000",
+    "status": "duplicate",
+    "existingAccount": {"name": "Cash - Operating Account"},
+    "suggestedAlternatives": ["1001001", "1001010", "1001100"]
+  }]
+}
+```
+
+### Scenario 3: Bulk Account Creation
+```javascript
+// Create multiple accounts at once with validation
+POST /api/finance/chart-of-accounts/bulk-create
+{
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "accounts": [/* 25 AI-generated accounts */]
+}
+
+// System automatically:
+// 1. Validates each account code format (7 digits)
+// 2. Checks for duplicates within request
+// 3. Queries database for existing conflicts
+// 4. Creates accounts in universal tables
+// 5. Skips duplicates gracefully
+// 6. Returns detailed results: 22 created, 3 skipped
+```
+
+### Scenario 4: Restaurant Purchase Order
 ```javascript
 // Real working example in the system
 POST /api/purchasing/purchase-orders
@@ -192,7 +305,7 @@ POST /api/purchasing/purchase-orders
 // 5. Returns approval status
 ```
 
-### Scenario 2: Template Deployment
+### Scenario 5: Template Deployment
 ```javascript
 // Deploy workflow template to new restaurant
 const { config } = await hera.getTemplateConfig('purchase_workflow')
@@ -201,7 +314,7 @@ const { config } = await hera.getTemplateConfig('purchase_workflow')
 // All business logic uses this configuration
 ```
 
-### Scenario 3: Universal Analytics
+### Scenario 6: Universal Analytics
 ```javascript
 // Single query across all business functions
 GET /api/analytics/dashboard

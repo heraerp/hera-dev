@@ -213,6 +213,21 @@ export async function POST(request: NextRequest) {
 
     console.log('Calculated total amount:', totalAmount);
 
+    // Get supplier name for metadata
+    let supplierName = 'Unknown Supplier';
+    const { data: supplierEntity } = await supabase
+      .from('core_entities')
+      .select('entity_name')
+      .eq('id', body.supplierId)
+      .eq('entity_type', 'supplier')
+      .single();
+    
+    if (supplierEntity) {
+      supplierName = supplierEntity.entity_name;
+    }
+
+    console.log('Supplier name resolved:', supplierName);
+
     // Simple approval logic - avoid complex queries for now
     const autoApproveThreshold = 100; // As per Mario's Restaurant approval matrix
 
@@ -234,7 +249,7 @@ export async function POST(request: NextRequest) {
       workflow_status: totalAmount <= autoApproveThreshold ? 'auto_approved' : 'pending_approval',
       procurement_metadata: {
         supplier_id: body.supplierId,
-        supplier_name: body.supplierName,
+        supplier_name: supplierName,
         items: body.items || [],
         delivery_date: body.requestedDeliveryDate,
         notes: body.notes,

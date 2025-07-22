@@ -280,6 +280,48 @@ Respond with ONLY the JSON array, no additional text.`;
   }
 
   /**
+   * Generate comprehensive COA template using Claude AI
+   */
+  async generateTemplate(prompt: string): Promise<{accounts: any[]} | null> {
+    if (!this.isAvailable()) {
+      return null;
+    }
+
+    console.log('🧠 Claude AI: Generating comprehensive COA template');
+
+    const messages: ClaudeMessage[] = [
+      { role: 'user', content: prompt }
+    ];
+
+    const response = await this.callClaude(messages);
+    if (!response) {
+      return null;
+    }
+
+    try {
+      const content = response.content[0]?.text;
+      const parsed = JSON.parse(content);
+      
+      if (!parsed.accounts || !Array.isArray(parsed.accounts)) {
+        console.error('❌ Invalid template response structure:', parsed);
+        return null;
+      }
+
+      // Validate that accounts have required fields
+      const validAccounts = parsed.accounts.filter((account: any) => 
+        account.accountCode && account.accountName && account.accountType
+      );
+
+      console.log('✅ Generated template with', validAccounts.length, 'valid accounts');
+      
+      return { accounts: validAccounts };
+    } catch (error) {
+      console.error('❌ Failed to parse Claude template response:', error);
+      return null;
+    }
+  }
+
+  /**
    * Analyze account conflicts and suggest resolutions
    */
   async resolveAccountConflicts(conflicts: Array<{

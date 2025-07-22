@@ -89,6 +89,7 @@ const FIELD_MAPPINGS = {
   tally: {
     'guid': 'originalCode',
     'name': 'originalName',
+    'gl code name': 'originalName',
     'parent': 'originalType',
     'primarygroup': 'originalCategory',
     'closing_balance': 'balance',

@@ -8,6 +8,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { claudeAI } from '@/utils/claude-ai-service';
+import { COATemplateMatcher } from '@/utils/coa-template-matcher';
 
 // Admin client for demo/testing purposes
 const getAdminClient = () => {
@@ -89,9 +90,12 @@ const mapAccountType = (originalType: string, accountName: string, balance?: num
     };
   }
 
-  if (origType.includes('liability') || origType.includes('sundry creditors') || 
+  if (origType.includes('liability') || origType.includes('liabilities') || 
+      origType.includes('sundry creditors') || origType.includes('current liabilities') ||
       name.includes('payable') || name.includes('creditors') || name.includes('loan') || 
-      name.includes('accrued') || name.includes('debt')) {
+      name.includes('accrued') || name.includes('debt') || name.includes('deposit received') ||
+      name.includes('deposit recieved') || name.includes('advance deposit') ||
+      name.includes('advances from') || name.includes('unearned')) {
     return {
       accountType: 'LIABILITY', 
       confidence: 0.95,
@@ -259,7 +263,221 @@ const generateHeraAccountCode = (accountType: string, sequence: number, existing
   return fallbackCode;
 };
 
-// Intelligent account mapping with hybrid AI approach
+// Load COA template for intelligent matching
+const loadCOATemplate = async (
+  supabase: any,
+  businessType: string
+): Promise<any | null> => {
+  try {
+    console.log('📚 Loading COA template for business type:', businessType);
+    
+    // Find template entity
+    const { data: templateEntity } = await supabase
+      .from('core_entities')
+      .select('id, entity_code, entity_name, created_at')
+      .eq('organization_id', '00000000-0000-0000-0000-000000000001') // System org
+      .eq('entity_type', 'coa_template')
+      .ilike('entity_code', `CLAUDE_${businessType.toUpperCase().replace(/\s+/g, '_')}_COA_V%`)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
+
+    if (!templateEntity) {
+      console.log('⚠️ No template found for business type:', businessType);
+      return null;
+    }
+
+    // Get template data
+    const { data: templateData } = await supabase
+      .from('core_dynamic_data')
+      .select('field_name, field_value')
+      .eq('entity_id', templateEntity.id);
+
+    if (!templateData || templateData.length === 0) {
+      console.log('⚠️ No template data found');
+      return null;
+    }
+
+    // Reconstruct template
+    const accounts: any[] = [];
+    let metadata: any = null;
+
+    templateData.forEach((field: any) => {
+      if (field.field_name === 'template_metadata') {
+        metadata = JSON.parse(field.field_value);
+      } else if (field.field_name.startsWith('account_')) {
+        accounts.push(JSON.parse(field.field_value));
+      }
+    });
+
+    const template = {
+      templateId: templateEntity.entity_code,
+      businessType,
+      accounts,
+      metadata,
+      loadedAt: new Date().toISOString()
+    };
+
+    console.log('✅ Loaded template with', accounts.length, 'accounts:', template.templateId);
+    return template;
+  } catch (error) {
+    console.error('❌ Failed to load COA template:', error);
+    return null;
+  }
+};
+
+// Enhanced account mapping with template-based intelligence + hybrid AI
+const mapAccountsWithTemplate = async (
+  accounts: LegacyAccount[],
+  strategy: string,
+  customMappings: Record<string, string> = {},
+  existingCodes: Set<string>,
+  businessType: string = 'restaurant',
+  supabase: any
+): Promise<MappedAccount[]> => {
+  const mappedAccounts: MappedAccount[] = [];
+  
+  // Try to load template first
+  const template = await loadCOATemplate(supabase, businessType);
+  let templateMatcher: COATemplateMatcher | null = null;
+  
+  if (template) {
+    templateMatcher = new COATemplateMatcher();
+    await templateMatcher.loadTemplate(template);
+    console.log('🎯 Using template-based matching for', accounts.length, 'accounts');
+  } else {
+    console.log('⚠️ No template available, falling back to hybrid AI mapping');
+  }
+
+  // Process each account
+  for (let i = 0; i < accounts.length; i++) {
+    const account = accounts[i];
+    let mappedAccount: MappedAccount;
+
+    console.log(`\n🔄 Processing account ${i + 1}/${accounts.length}: "${account.originalName}"`);
+
+    // Check for custom mapping first
+    if (customMappings[account.originalCode]) {
+      const customCode = customMappings[account.originalCode];
+      const typeMapping = mapAccountType(account.originalType || '', account.originalName, account.balance);
+      
+      mappedAccount = {
+        originalAccount: account,
+        suggestedMapping: {
+          accountCode: customCode,
+          accountName: account.originalName,
+          accountType: typeMapping.accountType as any,
+          description: account.description || `Migrated from ${account.originalCode}`,
+          confidence: 1.0,
+          reasoning: 'Custom mapping provided by user'
+        },
+        status: existingCodes.has(customCode) ? 'conflict' : 'ready'
+      };
+    } else if (templateMatcher) {
+      // Template-based matching (preferred method)
+      try {
+        const templateMatches = await templateMatcher.matchAccount({
+          name: account.originalName,
+          type: account.originalType,
+          description: account.description,
+          originalCode: account.originalCode
+        });
+
+        if (templateMatches.length > 0) {
+          const bestMatch = templateMatches[0];
+          
+          console.log(`✅ Template match: "${bestMatch.account.accountName}" (${bestMatch.confidence.toFixed(2)} confidence)`);
+          
+          mappedAccount = {
+            originalAccount: account,
+            suggestedMapping: {
+              accountCode: bestMatch.account.accountCode,
+              accountName: bestMatch.account.accountName,
+              accountType: bestMatch.account.accountType as any,
+              description: bestMatch.account.description + ` (Template-based match)`,
+              confidence: bestMatch.confidence,
+              reasoning: `Template match: ${bestMatch.reasoning}`
+            },
+            status: bestMatch.confidence > 0.8 ? 'ready' : 'manual_review'
+          };
+        } else {
+          // Fallback to hybrid AI if no template match
+          console.log('⚠️ No template match found, using hybrid AI fallback');
+          const typeMapping = await mapAccountTypeWithAI(account, businessType);
+          
+          mappedAccount = {
+            originalAccount: account,
+            suggestedMapping: {
+              accountCode: generateHeraAccountCode(typeMapping.accountType, i + 1, existingCodes),
+              accountName: typeMapping.accountName || account.originalName,
+              accountType: typeMapping.accountType as any,
+              description: account.description || `Migrated from ${account.originalCode} (AI fallback)`,
+              confidence: typeMapping.confidence,
+              reasoning: typeMapping.reasoning + ' (AI fallback after no template match)'
+            },
+            status: typeMapping.confidence > 0.75 ? 'ready' : 'manual_review'
+          };
+        }
+      } catch (error) {
+        console.error('❌ Template matching failed:', error);
+        
+        // Fallback to hybrid AI
+        const typeMapping = await mapAccountTypeWithAI(account, businessType);
+        
+        mappedAccount = {
+          originalAccount: account,
+          suggestedMapping: {
+            accountCode: generateHeraAccountCode(typeMapping.accountType, i + 1, existingCodes),
+            accountName: typeMapping.accountName || account.originalName,
+            accountType: typeMapping.accountType as any,
+            description: account.description || `Migrated from ${account.originalCode} (AI fallback)`,
+            confidence: typeMapping.confidence,
+            reasoning: typeMapping.reasoning + ' (AI fallback after template error)'
+          },
+          status: typeMapping.confidence > 0.75 ? 'ready' : 'manual_review'
+        };
+      }
+    } else {
+      // No template available - use original hybrid AI approach
+      console.log('🔧 Using original hybrid AI approach (no template)');
+      const typeMapping = await mapAccountTypeWithAI(account, businessType);
+      
+      mappedAccount = {
+        originalAccount: account,
+        suggestedMapping: {
+          accountCode: typeMapping.accountCode || generateHeraAccountCode(typeMapping.accountType, i + 1, existingCodes),
+          accountName: typeMapping.accountName || account.originalName,
+          accountType: typeMapping.accountType as any,
+          description: account.description || `Migrated from ${account.originalCode}${typeMapping.aiEnhanced ? ' (AI Enhanced)' : ''}`,
+          confidence: typeMapping.confidence,
+          reasoning: typeMapping.reasoning
+        },
+        status: typeMapping.confidence < 0.75 ? 'manual_review' : 'ready'
+      };
+    }
+
+    // Check for conflicts
+    if (existingCodes.has(mappedAccount.suggestedMapping.accountCode) && !customMappings[account.originalCode]) {
+      mappedAccount.status = 'conflict';
+      mappedAccount.conflicts = ['Account code already exists'];
+      console.log(`⚠️ Conflict detected: ${mappedAccount.suggestedMapping.accountCode} already exists`);
+    } else {
+      existingCodes.add(mappedAccount.suggestedMapping.accountCode);
+    }
+
+    mappedAccounts.push(mappedAccount);
+  }
+
+  // Log summary
+  const templateMapped = mappedAccounts.filter(m => m.suggestedMapping.reasoning.includes('Template')).length;
+  const aiMapped = mappedAccounts.filter(m => m.suggestedMapping.reasoning.includes('AI')).length;
+  
+  console.log(`\n📊 Mapping summary: ${templateMapped} template-based, ${aiMapped} AI-based, ${mappedAccounts.length - templateMapped - aiMapped} rule-based`);
+
+  return mappedAccounts;
+};
+
+// Legacy function for backwards compatibility
 const mapAccounts = async (
   accounts: LegacyAccount[], 
   strategy: string,
@@ -388,13 +606,14 @@ export async function POST(request: NextRequest) {
 
     const existingCodes = new Set(existingAccounts?.map(acc => acc.entity_code) || []);
 
-    // Perform intelligent mapping with hybrid AI
-    const mappedAccounts = await mapAccounts(
+    // Perform intelligent mapping with template-based matching + hybrid AI
+    const mappedAccounts = await mapAccountsWithTemplate(
       body.accounts,
       body.mappingStrategy,
       body.customMappings,
       existingCodes,
-      'restaurant' // TODO: Get business type from organization profile
+      'restaurant', // TODO: Get business type from organization profile
+      supabase
     );
 
     // Calculate summary statistics

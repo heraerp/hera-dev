@@ -91,6 +91,7 @@ export function ApprovalDashboard({ organizationId }: ApprovalDashboardProps) {
   const [statusFilter, setStatusFilter] = useState('all');
   const [selectedPO, setSelectedPO] = useState<PendingPO | null>(null);
   const [showApprovalModal, setShowApprovalModal] = useState(false);
+  const [processingAction, setProcessingAction] = useState<{poId: string, action: string} | null>(null);
 
   // Fetch pending approvals
   const fetchPendingApprovals = async () => {
@@ -121,34 +122,57 @@ export function ApprovalDashboard({ organizationId }: ApprovalDashboardProps) {
     return matchesSearch;
   });
 
-  // Handle approval action
+  // Handle approval action with better error handling
   const handleApprovalAction = async (poId: string, action: 'approve' | 'reject' | 'request_modification', notes?: string) => {
     try {
+      console.log(`🚀 Starting ${action} action for PO ${poId}`);
+      
+      // Set loading state for this specific action
+      setProcessingAction({ poId, action });
+      
+      const requestData = {
+        poId,
+        organizationId,
+        action,
+        approverId: '00000001-0000-0000-0000-000000000002', // Chef Mario for demo
+        approverName: 'Chef Mario',
+        notes
+      };
+
+      console.log('📝 Request data:', requestData);
+
       const response = await fetch('/api/purchasing/purchase-orders/approve', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          poId,
-          organizationId,
-          action,
-          approverId: '00000001-0000-0000-0000-000000000002', // Chef Mario for demo
-          approverName: 'Chef Mario',
-          notes
-        })
+        body: JSON.stringify(requestData)
       });
 
-      if (response.ok) {
+      console.log('📡 Response status:', response.status);
+      
+      const responseData = await response.json();
+      console.log('📊 Response data:', responseData);
+
+      if (response.ok && responseData.success) {
+        console.log(`✅ PO ${action} action completed successfully`);
         await fetchPendingApprovals(); // Refresh data
         setShowApprovalModal(false);
         setSelectedPO(null);
-        console.log(`✅ PO ${action} action completed`);
+        
+        // Show success feedback to user
+        alert(`Purchase Order ${responseData.data?.poNumber || poId} ${action}d successfully!`);
       } else {
-        console.error('Failed to process approval action');
+        const errorMessage = responseData.error || 'Failed to process approval action';
+        console.error('❌ Approval failed:', errorMessage);
+        alert(`Failed to ${action} purchase order: ${errorMessage}`);
       }
     } catch (error) {
-      console.error('Error processing approval:', error);
+      console.error('❌ Error processing approval:', error);
+      alert(`Error occurred while trying to ${action} purchase order. Check console for details.`);
+    } finally {
+      // Clear loading state
+      setProcessingAction(null);
     }
   };
 
@@ -327,19 +351,39 @@ export function ApprovalDashboard({ organizationId }: ApprovalDashboardProps) {
                           <Button
                             size="sm"
                             onClick={() => handleApprovalAction(po.id, 'approve')}
-                            className="bg-green-600 hover:bg-green-700"
+                            disabled={processingAction?.poId === po.id}
+                            className="bg-green-600 hover:bg-green-700 disabled:opacity-50"
                           >
-                            <ThumbsUp className="w-4 h-4 mr-2" />
-                            Approve
+                            {processingAction?.poId === po.id && processingAction.action === 'approve' ? (
+                              <>
+                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                                Approving...
+                              </>
+                            ) : (
+                              <>
+                                <ThumbsUp className="w-4 h-4 mr-2" />
+                                Approve
+                              </>
+                            )}
                           </Button>
                           <Button
                             variant="outline"
                             size="sm"
                             onClick={() => handleApprovalAction(po.id, 'reject', 'Rejected via dashboard')}
-                            className="text-red-600 border-red-600 hover:bg-red-50"
+                            disabled={processingAction?.poId === po.id}
+                            className="text-red-600 border-red-600 hover:bg-red-50 disabled:opacity-50"
                           >
-                            <ThumbsDown className="w-4 h-4 mr-2" />
-                            Reject
+                            {processingAction?.poId === po.id && processingAction.action === 'reject' ? (
+                              <>
+                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-red-600 mr-2"></div>
+                                Rejecting...
+                              </>
+                            ) : (
+                              <>
+                                <ThumbsDown className="w-4 h-4 mr-2" />
+                                Reject
+                              </>
+                            )}
                           </Button>
                         </>
                       )}
@@ -442,17 +486,37 @@ export function ApprovalDashboard({ organizationId }: ApprovalDashboardProps) {
                 <>
                   <Button
                     onClick={() => handleApprovalAction(selectedPO.id, 'reject', 'Rejected after review')}
-                    className="bg-red-600 hover:bg-red-700"
+                    disabled={processingAction?.poId === selectedPO.id}
+                    className="bg-red-600 hover:bg-red-700 disabled:opacity-50"
                   >
-                    <ThumbsDown className="w-4 h-4 mr-2" />
-                    Reject
+                    {processingAction?.poId === selectedPO.id && processingAction.action === 'reject' ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                        Rejecting...
+                      </>
+                    ) : (
+                      <>
+                        <ThumbsDown className="w-4 h-4 mr-2" />
+                        Reject
+                      </>
+                    )}
                   </Button>
                   <Button
                     onClick={() => handleApprovalAction(selectedPO.id, 'approve')}
-                    className="bg-orange-600 hover:bg-orange-700"
+                    disabled={processingAction?.poId === selectedPO.id}
+                    className="bg-orange-600 hover:bg-orange-700 disabled:opacity-50"
                   >
-                    <ThumbsUp className="w-4 h-4 mr-2" />
-                    Approve
+                    {processingAction?.poId === selectedPO.id && processingAction.action === 'approve' ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                        Approving...
+                      </>
+                    ) : (
+                      <>
+                        <ThumbsUp className="w-4 h-4 mr-2" />
+                        Approve
+                      </>
+                    )}
                   </Button>
                 </>
               )}

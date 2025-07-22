@@ -54,10 +54,10 @@ export default function RestaurantSelector({
 
   const getRoleColor = (role: string) => {
     switch (role.toLowerCase()) {
-      case 'owner': return 'bg-green-100 text-green-800'
-      case 'manager': return 'bg-blue-100 text-blue-800'
-      case 'staff': return 'bg-purple-100 text-purple-800'
-      default: return 'bg-gray-100 text-gray-800'
+      case 'owner': return 'bg-green-900 text-green-300 border border-green-700'
+      case 'manager': return 'bg-blue-900 text-blue-300 border border-blue-700'
+      case 'staff': return 'bg-purple-900 text-purple-300 border border-purple-700'
+      default: return 'bg-gray-600 text-gray-300 border border-gray-500'
     }
   }
 
@@ -73,9 +73,9 @@ export default function RestaurantSelector({
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto p-6">
-        <Card className="p-8 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading your restaurants...</p>
+        <Card className="p-8 text-center bg-gray-700 border-gray-600">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-400 mx-auto mb-4"></div>
+          <p className="text-gray-300">Loading your restaurants...</p>
         </Card>
       </div>
     )
@@ -85,13 +85,13 @@ export default function RestaurantSelector({
     <div className="max-w-6xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-2xl mb-4">
-          <Building2 className="w-8 h-8 text-orange-600" />
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-700 rounded-2xl mb-4">
+          <Building2 className="w-8 h-8 text-teal-400" />
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold text-white mb-2">
           Select Your Restaurant
         </h1>
-        <p className="text-gray-600 text-lg">
+        <p className="text-gray-300 text-lg">
           You have access to {restaurants.length} restaurant{restaurants.length !== 1 ? 's' : ''}. 
           Choose one to continue to your dashboard.
         </p>
@@ -110,16 +110,16 @@ export default function RestaurantSelector({
               whileTap={{ scale: 0.98 }}
             >
               <Card 
-                className={`p-6 cursor-pointer transition-all duration-300 hover:shadow-xl ${
+                className={`p-6 cursor-pointer transition-all duration-300 hover:shadow-xl bg-gray-700 border-gray-600 ${
                   selectedId === restaurant.id 
-                    ? 'ring-2 ring-orange-500 bg-orange-50 dark:bg-orange-950' 
-                    : 'hover:shadow-lg border-gray-200'
+                    ? 'ring-2 ring-teal-400 bg-teal-900/20' 
+                    : 'hover:shadow-lg hover:bg-gray-600'
                 }`}
                 onClick={() => handleSelect(restaurant)}
               >
                 <div className="flex items-start justify-between mb-4">
-                  <Avatar className="w-14 h-14 bg-orange-100 dark:bg-orange-800">
-                    <AvatarFallback className="text-orange-600 font-bold text-lg">
+                  <Avatar className="w-14 h-14 bg-teal-900">
+                    <AvatarFallback className="text-teal-400 font-bold text-lg">
                       {getRestaurantInitials(restaurant.name)}
                     </AvatarFallback>
                   </Avatar>
@@ -128,7 +128,7 @@ export default function RestaurantSelector({
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center"
+                      className="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center"
                     >
                       <Check className="w-5 h-5 text-white" />
                     </motion.div>
@@ -136,20 +136,20 @@ export default function RestaurantSelector({
                 </div>
 
                 <div className="mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
+                  <h3 className="text-xl font-bold text-white mb-2 line-clamp-2">
                     {restaurant.name}
                   </h3>
                   
                   {restaurant.location && (
-                    <div className="flex items-center gap-2 text-gray-600 mb-2">
+                    <div className="flex items-center gap-2 text-gray-300 mb-2">
                       <MapPin className="w-4 h-4" />
                       <span className="text-sm">{restaurant.location}</span>
                     </div>
                   )}
                   
                   <div className="flex items-center gap-2 mb-3">
-                    <ChefHat className="w-4 h-4 text-orange-600" />
-                    <span className="text-sm text-gray-600 capitalize">
+                    <ChefHat className="w-4 h-4 text-teal-400" />
+                    <span className="text-sm text-gray-300 capitalize">
                       {restaurant.industry} Business
                     </span>
                   </div>
@@ -160,7 +160,7 @@ export default function RestaurantSelector({
                     {restaurant.role}
                   </Badge>
                   
-                  <div className="flex items-center gap-1 text-gray-500">
+                  <div className="flex items-center gap-1 text-gray-400">
                     <Calendar className="w-3 h-3" />
                     <span className="text-xs">
                       {new Date(restaurant.createdAt).getFullYear()}
@@ -169,13 +169,13 @@ export default function RestaurantSelector({
                 </div>
 
                 {/* Active Status */}
-                <div className="mt-3 pt-3 border-t border-gray-100">
+                <div className="mt-3 pt-3 border-t border-gray-600">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className={`w-2 h-2 rounded-full ${
-                        restaurant.isActive ? 'bg-green-500' : 'bg-red-500'
+                        restaurant.isActive ? 'bg-green-400' : 'bg-red-400'
                       }`}></div>
-                      <span className="text-sm text-gray-600">
+                      <span className="text-sm text-gray-300">
                         {restaurant.isActive ? 'Active' : 'Inactive'}
                       </span>
                     </div>
@@ -203,19 +203,19 @@ export default function RestaurantSelector({
             whileTap={{ scale: 0.98 }}
           >
             <Card 
-              className="p-6 cursor-pointer transition-all duration-300 hover:shadow-xl border-2 border-dashed border-gray-300 hover:border-orange-500 bg-gray-50 dark:bg-gray-800"
+              className="p-6 cursor-pointer transition-all duration-300 hover:shadow-xl border-2 border-dashed border-gray-500 hover:border-teal-400 bg-gray-700"
               onClick={onCreateNew}
             >
               <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-14 h-14 bg-orange-100 dark:bg-orange-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Plus className="w-8 h-8 text-orange-600" />
+                <div className="w-14 h-14 bg-teal-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Plus className="w-8 h-8 text-teal-400" />
                 </div>
                 
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-white mb-2">
                   Create New Restaurant
                 </h3>
                 
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-gray-300 mb-4">
                   Set up a new restaurant location with HERA Universal
                 </p>
                 
@@ -236,17 +236,17 @@ export default function RestaurantSelector({
           animate={{ opacity: 1, y: 0 }}
           className="max-w-2xl mx-auto"
         >
-          <Card className="p-6 bg-orange-50 dark:bg-orange-950 border-orange-200">
+          <Card className="p-6 bg-teal-900/20 border-teal-600">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-orange-100 dark:bg-orange-800 rounded-xl flex items-center justify-center">
-                  <Check className="w-6 h-6 text-orange-600" />
+                <div className="w-12 h-12 bg-teal-900 rounded-xl flex items-center justify-center">
+                  <Check className="w-6 h-6 text-teal-400" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">
+                  <h4 className="font-semibold text-white">
                     {restaurants.find(r => r.id === selectedId)?.name} Selected
                   </h4>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-300">
                     Ready to access your restaurant dashboard
                   </p>
                 </div>
@@ -270,7 +270,7 @@ export default function RestaurantSelector({
                 </Button>
                 <Button 
                   size="lg"
-                  className="bg-orange-600 hover:bg-orange-700"
+                  className="bg-teal-500 hover:bg-teal-600"
                   onClick={() => {
                     const restaurant = restaurants.find(r => r.id === selectedId)
                     if (restaurant) {

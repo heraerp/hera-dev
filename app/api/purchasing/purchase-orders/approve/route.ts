@@ -273,12 +273,49 @@ export async function GET(request: NextRequest) {
     
     console.log(`✅ Found ${pendingPOs?.length || 0} POs for org ${organizationId}`);
 
-    // Enrich with approval workflow data
-    const enrichedPOs = (pendingPOs || []).map(po => {
+    // Enrich with approval workflow data and supplier details
+    const enrichedPOs = await Promise.all((pendingPOs || []).map(async (po) => {
       const metadata = po.procurement_metadata || {};
       const amount = po.total_amount;
       const requiredLevel = getRequiredApprovalLevel(amount);
       const nextApprover = getNextApprover(amount);
+
+      // Resolve supplier information
+      let supplierName = 'Unknown Supplier';
+      let supplierId = null;
+
+      // Try to get supplier info from various sources
+      if (metadata.supplier_id) {
+        // New format - supplier_id in metadata
+        supplierId = metadata.supplier_id;
+        
+        const { data: supplierEntity } = await supabase
+          .from('core_entities')
+          .select('entity_name')
+          .eq('id', metadata.supplier_id)
+          .eq('entity_type', 'supplier')
+          .single();
+        
+        if (supplierEntity) {
+          supplierName = supplierEntity.entity_name;
+        }
+      } else if (metadata.supplier_code) {
+        // Old format - supplier_code in metadata
+        const { data: supplierEntity } = await supabase
+          .from('core_entities')
+          .select('id, entity_name')
+          .eq('entity_code', metadata.supplier_code)
+          .eq('entity_type', 'supplier')
+          .single();
+        
+        if (supplierEntity) {
+          supplierName = supplierEntity.entity_name;
+          supplierId = supplierEntity.id;
+        }
+      } else if (metadata.supplier_name) {
+        // Direct supplier name in metadata
+        supplierName = metadata.supplier_name;
+      }
 
       return {
         id: po.id,
@@ -291,8 +328,8 @@ export async function GET(request: NextRequest) {
         currentApprover: metadata.current_approver_name || nextApprover?.name,
         approvalStatus: metadata.approval_status,
         supplierInfo: {
-          supplierId: metadata.supplier_id,
-          supplierName: metadata.supplier_name || po.procurement_metadata?.supplier_name || 'Unknown Supplier'
+          supplierId: supplierId,
+          supplierName: supplierName
         },
         items: metadata.items || [],
         approvalHistory: {
@@ -321,7 +358,7 @@ export async function GET(request: NextRequest) {
         createdAt: po.created_at,
         updatedAt: po.updated_at
       };
-    });
+    }));
 
     // Filter by approver if specified
     const filteredPOs = approverId 

@@ -195,12 +195,53 @@ const posSidebarSections: SidebarSection[] = [
   }
 ];
 
+// Purchasing-specific sidebar sections for procurement operations
+const purchasingSidebarSections: SidebarSection[] = [
+  {
+    id: 'procurement',
+    title: 'Procurement Operations',
+    items: [
+      { id: 'purchase-orders', label: 'Purchase Orders', href: '/purchasing/purchase-orders', icon: ShoppingCart },
+      { id: 'approvals', label: 'PO Approvals', href: '/purchasing/approvals', icon: ClipboardList, badge: 2 },
+      { id: 'receiving', label: 'Goods Receiving', href: '/purchasing/receiving', icon: Truck },
+      { id: 'suppliers', label: 'Suppliers', href: '/suppliers', icon: Building2 },
+    ]
+  },
+  {
+    id: 'inventory',
+    title: 'Inventory Management',
+    items: [
+      { id: 'inventory', label: 'Inventory', href: '/inventory', icon: Package },
+      { id: 'stock-alerts', label: 'Stock Alerts', href: '/inventory/alerts', icon: AlertCircle, badge: 5 },
+      { id: 'adjustments', label: 'Stock Adjustments', href: '/inventory/adjustments', icon: Sliders },
+    ]
+  },
+  {
+    id: 'analytics',
+    title: 'Purchasing Analytics',
+    items: [
+      { id: 'spending-reports', label: 'Spending Reports', href: '/purchasing/reports', icon: BarChart3 },
+      { id: 'supplier-performance', label: 'Supplier Performance', href: '/purchasing/supplier-analytics', icon: TrendingUp },
+      { id: 'cost-analysis', label: 'Cost Analysis', href: '/purchasing/cost-analysis', icon: PieChart },
+    ]
+  },
+  {
+    id: 'settings',
+    title: 'Settings & Support',
+    items: [
+      { id: 'procurement-settings', label: 'Procurement Settings', href: '/purchasing/settings', icon: Settings },
+      { id: 'help', label: 'Help & Support', href: '/help', icon: HelpCircle },
+    ]
+  }
+];
+
 // Function to get sidebar sections based on variant
 const getSidebarSections = (variant: SidebarVariant = 'default'): SidebarSection[] => {
   switch (variant) {
     case 'pos':
       return posSidebarSections;
     case 'purchasing':
+      return purchasingSidebarSections;
     case 'inventory':
     case 'analytics':
     default:
@@ -223,12 +264,21 @@ const posFavoriteItems: NavigationItem[] = [
   { id: 'fav-daily-sales', label: 'Today\'s Sales', href: '/restaurant/reports/daily', icon: BarChart3 },
 ];
 
+// Purchasing-specific favorites for procurement operations
+const purchasingFavoriteItems: NavigationItem[] = [
+  { id: 'fav-pending-approvals', label: 'Pending Approvals', href: '/purchasing/approvals', icon: ClipboardList, badge: 2 },
+  { id: 'fav-active-orders', label: 'Active POs', href: '/purchasing/purchase-orders', icon: ShoppingCart, badge: 5 },
+  { id: 'fav-goods-receiving', label: 'Goods Receiving', href: '/purchasing/receiving', icon: Truck },
+  { id: 'fav-spending-report', label: 'Today\'s Spending', href: '/purchasing/reports', icon: BarChart3 },
+];
+
 // Function to get favorite items based on variant
 const getFavoriteItems = (variant: SidebarVariant = 'default'): NavigationItem[] => {
   switch (variant) {
     case 'pos':
       return posFavoriteItems;
     case 'purchasing':
+      return purchasingFavoriteItems;
     case 'inventory':
     case 'analytics':
     default:

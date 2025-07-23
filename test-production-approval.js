@@ -55,12 +55,32 @@ const testProductionApproval = async () => {
       
       // Test approval action
       console.log('\n3️⃣ Testing approval action...');
+      // Use correct approver based on amount
+      let approverId, approverName;
+      if (testPO.amount <= 100) {
+        // Auto-approved
+        approverId = '00000001-0000-0000-0000-000000000002';
+        approverName = 'Chef Mario (Production Test)';
+      } else if (testPO.amount <= 500) {
+        // Tier 1 - Chef Mario
+        approverId = '00000001-0000-0000-0000-000000000002';
+        approverName = 'Chef Mario (Production Test)';
+      } else if (testPO.amount <= 2000) {
+        // Tier 2 - Sofia Martinez
+        approverId = '00000001-0000-0000-0000-000000000003';
+        approverName = 'Sofia Martinez (Production Test)';
+      } else {
+        // Tier 3 - Antonio Rossi (Owner)
+        approverId = '00000001-0000-0000-0000-000000000004';
+        approverName = 'Antonio Rossi (Production Test)';
+      }
+
       const approvalData = {
         poId: testPO.id,
         organizationId: organizationId,
         action: 'approve',
-        approverId: '00000001-0000-0000-0000-000000000002',
-        approverName: 'Chef Mario (Production Test)',
+        approverId: approverId,
+        approverName: approverName,
         notes: 'Approved via production test script'
       };
 

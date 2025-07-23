@@ -127,7 +127,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@playwright/test": "^1.54.0",
+    "@playwright/test": "^1.54.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20.19.7",
@@ -135,5 +135,24 @@
     "@types/react-dom": "^19.1.6",
     "eslint": "^9",
     "eslint-config-next": "15.3.1"
-  }
+  },
+  "description": "[![NPM Version](https://img.shields.io/npm/v/setprototypeof.svg)](https://npmjs.org/package/setprototypeof) [![NPM Downloads](https://img.shields.io/npm/dm/setprototypeof.svg)](https://npmjs.org/package/setprototypeof) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/standard/standard)",
+  "main": ".eslintrc-hera.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "lib": "lib",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heraerp/hera-dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heraerp/hera-dev/issues"
+  },
+  "homepage": "https://github.com/heraerp/hera-dev#readme"
 }

@@ -84,8 +84,7 @@ export async function GET(request: NextRequest) {
       .from('universal_transactions')
       .select(`
         *,
-        transaction_data,
-        ai_classification
+        transaction_data
       `, { count: 'exact' })
       .eq('organization_id', organizationId)
       .in('transaction_type', ['journal_entry', 'ai_journal_entry'])
@@ -97,10 +96,11 @@ export async function GET(request: NextRequest) {
       query = query.eq('transaction_status', status);
     }
 
+    // Filter by AI-generated status using transaction_data
     if (aiGenerated === 'true') {
-      query = query.eq('ai_generated', true);
+      query = query.contains('transaction_data', { ai_generated: true });
     } else if (aiGenerated === 'false') {
-      query = query.eq('ai_generated', false);
+      query = query.not('transaction_data', 'cs', '{"ai_generated":true}');
     }
 
     const { data: journalEntries, error, count } = await query;
@@ -116,7 +116,6 @@ export async function GET(request: NextRequest) {
     // Transform journal entries
     const transformedEntries = (journalEntries || []).map(je => {
       const transactionData = je.transaction_data || {};
-      const aiClassification = je.ai_classification || {};
       const entries = transactionData.entries || [];
 
       // Calculate totals
@@ -126,7 +125,7 @@ export async function GET(request: NextRequest) {
       return {
         id: je.id,
         journalNumber: je.transaction_number,
-        description: je.description || '',
+        description: transactionData.description || '',
         entryDate: je.transaction_date,
         status: je.transaction_status,
         totalDebits: totalDebits,
@@ -134,11 +133,11 @@ export async function GET(request: NextRequest) {
         isBalanced: Math.abs(totalDebits - totalCredits) < 0.01,
         entryCount: entries.length,
         entries: entries,
-        aiMetadata: je.ai_generated ? {
+        aiMetadata: transactionData.transaction_data?.ai_generated ? {
           generated: true,
-          confidenceScore: aiClassification.confidence_score || 0,
-          analysisId: aiClassification.analysis_id,
-          suggestions: aiClassification.suggestions || []
+          confidenceScore: transactionData.transaction_data.ai_confidence_score || 0,
+          analysisId: transactionData.transaction_data.ai_analysis_id,
+          suggestions: transactionData.transaction_data.ai_suggestions || []
         } : null,
         sourceDocument: transactionData.source_document,
         sourceTransaction: transactionData.source_transaction,
@@ -230,10 +229,9 @@ export async function POST(request: NextRequest) {
       transaction_date: body.entryDate || new Date().toISOString().split('T')[0],
       total_amount: totalDebits, // Use total debits as the amount
       currency: 'USD',
-      description: body.description,
       transaction_status: body.autoPost && (!body.metadata?.aiGenerated || aiConfidence >= 0.95) ? 'posted' : 'draft',
-      ai_generated: body.metadata?.aiGenerated || false,
       transaction_data: {
+        description: body.description,
         entries: body.entries.map(entry => ({
           account_code: entry.accountCode,
           account_name: entry.accountName || '',
@@ -251,17 +249,17 @@ export async function POST(request: NextRequest) {
       }
     };
 
-    // Add AI classification if applicable
+    // Add AI metadata to transaction_data if applicable
     if (body.metadata?.aiGenerated) {
-      transactionData['ai_classification'] = {
-        confidence_score: body.metadata.confidenceScore || aiConfidence,
-        analysis_method: 'ai_assisted_creation',
-        suggestions: [
-          'Review account mappings',
-          'Verify amounts match source documents',
-          'Check cost center allocations'
-        ]
-      };
+      transactionData.transaction_data.ai_generated = true;
+      transactionData.transaction_data.ai_confidence_score = body.metadata.confidenceScore || aiConfidence;
+      transactionData.transaction_data.ai_analysis_method = 'ai_assisted_creation';
+      transactionData.transaction_data.ai_analysis_id = body.metadata.sourceDocument;
+      transactionData.transaction_data.ai_suggestions = [
+        'Review account mappings',
+        'Verify amounts match source documents',
+        'Check cost center allocations'
+      ];
     }
 
     // Create the journal entry

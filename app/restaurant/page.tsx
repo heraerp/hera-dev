@@ -151,7 +151,7 @@ const RestaurantMainPage = () => {
       emoji: "📥",
       title: "Goods Receiving",
       description: "AI-powered receiving with supplier analytics and quality tracking",
-      link: "/restaurant/receiving",
+      link: "/purchasing/receiving",
       demo: true,
       status: "NEW"
     }

@@ -62,8 +62,8 @@ interface JournalEntryLine {
   accountCode: string
   accountName: string
   description: string
-  debit: number
-  credit: number
+  amount: number
+  type: 'debit' | 'credit'
   costCenter?: string
   project?: string
 }
@@ -128,16 +128,16 @@ export default function JournalEntryWorkspace() {
                   accountCode: '1200001',
                   accountName: 'Inventory - Food & Beverage',
                   description: `${doc.extractedData.vendor} - ${doc.extractedData.invoiceNumber || 'Invoice'}`,
-                  debit: doc.extractedData.amount || 0,
-                  credit: 0
+                  amount: doc.extractedData.amount || 0,
+                  type: 'debit' as 'debit' | 'credit'
                 },
                 {
                   id: `line-${Date.now()}-2`,
                   accountCode: '2100001',
                   accountName: 'Accounts Payable',
                   description: `${doc.extractedData.vendor} - ${doc.extractedData.invoiceNumber || 'Invoice'}`,
-                  debit: 0,
-                  credit: doc.extractedData.amount || 0
+                  amount: doc.extractedData.amount || 0,
+                  type: 'credit' as 'debit' | 'credit'
                 }
               ],
               aiMetadata: {
@@ -200,16 +200,16 @@ export default function JournalEntryWorkspace() {
               accountCode: '6200001',
               accountName: 'Office Supplies Expense',
               description: 'Office supplies for Q1 2024',
-              debit: 1250.00,
-              credit: 0
+              amount: 1250.00,
+              type: 'debit' as 'debit' | 'credit'
             },
             {
               id: '2',
               accountCode: '2100001',
               accountName: 'Accounts Payable',
               description: 'ACME Corporation - INV-2024-0847',
-              debit: 0,
-              credit: 1250.00
+              amount: 1250.00,
+              type: 'credit' as 'debit' | 'credit'
             }
           ],
           aiMetadata: {
@@ -239,16 +239,16 @@ export default function JournalEntryWorkspace() {
               accountCode: '6300002',
               accountName: 'Depreciation Expense - Equipment',
               description: 'Monthly depreciation - Computer equipment',
-              debit: 850.00,
-              credit: 0
+              amount: 850.00,
+              type: 'debit' as 'debit' | 'credit'
             },
             {
               id: '4',
               accountCode: '1600002',
               accountName: 'Accumulated Depreciation - Equipment',
               description: 'Monthly depreciation - Computer equipment',
-              debit: 0,
-              credit: 850.00
+              amount: 850.00,
+              type: 'credit' as 'debit' | 'credit'
             }
           ],
           aiMetadata: {
@@ -275,16 +275,16 @@ export default function JournalEntryWorkspace() {
               accountCode: '1100001',
               accountName: 'Cash - Operating Account',
               description: 'Bank reconciliation adjustment',
-              debit: 275.50,
-              credit: 0
+              amount: 275.50,
+              type: 'debit' as 'debit' | 'credit'
             },
             {
               id: '6',
               accountCode: '5200001',
               accountName: 'Miscellaneous Income',
               description: 'Interest income from bank',
-              debit: 0,
-              credit: 275.50
+              amount: 275.50,
+              type: 'credit' as 'debit' | 'credit'
             }
           ],
           createdAt: '2024-01-18T16:45:00Z',
@@ -314,16 +314,16 @@ export default function JournalEntryWorkspace() {
           accountCode: '',
           accountName: '',
           description: '',
-          debit: 0,
-          credit: 0
+          amount: 0,
+          type: 'debit' as 'debit' | 'credit'
         },
         {
           id: '2',
           accountCode: '',
           accountName: '',
           description: '',
-          debit: 0,
-          credit: 0
+          amount: 0,
+          type: 'credit' as 'debit' | 'credit'
         }
       ],
       createdAt: new Date().toISOString(),
@@ -346,8 +346,8 @@ export default function JournalEntryWorkspace() {
       accountCode: '',
       accountName: '',
       description: '',
-      debit: 0,
-      credit: 0
+      amount: 0,
+      type: 'debit' as 'debit' | 'credit'
     }
     
     setCurrentEntry({
@@ -363,8 +363,12 @@ export default function JournalEntryWorkspace() {
       line.id === lineId ? { ...line, [field]: value } : line
     )
     
-    const totalDebits = updatedLines.reduce((sum, line) => sum + (line.debit || 0), 0)
-    const totalCredits = updatedLines.reduce((sum, line) => sum + (line.credit || 0), 0)
+    const totalDebits = updatedLines.reduce((sum, line) => 
+      line.type === 'debit' ? sum + (line.amount || 0) : sum, 0
+    )
+    const totalCredits = updatedLines.reduce((sum, line) => 
+      line.type === 'credit' ? sum + (line.amount || 0) : sum, 0
+    )
     const isBalanced = Math.abs(totalDebits - totalCredits) < 0.01
     
     setCurrentEntry({
@@ -385,8 +389,12 @@ export default function JournalEntryWorkspace() {
     if (!currentEntry || currentEntry.lines.length <= 2) return
     
     const updatedLines = currentEntry.lines.filter(line => line.id !== lineId)
-    const totalDebits = updatedLines.reduce((sum, line) => sum + (line.debit || 0), 0)
-    const totalCredits = updatedLines.reduce((sum, line) => sum + (line.credit || 0), 0)
+    const totalDebits = updatedLines.reduce((sum, line) => 
+      line.type === 'debit' ? sum + (line.amount || 0) : sum, 0
+    )
+    const totalCredits = updatedLines.reduce((sum, line) => 
+      line.type === 'credit' ? sum + (line.amount || 0) : sum, 0
+    )
     const isBalanced = Math.abs(totalDebits - totalCredits) < 0.01
     
     setCurrentEntry({
@@ -448,8 +456,8 @@ export default function JournalEntryWorkspace() {
           entries: currentEntry.lines.map(line => ({
             accountCode: line.accountCode,
             accountName: line.accountName,
-            debit: line.debit || 0,
-            credit: line.credit || 0,
+            debit: line.type === 'debit' ? line.amount : 0,
+            credit: line.type === 'credit' ? line.amount : 0,
             description: line.description
           })),
           metadata: currentEntry.aiMetadata ? {
@@ -528,8 +536,8 @@ export default function JournalEntryWorkspace() {
           entries: currentEntry.lines.map(line => ({
             accountCode: line.accountCode,
             accountName: line.accountName,
-            debit: line.debit || 0,
-            credit: line.credit || 0,
+            debit: line.type === 'debit' ? line.amount : 0,
+            credit: line.type === 'credit' ? line.amount : 0,
             description: line.description
           })),
           metadata: currentEntry.aiMetadata ? {
@@ -645,8 +653,8 @@ export default function JournalEntryWorkspace() {
           accountCode: entry.accountCode,
           accountName: entry.accountName,
           description: entry.description || parsedEntry.description,
-          debit: entry.debit || 0,
-          credit: entry.credit || 0
+          amount: entry.debit > 0 ? entry.debit : entry.credit,
+          type: entry.debit > 0 ? 'debit' as 'debit' | 'credit' : 'credit' as 'debit' | 'credit'
         })),
         aiMetadata: {
           generated: true,
@@ -1034,8 +1042,8 @@ export default function JournalEntryWorkspace() {
                             <th className="text-left p-2 font-medium">Account Code</th>
                             <th className="text-left p-2 font-medium">Account Name</th>
                             <th className="text-left p-2 font-medium">Description</th>
-                            <th className="text-right p-2 font-medium">Debit</th>
-                            <th className="text-right p-2 font-medium">Credit</th>
+                            <th className="text-center p-2 font-medium">Type</th>
+                            <th className="text-right p-2 font-medium">Amount</th>
                             <th className="text-center p-2 font-medium">Actions</th>
                           </tr>
                         </thead>
@@ -1067,21 +1075,21 @@ export default function JournalEntryWorkspace() {
                                 />
                               </td>
                               <td className="p-2">
-                                <Input 
-                                  type="number"
-                                  value={line.debit || ''}
-                                  onChange={(e) => updateLine(line.id, 'debit', parseFloat(e.target.value) || 0)}
-                                  className="w-24 text-right"
-                                  placeholder="0.00"
-                                  step="0.01"
-                                />
+                                <select
+                                  value={line.type}
+                                  onChange={(e) => updateLine(line.id, 'type', e.target.value as 'debit' | 'credit')}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+                                >
+                                  <option value="debit">Debit</option>
+                                  <option value="credit">Credit</option>
+                                </select>
                               </td>
                               <td className="p-2">
                                 <Input 
                                   type="number"
-                                  value={line.credit || ''}
-                                  onChange={(e) => updateLine(line.id, 'credit', parseFloat(e.target.value) || 0)}
-                                  className="w-24 text-right"
+                                  value={line.amount || ''}
+                                  onChange={(e) => updateLine(line.id, 'amount', parseFloat(e.target.value) || 0)}
+                                  className="w-32 text-right"
                                   placeholder="0.00"
                                   step="0.01"
                                 />
@@ -1103,17 +1111,26 @@ export default function JournalEntryWorkspace() {
                         <tfoot className="border-t bg-gray-50">
                           <tr>
                             <td colSpan={3} className="p-2 font-medium">Totals</td>
-                            <td className="p-2 text-right font-bold">
-                              ${currentEntry?.totalDebits.toFixed(2) || '0.00'}
+                            <td className="p-2 text-center">
+                              <div className="text-sm">
+                                <div>Dr: ${currentEntry?.totalDebits.toFixed(2) || '0.00'}</div>
+                                <div>Cr: ${currentEntry?.totalCredits.toFixed(2) || '0.00'}</div>
+                              </div>
                             </td>
                             <td className="p-2 text-right font-bold">
-                              ${currentEntry?.totalCredits.toFixed(2) || '0.00'}
+                              {currentEntry?.isBalanced ? (
+                                <span className="text-green-600">Balanced</span>
+                              ) : (
+                                <span className="text-red-600">
+                                  ${Math.abs((currentEntry?.totalDebits || 0) - (currentEntry?.totalCredits || 0)).toFixed(2)} off
+                                </span>
+                              )}
                             </td>
                             <td className="p-2 text-center">
                               {currentEntry?.isBalanced ? (
-                                <CheckCircle className="h-4 w-4 text-green-500" />
+                                <CheckCircle className="h-4 w-4 text-green-500 mx-auto" />
                               ) : (
-                                <AlertTriangle className="h-4 w-4 text-red-500" />
+                                <AlertTriangle className="h-4 w-4 text-red-500 mx-auto" />
                               )}
                             </td>
                           </tr>

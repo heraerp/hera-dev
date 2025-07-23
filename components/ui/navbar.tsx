@@ -51,7 +51,11 @@ export function Navbar() {
     { id: 'customers', name: 'Customer Management', description: 'CRM and customer data', category: 'CRM', path: '/restaurant/customers' },
     { id: 'pos', name: 'Point of Sale', description: 'POS system integration', category: 'Sales', path: '/restaurant/pos' },
     { id: 'analytics', name: 'Analytics & Reports', description: 'Business intelligence and reporting', category: 'Analytics', path: '/restaurant/analytics' },
-    { id: 'payments', name: 'Payment Management', description: 'Payment processing and billing', category: 'Finance', path: '/restaurant/payments' }
+    { id: 'payments', name: 'Payment Management', description: 'Payment processing and billing', category: 'Finance', path: '/restaurant/payments' },
+    { id: 'templates', name: 'Templates Marketplace', description: 'Deploy complete ERP systems in 2 minutes', category: 'Templates', path: '/templates' },
+    { id: 'template-deployments', name: 'Template Deployments', description: 'Monitor and manage ERP deployments', category: 'Templates', path: '/templates/deployments' },
+    { id: 'template-analytics', name: 'Template Analytics', description: 'Templates usage and performance insights', category: 'Templates', path: '/templates/analytics' },
+    { id: 'template-create', name: 'Create Template', description: 'Build custom ERP templates', category: 'Templates', path: '/templates/create' }
   ]
 
   // Filter apps based on search query

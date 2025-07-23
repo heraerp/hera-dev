@@ -156,12 +156,19 @@ export function ApprovalDashboard({ organizationId }: ApprovalDashboardProps) {
 
       if (response.ok && responseData.success) {
         console.log(`✅ PO ${action} action completed successfully`);
-        await fetchPendingApprovals(); // Refresh data
-        setShowApprovalModal(false);
-        setSelectedPO(null);
         
         // Show success feedback to user
         alert(`Purchase Order ${responseData.data?.poNumber || poId} ${action}d successfully!`);
+        
+        // Refresh data immediately and again after a short delay to ensure database changes are reflected
+        await fetchPendingApprovals();
+        setTimeout(async () => {
+          await fetchPendingApprovals();
+          console.log('🔄 Data refreshed after approval');
+        }, 1000);
+        
+        setShowApprovalModal(false);
+        setSelectedPO(null);
       } else {
         const errorMessage = responseData.error || 'Failed to process approval action';
         console.error('❌ Approval failed:', errorMessage);

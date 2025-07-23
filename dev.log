@@ -1,0 +1,71 @@
+
+> hera-universal@1.2.0 dev
+> next dev
+
+ ⚠ Warning: Found multiple lockfiles. Selecting /Users/san/pnpm-lock.yaml.
+   Consider removing the lockfiles at:
+   * /Users/san/Documents/hera-dev/package-lock.json
+
+ ⚠ Port 3000 is in use by process 3426
+10063, using available port 3002 instead.
+   ▲ Next.js 15.4.1
+   - Local:        http://localhost:3002
+   - Network:      http://192.168.1.101:3002
+   - Environments: .env.local
+
+ ✓ Starting...
+> [PWA] Compile server
+> [PWA] Compile server
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+ ✓ Ready in 9.5s
+ ○ Compiling /middleware ...
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🛠️ Fetching ERP modules for organization: 00000000-0000-0000-0000-000000000001
+(node:12993) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+✅ ERP modules fetched successfully: 0
+ GET /api/templates/modules?organizationId=00000000-0000-0000-0000-000000000001 200 in 5108ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 1362ms
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 208ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Creating new deployment: package
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Starting package deployment: 981cc4e4-e3f6-4256-9833-23ba0afa8de8 to org: 823b69ed-6081-4100-8c96-61ef9e2f8a2b
+ POST /api/templates/packages/deploy 404 in 1785ms
+ POST /api/templates/deployments 404 in 3472ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 404 in 8532ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+[?25h

@@ -1,0 +1,318 @@
+
+> hera-universal@1.2.0 dev
+> next dev
+
+ ⚠ Warning: Found multiple lockfiles. Selecting /Users/san/pnpm-lock.yaml.
+   Consider removing the lockfiles at:
+   * /Users/san/Documents/hera-dev/package-lock.json
+
+   ▲ Next.js 15.4.1
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.101:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+> [PWA] Compile server
+> [PWA] Compile server
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+ ✓ Ready in 5.1s
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ○ Compiling /api/templates/packages ...
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+(node:14458) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 3244ms
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 275ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🏢 Creating organization: Test Deployment Organization
+❌ Organization creation failed: {
+  code: '22001',
+  details: null,
+  hint: null,
+  message: 'value too long for type character varying(10)'
+}
+ POST /api/core/organizations 500 in 1091ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 242ms
+🏢 Creating organization: Test Deployment Organization
+❌ Organization creation failed: {
+  code: '22001',
+  details: null,
+  hint: null,
+  message: 'value too long for type character varying(10)'
+}
+ POST /api/core/organizations 500 in 49ms
+ GET /api/core/organizations 200 in 135ms
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 244ms
+🏢 Creating organization: Test Deployment Organization
+✅ Organization created successfully: a2e99fe7-4eb9-4782-80e9-b718ab4367cc
+ POST /api/core/organizations 201 in 69ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Creating new deployment: package
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Starting package deployment: 981cc4e4-e3f6-4256-9833-23ba0afa8de8 to org: a2e99fe7-4eb9-4782-80e9-b718ab4367cc
+📋 Found package relationships: 0
+ POST /api/templates/packages/deploy 400 in 1444ms
+ POST /api/templates/deployments 400 in 2623ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/version 200 in 2837ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/app-paths-manifest.json',
+  page: '/api/version'
+}
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ Error: Cannot find module '../webpack-runtime.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/pages/_document.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/pages/_document.js:60:27)
+    at Object.<anonymous> (.next/server/pages/_document.js:66:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+ GET /api/version 500 in 8283ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 738ms
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 213ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🏢 Creating organization: Test Deployment Organization
+✅ Organization created successfully: 5ad13eb5-ca92-45ff-866e-e268c900b599
+ POST /api/core/organizations 201 in 147ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Creating new deployment: package
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Starting package deployment: b44dc648-1b36-4ea6-8d68-465c2926f88b to org: 5ad13eb5-ca92-45ff-866e-e268c900b599
+📋 Found package relationships: 12
+❌ Error creating deployment transaction: {
+  code: 'PGRST204',
+  details: null,
+  hint: null,
+  message: "Could not find the 'client_id' column of 'universal_transactions' in the schema cache"
+}
+❌ Package deployment error: {
+  code: 'PGRST204',
+  details: null,
+  hint: null,
+  message: "Could not find the 'client_id' column of 'universal_transactions' in the schema cache"
+}
+ POST /api/templates/packages/deploy 500 in 346ms
+ POST /api/templates/deployments 500 in 499ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/purchasing/purchase-orders?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 2756ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 404 in 7952ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/core/organizations 200 in 162ms
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 274ms
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 347ms
+🏢 Creating organization: Test Deployment Organization
+✅ Organization created successfully: 1e410a21-eb9e-49db-807a-cc5ee2e157c6
+ POST /api/core/organizations 201 in 65ms
+🚀 Creating new deployment: package
+🚀 Starting package deployment: b44dc648-1b36-4ea6-8d68-465c2926f88b to org: 1e410a21-eb9e-49db-807a-cc5ee2e157c6
+📋 Found package relationships: 12
+🛠️ Deploying module: General Ledger Core System
+✅ Module deployed successfully: General Ledger Core System (1s)
+🛠️ Deploying module: General Ledger Core System
+❌ Module deployment failed: General Ledger Core System: Error: Failed to create deployed module entity: duplicate key value violates unique constraint "idx_core_entities_unique"
+    at POST (app/api/templates/packages/deploy/route.ts:303:16)
+  301 |
+  302 |         if (deployError) {
+> 303 |           throw new Error(`Failed to create deployed module entity: ${deployError.message}`);
+      |                ^
+  304 |         }
+  305 |
+  306 |         // Get and copy module configuration
+🛠️ Deploying module: Procurement Management
+✅ Module deployed successfully: Procurement Management (0s)
+🛠️ Deploying module: Procurement Management
+❌ Module deployment failed: Procurement Management: Error: Failed to create deployed module entity: duplicate key value violates unique constraint "idx_core_entities_unique"
+    at POST (app/api/templates/packages/deploy/route.ts:303:16)
+  301 |
+  302 |         if (deployError) {
+> 303 |           throw new Error(`Failed to create deployed module entity: ${deployError.message}`);
+      |                ^
+  304 |         }
+  305 |
+  306 |         // Get and copy module configuration
+🛠️ Deploying module: Inventory Management
+✅ Module deployed successfully: Inventory Management (1s)
+🛠️ Deploying module: Inventory Management
+❌ Module deployment failed: Inventory Management: Error: Failed to create deployed module entity: duplicate key value violates unique constraint "idx_core_entities_unique"
+    at POST (app/api/templates/packages/deploy/route.ts:303:16)
+  301 |
+  302 |         if (deployError) {
+> 303 |           throw new Error(`Failed to create deployed module entity: ${deployError.message}`);
+      |                ^
+  304 |         }
+  305 |
+  306 |         // Get and copy module configuration
+🛠️ Deploying module: Customer Management Core
+✅ Module deployed successfully: Customer Management Core (0s)
+🛠️ Deploying module: Customer Management Core
+❌ Module deployment failed: Customer Management Core: Error: Failed to create deployed module entity: duplicate key value violates unique constraint "idx_core_entities_unique"
+    at POST (app/api/templates/packages/deploy/route.ts:303:16)
+  301 |
+  302 |         if (deployError) {
+> 303 |           throw new Error(`Failed to create deployed module entity: ${deployError.message}`);
+      |                ^
+  304 |         }
+  305 |
+  306 |         // Get and copy module configuration
+🛠️ Deploying module: Accounts Payable Management
+✅ Module deployed successfully: Accounts Payable Management (0s)
+🛠️ Deploying module: General Ledger Core System
+❌ Module deployment failed: General Ledger Core System: Error: Failed to create deployed module entity: duplicate key value violates unique constraint "idx_core_entities_unique"
+    at POST (app/api/templates/packages/deploy/route.ts:303:16)
+  301 |
+  302 |         if (deployError) {
+> 303 |           throw new Error(`Failed to create deployed module entity: ${deployError.message}`);
+      |                ^
+  304 |         }
+  305 |
+  306 |         // Get and copy module configuration
+🛠️ Deploying module: Accounts Receivable Management
+✅ Module deployed successfully: Accounts Receivable Management (0s)
+🛠️ Deploying module: Cash Management System
+✅ Module deployed successfully: Cash Management System (0s)
+⚠️ Package deployment partial: 7/12 modules (3s)
+ POST /api/templates/packages/deploy 201 in 3394ms
+ POST /api/templates/deployments 201 in 3424ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 1008ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🏢 Creating organization: Test Deployment Organization
+✅ Organization created successfully: 2e818617-71da-41a8-a337-4d238bcffc27
+ POST /api/core/organizations 201 in 626ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Creating new deployment: package
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Starting package deployment: b44dc648-1b36-4ea6-8d68-465c2926f88b to org: 2e818617-71da-41a8-a337-4d238bcffc27
+📋 Found package relationships: 12
+📋 Deduplicated modules: 12 → 7
+🛠️ Deploying module: General Ledger Core System
+✅ Module deployed successfully: General Ledger Core System (1s)
+🛠️ Deploying module: Procurement Management
+✅ Module deployed successfully: Procurement Management (0s)
+🛠️ Deploying module: Inventory Management
+✅ Module deployed successfully: Inventory Management (1s)
+🛠️ Deploying module: Customer Management Core
+✅ Module deployed successfully: Customer Management Core (0s)
+🛠️ Deploying module: Accounts Payable Management
+✅ Module deployed successfully: Accounts Payable Management (0s)
+🛠️ Deploying module: Accounts Receivable Management
+✅ Module deployed successfully: Accounts Receivable Management (0s)
+🛠️ Deploying module: Cash Management System
+✅ Module deployed successfully: Cash Management System (0s)
+✅ Package deployment success: 7/12 modules (3s)
+ POST /api/templates/packages/deploy 201 in 4070ms
+ POST /api/templates/deployments 201 in 4388ms
+[?25h

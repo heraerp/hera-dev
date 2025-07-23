@@ -14,7 +14,7 @@ import { AppLayoutWithSidebar } from '@/components/layouts/AppLayoutWithSidebar'
 
 export default function PurchaseOrdersWithSidebarPage() {
   return (
-    <AppLayoutWithSidebar>
+    <AppLayoutWithSidebar variant="purchasing">
       {/* Page Header */}
       <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 transition-colors duration-200">
         <div className="px-6 lg:px-8">

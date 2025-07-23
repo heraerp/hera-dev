@@ -1,0 +1,249 @@
+
+> hera-universal@1.2.0 dev
+> next dev
+
+ ⚠ Warning: Found multiple lockfiles. Selecting /Users/san/pnpm-lock.yaml.
+   Consider removing the lockfiles at:
+   * /Users/san/Documents/hera-dev/package-lock.json
+
+   ▲ Next.js 15.4.1
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.101:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+> [PWA] Compile server
+> [PWA] Compile server
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+ ✓ Ready in 3.9s
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ○ Compiling /middleware ...
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /templates 200 in 9366ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (108kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+(node:20051) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 1819ms
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 378ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🏢 Creating organization: Test Deployment Organization
+✅ Organization created successfully: 2f523377-c2f0-4f71-afe1-cbd9ab63a5c0
+ POST /api/core/organizations 201 in 1534ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Creating new deployment: package
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Starting package deployment: b44dc648-1b36-4ea6-8d68-465c2926f88b to org: 2f523377-c2f0-4f71-afe1-cbd9ab63a5c0
+📋 Found package relationships: 12
+📋 Deduplicated modules: 12 → 7
+🛠️ Deploying module: General Ledger Core System
+✅ Module deployed successfully: General Ledger Core System (1s)
+🛠️ Deploying module: Procurement Management
+✅ Module deployed successfully: Procurement Management (0s)
+🛠️ Deploying module: Inventory Management
+✅ Module deployed successfully: Inventory Management (1s)
+🛠️ Deploying module: Customer Management Core
+✅ Module deployed successfully: Customer Management Core (0s)
+🛠️ Deploying module: Accounts Payable Management
+✅ Module deployed successfully: Accounts Payable Management (0s)
+🛠️ Deploying module: Accounts Receivable Management
+✅ Module deployed successfully: Accounts Receivable Management (0s)
+🛠️ Deploying module: Cash Management System
+✅ Module deployed successfully: Cash Management System (0s)
+✅ Package deployment success: 7/12 modules (3s)
+ POST /api/templates/packages/deploy 201 in 4257ms
+ POST /api/templates/deployments 201 in 5665ms
+ GET /templates 200 in 349ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 336ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/version 200 in 2524ms
+ GET /api/version 200 in 1303ms
+ GET /api/version 200 in 2544ms
+🛠️ Fetching ERP modules for organization: 00000000-0000-0000-0000-000000000001
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+ GET /api/version 200 in 11ms
+ GET /api/version 200 in 12ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 2284ms
+✅ ERP modules fetched successfully: 0
+ GET /api/templates/modules?organizationId=00000000-0000-0000-0000-000000000001 200 in 2773ms
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+🛠️ Fetching ERP modules for organization: 00000000-0000-0000-0000-000000000001
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 595ms
+✅ ERP modules fetched successfully: 0
+ GET /api/templates/modules?organizationId=00000000-0000-0000-0000-000000000001 200 in 641ms
+🛠️ Fetching ERP modules for organization: 00000000-0000-0000-0000-000000000001
+✅ ERP modules fetched successfully: 0
+ GET /api/templates/modules?organizationId=00000000-0000-0000-0000-000000000001 200 in 189ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /_next/static/webpack/webpack.bbea5b5482a36683.hot-update.js 404 in 2420ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /templates 200 in 410ms
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+ GET /api/version 200 in 58ms
+🛠️ Fetching ERP modules for organization: 00000000-0000-0000-0000-000000000001
+ GET /api/version 200 in 54ms
+ GET /api/version 200 in 13ms
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 198ms
+ GET /api/version 200 in 19ms
+✅ ERP modules fetched successfully: 0
+ GET /api/templates/modules?organizationId=00000000-0000-0000-0000-000000000001 200 in 242ms
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+🛠️ Fetching ERP modules for organization: 00000000-0000-0000-0000-000000000001
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 123ms
+✅ ERP modules fetched successfully: 0
+ GET /api/templates/modules?organizationId=00000000-0000-0000-0000-000000000001 200 in 125ms
+📦 Fetching industry packages with filters: {
+  industry: undefined,
+  businessSize: undefined,
+  organizationId: '00000000-0000-0000-0000-000000000001'
+}
+🛠️ Fetching ERP modules for organization: 00000000-0000-0000-0000-000000000001
+✅ Industry packages fetched successfully: 12
+ GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 138ms
+✅ ERP modules fetched successfully: 0
+ GET /api/templates/modules?organizationId=00000000-0000-0000-0000-000000000001 200 in 130ms
+ GET /api/version 200 in 29ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🏢 Creating organization: Chaikada
+✅ Organization created successfully: 823c7a69-4348-4026-87e2-f70d44fad8b9
+ POST /api/core/organizations 201 in 448ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Creating new deployment: package
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Starting package deployment: b44dc648-1b36-4ea6-8d68-465c2926f88b to org: 823c7a69-4348-4026-87e2-f70d44fad8b9
+📋 Found package relationships: 12
+📋 Deduplicated modules: 12 → 7
+🛠️ Deploying module: General Ledger Core System
+✅ Module deployed successfully: General Ledger Core System (1s)
+🛠️ Deploying module: Procurement Management
+✅ Module deployed successfully: Procurement Management (0s)
+🛠️ Deploying module: Inventory Management
+✅ Module deployed successfully: Inventory Management (1s)
+🛠️ Deploying module: Customer Management Core
+✅ Module deployed successfully: Customer Management Core (0s)
+🛠️ Deploying module: Accounts Payable Management
+✅ Module deployed successfully: Accounts Payable Management (0s)
+🛠️ Deploying module: Accounts Receivable Management
+✅ Module deployed successfully: Accounts Receivable Management (0s)
+🛠️ Deploying module: Cash Management System
+✅ Module deployed successfully: Cash Management System (0s)
+✅ Package deployment success: 7/12 modules (3s)
+ POST /api/templates/packages/deploy 201 in 3641ms
+ POST /api/templates/deployments 201 in 3812ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/app-paths-manifest.json',
+  page: '/api/version'
+}
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /templates 200 in 7930ms
+ GET /api/version 500 in 14150ms
+ GET /_next/static/css/app/layout.css?v=1753224193436 404 in 221ms
+ GET /templates 404 in 10975ms
+ GET /_next/static/chunks/main-app.js?v=1753224193436 404 in 355ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 142ms
+ GET /_next/static/chunks/app/layout.js 404 in 146ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/4.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/4.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /templates 200 in 2488ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🏢 Creating organization: Debug Test Org
+✅ Organization created successfully: 710C69AE-A21F-41F9-8EF1-C7DD01C45A0E
+ POST /api/core/organizations 201 in 1358ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Creating new deployment: package
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🚀 Starting package deployment: b44dc648-1b36-4ea6-8d68-465c2926f88b to org: 710c69ae-a21f-41f9-8ef1-c7dd01c45a0e
+📋 Found package relationships: 12
+📋 Deduplicated modules: 12 → 7
+🛠️ Deploying module: General Ledger Core System
+✅ Module deployed successfully: General Ledger Core System (1s)
+🛠️ Deploying module: Procurement Management
+✅ Module deployed successfully: Procurement Management (0s)
+🛠️ Deploying module: Inventory Management
+✅ Module deployed successfully: Inventory Management (1s)
+🛠️ Deploying module: Customer Management Core
+✅ Module deployed successfully: Customer Management Core (0s)
+🛠️ Deploying module: Accounts Payable Management
+✅ Module deployed successfully: Accounts Payable Management (0s)
+🛠️ Deploying module: Accounts Receivable Management
+✅ Module deployed successfully: Accounts Receivable Management (0s)
+🛠️ Deploying module: Cash Management System
+✅ Module deployed successfully: Cash Management System (0s)
+✅ Package deployment success: 7/12 modules (3s)
+ POST /api/templates/packages/deploy 201 in 3495ms
+ POST /api/templates/deployments 201 in 3776ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/server-development/4.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/server-development/4.pack.gz'

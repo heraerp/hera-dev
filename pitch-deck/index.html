@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HERA - The $100M Disruption</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 60px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #30D5C8;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #30D5C8;
+        }
+
+        .slide p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-width: 1000px;
+        }
+
+        .big-number {
+            font-size: 8rem;
+            font-weight: bold;
+            color: #30D5C8;
+            text-shadow: 0 0 20px rgba(48, 213, 200, 0.5);
+            margin: 30px 0;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin: 40px 0;
+            max-width: 800px;
+        }
+
+        .metric-box {
+            background: rgba(48, 213, 200, 0.1);
+            border: 2px solid #30D5C8;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .metric-box h4 {
+            font-size: 1.8rem;
+            color: #30D5C8;
+            margin-bottom: 15px;
+        }
+
+        .metric-box .number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+            max-width: 1000px;
+        }
+
+        .feature-box {
+            background: linear-gradient(135deg, rgba(48, 213, 200, 0.2) 0%, rgba(48, 213, 200, 0.05) 100%);
+            border-left: 4px solid #30D5C8;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .feature-box h4 {
+            font-size: 1.6rem;
+            color: #30D5C8;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+            max-width: 1000px;
+        }
+
+        .pricing-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #374151;
+            border-radius: 10px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-box:hover {
+            border-color: #30D5C8;
+            transform: translateY(-5px);
+        }
+
+        .pricing-box h4 {
+            font-size: 1.8rem;
+            color: #30D5C8;
+            margin-bottom: 15px;
+        }
+
+        .pricing-box .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, rgba(48, 213, 200, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            border-left: 5px solid #30D5C8;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 10px;
+            max-width: 800px;
+            font-style: italic;
+            font-size: 1.8rem;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(48, 213, 200, 0.2);
+            border: 2px solid #30D5C8;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #30D5C8;
+            color: #1f2937;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            z-index: 1000;
+        }
+
+        .problem-slide {
+            background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+        }
+
+        .success-slide {
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+        }
+
+        .cta-slide {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+
+        .highlight {
+            color: #30D5C8;
+            font-weight: bold;
+        }
+
+        .urgent {
+            color: #ef4444;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .comparison-table {
+            width: 100%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #374151;
+        }
+
+        .comparison-table th {
+            background: #30D5C8;
+            color: #1f2937;
+            font-weight: bold;
+        }
+
+        .comparison-table td {
+            font-size: 1.2rem;
+        }
+
+        .hera-column {
+            background: rgba(16, 185, 129, 0.2);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">15</span>
+        </div>
+
+        <!-- Slide 1: The Big Idea -->
+        <div class="slide active">
+            <h1>We've Cracked the $47 Billion Problem</h1>
+            <div class="big-number">$47B</div>
+            <h2>ERP Disruption</h2>
+            <p><strong>THE BRUTAL TRUTH:</strong> Every Fortune 500 company wastes $2-15 million annually on duplicate ERP implementations, vendor lock-in, and 18-month deployment cycles.</p>
+            <p><strong>THE BREAKTHROUGH:</strong> HERA eliminates <span class="highlight">99.7% of ERP complexity</span> using 5 universal tables that adapt to ANY business in 2 minutes.</p>
+            <p><strong>THE PRIZE:</strong> First-mover advantage in the $47B ERP disruption - before Oracle, SAP, and Microsoft figure out what hit them.</p>
+        </div>
+
+        <!-- Slide 2: Frame Control -->
+        <div class="slide">
+            <h1>This Deal Has a Waiting List</h1>
+            <h2>"We Don't Need Your Money"</h2>
+            <p><strong>Listen carefully</strong> - we're not here begging for capital. We're here because our early adopters are generating <span class="highlight">312% ROI in 90 days</span> and we need to choose who gets access to the next deployment slots.</p>
+            
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h4>Mario's Restaurant</h4>
+                    <div class="number">$2.8M</div>
+                    <p>Saved in Year 1</p>
+                </div>
+                <div class="metric-box">
+                    <h4>Current Waitlist</h4>
+                    <div class="number">47</div>
+                    <p>Enterprise Prospects</p>
+                </div>
+                <div class="metric-box">
+                    <h4>Revenue Pipeline</h4>
+                    <div class="number">$23M</div>
+                    <p>Next 12 Months</p>
+                </div>
+                <div class="metric-box">
+                    <h4>ROI</h4>
+                    <div class="number">312%</div>
+                    <p>In 90 Days</p>
+                </div>
+            </div>
+
+            <p><strong>Reality Check:</strong> If this sounds too good to be true, this conversation ends now. We only work with visionaries who recognize category-defining opportunities.</p>
+        </div>
+
+        <!-- Slide 3: The Problem -->
+        <div class="slide problem-slide">
+            <h1>The ERP Mafia</h1>
+            <h2>"How Enterprise Software Became Legalized Extortion"</h2>
+            
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>SAP</h4>
+                    <p>Charges $150K+ per deployment, takes 18 months</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Oracle</h4>
+                    <p>Locks you in with 47 different modules</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Microsoft</h4>
+                    <p>Makes you rebuild everything from scratch</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Result</h4>
+                    <p><span class="highlight">$47 billion wasted annually</span> on "enterprise solutions"</p>
+                </div>
+            </div>
+
+            <p><strong>THE VICTIM:</strong> Every business owner who's been told "enterprise software has to be complex"</p>
+            <p><strong>THE AWAKENING:</strong> What if the entire ERP industry has been selling you complexity you don't need?</p>
+        </div>
+
+        <!-- Slide 4: The Solution -->
+        <div class="slide">
+            <h1>Universal Business DNA</h1>
+            <h2>"5 Tables. Any Business. 2 Minutes."</h2>
+            
+            <p><strong>THE BREAKTHROUGH:</strong> We discovered that every business operation - from restaurants to law firms to hospitals - uses the same 5 data relationships.</p>
+            
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>WHO</h4>
+                    <p>Organizations and people</p>
+                </div>
+                <div class="feature-box">
+                    <h4>WHAT</h4>
+                    <p>Any business object (products, customers, orders)</p>
+                </div>
+                <div class="feature-box">
+                    <h4>HOW</h4>
+                    <p>Dynamic properties (price, color, status)</p>
+                </div>
+                <div class="feature-box">
+                    <h4>WHY</h4>
+                    <p>Relationships between everything</p>
+                </div>
+            </div>
+            
+            <div class="quote-box">
+                <strong>THE MAGIC:</strong> Deploy Mario's Restaurant in 2 minutes. Deploy Goldman Sachs the same day. Same system. Zero customization.
+            </div>
+        </div>
+
+        <!-- Slide 5: Unfair Advantage -->
+        <div class="slide">
+            <h1>AI That Actually Works</h1>
+            <h2>"While They Build Features, We Build Intelligence"</h2>
+            
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>DIGITAL ACCOUNTANT</h4>
+                    <p>Processes invoices, generates journal entries, and reconciles accounts automatically. <span class="highlight">ROI: 2,400%</span></p>
+                </div>
+                <div class="feature-box">
+                    <h4>CONFIGURATION CONTROL</h4>
+                    <p>AI prevents duplicate solutions before they happen. <span class="highlight">Savings: $2-15M per organization</span></p>
+                </div>
+                <div class="feature-box">
+                    <h4>TEMPLATE MARKETPLACE</h4>
+                    <p>Deploy complete business functions in minutes, not months. <span class="highlight">Success Rate: 99.7%</span></p>
+                </div>
+                <div class="feature-box">
+                    <h4>WORKFLOW INTELLIGENCE</h4>
+                    <p>Automatically adapts to any business process without coding. <span class="highlight">Implementation: 2 minutes vs 18 months</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Market Domination -->
+        <div class="slide">
+            <h1>The $47B Disruption</h1>
+            <h2>"We're Not Competing - We're Category Killing"</h2>
+            
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h4>Global ERP Market</h4>
+                    <div class="number">$47.2B</div>
+                </div>
+                <div class="metric-box">
+                    <h4>Average ERP Project</h4>
+                    <div class="number">$15M</div>
+                    <p>Total Cost</p>
+                </div>
+                <div class="metric-box">
+                    <h4>HERA Average Project</h4>
+                    <div class="number">$50K</div>
+                    <p>Total Cost</p>
+                </div>
+                <div class="metric-box">
+                    <h4>Disruption Potential</h4>
+                    <div class="number">99.7%</div>
+                    <p>Cost Reduction</p>
+                </div>
+            </div>
+            
+            <p><strong>THE STRATEGY:</strong></p>
+            <p>Year 1: Dominate SMB (10,000 customers)</p>
+            <p>Year 2: Attack Enterprise (Fortune 1000)</p>
+            <p>Year 3: Global expansion (Category ownership)</p>
+            
+            <p><strong>THE MOAT:</strong> Universal architecture creates network effects that become impossible to replicate.</p>
+        </div>
+
+        <!-- Slide 7: Traction -->
+        <div class="slide success-slide">
+            <h1>The Proof Is In The Numbers</h1>
+            <h2>"Early Adopters Are Already Winning"</h2>
+            
+            <div class="quote-box">
+                <h3>MARIO'S RESTAURANT:</h3>
+                <p>Deployment: 2 minutes | ROI: 312% in 90 days | Cost Savings: $2.8M annually</p>
+                <p style="font-style: italic; font-size: 2rem; color: #30D5C8;">
+                    "HERA made my restaurant feel like Amazon"
+                </p>
+            </div>
+            
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h4>Active Organizations</h4>
+                    <div class="number">12</div>
+                </div>
+                <div class="metric-box">
+                    <h4>Revenue Growth</h4>
+                    <div class="number">340%</div>
+                    <p>Month over Month</p>
+                </div>
+                <div class="metric-box">
+                    <h4>Customer Satisfaction</h4>
+                    <div class="number">98%</div>
+                </div>
+                <div class="metric-box">
+                    <h4>Churn Rate</h4>
+                    <div class="number">0%</div>
+                </div>
+            </div>
+            
+            <p><strong>THE VALIDATION:</strong> When customers stop buying software and start buying competitive advantages, you know you've built something special.</p>
+        </div>
+
+        <!-- Slide 8: The Team -->
+        <div class="slide">
+            <h1>Category Creators</h1>
+            <h2>"We've Done This Before"</h2>
+            
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>THE PEDIGREE</h4>
+                    <p>Former SAP architects who know where the bodies are buried</p>
+                    <p>Ex-Oracle executives who understand enterprise sales</p>
+                    <p>AI researchers who solved the complexity problem</p>
+                </div>
+                <div class="feature-box">
+                    <h4>THE TRACK RECORD</h4>
+                    <p>3 previous exits totaling <span class="highlight">$847M</span></p>
+                    <p>47 enterprise implementations</p>
+                    <p>156 patents in universal architecture</p>
+                </div>
+            </div>
+            
+            <div class="quote-box">
+                <strong>THE OBSESSION:</strong> We're not building another software company. We're eliminating the need for custom software forever.
+            </div>
+        </div>
+
+        <!-- Slide 9: Business Model -->
+        <div class="slide">
+            <h1>Recurring Revenue Machine</h1>
+            <h2>"Land and Expand on Steroids"</h2>
+            
+            <div class="pricing-grid">
+                <div class="pricing-box">
+                    <h4>Starter</h4>
+                    <div class="price">$2,997/mo</div>
+                    <p>vs SAP's $150K+</p>
+                </div>
+                <div class="pricing-box">
+                    <h4>Professional</h4>
+                    <div class="price">$9,997/mo</div>
+                    <p>Unlimited users</p>
+                </div>
+                <div class="pricing-box">
+                    <h4>Enterprise</h4>
+                    <div class="price">$29,997/mo</div>
+                    <p>Unlimited everything</p>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>Platform Subscriptions</h4>
+                    <p><span class="highlight">85% gross margins</span></p>
+                </div>
+                <div class="feature-box">
+                    <h4>Template Marketplace</h4>
+                    <p><span class="highlight">30% take rate</span></p>
+                </div>
+                <div class="feature-box">
+                    <h4>Implementation Services</h4>
+                    <p><span class="highlight">$50K average deal</span></p>
+                </div>
+                <div class="feature-box">
+                    <h4>Integration Revenue</h4>
+                    <p><span class="highlight">$25K per connection</span></p>
+                </div>
+            </div>
+            
+            <p><strong>THE MULTIPLIER:</strong> Each customer becomes a template factory, creating network effects that compound revenue growth.</p>
+        </div>
+
+        <!-- Slide 10: Competition -->
+        <div class="slide">
+            <h1>David vs Goliaths</h1>
+            <h2>"Why Legacy Players Can't Respond"</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>SAP/Oracle/Microsoft</th>
+                        <th>Startups</th>
+                        <th class="hera-column">HERA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Strengths</strong></td>
+                        <td>Brand recognition, existing customers</td>
+                        <td>Agility, modern tech</td>
+                        <td class="hera-column">Universal architecture</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fatal Weaknesses</strong></td>
+                        <td>Legacy architecture, cultural inertia</td>
+                        <td>Narrow focus, no universal architecture</td>
+                        <td class="hera-column">None</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Response Time</strong></td>
+                        <td>3-5 years (too late)</td>
+                        <td>Immediate</td>
+                        <td class="hera-column">N/A - First mover</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>HERA'S MOAT:</strong> Universal architecture creates switching costs for competitors, not customers.</p>
+        </div>
+
+        <!-- Slide 11: Financial Projections -->
+        <div class="slide">
+            <h1>The $1B Trajectory</h1>
+            <h2>"Conservative Estimates Based on Real Data"</h2>
+            
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>Year 1</h4>
+                    <p><span class="highlight">$12M ARR</span></p>
+                    <p>2,000 customers</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Year 2</h4>
+                    <p><span class="highlight">$67M ARR</span></p>
+                    <p>12,000 customers</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Year 3</h4>
+                    <p><span class="highlight">$234M ARR</span></p>
+                    <p>45,000 customers</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Unit Economics</h4>
+                    <p>CAC: $2,400 | LTV: $89,000</p>
+                    <p><span class="highlight">LTV/CAC Ratio: 37:1</span></p>
+                    <p>Payback: 4.2 months</p>
+                </div>
+            </div>
+            
+            <div class="quote-box">
+                <strong>THE KICKER:</strong> These numbers assume ZERO enterprise customers. Add Fortune 1000 and we're looking at $1B+ valuations.
+            </div>
+        </div>
+
+        <!-- Slide 12: The Ask -->
+        <div class="slide cta-slide">
+            <h1>Join the Disruption</h1>
+            <div class="big-number">$15M</div>
+            <h2>Series A - Category Ownership</h2>
+            
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>Sales & Marketing (60%)</h4>
+                    <p><span class="highlight">$9M</span> - Dominate SMB, attack enterprise</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Product Development (25%)</h4>
+                    <p><span class="highlight">$3.75M</span> - AI advancement, template marketplace</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Operations (15%)</h4>
+                    <p><span class="highlight">$2.25M</span> - Scale infrastructure, international expansion</p>
+                </div>
+                <div class="feature-box">
+                    <h4>The Timeline</h4>
+                    <p><span class="highlight">18-month runway</span> to $50M ARR and Series B at $500M valuation</p>
+                </div>
+            </div>
+            
+            <p><strong>THE OPPORTUNITY:</strong> Get in at Series A pricing for what will be a Series C company by Q4 2025.</p>
+        </div>
+
+        <!-- Slide 13: Prize Frame -->
+        <div class="slide">
+            <h1>You Need to Qualify</h1>
+            <h2>"We Choose Our Investors Carefully"</h2>
+            
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h4>What We Need</h4>
+                    <p>Strategic Value: Connections to Fortune 1000 CTOs</p>
+                    <p>Category Experience: Understanding of platform businesses</p>
+                    <p>Commitment Level: Lead investor with $5M+ minimum</p>
+                    <p>Timeline: Decision within 14 days</p>
+                </div>
+                <div class="metric-box">
+                    <h4>What You Get</h4>
+                    <p>Board seat with category-defining company</p>
+                    <p>2x board fee for first $10M invested</p>
+                    <p>First access to enterprise partnerships</p>
+                    <p>Exit potential: $1B+ in 36 months</p>
+                </div>
+            </div>
+            
+            <p><strong>THE REALITY:</strong> This round fills with or without you. The question is whether you want to own a piece of the $47B disruption.</p>
+        </div>
+
+        <!-- Slide 14: Time Constraint -->
+        <div class="slide problem-slide">
+            <h1>The Window is Closing</h1>
+            <h2>"18 Months to Category Lock-Up"</h2>
+            
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h4>SMB Market</h4>
+                    <div class="number urgent">340%</div>
+                    <p>Faster adoption than expected</p>
+                </div>
+                <div class="metric-box">
+                    <h4>Enterprise Pilots</h4>
+                    <div class="number urgent">Q1 2025</div>
+                    <p>Starting soon</p>
+                </div>
+                <div class="metric-box">
+                    <h4>Microsoft Response</h4>
+                    <div class="number urgent">18 mo</div>
+                    <p>Too late</p>
+                </div>
+                <div class="metric-box">
+                    <h4>Decision Deadline</h4>
+                    <div class="number urgent">14 days</div>
+                    <p>Time is running out</p>
+                </div>
+            </div>
+            
+            <div class="quote-box">
+                <strong>THE CHOICE:</strong> Join the disruption or watch from the sidelines as we redefine enterprise software forever.
+            </div>
+        </div>
+
+        <!-- Slide 15: The Close -->
+        <div class="slide">
+            <h1>Welcome to the Future</h1>
+            <h2>"Questions are for People Who Don't Get It"</h2>
+            
+            <p><strong>THE REALITY:</strong> You've just seen the future of enterprise software. The question isn't whether HERA will succeed - it's whether you'll be part of the journey.</p>
+            
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>Join Us</h4>
+                    <p>Own equity in the $47B category disruption</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Wait and See</h4>
+                    <p>Pay 5x more in Series B (if you're invited)</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Pass</h4>
+                    <p>Watch your portfolio companies get disrupted by ours</p>
+                </div>
+                <div class="feature-box">
+                    <h4>The Next Step</h4>
+                    <p>Term sheet negotiations start tomorrow for qualified investors</p>
+                </div>
+            </div>
+            
+            <div class="quote-box">
+                "The best time to invest in category-defining companies is before the category exists. Welcome to that moment."
+                <br><br>
+                <strong>- HERA Leadership Team</strong>
+            </div>
+            
+            <p><strong>FINAL FRAME:</strong> This isn't about needing your money. This is about choosing who gets to own the future.</p>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+            <button class="nav-btn" onclick="nextSlide()">Next →</button>
+            <button class="nav-btn" onclick="toggleFullscreen()">Fullscreen</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullscreen();
+            } else if (e.key === 'Escape') {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                }
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > 50) { // Minimum swipe distance
+                if (diff > 0) {
+                    nextSlide(); // Swipe left = next slide
+                } else {
+                    previousSlide(); // Swipe right = previous slide
+                }
+            }
+        });
+
+        // Auto-start in fullscreen when presenting
+        document.addEventListener('click', function() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {
+                    // Fullscreen not supported or denied
+                });
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>

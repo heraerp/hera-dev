@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import {
   Home,
   ChefHat,
@@ -24,7 +25,8 @@ import {
   Clipboard,
   HelpCircle,
   Smartphone,
-  Plus
+  Plus,
+  Brain
 } from 'lucide-react';
 
 interface NavigationItem {
@@ -55,6 +57,7 @@ const TeamsStyleSidebar: React.FC<TeamsStyleSidebarProps> = ({
   onToggle,
   className = ''
 }) => {
+  const router = useRouter();
   const [internalExpanded, setInternalExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showAppsModal, setShowAppsModal] = useState(false);
@@ -75,6 +78,40 @@ const TeamsStyleSidebar: React.FC<TeamsStyleSidebarProps> = ({
     }
   };
 
+  const handleNavigation = (itemId: string) => {
+    switch (itemId) {
+      case 'dashboard':
+        router.push('/restaurant/dashboard');
+        break;
+      case 'hera-ai':
+        router.push('/hera/self-development');
+        break;
+      case 'kitchen':
+        router.push('/restaurant/kitchen');
+        break;
+      case 'orders':
+        router.push('/restaurant/orders');
+        break;
+      case 'inventory':
+        router.push('/restaurant/inventory');
+        break;
+      case 'staff':
+        router.push('/restaurant/staff');
+        break;
+      case 'analytics':
+        router.push('/restaurant/analytics');
+        break;
+      case 'payments':
+        router.push('/restaurant/payments');
+        break;
+      case 'reservations':
+        router.push('/restaurant/reservations');
+        break;
+      default:
+        console.log(`Navigation for ${itemId} not implemented yet`);
+    }
+  };
+
   const navigationItems: NavigationItem[] = [
     { id: 'dashboard', icon: Home, label: 'Dashboard', isActive: true },
     { id: 'kitchen', icon: ChefHat, label: 'Kitchen', hasNotifications: true, notificationCount: 3 },
@@ -83,7 +120,8 @@ const TeamsStyleSidebar: React.FC<TeamsStyleSidebarProps> = ({
     { id: 'staff', icon: Users, label: 'Staff' },
     { id: 'analytics', icon: BarChart3, label: 'Analytics' },
     { id: 'payments', icon: CreditCard, label: 'Payments' },
-    { id: 'reservations', icon: Calendar, label: 'Bookings' }
+    { id: 'reservations', icon: Calendar, label: 'Bookings' },
+    { id: 'hera-ai', icon: Brain, label: 'HERA AI' }
   ];
 
   const users: User[] = [
@@ -175,6 +213,7 @@ const TeamsStyleSidebar: React.FC<TeamsStyleSidebarProps> = ({
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => handleNavigation(item.id)}
                 className={`w-full flex flex-col items-center justify-center p-2 rounded-lg transition-all duration-200 relative ${
                   item.isActive 
                     ? 'bg-[#30D5C8]/20 text-[#30D5C8]' 

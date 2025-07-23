@@ -208,18 +208,98 @@ export default function POSWithSidebarPage() {
   const taxBreakdown = useTaxCalculation(subtotal, countryCode, isInterState, 'restaurant_service');
   const total = subtotal + taxBreakdown.totalTax;
 
-  // Process checkout - simplified for demo
+  // Process checkout - create actual order in database
   const handleCheckout = async () => {
     if (cart.length === 0) return;
+    
+    // Validate required fields
+    if (!currentOrder.customerName) {
+      setError('Please enter customer name');
+      return;
+    }
+    
     setIsProcessingOrder(true);
+    setError(null);
 
-    // Simulate order processing
-    setTimeout(() => {
-      setOrderSuccess(`Order #POS-${Date.now().toString().slice(-6)} placed successfully!`);
-      setCart([]);
+    try {
+      // Prepare order data for UniversalTransactionService
+      const orderInput = {
+        organizationId: organizationId!,
+        customerName: currentOrder.customerName,
+        tableNumber: currentOrder.tableNumber,
+        orderType: currentOrder.orderType || 'dine_in',
+        specialInstructions: currentOrder.specialInstructions,
+        waiterName: currentOrder.waiterName,
+        items: cart.map(item => ({
+          productId: item.menuItemId,
+          productName: item.name,
+          quantity: item.quantity,
+          unitPrice: item.price,
+          specialInstructions: item.specialInstructions
+        }))
+      };
+
+      console.log('🛒 Creating order with data:', orderInput);
+
+      // Create order using UniversalTransactionService
+      const result = await UniversalTransactionService.createOrder(orderInput);
+
+      if (result.success && result.data) {
+        // Success - clear cart and show success message
+        setOrderSuccess(`Order ${result.data.transactionNumber} placed successfully!`);
+        setCart([]);
+        setCurrentOrder({
+          customerName: '',
+          tableNumber: '',
+          orderType: 'dine_in',
+          waiterName: '',
+          specialInstructions: ''
+        });
+        
+        // Clear success message after 5 seconds
+        setTimeout(() => setOrderSuccess(null), 5000);
+        
+        // Process order completion for accounting if needed
+        if (accountingInitialized && processOrderCompletion && result.data.orderId) {
+          try {
+            await processOrderCompletion({
+              orderId: result.data.orderId,
+              orderNumber: result.data.transactionNumber,
+              totalAmount: total,
+              subtotal: subtotal,
+              tax: taxBreakdown.totalTax,
+              items: cart
+            });
+          } catch (accountingError) {
+            console.error('❌ Accounting integration error:', accountingError);
+            // Don't fail the order for accounting errors
+          }
+        }
+        
+        // Prepare invoice data if needed
+        setLastInvoiceData({
+          orderNumber: result.data.transactionNumber,
+          customerName: orderInput.customerName,
+          tableNumber: orderInput.tableNumber || 'Counter',
+          orderType: orderInput.orderType,
+          items: cart,
+          subtotal: subtotal,
+          tax: taxBreakdown.totalTax,
+          total: total,
+          date: new Date().toISOString(),
+          paymentMethod: 'cash'
+        });
+        
+        console.log('✅ Order created successfully:', result.data.transactionNumber);
+      } else {
+        throw new Error(result.error || 'Failed to create order');
+      }
+    } catch (error) {
+      console.error('❌ Failed to create order:', error);
+      setError(`Failed to create order: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
       setIsProcessingOrder(false);
-      setTimeout(() => setOrderSuccess(null), 5000);
-    }, 2000);
+    }
   };
 
   // Loading state

@@ -66,6 +66,7 @@ export interface OrderCreateInput {
   orderType: 'dine_in' | 'takeout' | 'delivery';
   specialInstructions?: string;
   waiterName?: string;
+  createdBy?: string; // User ID who created the order
   items: Array<{
     productId: string;
     productName: string;
@@ -76,6 +77,42 @@ export interface OrderCreateInput {
 }
 
 export class UniversalTransactionService {
+  // In-memory user cache for metadata creation
+  private static currentUser: {
+    id: string;
+    email: string;
+    fullName: string;
+  } | null = null;
+
+  /**
+   * Set current user context for metadata creation
+   */
+  static setCurrentUser(user: { id: string; email: string; fullName: string }) {
+    this.currentUser = user;
+    console.log('🔐 User context set for UniversalTransactionService:', user.fullName);
+  }
+
+  /**
+   * Get current user ID for metadata, with fallback to system user
+   */
+  static getCurrentUserId(): string {
+    if (this.currentUser) {
+      return this.currentUser.id;
+    }
+    
+    // Fallback to system user if no user context is set
+    console.warn('⚠️ No user context set, using fallback system user');
+    return '97c87eca-24c9-4539-a542-acf65bc9b9c7';
+  }
+
+  /**
+   * Clear user context (useful for logout)
+   */
+  static clearCurrentUser() {
+    this.currentUser = null;
+    console.log('🔐 User context cleared from UniversalTransactionService');
+  }
+
   /**
    * Initialize universal transaction tables if they don't exist
    */
@@ -192,8 +229,10 @@ export class UniversalTransactionService {
    */
   static async createOrder(orderInput: OrderCreateInput): Promise<{
     success: boolean;
-    orderNumber?: string;
-    orderId?: string;
+    data?: {
+      transactionNumber: string;
+      orderId: string;
+    };
     error?: string;
   }> {
     try {
@@ -279,8 +318,8 @@ export class UniversalTransactionService {
             metadata_type: 'order_context',
             metadata_category: 'customer_experience',
             metadata_key: 'order_details',
-            metadata_value: JSON.stringify(orderMetadata)
-            // Remove problematic fields that might cause foreign key issues
+            metadata_value: JSON.stringify(orderMetadata),
+            created_by: orderInput.createdBy || this.getCurrentUserId() // Use provided user ID or current user
           });
 
         if (metadataError) {

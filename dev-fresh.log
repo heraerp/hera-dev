@@ -247,3 +247,611 @@
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz'
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/server-development/4.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/server-development/4.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/version 200 in 1424ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /digital-accountant/journal-entries 200 in 5963ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /_next/static/css/app/layout.css?v=1753246423538 404 in 1996ms
+ GET /_next/static/chunks/main-app.js?v=1753246423538 404 in 1983ms
+ GET /_next/static/chunks/app/layout.js 404 in 1982ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 1982ms
+ GET /fallback-development.js 404 in 85ms
+ GET /api/version 200 in 382ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /test-ai-hybrid 200 in 10221ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/api/version/route.js:162:39)
+    at <unknown> (.next/server/app/api/version/route.js:163:83)
+    at <unknown> (.next/server/app/api/version/route.js:163:47)
+    at Object.<anonymous> (.next/server/app/api/version/route.js:166:3) {
+  page: '/api/version'
+}
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/api/version/route.js:162:39)
+    at <unknown> (.next/server/app/api/version/route.js:163:83)
+    at <unknown> (.next/server/app/api/version/route.js:163:47)
+    at Object.<anonymous> (.next/server/app/api/version/route.js:166:3) {
+  page: '/api/version'
+}
+ GET /favicon.ico 200 in 1363ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /favicon.ico 200 in 638ms
+ GET /api/version 200 in 522ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'
+}
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/api/version/route.js:162:39)
+    at <unknown> (.next/server/app/api/version/route.js:163:83)
+    at <unknown> (.next/server/app/api/version/route.js:163:47)
+    at Object.<anonymous> (.next/server/app/api/version/route.js:166:3) {
+  page: '/api/version'
+}
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/api/version/route.js:162:39)
+    at <unknown> (.next/server/app/api/version/route.js:163:83)
+    at <unknown> (.next/server/app/api/version/route.js:163:47)
+    at Object.<anonymous> (.next/server/app/api/version/route.js:166:3) {
+  page: '/api/version'
+}
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/api/version/route.js:162:39)
+    at <unknown> (.next/server/app/api/version/route.js:163:83)
+    at <unknown> (.next/server/app/api/version/route.js:163:47)
+    at Object.<anonymous> (.next/server/app/api/version/route.js:166:3) {
+  page: '/api/version'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'
+}
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+ GET /api/version 500 in 60857ms
+ GET /api/version 500 in 97067ms
+ GET /api/version 500 in 62122ms
+ GET /api/version 500 in 97068ms
+ GET /api/version 500 in 62214ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz'
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/api/version/route.js:162:39)
+    at <unknown> (.next/server/app/api/version/route.js:163:83)
+    at <unknown> (.next/server/app/api/version/route.js:163:47)
+    at Object.<anonymous> (.next/server/app/api/version/route.js:166:3) {
+  page: '/api/version'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'
+}
+ GET /api/version 500 in 1149ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/api/version/route.js:162:39)
+    at <unknown> (.next/server/app/api/version/route.js:163:83)
+    at <unknown> (.next/server/app/api/version/route.js:163:47)
+    at Object.<anonymous> (.next/server/app/api/version/route.js:166:3) {
+  page: '/api/version'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'
+}
+ GET /api/version 500 in 142ms
+ GET /templates 200 in 1100ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /_next/static/chunks/app/templates/page.js 404 in 8193ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /favicon.ico 200 in 2951ms
+ GET /api/version 200 in 173ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /digital-accountant/journal-entries 200 in 5119ms
+ GET /_next/static/chunks/app/digital-accountant/journal-entries/page.js 404 in 213ms
+ GET /favicon.ico 200 in 129ms
+ GET /favicon.ico 200 in 544ms
+ GET /favicon.ico 200 in 62ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js'
+}
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/restaurant/orders?organizationId=7e08f85e-fdbf-42d7-8aa8-965c96ff88ff 500 in 8319ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js'
+}
+ GET /api/restaurant/orders?organizationId=7e08f85e-fdbf-42d7-8aa8-965c96ff88ff 500 in 111ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js'
+}
+ POST /api/test-order 500 in 124ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🔍 Fetching GL validation queue for organization: 7cc09b11-34c5-4299-b392-01a54ff84092
+❌ Error fetching transactions: {
+  code: '42703',
+  details: null,
+  hint: null,
+  message: 'column universal_transactions.gl_validation_status does not exist'
+}
+ GET /api/finance/gl-accounts/validate?organizationId=7cc09b11-34c5-4299-b392-01a54ff84092&validationScope=pending 500 in 24331ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🔍 Fetching GL validation queue for organization: 123e4567-e89b-12d3-a456-426614174000
+ GET /api/finance/gl-accounts/validate?organizationId=123e4567-e89b-12d3-a456-426614174000&validationScope=pending 200 in 1041ms
+🔍 Fetching GL validation queue for organization: 123e4567-e89b-12d3-a456-426614174000
+ GET /api/finance/gl-accounts/validate?organizationId=123e4567-e89b-12d3-a456-426614174000&validationScope=all 200 in 139ms
+🔍 Fetching GL validation queue for organization: 7cc09b11-34c5-4299-b392-01a54ff84092
+ GET /api/finance/gl-accounts/validate?organizationId=7cc09b11-34c5-4299-b392-01a54ff84092&validationScope=all 200 in 93ms
+🔍 Fetching GL validation queue for organization: 123e4567-e89b-12d3-a456-426614174000
+ GET /api/finance/gl-accounts/validate?organizationId=123e4567-e89b-12d3-a456-426614174000&validationScope=all 200 in 888ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/1.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/1.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🔍 Fetching GL validation queue for organization: 123e4567-e89b-12d3-a456-426614174000
+✅ Validation queue fetched successfully: 21 transactions
+ GET /api/finance/gl-accounts/validate?organizationId=123e4567-e89b-12d3-a456-426614174000&validationScope=pending 200 in 10565ms
+🔍 Starting GL validation with auto-fix for organization: 123e4567-e89b-12d3-a456-426614174000
+🔧 Auto-fix enabled: true
+📊 Confidence threshold: 0.7
+✅ GL validation completed successfully
+📊 Results: 21 validated, 0 errors, 0 auto-fixed
+ POST /api/finance/gl-accounts/validate 200 in 2098ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+📊 Fetching auto-fix history for organization: 123e4567-e89b-12d3-a456-426614174000
+❌ Error fetching auto-fixed transactions: {
+  code: '42703',
+  details: null,
+  hint: null,
+  message: 'column universal_transactions.gl_auto_fix_applied does not exist'
+}
+ GET /api/finance/gl-accounts/autofix?organizationId=123e4567-e89b-12d3-a456-426614174000&timeframe=30 500 in 3435ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+📊 Fetching auto-fix history for organization: 123e4567-e89b-12d3-a456-426614174000
+✅ Auto-fix history analysis completed
+ GET /api/finance/gl-accounts/autofix?organizationId=123e4567-e89b-12d3-a456-426614174000&timeframe=30 200 in 15810ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+📊 Fetching GL posting status for organization: 123e4567-e89b-12d3-a456-426614174000
+✅ Posting queue fetched successfully: 21 transactions
+ GET /api/finance/gl-accounts/posting?organizationId=123e4567-e89b-12d3-a456-426614174000&status=ready 200 in 23886ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/app/digital-accountant/journal-entries/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/app/digital-accountant/journal-entries/page.js',
+  page: '/digital-accountant/journal-entries'
+}
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'
+}
+ GET /digital-accountant/journal-entries 500 in 6796ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /_next/static/chunks/fallback/webpack.js 404 in 7027ms
+ GET /_next/static/chunks/fallback/main.js 404 in 7013ms
+ GET /_next/static/chunks/fallback/react-refresh.js 404 in 7019ms
+ GET /_next/static/chunks/fallback/pages/_app.js 404 in 114ms
+ GET /_next/static/chunks/fallback/pages/_error.js 404 in 107ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ [Error [InvariantError]: Invariant: Expected clientReferenceManifest to be defined. This is a bug in Next.js.]
+ ⨯ [Error [InvariantError]: Invariant: Expected clientReferenceManifest to be defined. This is a bug in Next.js.] {
+  page: '/restaurant/staff'
+}
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/pages/_document.js'
+}
+ GET /restaurant/staff 500 in 27333ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/_not-found/page.js:532:39)
+    at <unknown> (.next/server/app/_not-found/page.js:533:369)
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/_not-found/page.js:532:39)
+    at <unknown> (.next/server/app/_not-found/page.js:533:369)
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/_not-found/page.js:532:39)
+    at <unknown> (.next/server/app/_not-found/page.js:533:369)
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3)
+ GET /_next/static/chunks/fallback/webpack.js 500 in 2915ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 2864ms
+ GET /_next/static/chunks/fallback/main.js 500 in 2864ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/_not-found/page.js:532:39)
+    at <unknown> (.next/server/app/_not-found/page.js:533:369)
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3)
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 83ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/_not-found/page.js:532:39)
+    at <unknown> (.next/server/app/_not-found/page.js:533:369)
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3)
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 53ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/hera/self-analysis 200 in 6420ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ POST /api/hera/vibe-command 200 in 15501ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/17.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/17.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+HERA Sprint Creation Error: {
+  code: '22P02',
+  details: null,
+  hint: null,
+  message: 'invalid input syntax for type uuid: "00000001-HERA-DEV0-0000-000000000000"'
+}
+ POST /api/hera/create-sprint 500 in 12381ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ ./app/sales/page.tsx
+Error:   [31mx[0m Unterminated regexp literal
+     ,-[[36;1;4m/Users/san/Documents/hera-dev/app/sales/page.tsx[0m:698:1]
+ [2m695[0m |             </div>
+ [2m696[0m |           </Slide>
+ [2m697[0m |         ))
+ [2m698[0m |       </div>
+     : [35;1m       ^^^^^[0m
+ [2m699[0m | 
+ [2m700[0m |       {/* Custom animations */}
+ [2m701[0m |       <style jsx>{`
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/sales/page.tsx
+ ⨯ ./app/sales/page.tsx
+Error:   [31mx[0m Unterminated regexp literal
+     ,-[[36;1;4m/Users/san/Documents/hera-dev/app/sales/page.tsx[0m:698:1]
+ [2m695[0m |             </div>
+ [2m696[0m |           </Slide>
+ [2m697[0m |         ))
+ [2m698[0m |       </div>
+     : [35;1m       ^^^^^[0m
+ [2m699[0m | 
+ [2m700[0m |       {/* Custom animations */}
+ [2m701[0m |       <style jsx>{`
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/sales/page.tsx
+ ⨯ ./app/sales/page.tsx
+Error:   [31mx[0m Unterminated regexp literal
+     ,-[[36;1;4m/Users/san/Documents/hera-dev/app/sales/page.tsx[0m:698:1]
+ [2m695[0m |             </div>
+ [2m696[0m |           </Slide>
+ [2m697[0m |         ))
+ [2m698[0m |       </div>
+     : [35;1m       ^^^^^[0m
+ [2m699[0m | 
+ [2m700[0m |       {/* Custom animations */}
+ [2m701[0m |       <style jsx>{`
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/sales/page.tsx
+ GET /sales 500 in 72047ms
+ GET /sales 500 in 205ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/915d8896194832a1.webpack.hot-update.json 404 in 30780ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/915d8896194832a1.webpack.hot-update.json 404 in 104ms
+ GET /sales 200 in 11719ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/version 200 in 3151ms
+ GET /api/version 200 in 112ms
+ GET /api/version 200 in 160ms
+ GET /api/version 200 in 29ms
+ GET /api/version 200 in 28ms
+ GET /api/version 404 in 829ms
+ GET /api/version 404 in 128ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/core/organizations 200 in 5373ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ POST /api/core/organizations 400 in 7355ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ POST /api/core/organizations 404 in 21622ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+HERA Sprint Creation Error: {
+  code: '22P02',
+  details: null,
+  hint: null,
+  message: 'invalid input syntax for type uuid: "00000001-HERA-DEV0-0000-000000000000"'
+}
+ POST /api/hera/create-sprint 500 in 2771ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/server-development/2.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/server-development/2.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/_not-found/page.js:532:39)
+    at <unknown> (.next/server/app/_not-found/page.js:533:369)
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3)
+ GET /digital-accountant/journal-entries 500 in 6120ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/app/digital-accountant/journal-entries/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/app/digital-accountant/journal-entries/page.js',
+  page: '/digital-accountant/journal-entries'
+}
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/_not-found/page.js:532:39)
+    at <unknown> (.next/server/app/_not-found/page.js:533:369)
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3)
+ GET /digital-accountant/journal-entries 500 in 25214ms
+ GET /_next/static/webpack/27a6142469be6ac2.webpack.hot-update.json 500 in 23958ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/app/digital-accountant/journal-entries/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/app/digital-accountant/journal-entries/page.js',
+  page: '/digital-accountant/journal-entries'
+}
+ GET /digital-accountant/journal-entries 500 in 263ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ POST /api/hera/create-sprint 201 in 4821ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/hera/evolution-tracking?days=7 200 in 5245ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ POST /api/hera/vibe-command 200 in 704ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /digital-accountant/journal-entries 404 in 609ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/_not-found/page.js:532:39)
+    at <unknown> (.next/server/app/_not-found/page.js:533:369)
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3)
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.

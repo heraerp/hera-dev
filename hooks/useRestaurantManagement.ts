@@ -3,6 +3,7 @@ import UniversalCrudService from '@/lib/services/universalCrudService'
 import { createClient } from '@/lib/supabase/client'
 import { createServiceClient } from '@/lib/supabase/service'
 import { restaurantManagementService, RestaurantData, RestaurantUpdateData } from '@/lib/services/restaurantManagementService'
+import { UniversalTransactionService } from '@/lib/services/universalTransactionService'
 
 export interface RestaurantOption {
   id: string
@@ -102,6 +103,7 @@ export function useRestaurantManagement(): UseRestaurantManagementReturn {
       if (authError || !user) {
         setUser(null)
         setError('User not authenticated')
+        UniversalTransactionService.clearCurrentUser() // Clear user context on auth error
         return
       }
       
@@ -112,23 +114,32 @@ export function useRestaurantManagement(): UseRestaurantManagementReturn {
       // Step 1: Get user's organizations (using HERA Universal Architecture - manual joins)
       const { data: coreUser, error: coreUserError } = await supabase
         .from('core_users')
-        .select('id')
+        .select('id, email, full_name')
         .eq('auth_user_id', user.id)
         .single()
 
       if (coreUserError) {
         console.error('❌ Core user query error:', coreUserError)
         setError(`Database error: ${coreUserError.message}`)
+        UniversalTransactionService.clearCurrentUser() // Clear user context on error
         return
       }
 
       if (!coreUser) {
         console.log('⚠️ No core_users record found for user')
         setError('User account not properly set up. Please contact support.')
+        UniversalTransactionService.clearCurrentUser() // Clear user context on error
         return
       }
 
       console.log('✅ Core user found:', coreUser.id)
+      
+      // Set user context for UniversalTransactionService metadata creation
+      UniversalTransactionService.setCurrentUser({
+        id: coreUser.id,
+        email: coreUser.email || user.email || 'unknown@example.com',
+        fullName: coreUser.full_name || 'Unknown User'
+      })
 
       // Step 2: Get user_organizations links
       console.log(`🔍 Step 2: Querying user_organizations for core user ID: ${coreUser.id}`)
@@ -399,6 +410,7 @@ export function useRestaurantManagement(): UseRestaurantManagementReturn {
     return () => {
       console.log('🔄 Cleaning up real-time subscriptions')
       subscription.unsubscribe()
+      UniversalTransactionService.clearCurrentUser() // Clear user context on cleanup
     }
   }, [restaurantData, loadRestaurantData])
 

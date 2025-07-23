@@ -43,7 +43,9 @@ export default function AuthDebugger() {
       });
       
       // Check localStorage
-      const authTokens = localStorage.getItem('sb-' + (process.env.NEXT_PUBLIC_SUPABASE_URL?.split('://')[1]?.split('.')[0] || 'default') + '-auth-token');
+      const supabaseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+      const projectId = supabaseUrl.includes('localhost') ? 'localhost' : 'default';
+      const authTokens = localStorage.getItem('sb-' + projectId + '-auth-token');
       const restaurantPreference = localStorage.getItem('selectedRestaurant');
       
       setDebugInfo({

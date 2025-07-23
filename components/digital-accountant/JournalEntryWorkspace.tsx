@@ -51,6 +51,19 @@ interface JournalEntry {
     sourceDocument?: string
     analysisId?: string
   }
+  glIntelligence?: {
+    validationStatus: 'pending' | 'validated' | 'warning' | 'error' | 'auto_fixed'
+    confidenceScore: number
+    validationErrors: any[]
+    autoFixesApplied: any[]
+    aiReasoning: string
+    readyForPosting: boolean
+    businessMetrics: {
+      riskScore: number
+      complianceScore: number
+      dataQualityScore: number
+    }
+  }
   createdAt: string
   createdBy: string
   postedAt?: string
@@ -80,6 +93,11 @@ interface AIAssistant {
   suggestions: AccountSuggestion[]
   recommendation: string
   confidence: number
+  glIntelligence?: {
+    validationStatus: string
+    autoFixSuggestions: any[]
+    riskAssessment: string
+  }
 }
 
 export default function JournalEntryWorkspace() {
@@ -101,6 +119,10 @@ export default function JournalEntryWorkspace() {
   const [transactionText, setTransactionText] = useState('')
   const [isParsingTransaction, setIsParsingTransaction] = useState(false)
   const [parseError, setParseError] = useState<string | null>(null)
+  
+  // GL Intelligence state
+  const [isValidatingGL, setIsValidatingGL] = useState(false)
+  const [glValidationResults, setGlValidationResults] = useState<any>(null)
 
   // Function to check for journal entries from processed documents
   const checkProcessedDocuments = () => {
@@ -383,6 +405,11 @@ export default function JournalEntryWorkspace() {
     if (field === 'description' && value.length > 3) {
       triggerAIAssistance(value)
     }
+    
+    // Trigger GL Intelligence validation when amounts change
+    if (field === 'amount' && currentEntry.lines.some(line => line.amount > 0)) {
+      validateWithGLIntelligence()
+    }
   }
 
   const removeLine = (lineId: string) => {
@@ -406,8 +433,60 @@ export default function JournalEntryWorkspace() {
     })
   }
 
+  const validateWithGLIntelligence = async () => {
+    if (!currentEntry || currentEntry.lines.length === 0) return
+    
+    setIsValidatingGL(true)
+    
+    try {
+      console.log('🧠 Validating with HERA GL Intelligence...')
+      
+      const response = await fetch('/api/finance/gl-accounts/validate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          organizationId: '123e4567-e89b-12d3-a456-426614174000',
+          transactionIds: [currentEntry.id],
+          autoFixEnabled: true,
+          confidenceThreshold: 0.8,
+          includeRecommendations: true
+        })
+      })
+      
+      if (response.ok) {
+        const result = await response.json()
+        setGlValidationResults(result)
+        
+        // Update current entry with GL intelligence
+        if (result.transactions && result.transactions.length > 0) {
+          const glData = result.transactions[0]
+          setCurrentEntry(prev => prev ? {
+            ...prev,
+            glIntelligence: {
+              validationStatus: glData.validationStatus,
+              confidenceScore: glData.confidenceScore,
+              validationErrors: glData.errors || [],
+              autoFixesApplied: glData.autoFixesApplied || [],
+              aiReasoning: glData.aiAnalysis?.recommendations?.[0] || 'GL validation completed',
+              readyForPosting: glData.readyForPosting,
+              businessMetrics: glData.businessMetrics
+            }
+          } : null)
+        }
+        
+        console.log('✅ GL Intelligence validation completed:', result)
+      }
+    } catch (error) {
+      console.error('❌ GL Intelligence validation error:', error)
+    } finally {
+      setIsValidatingGL(false)
+    }
+  }
+
   const triggerAIAssistance = async (description: string) => {
-    // Mock AI suggestions
+    // Mock AI suggestions enhanced with GL Intelligence
     const suggestions: AccountSuggestion[] = [
       {
         accountCode: '6200001',
@@ -433,8 +512,18 @@ export default function JournalEntryWorkspace() {
       isActive: true,
       suggestions,
       recommendation: 'Based on the description, this appears to be an expense transaction. Consider debiting an expense account and crediting accounts payable.',
-      confidence: 0.89
+      confidence: 0.89,
+      glIntelligence: {
+        validationStatus: 'pending',
+        autoFixSuggestions: [],
+        riskAssessment: 'Low risk - standard expense pattern detected'
+      }
     })
+    
+    // Trigger GL Intelligence validation
+    if (currentEntry) {
+      await validateWithGLIntelligence()
+    }
   }
 
   const saveEntry = async () => {
@@ -748,13 +837,17 @@ export default function JournalEntryWorkspace() {
             Journal Entry Workspace
           </h1>
           <p className="text-gray-600">
-            AI-assisted journal entry creation, validation, and posting
+            AI-assisted journal entry creation, validation, and posting with HERA GL Intelligence
           </p>
         </div>
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="bg-green-50 text-green-700 border-green-300">
             <Brain className="w-4 h-4 mr-1" />
             AI Assistant Active
+          </Badge>
+          <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-300">
+            <Zap className="w-4 h-4 mr-1" />
+            HERA GL Intelligence
           </Badge>
           <Button 
             variant="outline"
@@ -1149,16 +1242,111 @@ export default function JournalEntryWorkspace() {
                         </AlertDescription>
                       </Alert>
                     )}
+                    
+                    {/* GL Intelligence Status */}
+                    {currentEntry?.glIntelligence && (
+                      <Alert className={`mt-4 ${
+                        currentEntry.glIntelligence.validationStatus === 'validated' ? 'border-green-200 bg-green-50' :
+                        currentEntry.glIntelligence.validationStatus === 'warning' ? 'border-yellow-200 bg-yellow-50' :
+                        currentEntry.glIntelligence.validationStatus === 'error' ? 'border-red-200 bg-red-50' :
+                        'border-blue-200 bg-blue-50'
+                      }`}>
+                        <Brain className="h-4 w-4" />
+                        <AlertDescription>
+                          <div className="space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="font-medium">GL Intelligence Status: {currentEntry.glIntelligence.validationStatus}</span>
+                              <ConfidenceIndicator confidence={currentEntry.glIntelligence.confidenceScore} size="sm" />
+                            </div>
+                            <div className="text-sm text-gray-600">{currentEntry.glIntelligence.aiReasoning}</div>
+                            {currentEntry.glIntelligence.autoFixesApplied.length > 0 && (
+                              <div className="text-sm">
+                                <span className="font-medium text-blue-600">
+                                  {currentEntry.glIntelligence.autoFixesApplied.length} auto-fixes applied
+                                </span>
+                              </div>
+                            )}
+                            <div className="grid grid-cols-3 gap-4 text-xs mt-2">
+                              <div>
+                                <span className="text-gray-500">Risk Score:</span>
+                                <span className={`ml-1 font-medium ${
+                                  currentEntry.glIntelligence.businessMetrics.riskScore < 0.3 ? 'text-green-600' :
+                                  currentEntry.glIntelligence.businessMetrics.riskScore < 0.7 ? 'text-yellow-600' :
+                                  'text-red-600'
+                                }`}>
+                                  {(currentEntry.glIntelligence.businessMetrics.riskScore * 100).toFixed(0)}%
+                                </span>
+                              </div>
+                              <div>
+                                <span className="text-gray-500">Compliance:</span>
+                                <span className="ml-1 font-medium text-green-600">
+                                  {(currentEntry.glIntelligence.businessMetrics.complianceScore * 100).toFixed(0)}%
+                                </span>
+                              </div>
+                              <div>
+                                <span className="text-gray-500">Data Quality:</span>
+                                <span className="ml-1 font-medium text-blue-600">
+                                  {(currentEntry.glIntelligence.businessMetrics.dataQualityScore * 100).toFixed(0)}%
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </AlertDescription>
+                      </Alert>
+                    )}
+                    
+                    {/* GL Validation in Progress */}
+                    {isValidatingGL && (
+                      <Alert className="mt-4 border-blue-200 bg-blue-50">
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <AlertDescription>
+                          HERA GL Intelligence is validating your journal entry...
+                        </AlertDescription>
+                      </Alert>
+                    )}
 
                     {/* Actions */}
                     <div className="flex items-center justify-between pt-4 border-t">
-                      <div className="flex items-center gap-2">
-                        <Calculator className="h-4 w-4 text-gray-500" />
-                        <span className="text-sm text-gray-600">
-                          {currentEntry?.isBalanced ? 'Entry is balanced' : 'Entry must be balanced to post'}
-                        </span>
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
+                          <Calculator className="h-4 w-4 text-gray-500" />
+                          <span className="text-sm text-gray-600">
+                            {currentEntry?.isBalanced ? 'Entry is balanced' : 'Entry must be balanced to post'}
+                          </span>
+                        </div>
+                        {currentEntry?.glIntelligence && (
+                          <div className="flex items-center gap-2">
+                            <Brain className="h-4 w-4 text-blue-500" />
+                            <span className={`text-sm font-medium ${
+                              currentEntry.glIntelligence.validationStatus === 'validated' ? 'text-green-600' :
+                              currentEntry.glIntelligence.validationStatus === 'warning' ? 'text-yellow-600' :
+                              currentEntry.glIntelligence.validationStatus === 'error' ? 'text-red-600' :
+                              'text-blue-600'
+                            }`}>
+                              GL: {currentEntry.glIntelligence.validationStatus}
+                            </span>
+                            {currentEntry.glIntelligence.readyForPosting && (
+                              <Badge className="bg-green-100 text-green-800 border-green-300">
+                                <CheckCircle className="w-3 h-3 mr-1" />
+                                Ready
+                              </Badge>
+                            )}
+                          </div>
+                        )}
                       </div>
                       <div className="flex gap-2">
+                        <Button 
+                          variant="outline" 
+                          onClick={validateWithGLIntelligence}
+                          disabled={isValidatingGL || !currentEntry}
+                        >
+                          {isValidatingGL ? (
+                            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                          ) : (
+                            <Brain className="h-4 w-4 mr-2" />
+                          )}
+                          Validate GL
+                        </Button>
                         <Button variant="outline" onClick={() => {
                           setIsCreating(false)
                           setCurrentEntry(null)
@@ -1172,10 +1360,11 @@ export default function JournalEntryWorkspace() {
                         </Button>
                         <Button 
                           onClick={postEntry}
-                          disabled={!currentEntry?.isBalanced}
+                          disabled={!currentEntry?.isBalanced || (currentEntry?.glIntelligence && !currentEntry.glIntelligence.readyForPosting)}
+                          className={currentEntry?.glIntelligence?.readyForPosting ? 'bg-green-600 hover:bg-green-700' : ''}
                         >
                           <Send className="h-4 w-4 mr-2" />
-                          Post Entry
+                          {currentEntry?.glIntelligence?.readyForPosting ? 'Post Entry' : 'Validate & Post'}
                         </Button>
                       </div>
                     </div>
@@ -1202,6 +1391,63 @@ export default function JournalEntryWorkspace() {
                         <p className="text-sm text-blue-800">{aiAssistant.recommendation}</p>
                         <div className="mt-2">
                           <ConfidenceIndicator confidence={aiAssistant.confidence} size="sm" />
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* GL Intelligence Panel */}
+                    {currentEntry?.glIntelligence && (
+                      <div className={`border rounded-lg p-3 ${
+                        currentEntry.glIntelligence.validationStatus === 'validated' ? 'bg-green-50 border-green-200' :
+                        currentEntry.glIntelligence.validationStatus === 'warning' ? 'bg-yellow-50 border-yellow-200' :
+                        currentEntry.glIntelligence.validationStatus === 'error' ? 'bg-red-50 border-red-200' :
+                        'bg-blue-50 border-blue-200'
+                      }`}>
+                        <div className="flex items-center gap-2 mb-2">
+                          <Brain className="h-4 w-4 text-blue-600" />
+                          <span className="font-medium text-sm">HERA GL Intelligence</span>
+                          <Badge variant="outline" className="text-xs">
+                            {currentEntry.glIntelligence.validationStatus}
+                          </Badge>
+                        </div>
+                        
+                        <div className="space-y-2 text-sm">
+                          <div className="flex items-center justify-between">
+                            <span>Confidence:</span>
+                            <ConfidenceIndicator confidence={currentEntry.glIntelligence.confidenceScore} size="sm" />
+                          </div>
+                          
+                          {currentEntry.glIntelligence.validationErrors.length > 0 && (
+                            <div>
+                              <span className="font-medium text-red-600">Validation Errors:</span>
+                              <ul className="mt-1 space-y-1">
+                                {currentEntry.glIntelligence.validationErrors.map((error, idx) => (
+                                  <li key={idx} className="text-xs text-red-700 flex items-start gap-1">
+                                    <AlertTriangle className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                                    <span>{error.description || error.message}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          
+                          {currentEntry.glIntelligence.autoFixesApplied.length > 0 && (
+                            <div>
+                              <span className="font-medium text-green-600">Auto-Fixes Applied:</span>
+                              <ul className="mt-1 space-y-1">
+                                {currentEntry.glIntelligence.autoFixesApplied.map((fix, idx) => (
+                                  <li key={idx} className="text-xs text-green-700 flex items-start gap-1">
+                                    <CheckCircle className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                                    <span>{fix.description}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          
+                          <div className="pt-2 border-t border-gray-200">
+                            <div className="text-xs text-gray-600">{currentEntry.glIntelligence.aiReasoning}</div>
+                          </div>
                         </div>
                       </div>
                     )}
@@ -1302,6 +1548,17 @@ export default function JournalEntryWorkspace() {
                               AI Generated
                             </Badge>
                           )}
+                          {entry.glIntelligence && (
+                            <Badge variant="outline" className={`${
+                              entry.glIntelligence.validationStatus === 'validated' ? 'bg-green-50 text-green-700 border-green-300' :
+                              entry.glIntelligence.validationStatus === 'warning' ? 'bg-yellow-50 text-yellow-700 border-yellow-300' :
+                              entry.glIntelligence.validationStatus === 'error' ? 'bg-red-50 text-red-700 border-red-300' :
+                              'bg-blue-50 text-blue-700 border-blue-300'
+                            }`}>
+                              <Zap className="w-3 h-3 mr-1" />
+                              GL: {entry.glIntelligence.validationStatus}
+                            </Badge>
+                          )}
                           {entry.aiMetadata?.sourceDocument && (
                             <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-300">
                               <FileText className="w-3 h-3 mr-1" />
@@ -1329,7 +1586,18 @@ export default function JournalEntryWorkspace() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        {entry.aiMetadata && (
+                        {entry.glIntelligence && (
+                          <div className="flex items-center gap-1">
+                            <ConfidenceIndicator confidence={entry.glIntelligence.confidenceScore} size="sm" />
+                            {entry.glIntelligence.readyForPosting && (
+                              <Badge className="bg-green-100 text-green-800 border-green-300">
+                                <CheckCircle className="w-3 h-3 mr-1" />
+                                GL Ready
+                              </Badge>
+                            )}
+                          </div>
+                        )}
+                        {!entry.glIntelligence && entry.aiMetadata && (
                           <ConfidenceIndicator confidence={entry.aiMetadata.confidenceScore} size="sm" />
                         )}
                         {entry.status === 'draft' && (

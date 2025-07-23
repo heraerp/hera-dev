@@ -565,7 +565,7 @@ export default function IntelligentOrderDashboard({
       )}
       
       {/* Debug Info for Development */}
-      {process.env.NODE_ENV === 'development' && userInfo && (
+      {typeof window !== 'undefined' && window.location.hostname === 'localhost' && userInfo && (
         <Card className="p-3 bg-gray-50 border-gray-200">
           <details className="text-xs">
             <summary className="cursor-pointer font-medium text-gray-700 mb-2">

@@ -236,7 +236,8 @@ export function PWAProvider({
 
   // Debug logging for development
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
+    const isDevelopment = typeof window !== 'undefined' && window.location.hostname === 'localhost';
+    if (isDevelopment) {
       console.log('🔍 HERA PWA Debug State:', pwa.state);
       console.log('🔍 HERA PWA Debug Utils:', pwa.utils);
     }

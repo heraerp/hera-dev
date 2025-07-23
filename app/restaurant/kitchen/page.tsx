@@ -108,15 +108,16 @@ export default function KitchenPage() {
       
       console.log('🍳 Loading kitchen orders for organization:', organizationId);
       
-      // Get orders from Universal Transaction Service (including completed orders from today)
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
+      // Get orders from Universal Transaction Service (including orders from last 3 days)
+      const threeDaysAgo = new Date();
+      threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+      threeDaysAgo.setHours(0, 0, 0, 0);
       
       const ordersResult = await UniversalTransactionService.getOrders(organizationId, {
         status: ['PENDING', 'CONFIRMED', 'PREPARING', 'READY', 'COMPLETED', 'pending', 'confirmed', 'preparing', 'ready', 'completed'],
         orderBy: { field: 'created_at', direction: 'desc' },
         limit: 100, // Increased limit to include completed orders
-        fromDate: today.toISOString() // Only get orders from today
+        fromDate: threeDaysAgo.toISOString() // Get orders from last 3 days
       });
       
       console.log('🍳 Kitchen orders result:', ordersResult);

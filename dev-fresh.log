@@ -855,3 +855,266 @@ HERA Sprint Creation Error: {
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/_not-found/page.js:2:7431)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:7487) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/_not-found/page.js:2:7431)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:7487) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /education 500 in 4281ms
+ GET /education/deploy-subject 500 in 1363ms
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/_not-found/page.js:2:7431)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:7487) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/_not-found/page.js:2:7431)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:7487) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/_not-found/page.js:2:7431)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:7487) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/_not-found/page.js:2:7431)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:7487) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/_not-found/page.js:2:7431)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:7487) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/chunks/fallback/webpack.js 500 in 385ms
+ GET /_next/static/chunks/fallback/main.js 500 in 383ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 382ms
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 380ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 379ms
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/_not-found/page.js:2:7431)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:7487) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /fallback-development.js 500 in 997ms
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/_not-found/page.js:2:7431)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:7487) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /worker-development.js 500 in 79ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (108kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from /Users/san/Documents/hera-dev/.next/cache/webpack/client-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from /Users/san/Documents/hera-dev/.next/cache/webpack/client-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🔍 Fetching Chart of Accounts for organization: 123e4567-e89b-12d3-a456-426614174000
+✅ Retrieved 6 chart of accounts
+ GET /api/finance/chart-of-accounts?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 21024ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+⚡ Generating real-time GL intelligence for organization: 123e4567-e89b-12d3-a456-426614174000
+✅ Real-time GL intelligence generated successfully
+ GET /api/finance/gl-accounts/real-time-intelligence?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 7354ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+🧠 Generating GL account intelligence for organization: 123e4567-e89b-12d3-a456-426614174000
+✅ GL account intelligence generated successfully
+ GET /api/finance/gl-accounts/intelligence?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 3754ms
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from /Users/san/Documents/hera-dev/.next/cache/webpack/client-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from /Users/san/Documents/hera-dev/.next/cache/webpack/server-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development/0.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from /Users/san/Documents/hera-dev/.next/cache/webpack/client-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from /Users/san/Documents/hera-dev/.next/cache/webpack/client-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+[?25h

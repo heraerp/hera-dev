@@ -546,6 +546,10 @@ export default function ChartOfAccountsPage() {
 
   // Filter and sort accounts
   const filteredAccounts = React.useMemo(() => {
+    if (!accounts || !Array.isArray(accounts)) {
+      return [];
+    }
+    
     const filtered = accounts.filter(account => {
       const matchesSearch = !searchQuery || 
         account.accountName.toLowerCase().includes(searchQuery.toLowerCase()) ||

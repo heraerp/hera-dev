@@ -117,3 +117,564 @@ Import trace for requested module:
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /empire 200 in 4339ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/_not-found/page.js:2:7431)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:7487) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/_not-found/page.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/_not-found/page.js:2:7431)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:7487) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+> [PWA] Compile client (static)
+> [PWA] Custom worker found: /Users/san/Documents/hera-dev/worker/index.js
+> [PWA] Build custom worker: /Users/san/Documents/hera-dev/public/worker-development.js
+> [PWA] Auto register service worker with: /Users/san/Documents/hera-dev/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/san/Documents/hera-dev/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Fallback to precache routes when fetch failed from cache or network:
+> [PWA]   document (page): /offline
+> [PWA]   image: /static/images/fallback.png
+> [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /_next/static/chunks/main-app.js?v=1753361867083 500 in 19274ms
+ GET /_next/static/chunks/app-pages-internals.js 500 in 19230ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/san/Documents/hera-dev/.next/cache/webpack/client-development-fallback/0.pack.gz'
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /digital-accountant 200 in 14116ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /favicon.ico 200 in 925ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/version 200 in 4147ms
+ GET /api/version 200 in 2725ms
+ GET /api/version 200 in 4148ms
+ GET /api/version 200 in 89ms
+ GET /api/version 200 in 57ms
+ GET /api/version 200 in 67ms
+ GET /api/version 200 in 132ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /digital-accountant/journal-entries 200 in 5052ms
+ GET /api/version 200 in 46ms
+ GET /api/version 200 in 56ms
+ GET /api/version 200 in 23ms
+ GET /api/version 200 in 81ms
+ GET /api/version 200 in 40ms
+ GET /api/version 200 in 85ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /dashboard 200 in 13445ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /api/version 200 in 355ms
+ GET /api/version 200 in 55ms
+ GET /api/version 200 in 14ms
+ GET /api/version 200 in 21ms
+ GET /api/version 200 in 18ms
+ GET /api/version 200 in 16ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+(node:24061) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ GET /api/menu/categories?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 10464ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/version 200 in 1855ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 4570ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+Creating menu category with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Test Category",
+  "description": "A test category for menu management",
+  "color": "#4CAF50",
+  "icon": "coffee"
+}
+✅ Category created: Test Category
+ POST /api/menu/categories 201 in 679ms
+Creating menu item with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Test Menu Item",
+  "description": "A test menu item with all properties",
+  "basePrice": 15.99,
+  "costPrice": 5.5,
+  "categoryId": "02e9f31d-0de1-4ede-bb05-e8d6a6cadbbd",
+  "prepTimeMinutes": 12,
+  "isAvailable": true,
+  "allergens": [
+    "gluten",
+    "dairy"
+  ],
+  "nutritionalInfo": {
+    "calories": 450,
+    "protein": 25
+  }
+}
+Error linking item to category: {
+  code: '23502',
+  details: 'Failing row contains (06106a5f-4b0f-4ca8-b51a-8dfe349b7e58, 123e4567-e89b-12d3-a456-426614174000, null, menu_item_category, null, null, null, 02e9f31d-0de1-4ede-bb05-e8d6a6cadbbd, 781213ae-83be-4f42-b58f-eea3383f31b3, {}, {}, 1.0000, 100, f, f, t, 2025-07-24 13:42:35.891967, null, 2025-07-24 13:42:35.891967, null, 2025-07-24 13:42:35.891967, null, 1, null, null, null, f).',
+  hint: null,
+  message: 'null value in column "relationship_type_id" of relation "core_relationships" violates not-null constraint'
+}
+✅ Menu item created: Test Menu Item (65.6% margin)
+ POST /api/menu/items 201 in 300ms
+Creating menu item with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Test Combo Meal",
+  "description": "A test combo with multiple items",
+  "basePrice": 24.99,
+  "costPrice": 8.75,
+  "categoryId": "02e9f31d-0de1-4ede-bb05-e8d6a6cadbbd",
+  "prepTimeMinutes": 20,
+  "isAvailable": true,
+  "itemType": "composite",
+  "components": [
+    {
+      "itemId": "66cafb55-3df3-4b83-a3ae-51972feec4d8",
+      "itemName": "Margherita Pizza",
+      "portionSize": 1,
+      "quantity": 1,
+      "sequenceOrder": 1,
+      "isMandatory": true
+    },
+    {
+      "itemId": "d7cecbfa-0137-43f0-bca0-0af55a913985",
+      "itemName": "Caesar Salad",
+      "portionSize": 0.5,
+      "quantity": 1,
+      "sequenceOrder": 2,
+      "isMandatory": false
+    }
+  ]
+}
+Error linking item to category: {
+  code: '23502',
+  details: 'Failing row contains (4b36df65-31b4-4e44-ae68-f23c6f756061, 123e4567-e89b-12d3-a456-426614174000, null, menu_item_category, null, null, null, 02e9f31d-0de1-4ede-bb05-e8d6a6cadbbd, aa5f3e71-e2e0-431a-8836-c239625ae557, {}, {}, 1.0000, 100, f, f, t, 2025-07-24 13:42:47.130809, null, 2025-07-24 13:42:47.130809, null, 2025-07-24 13:42:47.130809, null, 1, null, null, null, f).',
+  hint: null,
+  message: 'null value in column "relationship_type_id" of relation "core_relationships" violates not-null constraint'
+}
+Error adding combo components: {
+  code: '23502',
+  details: 'Failing row contains (61772198-924a-4183-8fc8-df5648706e65, 123e4567-e89b-12d3-a456-426614174000, null, composite_item, null, null, null, aa5f3e71-e2e0-431a-8836-c239625ae557, 66cafb55-3df3-4b83-a3ae-51972feec4d8, {"quantity": "1", "is_mandatory": true, "portion_size": "1", "se..., {}, 1.0000, 100, f, f, t, 2025-07-24 13:42:47.171153, null, 2025-07-24 13:42:47.171153, null, 2025-07-24 13:42:47.171153, null, 1, null, null, null, f).',
+  hint: null,
+  message: 'null value in column "relationship_type_id" of relation "core_relationships" violates not-null constraint'
+}
+✅ Menu item created: Test Combo Meal (64.99% margin)
+ POST /api/menu/items 201 in 286ms
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000&itemType=composite&includeComponents=true 200 in 177ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+Generating menu analytics for org: 123e4567-e89b-12d3-a456-426614174000
+✅ Menu analytics generated for 6 items
+ GET /api/menu/analytics?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 3642ms
+Updating menu item: 781213ae-83be-4f42-b58f-eea3383f31b3 with data: {
+  name: 'Updated Test Item',
+  description: 'Updated description',
+  basePrice: 17.99,
+  organizationId: '123e4567-e89b-12d3-a456-426614174000'
+}
+✅ Menu item updated: 781213ae-83be-4f42-b58f-eea3383f31b3
+ PUT /api/menu/items 200 in 210ms
+ DELETE /api/menu/categories?id=02e9f31d-0de1-4ede-bb05-e8d6a6cadbbd 200 in 210ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /login 404 in 11433ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/version 200 in 904ms
+ GET /api/version 200 in 4847ms
+ GET /favicon.ico 200 in 9828ms
+ GET /api/version 200 in 139ms
+ GET /api/version 200 in 179ms
+ GET /api/version 200 in 61ms
+ GET /login 404 in 1982ms
+ GET /favicon.ico 200 in 166ms
+ GET /api/version 200 in 85ms
+ GET /api/version 200 in 47ms
+ GET /api/version 200 in 42ms
+ GET /api/version 200 in 35ms
+ GET /api/version 200 in 13ms
+ GET /login 404 in 111ms
+ GET /favicon.ico 200 in 111ms
+ GET /api/version 200 in 51ms
+ GET /api/version 200 in 16ms
+ GET /api/version 200 in 17ms
+ GET /api/version 200 in 14ms
+ GET /api/version 200 in 25ms
+ GET /login 404 in 669ms
+ GET /login 404 in 903ms
+ GET /favicon.ico 200 in 384ms
+ GET /api/version 200 in 116ms
+ GET /api/version 200 in 53ms
+ GET /api/version 200 in 32ms
+ GET /api/version 200 in 43ms
+ GET /api/version 200 in 45ms
+ GET /login 404 in 181ms
+ GET /favicon.ico 200 in 287ms
+ GET /api/version 200 in 59ms
+ GET /api/version 200 in 29ms
+ GET /api/version 200 in 23ms
+ GET /api/version 200 in 16ms
+ GET /api/version 200 in 25ms
+ GET /login 404 in 166ms
+ GET /favicon.ico 200 in 103ms
+ GET /api/version 200 in 225ms
+ GET /api/version 200 in 58ms
+ GET /api/version 200 in 59ms
+ GET /api/version 200 in 49ms
+ GET /api/version 200 in 37ms
+ GET /login 404 in 156ms
+ GET /favicon.ico 200 in 264ms
+ GET /api/version 200 in 141ms
+ GET /api/version 200 in 25ms
+ GET /api/version 200 in 31ms
+ GET /api/version 200 in 24ms
+ GET /api/version 200 in 14ms
+ GET /login 404 in 333ms
+ GET /favicon.ico 200 in 101ms
+ GET /api/version 200 in 35ms
+ GET /api/version 200 in 20ms
+ GET /api/version 200 in 19ms
+ GET /api/version 200 in 19ms
+ GET /api/version 200 in 14ms
+ GET /login 404 in 104ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /restaurant/menu-management 200 in 11504ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/menu/categories?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 2292ms
+Creating menu category with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Playwright Test Category",
+  "description": "Test category created by Playwright",
+  "color": "#4CAF50",
+  "icon": "coffee"
+}
+✅ Category created: Playwright Test Category
+ POST /api/menu/categories 201 in 250ms
+ GET /api/menu/categories?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 141ms
+Updating menu category: 1ef4ae56-36b8-4d0c-bcb3-030e48b9293b with data: {
+  name: 'Updated Playwright Category',
+  description: 'Updated description'
+}
+✅ Category updated: 1ef4ae56-36b8-4d0c-bcb3-030e48b9293b
+ PUT /api/menu/categories 200 in 96ms
+ GET /api/menu/categories?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 122ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 778ms
+Creating menu item with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Playwright Test Item",
+  "description": "Test menu item created by Playwright",
+  "basePrice": 15.99,
+  "costPrice": 5.5,
+  "prepTimeMinutes": 12,
+  "isAvailable": true,
+  "allergens": [
+    "gluten",
+    "dairy"
+  ],
+  "categoryId": "1ef4ae56-36b8-4d0c-bcb3-030e48b9293b"
+}
+Error linking item to category: {
+  code: '23502',
+  details: 'Failing row contains (963f0fea-e587-4772-a8cf-d0acfa638d4e, 123e4567-e89b-12d3-a456-426614174000, null, menu_item_category, null, null, null, 1ef4ae56-36b8-4d0c-bcb3-030e48b9293b, 668c499b-55ed-4d11-b304-fb52522bbc92, {}, {}, 1.0000, 100, f, f, t, 2025-07-24 13:54:03.539681, null, 2025-07-24 13:54:03.539681, null, 2025-07-24 13:54:03.539681, null, 1, null, null, null, f).',
+  hint: null,
+  message: 'null value in column "relationship_type_id" of relation "core_relationships" violates not-null constraint'
+}
+✅ Menu item created: Playwright Test Item (65.6% margin)
+ POST /api/menu/items 201 in 189ms
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 152ms
+Updating menu item: 668c499b-55ed-4d11-b304-fb52522bbc92 with data: {
+  name: 'Updated Playwright Item',
+  basePrice: 17.99,
+  organizationId: '123e4567-e89b-12d3-a456-426614174000'
+}
+✅ Menu item updated: 668c499b-55ed-4d11-b304-fb52522bbc92
+ PUT /api/menu/items 200 in 132ms
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 111ms
+Creating menu item with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Test Pizza Component",
+  "description": "Pizza for combo",
+  "basePrice": 18.99,
+  "costPrice": 6.5,
+  "categoryId": "default",
+  "prepTimeMinutes": 15
+}
+Error linking item to category: {
+  code: '22P02',
+  details: null,
+  hint: null,
+  message: 'invalid input syntax for type uuid: "default"'
+}
+✅ Menu item created: Test Pizza Component (65.77% margin)
+ POST /api/menu/items 201 in 195ms
+Creating menu item with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Test Salad Component",
+  "description": "Salad for combo",
+  "basePrice": 12.99,
+  "costPrice": 4.25,
+  "categoryId": "default",
+  "prepTimeMinutes": 8
+}
+Error linking item to category: {
+  code: '22P02',
+  details: null,
+  hint: null,
+  message: 'invalid input syntax for type uuid: "default"'
+}
+✅ Menu item created: Test Salad Component (67.28% margin)
+ POST /api/menu/items 201 in 180ms
+Creating menu item with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Playwright Test Combo",
+  "description": "Test combo meal with multiple components",
+  "basePrice": 24.99,
+  "costPrice": 8.75,
+  "categoryId": "default",
+  "prepTimeMinutes": 20,
+  "itemType": "composite",
+  "components": [
+    {
+      "itemId": "efbd49f8-2664-4d02-8cc3-37a4752902f7",
+      "itemName": "Test Pizza Component",
+      "portionSize": 1,
+      "quantity": 1,
+      "sequenceOrder": 1,
+      "isMandatory": true
+    },
+    {
+      "itemId": "b3a1d7b0-d7ec-4bdb-836a-f05c93eb61c8",
+      "itemName": "Test Salad Component",
+      "portionSize": 0.5,
+      "quantity": 1,
+      "sequenceOrder": 2,
+      "isMandatory": false
+    }
+  ]
+}
+Error linking item to category: {
+  code: '22P02',
+  details: null,
+  hint: null,
+  message: 'invalid input syntax for type uuid: "default"'
+}
+Error adding combo components: {
+  code: '23502',
+  details: 'Failing row contains (5ca4989d-fc01-4856-8704-d1f91be812a4, 123e4567-e89b-12d3-a456-426614174000, null, composite_item, null, null, null, e278dae5-23c2-4609-b400-0ec2db1c4692, efbd49f8-2664-4d02-8cc3-37a4752902f7, {"quantity": "1", "is_mandatory": true, "portion_size": "1", "se..., {}, 1.0000, 100, f, f, t, 2025-07-24 13:54:05.202179, null, 2025-07-24 13:54:05.202179, null, 2025-07-24 13:54:05.202179, null, 1, null, null, null, f).',
+  hint: null,
+  message: 'null value in column "relationship_type_id" of relation "core_relationships" violates not-null constraint'
+}
+✅ Menu item created: Playwright Test Combo (64.99% margin)
+ POST /api/menu/items 201 in 196ms
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000&itemType=composite&includeComponents=true 200 in 164ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+Generating menu analytics for org: 123e4567-e89b-12d3-a456-426614174000
+✅ Menu analytics generated for 10 items
+ GET /api/menu/analytics?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 724ms
+ GET /api/menu/categories?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 317ms
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 469ms
+Generating menu analytics for org: 123e4567-e89b-12d3-a456-426614174000
+✅ Menu analytics generated for 10 items
+ GET /api/menu/analytics?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 204ms
+Creating menu category with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000"
+}
+ POST /api/menu/categories 400 in 26ms
+Error fetching menu categories: {
+  code: '22P02',
+  details: null,
+  hint: null,
+  message: 'invalid input syntax for type uuid: "invalid-id"'
+}
+ GET /api/menu/categories?organizationId=invalid-id 500 in 56ms
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 173ms
+ DELETE /api/menu/items?id=668c499b-55ed-4d11-b304-fb52522bbc92 200 in 187ms
+ DELETE /api/menu/items?id=efbd49f8-2664-4d02-8cc3-37a4752902f7 200 in 120ms
+ DELETE /api/menu/items?id=b3a1d7b0-d7ec-4bdb-836a-f05c93eb61c8 200 in 135ms
+ DELETE /api/menu/items?id=e278dae5-23c2-4609-b400-0ec2db1c4692 200 in 240ms
+ GET /api/menu/categories?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 91ms
+ DELETE /api/menu/categories?id=1ef4ae56-36b8-4d0c-bcb3-030e48b9293b 200 in 101ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /restaurant/menu-management 200 in 2998ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/version 200 in 19348ms
+ GET /api/version 200 in 14044ms
+ GET /api/version 200 in 20709ms
+ GET /restaurant/signin 200 in 21212ms
+ GET /api/version 200 in 91ms
+ GET /api/version 200 in 109ms
+ GET /restaurant/menu-management 200 in 648ms
+ GET /api/version 200 in 68ms
+ GET /restaurant/signin 200 in 107ms
+ GET /api/version 200 in 86ms
+ GET /api/version 200 in 15ms
+ GET /api/version 200 in 15ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/menu/categories?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 1613ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 1822ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+Generating menu analytics for org: 123e4567-e89b-12d3-a456-426614174000
+✅ Menu analytics generated for 6 items
+ GET /api/menu/analytics?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 965ms
+ GET /restaurant/menu-management 200 in 1508ms
+ GET /api/version 200 in 224ms
+ GET /restaurant/signin 200 in 432ms
+ GET /api/version 200 in 215ms
+ GET /api/version 200 in 76ms
+ GET /api/version 200 in 50ms
+ GET /restaurant/menu-management 200 in 93ms
+ GET /api/version 200 in 83ms
+ GET /api/version 200 in 28ms
+ GET /restaurant/signin 200 in 58ms
+ GET /api/version 200 in 19ms
+ GET /api/version 200 in 24ms
+ GET /restaurant/menu-management 200 in 78ms
+ GET /api/version 200 in 67ms
+ GET /api/version 200 in 47ms
+ GET /restaurant/signin 200 in 90ms
+ GET /api/version 200 in 21ms
+ GET /restaurant/menu-management 200 in 78ms
+ GET /api/version 200 in 45ms
+ GET /api/version 200 in 24ms
+ GET /restaurant/signin 200 in 44ms
+ GET /api/version 200 in 23ms
+ GET /api/version 200 in 13ms
+ GET /api/version 200 in 75ms
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000&itemType=composite&includeComponents=true 200 in 891ms
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000&itemType=individual 200 in 343ms
+Creating menu item with data: {
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Mario Complete Italian Experience",
+  "description": "Perfect combination: Pizza + Caesar Salad + Tiramisu for the complete Italian dining experience",
+  "basePrice": 34.99,
+  "costPrice": 12.5,
+  "categoryId": "afbc065d-a551-414c-9ff3-08d825fa471d",
+  "prepTimeMinutes": 25,
+  "isAvailable": true,
+  "itemType": "composite",
+  "components": [
+    {
+      "itemId": "66cafb55-3df3-4b83-a3ae-51972feec4d8",
+      "itemName": "Margherita Pizza",
+      "portionSize": 1,
+      "quantity": 1,
+      "sequenceOrder": 1,
+      "isMandatory": true
+    },
+    {
+      "itemId": "d7cecbfa-0137-43f0-bca0-0af55a913985",
+      "itemName": "Caesar Salad",
+      "portionSize": 1,
+      "quantity": 1,
+      "sequenceOrder": 2,
+      "isMandatory": true
+    },
+    {
+      "itemId": "2db77f8f-a264-4ebe-b3ca-34d2a33f560b",
+      "itemName": "Tiramisu",
+      "portionSize": 1,
+      "quantity": 1,
+      "sequenceOrder": 3,
+      "isMandatory": false
+    }
+  ]
+}
+Error linking item to category: {
+  code: '23502',
+  details: 'Failing row contains (04992ffb-9644-4228-b617-00c87ac76973, 123e4567-e89b-12d3-a456-426614174000, null, menu_item_category, null, null, null, afbc065d-a551-414c-9ff3-08d825fa471d, 1eaf68dc-5037-4e75-bbcd-7e609fd719de, {}, {}, 1.0000, 100, f, f, t, 2025-07-24 14:57:41.389426, null, 2025-07-24 14:57:41.389426, null, 2025-07-24 14:57:41.389426, null, 1, null, null, null, f).',
+  hint: null,
+  message: 'null value in column "relationship_type_id" of relation "core_relationships" violates not-null constraint'
+}
+Error adding combo components: {
+  code: '23502',
+  details: 'Failing row contains (3767d8a9-ce34-4238-9ce3-13d0628ed253, 123e4567-e89b-12d3-a456-426614174000, null, composite_item, null, null, null, 1eaf68dc-5037-4e75-bbcd-7e609fd719de, 66cafb55-3df3-4b83-a3ae-51972feec4d8, {"quantity": "1", "is_mandatory": true, "portion_size": "1", "se..., {}, 1.0000, 100, f, f, t, 2025-07-24 14:57:41.445908, null, 2025-07-24 14:57:41.445908, null, 2025-07-24 14:57:41.445908, null, 1, null, null, null, f).',
+  hint: null,
+  message: 'null value in column "relationship_type_id" of relation "core_relationships" violates not-null constraint'
+}
+✅ Menu item created: Mario Complete Italian Experience (64.28% margin)
+ POST /api/menu/items 201 in 386ms
+ GET /api/menu/items?organizationId=123e4567-e89b-12d3-a456-426614174000&itemType=composite&includeComponents=true 200 in 228ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 7671ms

@@ -244,45 +244,77 @@ export async function PUT(request: NextRequest) {
 
     console.log('Updating menu category:', id, 'with data:', updateData);
 
+    // Verify category exists and get current data
+    const { data: existingCategory, error: fetchError } = await supabase
+      .from('core_entities')
+      .select('*')
+      .eq('id', id)
+      .eq('entity_type', 'menu_category')
+      .eq('is_active', true)
+      .single();
+
+    if (fetchError || !existingCategory) {
+      console.error('Category not found:', fetchError);
+      return NextResponse.json(
+        { error: 'Category not found' },
+        { status: 404 }
+      );
+    }
+
     // Update entity name if provided
-    if (updateData.name) {
+    if (updateData.name && updateData.name !== existingCategory.entity_name) {
       const { error: entityError } = await supabase
         .from('core_entities')
-        .update({ entity_name: updateData.name })
+        .update({ 
+          entity_name: updateData.name,
+          updated_at: new Date().toISOString()
+        })
         .eq('id', id);
 
       if (entityError) {
         console.error('Error updating category entity:', entityError);
         return NextResponse.json(
-          { error: 'Failed to update category' },
+          { error: 'Failed to update category name' },
           { status: 500 }
         );
       }
     }
 
-    // Update dynamic properties
+    // Update dynamic properties with proper upsert
     const propertyUpdates = [];
-    if (updateData.description !== undefined) propertyUpdates.push({ field_name: 'description', field_value: updateData.description });
+    if (updateData.description !== undefined) propertyUpdates.push({ field_name: 'description', field_value: updateData.description || '' });
     if (updateData.displayOrder !== undefined) propertyUpdates.push({ field_name: 'display_order', field_value: updateData.displayOrder.toString() });
     if (updateData.color !== undefined) propertyUpdates.push({ field_name: 'color', field_value: updateData.color });
     if (updateData.icon !== undefined) propertyUpdates.push({ field_name: 'icon', field_value: updateData.icon });
 
     for (const update of propertyUpdates) {
-      await supabase
+      const { error: upsertError } = await supabase
         .from('core_dynamic_data')
         .upsert({
           entity_id: id,
           field_name: update.field_name,
           field_value: update.field_value,
-          field_type: update.field_name === 'display_order' ? 'integer' : 'text'
+          field_type: update.field_name === 'display_order' ? 'integer' : 'text',
+          updated_at: new Date().toISOString()
+        }, {
+          onConflict: 'entity_id,field_name'
         });
+
+      if (upsertError) {
+        console.error(`Error updating ${update.field_name}:`, upsertError);
+        // Continue with other updates instead of failing completely
+      }
     }
 
     console.log(`✅ Category updated: ${id}`);
 
     return NextResponse.json({
       success: true,
-      message: 'Category updated successfully'
+      message: 'Category updated successfully',
+      data: {
+        id: id,
+        name: updateData.name || existingCategory.entity_name
+      }
     });
 
   } catch (error) {
@@ -309,39 +341,84 @@ export async function DELETE(request: NextRequest) {
 
     const supabase = getAdminClient();
 
-    // Check if category has items
-    const { count: itemCount } = await supabase
+    console.log('Attempting to delete category:', id);
+
+    // Verify category exists
+    const { data: existingCategory, error: fetchError } = await supabase
+      .from('core_entities')
+      .select('entity_name')
+      .eq('id', id)
+      .eq('entity_type', 'menu_category')
+      .eq('is_active', true)
+      .single();
+
+    if (fetchError || !existingCategory) {
+      console.error('Category not found:', fetchError);
+      return NextResponse.json(
+        { error: 'Category not found or already deleted' },
+        { status: 404 }
+      );
+    }
+
+    // Check if category has menu items using BOTH relationship patterns
+    // Check core_relationships table
+    const { count: relationshipCount } = await supabase
       .from('core_relationships')
       .select('id', { count: 'exact' })
       .eq('parent_entity_id', id)
       .eq('relationship_type', 'menu_item_category')
       .eq('is_active', true);
 
-    if (itemCount && itemCount > 0) {
+    // Also check if any menu items directly reference this category in dynamic data
+    const { data: menuItemsWithCategory } = await supabase
+      .from('core_dynamic_data')
+      .select('entity_id')
+      .eq('field_name', 'category_id')
+      .eq('field_value', id);
+
+    const totalItemCount = (relationshipCount || 0) + (menuItemsWithCategory?.length || 0);
+
+    console.log(`Category ${id} has ${totalItemCount} associated menu items`);
+
+    if (totalItemCount > 0) {
       return NextResponse.json(
-        { error: 'Cannot delete category with menu items. Please move items to another category first.' },
+        { 
+          error: `Cannot delete category "${existingCategory.entity_name}" because it contains ${totalItemCount} menu item(s). Please move or delete the menu items first.`,
+          itemCount: totalItemCount
+        },
         { status: 400 }
       );
     }
 
     // Delete category (soft delete by setting is_active = false)
-    const { error } = await supabase
+    const { error: deleteError } = await supabase
       .from('core_entities')
-      .update({ is_active: false })
+      .update({ 
+        is_active: false,
+        updated_at: new Date().toISOString()
+      })
       .eq('id', id)
       .eq('entity_type', 'menu_category');
 
-    if (error) {
-      console.error('Error deleting menu category:', error);
+    if (deleteError) {
+      console.error('Error deleting menu category:', deleteError);
       return NextResponse.json(
         { error: 'Failed to delete menu category' },
         { status: 500 }
       );
     }
 
+    // Also soft delete any associated dynamic data
+    await supabase
+      .from('core_dynamic_data')
+      .update({ is_active: false })
+      .eq('entity_id', id);
+
+    console.log(`✅ Category deleted: ${existingCategory.entity_name}`);
+
     return NextResponse.json({
       success: true,
-      message: 'Menu category deleted successfully'
+      message: `Menu category "${existingCategory.entity_name}" deleted successfully`
     });
 
   } catch (error) {

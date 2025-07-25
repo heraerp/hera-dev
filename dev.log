@@ -6,11 +6,9 @@
    Consider removing the lockfiles at:
    * /Users/san/Documents/hera-dev/package-lock.json
 
- ⚠ Port 3000 is in use by process 3426
-10063, using available port 3002 instead.
    ▲ Next.js 15.4.1
-   - Local:        http://localhost:3002
-   - Network:      http://192.168.1.101:3002
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.86.223:3000
    - Environments: .env.local
 
  ✓ Starting...
@@ -27,45 +25,50 @@
 > [PWA]   document (page): /offline
 > [PWA]   image: /static/images/fallback.png
 > [PWA] Build in develop mode, cache and precache are mostly disabled. This means offline support is disabled, but you can continue developing other functions in service worker.
- ✓ Ready in 9.5s
- ○ Compiling /middleware ...
+ ✓ Ready in 3.2s
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ○ Compiling /api/menu/categories ...
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
-🛠️ Fetching ERP modules for organization: 00000000-0000-0000-0000-000000000001
-(node:12993) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(node:33536) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-✅ ERP modules fetched successfully: 0
- GET /api/templates/modules?organizationId=00000000-0000-0000-0000-000000000001 200 in 5108ms
+ GET /api/menu/categories?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 1842ms
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
-📦 Fetching industry packages with filters: {
-  industry: undefined,
-  businessSize: undefined,
-  organizationId: '00000000-0000-0000-0000-000000000001'
+Error: Route "/api/menu/categories/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at DELETE (app/api/menu/categories/[id]/route.ts:220:30)
+  218 |   try {
+  219 |     const supabase = getAdminClient();
+> 220 |     const categoryId = params.id;
+      |                              ^
+  221 |
+  222 |     if (!categoryId) {
+  223 |       return NextResponse.json(
+Attempting to delete category: afbc065d-a551-414c-9ff3-08d825fa471d
+(node:33639) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:33640) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Category afbc065d-a551-414c-9ff3-08d825fa471d has 2 associated menu items (1 relationships + 1 dynamic references)
+ DELETE /api/menu/categories/afbc065d-a551-414c-9ff3-08d825fa471d 400 in 1433ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+Updating menu category: 90d01726-a9bd-4b0a-917a-7850f61ac1da with data: {
+  name: 'Updated Appetizers',
+  description: 'New description for appetizers'
 }
-✅ Industry packages fetched successfully: 12
- GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 1362ms
-📦 Fetching industry packages with filters: {
-  industry: undefined,
-  businessSize: undefined,
-  organizationId: '00000000-0000-0000-0000-000000000001'
-}
-✅ Industry packages fetched successfully: 12
- GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 200 in 208ms
- ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
- ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
-🚀 Creating new deployment: package
- ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
- ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
-🚀 Starting package deployment: 981cc4e4-e3f6-4256-9833-23ba0afa8de8 to org: 823b69ed-6081-4100-8c96-61ef9e2f8a2b
- POST /api/templates/packages/deploy 404 in 1785ms
- POST /api/templates/deployments 404 in 3472ms
- ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
- ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
- ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
- GET /api/templates/packages?organizationId=00000000-0000-0000-0000-000000000001 404 in 8532ms
- ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+✅ Category updated: 90d01726-a9bd-4b0a-917a-7850f61ac1da
+ PUT /api/menu/categories/90d01726-a9bd-4b0a-917a-7850f61ac1da 200 in 402ms
+(node:33751) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Attempting to delete category: 2cca49d2-0058-4fee-9d04-15a01420042e
+Category 2cca49d2-0058-4fee-9d04-15a01420042e has 0 associated menu items (0 relationships + 0 dynamic references)
+✅ Category deleted: Beverages
+ DELETE /api/menu/categories/2cca49d2-0058-4fee-9d04-15a01420042e 200 in 385ms
+(node:33787) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ GET /api/menu/categories?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 214ms
 [?25h

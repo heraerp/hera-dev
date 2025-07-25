@@ -339,36 +339,39 @@ export class MenuManagementService {
     console.log('🏭 Toyota Method: Creating menu category with standardized work...')
     
     try {
-      // Validate naming convention for menu entities
-      const validation = await HeraNamingConventionAI.validateFieldName(
-        'menu_category', 'name'
-      )
-      if (!validation.isValid) {
-        throw new Error(`Naming validation failed: ${validation.error}`)
-      }
-
       // Apply Jidoka: Built-in quality checks
       this.validateCategoryData(categoryData)
 
       // Check for duplicate category names
       await this.checkDuplicateCategoryName(categoryData.name)
 
-      const result = await UniversalCrudService.createEntity({
-        name: categoryData.name,
-        organizationId: this.organizationId,
-        fields: {
+      // Call the API directly for better error handling
+      const response = await fetch('/api/menu/categories', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          organizationId: this.organizationId,
+          name: categoryData.name,
           description: categoryData.description,
-          display_order: categoryData.display_order,
-          is_active: categoryData.is_active,
+          displayOrder: categoryData.display_order,
+          color: categoryData.icon, // Map icon to color for backwards compatibility
           icon: categoryData.icon,
-          image_url: categoryData.image_url,
-          available_times: JSON.stringify(categoryData.available_times || []),
-          parent_category_id: categoryData.parent_category_id
-        }
-      }, MENU_ENTITY_TYPES.MENU_CATEGORY)
+          imageUrl: categoryData.image_url,
+          availableTimes: categoryData.available_times,
+          parentCategoryId: categoryData.parent_category_id
+        })
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to create category')
+      }
 
       console.log('✅ Toyota Method: Category created successfully')
-      return result
+      return { success: true, data: result.data }
     } catch (error) {
       console.error('❌ Toyota Method: Category creation failed:', error)
       throw error
@@ -386,23 +389,32 @@ export class MenuManagementService {
         await this.checkDuplicateCategoryName(updates.name, categoryId)
       }
 
-      const result = await UniversalCrudService.updateEntity(
-        this.organizationId,
-        categoryId,
-        {
+      // Call the API directly for better error handling
+      const response = await fetch(`/api/menu/categories/${categoryId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           name: updates.name,
           description: updates.description,
-          display_order: updates.display_order,
-          is_active: updates.is_active,
+          displayOrder: updates.display_order,
+          color: updates.icon, // Map icon to color for backwards compatibility
           icon: updates.icon,
-          image_url: updates.image_url,
-          available_times: updates.available_times ? JSON.stringify(updates.available_times) : undefined,
-          parent_category_id: updates.parent_category_id
-        }
-      )
+          imageUrl: updates.image_url,
+          availableTimes: updates.available_times,
+          parentCategoryId: updates.parent_category_id
+        })
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to update category')
+      }
 
       console.log('✅ Toyota Method: Category updated successfully')
-      return result
+      return { success: true, data: result.data }
     } catch (error) {
       console.error('❌ Toyota Method: Category update failed:', error)
       throw error
@@ -413,21 +425,25 @@ export class MenuManagementService {
     console.log('🏭 Toyota Method: Fetching categories with Just-in-Time loading...')
     
     try {
-      const filters = includeInactive ? {} : { is_active: true }
-      console.log('🍕 Menu Service: Using filters:', filters)
       console.log('🍕 Menu Service: Organization ID:', this.organizationId)
       
-      const result = await UniversalCrudService.listEntities(
-        this.organizationId,
-        MENU_ENTITY_TYPES.MENU_CATEGORY,
-        {
-          filters
-        }
-      )
+      // Call the API directly for consistent results
+      const response = await fetch(`/api/menu/categories?organizationId=${this.organizationId}`)
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch categories')
+      }
+
+      const result = await response.json()
+
+      // Filter inactive categories if needed
+      if (result.success && result.data && !includeInactive) {
+        result.data = result.data.filter((category: any) => category.isActive !== false)
+      }
 
       // Sort by display_order on client side
       if (result.success && result.data) {
-        result.data.sort((a: any, b: any) => (a.display_order || 0) - (b.display_order || 0))
+        result.data.sort((a: any, b: any) => (a.displayOrder || 0) - (b.displayOrder || 0))
       }
 
       console.log('✅ Toyota Method: Categories loaded successfully')
@@ -442,23 +458,20 @@ export class MenuManagementService {
     console.log('🏭 Toyota Method: Deleting category with dependency checks...')
     
     try {
-      // Poka-yoke: Check if category has menu items
-      const menuItems = await UniversalCrudService.listEntities(
-        this.organizationId,
-        MENU_ENTITY_TYPES.MENU_ITEM,
-        {
-          filters: { category_id: categoryId }
-        }
-      )
+      // Call the API directly for better error handling and dependency checks
+      const response = await fetch(`/api/menu/categories/${categoryId}`, {
+        method: 'DELETE'
+      })
 
-      if (menuItems.data && menuItems.data.length > 0) {
-        throw new Error('Cannot delete category with existing menu items. Please move or delete menu items first.')
+      const result = await response.json()
+
+      if (!response.ok) {
+        // The API will return a detailed error message about items in the category
+        throw new Error(result.error || 'Failed to delete category')
       }
 
-      const result = await UniversalCrudService.deleteEntity(categoryId)
-
       console.log('✅ Toyota Method: Category deleted successfully')
-      return result
+      return { success: true, message: result.message }
     } catch (error) {
       console.error('❌ Toyota Method: Category deletion failed:', error)
       throw error

@@ -200,7 +200,7 @@ export default function EmpireDeck() {
   const [password, setPassword] = useState('')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   
-  const correctPassword = "empire@hera@2024"
+  const correctPassword = "NextDecade"
   const totalSlides = 13
 
   const handlePasswordSubmit = (e: React.FormEvent) => {

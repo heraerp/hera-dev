@@ -678,3 +678,233 @@ Error adding combo components: {
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
  ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
  GET /api/purchasing/suppliers?organizationId=123e4567-e89b-12d3-a456-426614174000 200 in 7671ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/app/api/menu/categories/route.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/api/menu/categories/route.js:4:9660)
+    at Object.<anonymous> (.next/server/app/api/menu/categories/route.js:4:9711) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/api/menu/categories'
+}
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/pages/_document.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/pages/_document.js:1:327)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ POST /api/menu/categories 500 in 11521ms
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/pages/_document.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/api/menu/categories/route.js:4:9660)
+    at Object.<anonymous> (.next/server/app/api/menu/categories/route.js:4:9711) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/api/menu/categories'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/pages/_document.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/pages/_document.js:1:327)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ POST /api/menu/categories 500 in 567ms
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/pages/_document.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/api/menu/categories/route.js:4:9660)
+    at Object.<anonymous> (.next/server/app/api/menu/categories/route.js:4:9711) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/api/menu/categories'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/pages/_document.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/pages/_document.js:1:327)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /api/menu/categories?organizationId=123e4567-e89b-12d3-a456-426614174000 500 in 259ms
+ ⨯ Error: Cannot find module './431.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/pages/_document.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/dashboard/page.js:2:45734)
+    at Object.<anonymous> (.next/server/app/dashboard/page.js:2:45809) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/dashboard'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- /Users/san/Documents/hera-dev/.next/server/webpack-runtime.js
+- /Users/san/Documents/hera-dev/.next/server/pages/_document.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/require.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/load-components.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/utils.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/options.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/swc/index.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/router-server.js
+- /Users/san/Documents/hera-dev/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/pages/_document.js:1:327)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /dashboard 500 in 316ms
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⚠ GenerateSW has been called multiple times, perhaps due to running webpack in --watch mode. The precache manifest generated after the first call may be inaccurate! Please see https://github.com/GoogleChrome/workbox/issues/1790 for more information.
+ ⨯ Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+}
+ ⨯ Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+}
+ ⨯ Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+}
+ ⨯ Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+}
+ ⨯ Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+}
+ GET /_next/static/chunks/fallback/webpack.js 500 in 5985ms
+ GET /_next/static/chunks/fallback/main.js 500 in 5962ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 5970ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 5908ms
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 5909ms
+ ⨯ Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+}
+ GET /fallback-development.js 500 in 153ms
+ ⨯ Error: ENOENT: no such file or directory, open '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+    at <unknown> (.next/server/app/_not-found/page.js:533:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:536:3) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/san/Documents/hera-dev/.next/server/vendor-chunks/lucide-react.js'
+}
+ GET /worker-development.js 500 in 465ms
+[?25h
